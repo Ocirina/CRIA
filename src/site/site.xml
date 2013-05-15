@@ -1,0 +1,11 @@
+<project name="Demo App">
+
+    <body>
+        <menu name="JavaScript Quality">
+            <item name="JSDoc documentation" href="jsdoc/index.html"/>
+            <item name="JSLint Report" href="jslint/index.html"/>
+            <item name="Test Results" href="surefire-report.html"/>
+            <item name="Test Coverage" href="total-report.html"/>
+        </menu>
+    </body>
+</project>
