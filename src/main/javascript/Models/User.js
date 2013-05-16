@@ -23,12 +23,44 @@ var User = (function() {
         return User.prototype.name;
     };
 
-    User.prototype.setEmail = function(mail) {
-        User.prototype.mail = mail;
+    User.prototype.setEmail = function(email) {
+        User.prototype.email = email;
     };
 
     User.prototype.getEmail = function() {
         return User.prototype.email;
+    };
+
+    User.prototype.setFirstName = function(firstName) {
+        User.prototype.firstName = firstName;
+    };
+
+    User.prototype.getFirstName = function() {
+        return User.prototype.firstName;
+    };
+
+    User.prototype.setLastName = function(lastName) {
+        User.prototype.lastName = lastName;
+    };
+
+    User.prototype.getLastName = function() {
+        return User.prototype.lastName;
+    };
+
+    User.prototype.setBirthDate = function(birthDate) {
+        User.prototype.birthDate = birthDate;
+    };
+
+    User.prototype.getBirthDate = function() {
+        return User.prototype.birthDate;
+    };
+
+    User.prototype.setPassword = function(password) {
+        User.prototype.password = password;
+    };
+
+    User.prototype.getPassword = function() {
+        return User.prototype.password;
     };
 
     return User;
