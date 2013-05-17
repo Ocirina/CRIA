@@ -5,16 +5,23 @@
  */
 
 var Phone = (function() {
+
     function Phone(){
+        this._type = "";
+    }
 
+    Phone.prototype.availableTypes = new Enum('IPHONE4,IPHONE5');
+
+    Phone.prototype.getAvailableTypes = function() {
+        return this.prototype.availableTypes;
     };
 
-    Phone.prototype.public = function() {
-
+    Phone.prototype.setType = function(type) {
+        this._type = type;
     };
 
-    var private = function() {
-
+    Phone.prototype.getType = function() {
+        return this._type;
     };
 
     return Phone;

@@ -7,7 +7,7 @@ var OrderLine = (function() {
 
     function OrderLine(dataArray){
 
-    };
+    }
 
     return OrderLine;
 })();

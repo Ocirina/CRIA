@@ -7,7 +7,7 @@ var CaseDesign = (function() {
 
     function CaseDesign(dataArray){
 
-    };
+    }
 
     return CaseDesign;
 })();

@@ -3,11 +3,11 @@
  * @copyright Copyright (c) 2013, HAN, Arnhem - All rights reserved
  * @version 1.0.0
  */
-var Comments = (function() {
+var Comment = (function() {
 
-    function Comments(dataArray){
+    function Comment(dataArray){
 
-    };
+    }
 
-    return Comments;
+    return Comment;
 })();

@@ -4,16 +4,20 @@
  * @version 1.0.0
  */
 var User = (function() {
-//    var _name;
-//    var _email;
-//    var _firstName;
-//    var _lastName;
-//    var _birthDate;
-//    var _password;
 
     function User(dataArray){
-
-    };
+        this._name = "";
+        this._email = "";
+        this._firstName = "";
+        this._lastName = "";
+        this._birthDate = "";
+        this._password = "";
+        this._address = null;
+        this._ratings = [];
+        this._comments = [];
+        this._caseDesigns = [];
+        this._orders = [];
+    }
 
     User.prototype.setName = function(name) {
         this._name = name;
@@ -61,6 +65,70 @@ var User = (function() {
 
     User.prototype.getPassword = function() {
         return this._password;
+    };
+
+    User.prototype.setAddress = function(address) {
+        this._address = address;
+    };
+
+    User.prototype.getAddress = function() {
+        return this._address;
+    };
+
+    User.prototype.setRatings = function(ratings) {
+        this._ratings = ratings;
+    };
+
+    User.prototype.getRatings = function() {
+        return this._ratings;
+    };
+
+    User.prototype.addRating = function(rating) {
+        if(rating === Rating) {
+            this._ratings[this._ratings.length] = rating;
+        }
+    };
+
+    User.prototype.setComments = function(comments) {
+        this._comments = comments;
+    };
+
+    User.prototype.getComments = function() {
+        return this._comments;
+    };
+
+    User.prototype.addComment = function(comment) {
+        if(comment === Comment) {
+            this._comments[this._comments.length] = comment;
+        }
+    };
+
+    User.prototype.setCaseDesigns = function(caseDesigns) {
+        this._caseDesigns = caseDesigns;
+    };
+
+    User.prototype.getCaseDesigns = function() {
+        return this._caseDesigns;
+    };
+
+    User.prototype.addCaseDesign = function(caseDesign) {
+        if(caseDesign === CaseDesign) {
+            this._caseDesigns[this._caseDesigns.length] = caseDesign;
+        }
+    };
+
+    User.prototype.setOrders = function(orders) {
+        this._orders = orders;
+    };
+
+    User.prototype.getOrders = function() {
+        return this._orders;
+    };
+
+    User.prototype.addOrder = function(order) {
+        if(order === Order) {
+            this._orders[this._caseDesigns._orders] = order;
+        }
     };
 
     return User;
