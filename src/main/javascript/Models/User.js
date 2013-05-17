@@ -4,63 +4,63 @@
  * @version 1.0.0
  */
 var User = (function() {
-    var name;
-    var email;
-    var firstName;
-    var lastName;
-    var birthDate;
-    var password;
+//    var _name;
+//    var _email;
+//    var _firstName;
+//    var _lastName;
+//    var _birthDate;
+//    var _password;
 
     function User(dataArray){
 
     };
 
     User.prototype.setName = function(name) {
-        User.prototype.name = name;
+        this._name = name;
     };
 
     User.prototype.getName = function() {
-        return User.prototype.name;
+        return this._name;
     };
 
     User.prototype.setEmail = function(email) {
-        User.prototype.email = email;
+        this._email = email;
     };
 
     User.prototype.getEmail = function() {
-        return User.prototype.email;
+        return this._email;
     };
 
     User.prototype.setFirstName = function(firstName) {
-        User.prototype.firstName = firstName;
+        this._firstName = firstName;
     };
 
     User.prototype.getFirstName = function() {
-        return User.prototype.firstName;
+        return this._firstName;
     };
 
     User.prototype.setLastName = function(lastName) {
-        User.prototype.lastName = lastName;
+        this._lastName = lastName;
     };
 
     User.prototype.getLastName = function() {
-        return User.prototype.lastName;
+        return this._lastName;
     };
 
     User.prototype.setBirthDate = function(birthDate) {
-        User.prototype.birthDate = birthDate;
+        this._birthDate = birthDate;
     };
 
     User.prototype.getBirthDate = function() {
-        return User.prototype.birthDate;
+        return this._birthDate;
     };
 
     User.prototype.setPassword = function(password) {
-        User.prototype.password = password;
+        this._password = password;
     };
 
     User.prototype.getPassword = function() {
-        return User.prototype.password;
+        return this._password;
     };
 
     return User;
