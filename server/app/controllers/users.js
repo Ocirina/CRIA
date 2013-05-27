@@ -1,4 +1,4 @@
-var mongoose, Car, Url;
+var mongoose, Car;
 
 /* Include dependencies */
 mongoose = require('mongoose');

@@ -1,18 +1,15 @@
 module.exports = function (app) {
-    /*
-     var cars, reservations;
-     cars = require('../app/controllers/cars.js');
-     reservations = require('../app/controllers/reservations.js'),
-     administrators = require('../app/controllers/administrators.js');
-     */
+    var UserCtrl;
+    UserCtrl = require('../app/controllers/users.js');
 
     // User
-    app.get('/users', user.index);
-    app.post('/users', user.create);
-    app.get('/user/:id', user.show);
-    app.put('/user/:id', user.update);
-    app.delete('/user/:id', user.destroy);
-
+    app.get('/users', UserCtrl.index);
+    app.post('/users', UserCtrl.create);
+    app.get('/user/:id', UserCtrl.show);
+    app.put('/user/:id', UserCtrl.update);
+    app.delete('/user/:id', UserCtrl.destroy);
+    
+    /*
     // CaseDesign
     app.get('/casedesigns', casedesign.index);    
     app.post('/casedesigns/new', casedesign.create);
@@ -40,4 +37,5 @@ module.exports = function (app) {
     app.get('/order/:id', order.show);
     app.put('/order/:id', order.update);
     app.delete('/order/:id', order.destroy);
+    */
 }
