@@ -4,6 +4,7 @@ module.exports = function (app) {
     CaseDesign  = require('../app/controllers/case_designs.js');
     Rating      = require('../app/controllers/ratings.js');
     Comments    = require('../app/controllers/comments.js');
+    Order       = require('../app/controllers/orders.js');
 
     // User
     app.get('/users', UserCtrl.index);
