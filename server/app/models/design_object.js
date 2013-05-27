@@ -11,7 +11,7 @@ DesignObject = Schema({
     yPosition:  {type:Number, required:true},
     zIndex:     {type:Number, required:true},
     image:      {type:Number, required:false},
-    value:      {type:String, required:false}
+    value:      {type:String, required:false},
     caseDesign: {type:Schema.Type.ObjectID, ref: 'CaseDesign'}
 });
 
