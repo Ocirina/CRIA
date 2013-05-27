@@ -1,5 +1,20 @@
 module.exports = function (app) {
-    
+
+    /*
+    // User
+    app.get('/user', user.index);
+    app.post('/user/new', user.create);
+    app.put('/user/:id', user.update);
+    app.delete('/user/:id', user.destroy);
+
+    // CaseDesign
+    app.get('/casedesign', casedesign.index);
+    app.post('/casedesign/new', casedesign.create);
+    app.put('/casedesign/:id', casedesign.update);
+    app.delete('/casedesign/:id', casedesign.destroy);
+    */
+
+
     /*
     var cars, reservations;
     cars = require('../app/controllers/cars.js');
