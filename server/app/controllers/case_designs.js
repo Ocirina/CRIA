@@ -1,21 +1,21 @@
-var mongoose, CaseDesign, Url;
+var mongoose, CaseDesign;
 
 /* Include dependencies */
 mongoose = require('mongoose');
-CaseDesign = mongoose.model('casedesign');
+CaseDesign = mongoose.model('CaseDesign');
 
 
 /**
  * Type: POST
- * Route: /casedesign/new
+ * Route: /casedesign
  */
 exports.create = function (req, res) {
   var caseDesign = new CaseDesign(req.body);
     CaseDesign.save(function (err) {
-    return res.send({
-      "error":  err,
-      "result": caseDesign
-    });
+      return res.send({
+        "error":  err,
+        "result": caseDesign
+      });
   });
 }
 

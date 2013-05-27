@@ -10,7 +10,7 @@ User = mongoose.model('User');
  * Route: /users
  */
 exports.create = function (req, res) {
-  var user = new Car(req.body);
+  var user = new User(req.body);
   user.save(function (err) {
     return res.send({
       "error":  err,
