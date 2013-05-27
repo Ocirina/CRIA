@@ -1,4 +1,4 @@
-var mongoose, Address, Schema, modelName, collectionName, passwordHash;
+var mongoose, Address, Schema, modelName, collectionName;
 
 mongoose = require('mongoose');
 Schema = mongoose.Schema;
