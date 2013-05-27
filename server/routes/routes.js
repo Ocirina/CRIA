@@ -1,6 +1,9 @@
 module.exports = function (app) {
-    var UserCtrl;
-    UserCtrl = require('../app/controllers/users.js');
+    var UserCtrl, CaseDesign, Comment, Rating, Comments;
+    UserCtrl    = require('../app/controllers/users.js');
+    CaseDesign  = require('../app/controllers/case_designs.js');
+    Rating      = require('../app/controllers/ratings.js');
+    Comments    = require('../app/controllers/comments.js');
 
     // User
     app.get('/users', UserCtrl.index);
@@ -20,6 +23,11 @@ module.exports = function (app) {
     app.get('/casedesigns/:id/comments', comment.index);
     app.post('/casedesigns/:id/comments', comment.create);
     app.delete('/comment/:id', comment.destroy);
+
+    // Rating
+    app.get('/casedesigns/:id/ratings', rating.index);
+    app.post('/casedesigns/:id/ratings', rating.create);
+    app.delete('/rating/:id', rating.destroy);
     
     /*
     // Order
@@ -28,12 +36,5 @@ module.exports = function (app) {
     app.get('/order/:id', order.show);
     app.put('/order/:id', order.update);
     app.delete('/order/:id', order.destroy);
-    
-    // Rating
-    app.get('/ratings', rating.index);
-    app.post('/ratings/new', rating.create);
-    app.get('/rating/:id', rating.show);
-    app.put('/rating/:id', rating.update);
-    app.delete('/rating/:id', rating.destroy);
     */
 }
