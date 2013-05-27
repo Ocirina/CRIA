@@ -4,9 +4,9 @@ mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 CaseDesign = Schema({
-    name:         	{type:String, required:true, index:true},
+    name:           {type:String, required:true, index:true},
     previewImage:   {type:Schema.Types.ObjectId, ref: 'caseDesign'},
-    shared:    		{type:Bool, required:true}
+    shared:         {type:Bool, required:true}
 });
 
 modelName = "CaseDesign";
