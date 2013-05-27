@@ -1,0 +1,95 @@
+var mongoose, carSchema, Schema, modelName, collectionName, Car;
+
+/* Include dependencies */
+mongoose = require('mongoose');
+Schema = mongoose.Schema;
+
+/* Schema definition */
+var ReservationSchema = Schema({
+    phone: {type: String, required: true},
+    price: {type: Number, required: true},
+    car: {type: Schema.Types.ObjectId, ref: 'Car'}
+});
+
+/**
+ * Before saving a reservation there are 2 checks to be made:
+ *  1. Max of 2 reservation allowed
+ *  2. Price MUST be at least 80 percent of the car's price.
+ *  3. Phone is incorrect.
+ * This will be done in this middleware method.
+ * It wil first check the phonenumber, then if there are already 2 reservations made.
+ * If not it will continue to check if the price is at least 80 percent that
+ * of the car's price.
+ * I've chosen for a middleware function to keep the reservation save action clean.
+ *
+ * Update: 21-04-2013:
+ *  I found a problem which wasn't described in the documentation where I was searching
+ *  for. The documentation doesn't say a thing about executing the callback given
+ *  with the save method. This method must be executed manually within the middleware.
+ *  Found the solution with this url: https://github.com/LearnBoost/mongoose/issues/499
+ * @see http://mongoosejs.com/docs/middleware.html
+ */
+ReservationSchema.pre('save', function(next, req, callback) {
+    var err = null;
+    mongoose.models["Reservation"]
+        .find({phone: req.body.phone})
+        .exec(function (error, reservations){
+            if (reservations.length >= 2) {
+                err = new Error("Maximaal 2 keer reserveren toegestaan.");
+                next(err);
+                return false;
+            }
+            testPrice(req.body.price, req.params.id, next);
+        });
+
+    /**
+     * Tests if the price is at least 80% of the car's price.
+     * @param {Number} price The price of the reservation.
+     * @param {String} id The ID of the car.
+     * @param {Object} next The next callback.
+     */
+    function testPrice(price, id, next) {
+        var errMSG = "Minimaal 80% van de prijs van de auto moet worden geboden.";
+        mongoose.models["Car"]
+            .findById(id)
+            .exec(function(error, car){
+                if (!error && (price < (parseInt(car.price) * 0.8))){
+                    err = new Error(errMSG);
+                    next(err);
+                    return false;
+                }
+                next(callback);
+            });
+    }
+});
+/**
+ * After saving a reservation the car will be associated with this newly saved
+ * reservation.
+ * I've chosen for a middleware function to keep the reservation save action clean.
+ * @see http://mongoosejs.com/docs/middleware.html
+ */
+ReservationSchema.post('save', function(reservation, req){
+    mongoose.models["Car"].findOne({_id: reservation.car})
+        .exec(function(error, car){
+            car.reservations.push(reservation);
+            car.save();
+        });
+});
+
+/*
+Set the name of the model and the plural naming convention.
+Then define the mongoose model.
+*/
+modelName = "Reservation";
+collectionName = "reservations"; // Naming convention is plural.
+var Reservation = mongoose.model(modelName, ReservationSchema, collectionName);
+
+/**
+ * Adds validation to phone to check the format.
+ * Phonenumber and cellphones from are valid.
+ */
+Reservation.schema.path('phone').validate(function (value) {
+    var phoneRegex = /^(\+[1-9][0-9]|0|00[1-9][0-9])(6\-?[1-9][0-9]{7}|[1-9][0-9]{2}\-?[1-9][0-9]{5})$/i;
+    return phoneRegex.test(value);
+}, 'Incorrecte telefoonnummer opgegeven!');
+
