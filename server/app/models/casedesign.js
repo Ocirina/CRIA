@@ -5,10 +5,11 @@ Schema = mongoose.Schema;
 
 CaseDesign = Schema({
     name:           {type:String, required:true, index:true},
-    previewImage:   {type:Schema.Types.ObjectId, ref: 'caseDesign'},
-    shared:         {type:Bool, required:true}
+    shared:         {type:Bool,   required:true},
+    previewImage:   {type:Schema.Types.ObjectId, ref: 'CaseDesign'},
+    caseModel:      {type:Schema.Types.ObjectId, ref: 'CaseModel'}
 });
 
 modelName = "CaseDesign";
-collectionName = "casedesign";
+collectionName = "CaseDesigns";
 CaseDesign = mongoose.model(modelName, CaseDesign, collectionName);

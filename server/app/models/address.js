@@ -13,5 +13,5 @@ Address = Schema({
 });
 
 modelName = "Address";
-collectionName = "addresses";
+collectionName = "Addresses";
 User = mongoose.model(modelName, Address, collectionName);

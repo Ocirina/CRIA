@@ -13,5 +13,5 @@ User = Schema({
 });
 
 modelName = "User";
-collectionName = "users";
+collectionName = "Users";
 User = mongoose.model(modelName, User, collectionName);
