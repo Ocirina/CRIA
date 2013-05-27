@@ -17,5 +17,5 @@ Order = Schema({
 });
 
 modelName = "Order";
-collectionName = "orders";
+collectionName = "Orders";
 Order = mongoose.model(modelName, Order, collectionName);

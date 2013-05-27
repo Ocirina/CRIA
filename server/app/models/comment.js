@@ -10,5 +10,5 @@ Comment = Schema({
 });
 
 modelName = "Comment";
-collectionName = "comments";
+collectionName = "Comments";
 Comment = mongoose.model(modelName, Comment, collectionName);
