@@ -64,10 +64,10 @@ exports.update = function (req, res) {
   var conditions = {_id: req.params.id},
       update = req.body,
       options = { multi: true },
-      callback = function (err, user) {
+      callback = function (err, casedesign) {
         return res.send({
           "error": err,
-          "result": user
+          "result": casedesign
         });
       };
   CaseDesign.findOneAndUpdate(conditions, update, options, callback);

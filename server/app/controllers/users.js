@@ -1,4 +1,4 @@
-var mongoose, Car;
+var mongoose, User;
 
 /* Include dependencies */
 mongoose = require('mongoose');
@@ -70,7 +70,7 @@ exports.update = function (req, res) {
           "result": user
         });
       };
-  Car.findOneAndUpdate(conditions, update, options, callback);
+  User.findOneAndUpdate(conditions, update, options, callback);
 }
 
 /**
@@ -78,7 +78,7 @@ exports.update = function (req, res) {
  * Route: /user/:id
  */
 exports.destroy = function (req, res) {
-  Car.findByIdAndRemove(req.params.id, function (err, doc) {
+  User.findByIdAndRemove(req.params.id, function (err, doc) {
     return res.send({
       "error": err,
       "result": (err ? false : true)
