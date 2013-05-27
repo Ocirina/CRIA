@@ -12,9 +12,9 @@ DesignObject = Schema({
     zIndex:     {type: Number, required: true},
     image:      {type: Number, required: false},
     value:      {type: String, required: false},
-    caseDesign: {type: Schema.Types.ObjectID, ref: 'CaseDesign'}
+    caseDesign: {type: Schema.Types.ObjectId, ref: 'CaseDesign'}
 });
 
 modelName = "DesignObject";
 collectionName = "DesignObjects";
-User = mongoose.model(modelName, DesignObject, collectionName);
+DesignObjects = mongoose.model(modelName, DesignObject, collectionName);
