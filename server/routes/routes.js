@@ -28,13 +28,11 @@ module.exports = function (app) {
     app.get('/casedesigns/:id/ratings', rating.index);
     app.post('/casedesigns/:id/ratings', rating.create);
     app.delete('/rating/:id', rating.destroy);
-    
-    /*
+
     // Order
     app.get('/orders', order.index);
     app.post('/orders/new', order.create);
     app.get('/order/:id', order.show);
     app.put('/order/:id', order.update);
     app.delete('/order/:id', order.destroy);
-    */
 }
