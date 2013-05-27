@@ -4,8 +4,8 @@ mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 OderLine = Schema({
-    caseDesign: {type:Schema.Type.ObjectId, ref:'CaseDesign'},
-    oder:       {type:Schema.Type.ObjectId, ref:'Oder'},
+    caseDesign: {type: Schema.Type.ObjectId, ref: 'CaseDesign'},
+    oder:       {type: Schema.Type.ObjectId, ref: 'Oder'},
 });
 
 modelName = "OderLine";
