@@ -4,7 +4,7 @@ mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 Comment = Schema({
-    text:         {type:String, required: true},
+    comment:      {type:String, required: true},
     user:         {type:Schema.Types.ObjectId, ref: 'User', required:true},
     caseDesign:   {type:Schema.Types.ObjectId, ref: 'CaseDesign', required:true}
 });
