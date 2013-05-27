@@ -1,6 +1,6 @@
 module.exports = function (app) {
 
-    /*
+
     // User
     app.get('/user', user.index);
     app.post('/user/new', user.create);
@@ -8,12 +8,10 @@ module.exports = function (app) {
     app.delete('/user/:id', user.destroy);
 
     // CaseDesign
-    app.get('/casedesign.js', casedesign.js.index);
-    app.post('/casedesign.js/new', casedesign.js.create);
-    app.put('/casedesign.js/:id', casedesign.js.update);
-    app.delete('/casedesign.js/:id', casedesign.js.destroy);
-    */
-
+    app.get('/casedesign', casedesign.index);
+    app.post('/casedesign/new', casedesign.create);
+    app.put('/casedesign/:id', casedesign.update);
+    app.delete('/casedesign/:id', casedesign.destroy);
 
     /*
     var cars, reservations;
