@@ -17,4 +17,4 @@ DesignObject = Schema({
 
 modelName = "DesignObject";
 collectionName = "DesignObjects";
-User = mongoose.model(modelName, Address, collectionName);
+User = mongoose.model(modelName, DesignObject, collectionName);

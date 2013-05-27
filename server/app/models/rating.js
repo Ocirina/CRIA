@@ -1,4 +1,4 @@
-var mongoose, Rating, Schema, modelName, collectionName, passwordHash;
+var mongoose, Rating, Schema, modelName, collectionName;
 
 mongoose = require('mongoose');
 Schema = mongoose.Schema;
@@ -12,5 +12,5 @@ Rating = Schema({
 });
 
 modelName = "Rating";
-collectionName = "ratings";
+collectionName = "Ratings";
 Rating = mongoose.model(modelName, Rating, collectionName);
