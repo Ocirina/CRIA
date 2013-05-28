@@ -40,9 +40,17 @@ exports.index = function (req, res) {
       // TODO: calculate average rating for design
       return res.send({
         "error": err,
-        "result": ratings
+        "result": calculateAverage(ratings)
       });
     });
+  function calculateAverage(ratings){
+    var sum = 0, count = 0;
+    for (index in ratings) {
+      sum += parseInt(ratings[index]);
+      count += 1
+    }
+    return (sum / count);
+  }
 }
 
 /**
