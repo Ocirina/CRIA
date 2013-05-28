@@ -1,14 +1,15 @@
-app.controller('UserCtrl', function($scope) {
+app.controller('UserCtrl', function($scope, $location) {
     $scope.LoginUser = function() {
         //login($scope.user);
     };
 
     $scope.registerUser = function() {
         console.log($scope.user);
-        if(checkRegister($scope)){
+//        if(checkRegister($scope)){
             console.log($scope.user);
+            $location.path( "/gebruiker/login" );
             //register($scope.user);
-        }
+//        }
     };
 
     $scope.checkRegister = function(){

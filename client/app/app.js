@@ -11,12 +11,12 @@ app.config(function ($routeProvider) {
         //User login and register
         .when('/gebruiker/registreren', {
             controller: 'UserCtrl',
-            templateUrl: 'app/partials/register.html'
+            templateUrl: 'app/partials/user/register.html'
         })
 
         .when('/gebruiker/login', {
             controller: 'UserCtrl',
-            templateUrl: 'app/partials/login.html'
+            templateUrl: 'app/partials/user/login.html'
         })
 
         .otherwise({ redirectTo: '/' });
