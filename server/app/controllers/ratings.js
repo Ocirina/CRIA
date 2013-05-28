@@ -33,8 +33,9 @@ exports.index = function (req, res) {
   conditions = {};
   fields = {};
   options = {'amount': -1};
-  // TODO: filter on casedesign
-  Rating.find(conditions, fields, options)
+  Rating
+    .find(conditions, fields, options)
+    .where(CaseDesign).eq(req.params.id)
     .exec(function (err, ratings) {
       // TODO: calculate average rating for design
       return res.send({
