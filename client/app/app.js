@@ -4,11 +4,11 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             controller: 'IndexCtrl',
-            templateUrl: 'src/main/partials/index.html'
+            templateUrl: 'app/partials/index.html'
         })
         .when('/user', {
             controller: 'UserCtrl',
-            templateUrl: 'src/main/partials/index.html'
+            templateUrl: 'app/partials/index.html'
         })
         .otherwise({ redirectTo: '/' });
 });
