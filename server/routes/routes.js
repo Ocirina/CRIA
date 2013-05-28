@@ -5,6 +5,7 @@ module.exports = function (app) {
     RatingCtrl      = require('../app/controllers/ratings.js');
     CommentsCtrl    = require('../app/controllers/comments.js');
     OrderCtrl       = require('../app/controllers/orders.js');
+    SessionsCtrl    = require('../app/controllers/sessions.js');
 
     // User
     app.get('/users', UserCtrl.index);
@@ -12,6 +13,11 @@ module.exports = function (app) {
     app.get('/user/:id', UserCtrl.show);
     app.put('/user/:id', UserCtrl.update);
     app.delete('/user/:id', UserCtrl.destroy);
+    
+    // Sessions
+    app.post('/user/signin', SessionsCtrl.create);
+    app.post('/user/check', SessionsCtrl.check);
+    app.delete('/user/signout', SessionsCtrl.destroy);
     
     /*// CaseDesign
     app.get('/casedesigns', CaseDesignCtrl.index);    
