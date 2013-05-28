@@ -24,6 +24,10 @@ app.controller('UserCtrl', function($scope, $location) {
             $scope.user.check = true;
         }
 
+        if($scope.user.birthDate === '' || $scope.user.birthDate === undefined){
+            $scope.user.check = true;
+        }
+
         if($scope.user.password !== $scope.user.passwordCheck || $scope.user.password === '' && $scope.user.passwordCheck === '' || $scope.user.password == undefined || $scope.user.passwordCheck == undefined){
             $scope.user.check = true;
         }
