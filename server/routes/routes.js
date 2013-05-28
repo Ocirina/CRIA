@@ -1,10 +1,10 @@
 module.exports = function (app) {
-    var UserCtrl, CaseDesign, Comment, Rating, Comments;
-    UserCtrl    = require('../app/controllers/users.js');
-    CaseDesign  = require('../app/controllers/case_designs.js');
-    Rating      = require('../app/controllers/ratings.js');
-    Comments    = require('../app/controllers/comments.js');
-    Order       = require('../app/controllers/orders.js');
+    var UserCtrl, CaseDesignCtrl, CommentCtrl, RatingCtrl;
+    UserCtrl        = require('../app/controllers/users.js');
+    CaseDesignCtrl  = require('../app/controllers/case_designs.js');
+    RatingCtrl      = require('../app/controllers/ratings.js');
+    CommentsCtrl    = require('../app/controllers/comments.js');
+    OrderCtrl       = require('../app/controllers/orders.js');
 
     // User
     app.get('/users', UserCtrl.index);
@@ -13,27 +13,27 @@ module.exports = function (app) {
     app.put('/user/:id', UserCtrl.update);
     app.delete('/user/:id', UserCtrl.destroy);
     
-    // CaseDesign
-    app.get('/casedesigns', casedesign.index);    
-    app.post('/casedesigns/new', casedesign.create);
-    app.get('/casedesign/:id', casedesign.show);
-    app.put('/casedesign/:id', casedesign.update);
-    app.delete('/casedesign/:id', casedesign.destroy);
+    /*// CaseDesign
+    app.get('/casedesigns', CaseDesignCtrl.index);    
+    app.post('/casedesigns/new', CaseDesignCtrl.create);
+    app.get('/casedesign/:id', CaseDesignCtrl.show);
+    app.put('/casedesign/:id', CaseDesignCtrl.update);
+    app.delete('/casedesign/:id', CaseDesignCtrl.destroy);*/
 
     // Comment
-    app.get('/casedesigns/:id/comments', comment.index);
-    app.post('/casedesigns/:id/comments', comment.create);
-    app.delete('/comment/:id', comment.destroy);
+    app.get('/casedesigns/:id/comments', CommentsCtrl.index);
+    app.post('/casedesigns/:id/comments', CommentsCtrl.create);
+    //app.delete('/comment/:id', CommentsCtrl.destroy);
 
     // Rating
-    app.get('/casedesigns/:id/ratings', rating.index);
-    app.post('/casedesigns/:id/ratings', rating.create);
-    app.delete('/rating/:id', rating.destroy);
+    app.get('/casedesigns/:id/ratings', RatingCtrl.index);
+    app.post('/casedesigns/:id/ratings', RatingCtrl.create);
+    //app.delete('/rating/:id', RatingCtrl.destroy);
 
     // Order
-    app.get('/orders', order.index);
-    app.post('/orders/new', order.create);
-    app.get('/order/:id', order.show);
-    app.put('/order/:id', order.update);
-    app.delete('/order/:id', order.destroy);
+    app.get('/orders', OrderCtrl.index);
+    app.post('/orders/new', OrderCtrl.create);
+    app.get('/order/:id', OrderCtrl.show);
+    app.put('/order/:id', OrderCtrl.update);
+    app.delete('/order/:id', OrderCtrl.destroy);
 }
