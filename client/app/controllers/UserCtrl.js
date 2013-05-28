@@ -4,12 +4,8 @@ app.controller('UserCtrl', function($scope, $location) {
     };
 
     $scope.registerUser = function() {
-        console.log($scope.user);
-//        if(checkRegister($scope)){
-            console.log($scope.user);
-            $location.path( "/gebruiker/login" );
-            //register($scope.user);
-//        }
+        $location.path( "/gebruiker/login" );
+        //register($scope.user);
     };
 
     $scope.checkRegister = function(){
@@ -30,6 +26,9 @@ app.controller('UserCtrl', function($scope, $location) {
 
         if($scope.user.password !== $scope.user.passwordCheck || $scope.user.password === '' && $scope.user.passwordCheck === '' || $scope.user.password == undefined || $scope.user.passwordCheck == undefined){
             $scope.user.check = true;
+        }
+
+        if($scope.user.password != '' && $scope.user.passwordCheck != '' && $scope.user.password !== $scope.user.passwordCheck){
             $scope.user.passCheck = false;
         }
     };
