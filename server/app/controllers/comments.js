@@ -33,8 +33,9 @@ exports.index = function (req, res) {
   conditions = {};
   fields = {};
   options = {'name': -1};
-  // TODO: filter on casedesign
-  Comment.find(conditions, fields, options)
+  Comment
+    .find(conditions, fields, options)
+    .where(CaseDesign).eq(req.params.id)
     .exec(function (err, comments) {
       return res.send({
         "error": err,
