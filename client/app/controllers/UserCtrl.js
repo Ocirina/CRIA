@@ -1,11 +1,16 @@
 app.controller('UserCtrl', function($scope, $location) {
     $scope.LoginUser = function() {
-        //login($scope.user);
+        $http.post('/someUrl', $scope.user).success(function() {
+            // User information correct
+            $location.path( "/" );
+        });
     };
 
     $scope.registerUser = function() {
-        $location.path( "/gebruiker/login" );
-        //register($scope.user);
+        $http.post('/someUrl', $scope.user).success(function() {
+            //register($scope.user);
+            $location.path( "/gebruiker/login" );
+        });
     };
 
     $scope.checkRegister = function(){

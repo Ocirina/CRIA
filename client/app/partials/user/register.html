@@ -1,11 +1,11 @@
 <h1>Registreren</h1>
 <form data-ng-init="user = { check: true, passCheck: true }">
-    Gebruikersnaam: <input type="text" data-ng-change="checkRegister()" data-ng-model="user.name"><br />
-    Voornaam: <input type="text" data-ng-change="checkRegister()" data-ng-model="user.firstName"><br />
-    Achternaam: <input type="text" data-ng-change="checkRegister()" data-ng-model="user.lastName"><br />
-    Geboortedatum: <input type="text" data-ng-change="checkRegister()" data-ng-model="user.birthDate"><br />
-    Wachtwoord: <input type="password" data-ng-change="checkRegister()" data-ng-model="user.password"><br />
-    Wachtwoord controle: <input type="password" data-ng-change="checkRegister()" data-ng-model="user.passwordCheck"><br />
+    Gebruikersnaam: <input type="text" data-ng-change="checkRegister()" data-ng-model="user.name" maxlength="20" required><br />
+    Voor- en Achternaam: <input type="text" data-ng-change="checkRegister()" data-ng-model="user.firstName" required>
+    <input type="text" data-ng-change="checkRegister()" data-ng-model="user.lastName" required><br />
+    Geboortedatum: <input type="date" data-ng-change="checkRegister()" data-ng-model="user.birthDate" required><br />
+    Wachtwoord: <input type="password" data-ng-change="checkRegister()" data-ng-model="user.password" required><br />
+    Wachtwoord controle: <input type="password" data-ng-change="checkRegister()" data-ng-model="user.passwordCheck" required><br />
     <div data-ng-hide="user.passCheck">Wachtwoord komt niet overeen</div>
-    Inloggen: <button data-ng-disabled="user.check" data-ng-click="registerUser()">Registreren</button>
+    <button data-ng-disabled="user.check" data-ng-click="registerUser()">Registreren</button>
 </form>
