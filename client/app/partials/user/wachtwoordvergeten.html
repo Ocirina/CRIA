@@ -1,20 +1,8 @@
-<h1>Wachtwoord vergeten</h1>
-
-<form id="registerForm" data-ng-init="user = { check: true, passCheck: true }">
-    <h1>Registreren</h1>
+<form id="registerForm">
+    <h1>Wachtwoord vergeten</h1>
     <label>Gebruikersnaam: </label><br />
-    <input type="text" data-ng-change="checkRegister()" data-ng-model="user.name" maxlength="20" required><br>
+    <input type="text" data-ng-model="user.name" maxlength="20" required><br>
     <label>Email: </label><br />
-    <input type="email" data-ng-change="checkRegister()" data-ng-model="user.birthDate" required><br />
-    <label>Voor- en Achternaam:</label><br />
-    <input id="firstName" type="text" data-ng-change="checkRegister()" data-ng-model="user.firstName" required>
-    <input id="lastName" type="text" data-ng-change="checkRegister()" data-ng-model="user.lastName" required><br />
-    <label>Geboortedatum: </label><br />
-    <input type="date" data-ng-change="checkRegister()" data-ng-model="user.birthDate" required><br />
-    <label>Wachtwoord: </label><br />
-    <input type="password" data-ng-change="checkRegister()" data-ng-model="user.password" required><br />
-    <label>Herhaal wachtwoord:</label><br />
-    <input id="secondPassword" type="password" data-ng-change="checkRegister()" data-ng-model="user.passwordCheck" required>
-    <div data-ng-hide="user.passCheck">Wachtwoorden komen niet overeen</div>
-    <button class="orangeButton" data-ng-disabled="user.check" data-ng-click="registerUser()">Registreer!</button>
+    <input type="email" data-ng-model="user.birthDate" required><br />
+    <button class="orangeButton" data-ng-click="forgotPassword()">Opvragen</button>
 </form>
