@@ -1,4 +1,4 @@
-var app = angular.module('design_your_own', []);
+var app = angular.module('design_your_own', ['ngResource']);
 
 app.config(function ($routeProvider) {
     $routeProvider
