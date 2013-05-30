@@ -1,15 +1,11 @@
 app.controller('UserCtrl', function($scope, $location, $http) {
-    var path = '';
-
     $scope.loginUser = function() {
         $http.post('/someUrl', $scope.user).success(function(data) {
             if(data.error == null || data.data['login'] == true){
-                path = '/';
+                $location.path('/');
             } else {
-                path = '/gebruiker/login';
+                $location.path('/gebruiker/login');
             }
-            
-            $location.path(path);
         });
     };
 
