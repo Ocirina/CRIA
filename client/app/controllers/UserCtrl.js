@@ -1,12 +1,12 @@
 app.controller('UserCtrl', function($scope, $location, $http) {
     $scope.loginUser = function() {
-        $http.post('/someUrl', $scope.user).success(function(data) {
-            if(data.error == null || data.data['login'] == true){
-                $location.path('/');
-            } else {
-                $location.path('/gebruiker/login');
-            }
-        });
+//        $http.post('/someUrl', $scope.user).success(function(data) {
+//            if(data.error == null || data.data['login'] == true){
+//                $location.path('/');
+//            } else {
+//                $location.path('/gebruiker/login');
+//            }
+//        });
 
         //TEST PURPOSES
         $scope.user.loggedIn = false;
