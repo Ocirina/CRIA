@@ -1,20 +1,55 @@
 <!DOCTYPE html>
 <html data-ng-app="design_your_own">
-  <head>
-      <title>Design your own</title>
-  </head>
-  <body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/font.css" rel="stylesheet" type="text/css" />
+        <title>Homepage</title>
+    </head>
 
-    <div data-ng-view></div>
+    <body>
+        <nav>
+            <div class="wrap">
+                <ul>
+                    <li id="home"><a href="index.html">Home</a></li>
+                    <li id="inloggen"><a href="#"><!--onclick="doit();"-->Inloggen</a></li>
+                </ul>
+            </div>
+        </nav>
 
-    <!-- Scripts -->
-    <script src="js/lib/angular.min.js"></script>
+        <div id="loginContainer" class="wrap hidden">
+            <form>
+                <label>Gebruikersnaam</label><br />
+                <input type="text" data-ng-change="#" data-ng-model="user.name" maxlength="20" required><br />
+                <a href="register.html">Registreer</a><br />
+                <label>Wachtwoord</label><br />
+                <input type="password" data-ng-change="#" data-ng-model="user.password" required><br />
+                <a href="#">Wachtwoord Vergeten</a><br />
+                <input type="checkbox"><span> Onthouden</span> <br />
+                <button class="orangeButton">Login</button>
+            </form>
+        </div>
 
-    <!-- App -->
-    <script src="app/app.js"></script>
+        <div id="main" class="wrap">
+            <div data-ng-view></div>
+        </div>
 
-    <!-- Controllers -->
-    <script src="app/controllers/IndexCtrl.js"></script>
-    <script src="app/controllers/UserCtrl.js"></script>
-  </body>
+        <div id="footer">
+            <ul>
+                <li><a href="#">Recolorit</a></li>
+                <li><a href="#">Over ons</a></li>
+                <li><a href="#">F.A.Q.</a></li>
+            </ul>
+        </div>
+
+        <!-- Scripts -->
+        <script src="js/lib/angular.min.js"></script>
+
+        <!-- App -->
+        <script src="app/app.js"></script>
+
+        <!-- Controllers -->
+        <script src="app/controllers/IndexCtrl.js"></script>
+        <script src="app/controllers/UserCtrl.js"></script>
+    </body>
 </html>

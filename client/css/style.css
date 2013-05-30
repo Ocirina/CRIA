@@ -1,0 +1,260 @@
+@charset "UTF-8";
+/* CSS Document */
+
+*{
+	margin:0;
+	padding:0;
+	outline: none;
+}
+html,body{
+	width:100%;
+	height:100%;
+	color:#222;
+	background:#f8f8f8;
+	font-family:'cabinregular';
+}
+.wrap{
+	width:1000px;
+	margin:0 auto;
+}
+/*----Typografie----*/
+
+a{
+	color:#f8f8f8;
+	text-decoration:none;
+}
+/*----Structure----*/
+nav{
+	width:100%;
+	height:50px;
+    position: fixed;
+	top:0;
+
+    background-image: -webkit-linear-gradient(top, #444444, #000000);
+    background-image: -moz-linear-gradient(top, #444444, #000000);
+    background-image: -o-linear-gradient(top, #444444, #000000);
+    background-image: -ms-linear-gradient(top, #444444, #000000);
+    background-image: linear-gradient(top, #444444, #000000);
+}
+
+    nav li{
+        height: 100%;
+        width: 100px;
+        list-style: none;
+        float: left;
+    }
+
+    nav li:last-child {
+        float: right;
+    }
+
+    nav li:hover {
+        background:#895c43;
+    }
+
+    nav a{
+        color:#f8f8f8;
+        line-height:50px;
+        font-size:20px;
+        text-align: center;
+        margin: auto;
+        display: block;
+    }
+
+#main{
+	height:100%;
+}
+	#main article {
+		margin:auto;
+		padding-top:80px;
+		height:300px;
+	}
+		#welkom{
+			height:280px;
+		}
+		#button{
+			float:right;
+			height:20px;
+			width:315px;
+			text-align:center;
+			line-height:20px;
+		}
+		#button a{
+			color:#222;
+		}
+	#main img{
+		height:300px;
+		width:660px;
+		float:left;
+		margin:0 20px 0 0;
+	}
+	#main .news{
+		padding-top:30px;
+	}
+		#main .newsd{
+			width:320px;
+			margin:0 20px 0 0;
+			float:left;
+		}
+			#main .newsd img{
+				width:320px;
+				height:200px;
+			}
+			#main .newsd:nth-child(3){
+				margin:0;
+			}
+#footer{
+	width:100%;
+	/*height:20px;*/
+	bottom:0;
+	background:#f8f8f8;
+	position:fixed;
+	border-top:1px solid #222;
+	text-align:center;
+	line-height:20px;
+}
+	#footer ul li{
+		color:#222;
+		margin-right:10px;
+		display:inline-block;
+		list-style-type:none;
+	}
+	#footer a{
+		color:#222;
+	}
+/*----Ontwerpen----*/
+	#main .barleft{
+		float:left;
+		width:50px;
+		height:100%;
+		background:#ff5000;
+	}
+		#main .barleft h1{
+			top:50%;
+			width:350px;
+			text-align:center;
+			margin-left:-150px;
+			position:relative;
+			transform:rotate(-90deg);
+			-ms-transform:rotate(-90deg); /* IE 9 */
+			-webkit-transform:rotate(-90deg); /* Safari and Chrome */
+		}
+	#main .barright{
+		float:right;
+		width:50px;
+		height:100%;
+		background:#ff5000;
+	}
+		#main .barright h1{
+			top:50%;
+			width:350px;
+			text-align:center;
+			margin-left:-150px;
+			position:relative;
+			transform:rotate(90deg);
+			-ms-transform:rotate(90deg); /* IE 9 */
+			-webkit-transform:rotate(90deg); /* Safari and Chrome */
+		}
+		#main .barright:hover, #main .barleft:hover{
+			background:#222;
+		}
+
+.iphone{
+	position:fixed;	
+	left:50%;
+	top:50%;
+	margin:-284px 0 0 -135px;
+	width:270px;
+	background:url(../IMG/iphone5.png);
+	height:567px;	
+}
+
+#main #registerForm {
+    padding-top: 60px;
+    width: 440px;
+}
+
+#main #registerForm h1 {
+    margin-bottom: 20px;
+}
+
+#main #registerForm input {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px 5px;
+    margin:5px 0 10px 2px;
+    width:96%;
+}
+
+    #main #registerForm #firstName {
+        width: 40%;
+        float: left;
+        margin-right: 1%;
+    }
+
+    #main #registerForm #lastName {
+        float: left;
+        width: 52%;
+    }
+
+    #main #registerForm #secondPassword {
+        margin-bottom: 1px;
+    }
+
+#main #registerForm div {
+    margin-left: 2px;
+    color: #FF0000;
+    font-size: 12px;
+}
+
+#main #registerForm label {
+    float: left;
+    width: 100%;
+}
+
+.orangeButton {
+    float: left;
+    padding: 10px;
+    line-height: 20px;
+    text-align: center;
+    margin: 20px 0;
+    color: #f8f8f8;
+    font-weight: bold;
+    border: 1px solid #d3d3d3;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 12px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    background-color: #ff5000;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ff8555), to(#ff5000));
+    background-image: -webkit-linear-gradient(top, #ff8555, #ff5000);
+    background-image: -moz-linear-gradient(top, #ff8555, #ff5000);
+    background-image: -o-linear-gradient(top, #ff8555, #ff5000);
+    background-image: -ms-linear-gradient(top, #ff8555, #ff5000);
+    background-image: linear-gradient(top, #ff8555, #ff5000);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#ff8555', EndColorStr='#ff5000');
+}
+
+#loginContainer {
+    position: fixed;
+    right: 58px;
+    top: 50px;
+    color: #FFF;
+    width: 15%;
+    height: 210px;
+    background-color: #000000;
+    padding: 0px 10px 10px 10px;
+}
+
+#loginContainer a{
+    text-decoration: underline;
+    font-size: 10px;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
