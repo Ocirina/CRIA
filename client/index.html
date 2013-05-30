@@ -4,24 +4,46 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
         <link href="css/font.css" rel="stylesheet" type="text/css" />
+
+        <!-- Javascript -->
+        <script src="js/main.js"></script>
+
+
+
         <title>Homepage</title>
     </head>
 
     <body>
         <nav>
             <div class="wrap">
-                <ul data-ng-init=" user.loggedIn = true">
+                <ul>
                     <li id="home"><a href="#/">Home</a></li>
 
-                    <li data-ng-hide="user.loggedIn"><a href="#/">Mijn ontwerpen</a></li>
+                    <!--<li data-ng-hide="user.loggedIn"><a href="#/">Mijn ontwerpen</a></li>
                     <li data-ng-hide="user.loggedIn"><a href="#/">Ontwerp zoeken</a></li>
                     <li data-ng-hide="user.loggedIn"><a href="#/gebruiker/loguit">Uitloggen</a></li>
-                    <li data-ng-show="user.loggedIn" id="inloggen"><a href="#/gebruiker/login">Inloggen</a></li>
+                    <li data-ng-show="user.loggedIn" id="inloggen"><a href="#/gebruiker/login">Inloggen</a></li>-->
+                    <li id="inloggen"><a id="loginItem" href="#">Inloggen</a></li>
                 </ul>
             </div>
+
         </nav>
 
+
         <div id="main" class="wrap">
+            <div id="loginContainer" class="wrap hidden">
+                <form ng-controller="UserCtrl">
+                    <label>Gebruikersnaam</label><br />
+                    <input type="text" data-ng-change="#" data-ng-model="user.name" maxlength="20" required><br />
+                    <a href="#/gebruiker/registreren">Registreer</a><br />
+                    <label>Wachtwoord</label><br />
+                    <input type="password" data-ng-change="#" data-ng-model="user.password" required><br />
+                    <a href="#/gebruiker/wachtwoordvergeten">Wachtwoord Vergeten</a><br />
+                    <input type="checkbox"><span> Onthouden</span> <br />
+                    <button class="orangeButton" data-ng-click="loginUser()">Login</button>
+                </form>
+            </div>
+
             <div data-ng-view></div>
         </div>
 
@@ -35,6 +57,7 @@
 
         <!-- Scripts -->
         <script src="js/lib/angular.min.js"></script>
+        <script src="js/lib/jquery-1.8.0.min.js"></script>
 
         <!-- App -->
         <script src="app/app.js"></script>
@@ -42,5 +65,8 @@
         <!-- Controllers -->
         <script src="app/controllers/IndexCtrl.js"></script>
         <script src="app/controllers/UserCtrl.js"></script>
+
+        <script src="js/init.js"></script>
+
     </body>
 </html>

@@ -237,8 +237,8 @@ nav{
 
 #loginContainer {
     position: relative;
+    top: 50px;
     float: right;
-    top: 10px;
     color: #FFF;
     width: 15%;
     height: 210px;
