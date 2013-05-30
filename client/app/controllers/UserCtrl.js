@@ -1,21 +1,8 @@
 app.controller('UserCtrl', function($scope, $location, $http) {
     $scope.loginUser = function() {
-<<<<<<< HEAD
-        $http.post('/someUrl', $scope.user).success(function(data) {
-            if(data.error == null || data.data['login'] == true){
-                $location.path('/');
-            } else {
-                $location.path('/gebruiker/login');
-            }
-        });
-
-        //TEST PURPOSES
-        $scope.user.loggedIn = false;
-=======
        $http.post('/users/signin', $scope.user).success(function(data) {
           console.log(data);
        })
->>>>>>> Login show
     };
 
     $scope.registerUser = function() {
