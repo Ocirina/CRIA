@@ -20,7 +20,6 @@ exports.create = function (req, res) {
     })
     .exec(function (err, user) {
       delete user.password;
-      // TODO: start session
       req.session.username = user.name;
       req.session.lastAccess = new Date().getTime();
       return res.send({
@@ -50,5 +49,5 @@ exports.check = function (req, res) {
  */
 exports.destroy = function (req, res) {
   // TODO: Destroy session.
-  req.session = {}; // Possible?
+  req.session = null; // Possible?
 }
