@@ -1,15 +1,26 @@
 app.controller('UserCtrl', function($scope, $location) {
-    $scope.LoginUser = function() {
-        $http.post('/someUrl', $scope.user).success(function() {
-            // User information correct
-            $location.path( "/" );
+    var path = '';
+
+    $scope.loginUser = function() {
+        $http.post('/someUrl', $scope.user).success(function(data) {
+            if(data.error == null || data.data['login'] == true){
+                path = '/';
+            } else {
+                path = '/gebruiker/login';
+            }
+            $location.path(path);
         });
     };
 
     $scope.registerUser = function() {
-        $http.post('/someUrl', $scope.user).success(function() {
-            //register($scope.user);
-            $location.path( "/gebruiker/login" );
+        $http.post('/someUrl', $scope.user).success(function(data) {
+            if(data.error == null || data.data['registered'] == true){
+                path = '/gebruiker/login';
+            } else {
+                // displayError(data.error);
+            }
+
+            $location.path(path);
         });
     };
 
@@ -42,4 +53,3 @@ app.controller('UserCtrl', function($scope, $location) {
         }
     };
 });
-
