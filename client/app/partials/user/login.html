@@ -1,6 +1,14 @@
 <h1>Inloggen</h1>
-Gebruikersnaam: <input type="text" name="username" data-ng-model="user.name" required><br />
-Wachtwoord: <input type="password" name="password" data-ng-model="user.password" required><br />
-Inloggen: <button data-ng-click="loginUser()">Inloggen</button><br />
-<br />
-<a href="#/gebruiker/registreren">Registreren</a>
+
+<div id="loginContainer" class="wrap">
+    <form>
+        <label>Gebruikersnaam</label><br />
+        <input type="text" data-ng-change="#" data-ng-model="user.name" maxlength="20" required><br />
+        <a href="register.html">Registreer</a><br />
+        <label>Wachtwoord</label><br />
+        <input type="password" data-ng-change="#" data-ng-model="user.password" required><br />
+        <a href="#">Wachtwoord Vergeten</a><br />
+        <input type="checkbox"><span> Onthouden</span> <br />
+        <button class="orangeButton" data-ng-click="loginUser()">Login</button>
+    </form>
+</div>

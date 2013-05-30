@@ -12,23 +12,10 @@
             <div class="wrap">
                 <ul>
                     <li id="home"><a href="index.html">Home</a></li>
-                    <li id="inloggen"><a href="#"><!--onclick="doit();"-->Inloggen</a></li>
+                    <li id="inloggen"><a href="#/gebruiker/login">Inloggen</a></li>
                 </ul>
             </div>
         </nav>
-
-        <div id="loginContainer" class="wrap hidden">
-            <form>
-                <label>Gebruikersnaam</label><br />
-                <input type="text" data-ng-change="#" data-ng-model="user.name" maxlength="20" required><br />
-                <a href="register.html">Registreer</a><br />
-                <label>Wachtwoord</label><br />
-                <input type="password" data-ng-change="#" data-ng-model="user.password" required><br />
-                <a href="#">Wachtwoord Vergeten</a><br />
-                <input type="checkbox"><span> Onthouden</span> <br />
-                <button class="orangeButton">Login</button>
-            </form>
-        </div>
 
         <div id="main" class="wrap">
             <div data-ng-view></div>
