@@ -19,5 +19,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/user/login.html'
         })
 
+        .when('/gebruiker/wachtwoordvergeten', {
+            controller: 'UserCtrl',
+            templateUrl: 'app/partials/user/wachtwoordvergeten.html'
+        })
+
         .otherwise({ redirectTo: '/' });
 });
