@@ -36,7 +36,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
             $scope.user.check = true;
         }
 
-        if($scope.user.birthDate === '' || $scope.user.birthDate === undefined){
+        if($scope.user.dateOfBirth === '' || $scope.user.dateOfBirth === undefined){
             $scope.user.check = true;
         }
 
