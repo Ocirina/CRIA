@@ -15,12 +15,12 @@ app.controller('UserCtrl', function($scope, $location) {
     $scope.registerUser = function() {
         $http.post('/someUrl', $scope.user).success(function(data) {
             if(data.error == null || data.data['registered'] == true){
-                path = '/gebruiker/login';
+                $location.path('/gebruiker/login');
             } else {
                 // displayError(data.error);
             }
 
-            $location.path(path);
+
         });
     };
 
