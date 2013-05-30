@@ -1,4 +1,4 @@
-app.controller('UserCtrl', function($scope, $location) {
+app.controller('UserCtrl', function($scope, $location, $http) {
     var path = '';
 
     $scope.loginUser = function() {
@@ -8,6 +8,7 @@ app.controller('UserCtrl', function($scope, $location) {
             } else {
                 path = '/gebruiker/login';
             }
+            
             $location.path(path);
         });
     };
@@ -19,8 +20,6 @@ app.controller('UserCtrl', function($scope, $location) {
             } else {
                 // displayError(data.error);
             }
-
-
         });
     };
 
