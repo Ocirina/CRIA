@@ -8,6 +8,12 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/index.html'
         })
 
+        //gallery
+        .when('/producten', {
+            controller: 'ProductCtrl',
+            templateUrl: 'app/partials/products/gallery.html'
+        })
+
         //User login and register
         .when('/gebruiker/registreren', {
             controller: 'UserCtrl',
