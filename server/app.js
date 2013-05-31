@@ -27,8 +27,9 @@ model_files.forEach(function (file) {
 
 var app = express();
 app.configure(function () {
-    app.set('port', process.env.PORT || 3100);
-    app.set('views', __dirname + '/app/views');
+    app.set('port', process.env.PORT || 43083);
+   // app.set('views', __dirname + '/app/views');
+    app.set('views', __dirname + '/public');
     //app.set('view engine', 'ejs');
     app.use(express.favicon());
     app.use(express.logger('dev'));
