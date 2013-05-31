@@ -6,7 +6,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
     };
 
     $scope.registerUser = function() {
-        var User = $resource('http://autobay.tezzt.nl:43083/users',{}, 
+        var User = $resource('http://autobay.tezzt.nl\\:43083/users',{},
           {charge: {method:'POST', params:{charge:true}}}
         );
         var user1 = new User(JSON.stringify($scope.user));
