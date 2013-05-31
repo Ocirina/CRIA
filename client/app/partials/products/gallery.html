@@ -1,2 +1,10 @@
 <h1>Producten</h1>
+<div data-ng-init="products.error = false"></div>
 <div data-ng-init="getProducts()"></div>
+<div data-ng-show="products.error">Er zijn geen hoesjes om weer te geven, dit komt door een onbekende fout.</div>
+
+<ul>
+    <li ng-repeat="product in product.products">
+        <h2>{{ product }}</h2>
+    </li>
+</ul>
