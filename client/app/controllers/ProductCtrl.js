@@ -4,10 +4,10 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource) {
             {charge: {method:'GET', params:{charge:true}}}
         );
 
-        var product = Products.get({}, function() {});
+        var product = Products.get();
 
-        console.log(product.error);
-        console.log(product.result);
+        console.log(product);
+        console.log(product['result']);
 
 //        $scope.product.products = products.result;
     };
