@@ -1,16 +1,12 @@
 app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
     $scope.loadShopCartDesigns = function() {
-        var ShopCartDesigns = $resource('http://autobay.tezzt.nl\\:43083/casedesigns',{},
-            {charge: {method:'GET', params:{charge:true}}}
-        );
-
-        ShopCartDesigns.get(function(data) {
-            $scope.shopCartDesigns = data;
+        if(window.localStorage['shopCartDesigns']) {
+            $scope.shopCartDesigns = window.localStorage['shopCartDesigns'];
             $scope.orderLines = [];
 
-            for(var i = 0; i < data.result.length; i++) {
-                $scope.orderLines[i] = {product:data.result[i], aantal: 1};
+            for(var i = 0; i < shopCartDesigns.length; i++) {
+                $scope.orderLines[i] = {product:$scope.shopCartDesigns[i]["product"], aantal: $scope.shopCartDesigns[i]["amount"]};
             }
-        });
+        }
     }
 });

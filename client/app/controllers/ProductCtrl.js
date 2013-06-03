@@ -19,6 +19,12 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
         var product = Product.get(function(data){
             $scope.product = data.result;
         });
-    }
+    };
 
+    $scope.addProductToShopCart = function(product) {
+        if (!window.localStorage['shopCartDesigns']) {
+            window.localStorage['shopCartDesigns'] = [];
+        }
+        window.localStorage['shopCartDesigns'].push({"product": product, "amount":1})
+    }
 });
