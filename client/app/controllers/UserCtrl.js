@@ -1,12 +1,14 @@
 app.controller('UserCtrl', function($scope, $location, $http, $resource) {
     $scope.loginUser = function() {
-        var User = $resource('http://autobay.tezzt.nl\\:43083/user/check',{},
+        var User = $resource('http://autobay.tezzt.nl\\:43083/user/signin',{},
             {charge: {method:'POST', params:{charge:true}}}
         );
 
-        var user = $scope.user;
+        var user = new User($scope.user);
         user.$save(function(data) {
-            console.log(data);
+            if(data.result === $scope.user.username) {
+                window.sessionStorage["loggedInUser"] = $scope.user.username;
+            }
         });
     };
 
@@ -56,5 +58,13 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
                 $location.path('/gebruiker/login');
             }
         });
+    }
+
+    $scope.checkLoggedInUser = function() {
+        if(window.sessionStorage['loggedInUser']) {
+            $scope.hasUser = true;
+        } else {
+            $scope.hasUser = false;
+        }
     }
 });
