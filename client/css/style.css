@@ -276,3 +276,13 @@ nav{
 .hidden {
     display: none;
 }
+
+.gallery-product {
+    position: relative;
+    float: left;
+    width: 200px;
+}
+
+.gallery-product img {
+    width: 150px !important;
+}

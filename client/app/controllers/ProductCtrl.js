@@ -5,7 +5,7 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource) {
         );
 
         var product = Products.get(function(data){
-			console.log(data);
+			$scope.products = data;
 		});
     };
 });

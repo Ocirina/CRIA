@@ -4,7 +4,8 @@
 <div data-ng-show="products.error">Er zijn geen hoesjes om weer te geven, dit komt door een onbekende fout.</div>
 
 <ul>
-    <li ng-repeat="product in product.products">
-        <h2>{{ product }}</h2>
+    <li class="gallery-product" ng-repeat="product in products.result">
+        <h2>{{ product.name }}</h2>
+        <img data-ng-src="{{product.preview}}"/>
     </li>
 </ul>
