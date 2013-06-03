@@ -19,6 +19,11 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/products/product.html'
         })
 
+        .when('/winkelwagen', {
+            controller: 'ShopCartCtrl',
+            templateUrl: 'app/partials/shoppingcart/shoppingcart.html'
+        })
+
         //User login and register
         .when('/gebruiker/registreren', {
             controller: 'UserCtrl',

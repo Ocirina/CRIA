@@ -1,0 +1,7 @@
+<h1>Winkelwagen</h1>
+<div id="shopCaseDesigns" ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
+    <li class="shopCaseDesign" ng-repeat="shopCartDesign in shopCartDesigns.result">
+        <img data-ng-src="{{product.preview}}"/>
+        <input type="number" data-ng-model="shopCartDesign.aantal">
+    </li>
+</div>
