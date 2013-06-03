@@ -4,15 +4,8 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource) {
             {charge: {method:'GET', params:{charge:true}}}
         );
 
-        var product = Products.get();
-
-        console.log(product.$get("result"));
-        console.log(product['g']);
-
-        for(var index in product) {
-            console.warn(product[index], index);
-        }
-
-//        $scope.product.products = products.result;
+        var product = Products.get(function(data){
+			console.log(data);
+		});
     };
 });
