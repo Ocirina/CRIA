@@ -81,14 +81,11 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
     };
 
     $scope.saveNawInformation = function() {
-        var User = $resource('http://autobay.tezzt.nl\\:43083/user/' + $scope.user._id,{},
-            {charge: {method:'POST', params:{charge:true}}}
-        );
+        console.log($scope.user._id);
+        var User = $resource('http://autobay.tezzt.nl\\:43083/user/:id' ,{ 'id' : $scope.user._id }, {update:{method:'PUT'}});
 
-        User.save($scope.user, function(data) {
-            console.log(data);
-        });
-
+        var user = new User($scope.user);
+        user.$update();
 
     }
 });
