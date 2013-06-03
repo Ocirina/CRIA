@@ -24,6 +24,12 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/shoppingcart/shoppingcart.html'
         })
 
+        //Design
+        .when('/ontwerpen', {
+            controller: 'DesignCtrl',
+            templateUrl: 'app/partials/design/design.html'
+        })
+
         //User login and register
         .when('/gebruiker/registreren', {
             controller: 'UserCtrl',
