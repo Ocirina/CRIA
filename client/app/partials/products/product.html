@@ -1,3 +1,6 @@
 <div data-ng-init="getProduct()"></div>
-<h1>{{ product.name }}</h1>
-<img data-ng-src="{{product.preview}}"/>
+<div class="product-view">
+    <h1>{{ product.name }}</h1>
+    <img data-ng-src="{{product.preview}}"/>
+    <button class="button" data-ng-click="addProduct({{ product._id }})">Voeg {{ product.name }} toe aan je mandje</button>
+</div>
