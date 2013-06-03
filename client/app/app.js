@@ -14,6 +14,11 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/products/gallery.html'
         })
 
+        .when('/product/:id', {
+            controller: 'ProductCtrl',
+            templateUrl: 'app/partials/products/product.html'
+        })
+
         //User login and register
         .when('/gebruiker/registreren', {
             controller: 'UserCtrl',
