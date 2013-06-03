@@ -7,6 +7,6 @@
     <li class="gallery-product" ng-repeat="product in products.result">
         <h2>{{ product.name }}</h2>
         <img data-ng-src="{{product.preview}}"/>
-        <a style="color: #000;" href="#/product/{{product._id}}">Product bekijken!</a>
+        <a class="button" href="#/product/{{product._id}}">Product bekijken!</a>
     </li>
 </ul>
