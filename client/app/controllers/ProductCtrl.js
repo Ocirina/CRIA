@@ -22,16 +22,31 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
     };
 
     $scope.addProductToShopCart = function() {
-        var products;
+        var orderLines;
         if (!window.localStorage['shopCartDesigns']) {
-            products = [];
-            window.localStorage['shopCartDesigns'] = JSON.stringify(products);
+            orderLines = [];
+            window.localStorage['shopCartDesigns'] = JSON.stringify(orderLines);
         }
 
-        products = JSON.parse(window.localStorage['shopCartDesigns']);
-        products.push({"product": $scope.product, "amount":1});
+        orderLines = JSON.parse(window.localStorage['shopCartDesigns']);
+        var productAdded = $scope.checkProductInShopCart($scope.product._id);
+        if(!productAdded) {
+            orderLines.push({"product": $scope.product, "amount":1});
+            window.localStorage['shopCartDesigns'] = JSON.stringify(orderLines);
+        }
 
-        window.localStorage['shopCartDesigns'] = JSON.stringify(products);
-        console.log(window.localStorage['shopCartDesigns']);
+        $location.path('/winkelwagen');
+    };
+
+    $scope.checkProductInShopCart = function(productId) {
+        var orderLines = JSON.parse(window.localStorage['shopCartDesigns']);
+        for(var i = 0; i < orderLines.length; i++) {
+            if(orderLines[i]["product"]._id == productId) {
+                orderLines[i]["amount"] += 1;
+                window.localStorage['shopCartDesigns'] = JSON.stringify(orderLines);
+                return true;
+            }
+        }
+        return false;
     }
 });
