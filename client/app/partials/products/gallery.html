@@ -3,10 +3,10 @@
 <div data-ng-init="getProducts()"></div>
 <div data-ng-show="products.error">Er zijn geen hoesjes om weer te geven, dit komt door een onbekende fout.</div>
 
-<ul>
+<ul class="gallery-products">
     <li class="gallery-product" ng-repeat="product in products.result">
         <h2>{{ product.name }}</h2>
         <img data-ng-src="{{product.preview}}"/>
-        <a style="color: #000;" href="#/product/{{product._id}}">Product bekijken!</a>
+        <a class="button" style="color: #000;" href="#/product/{{product._id}}">Product bekijken!</a>
     </li>
 </ul>
