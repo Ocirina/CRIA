@@ -198,9 +198,18 @@ nav{
 
 #main #registerForm, #main #nawSection {
     float: left;
-    padding-top: 30px;
+    margin-top: 30px;
     width: 440px;
     clear: both;
+}
+
+#nawSection {
+    width: 55%;
+}
+
+#nawSection, #orderOverView {
+    background-color: #a2a2a9;
+    padding: 10px;
 }
 
 #main #registerForm h1 {
@@ -242,7 +251,6 @@ nav{
 }
 
 .orangeButton {
-    float: left;
     padding: 10px;
     line-height: 20px;
     text-align: center;
@@ -319,9 +327,39 @@ div#main .gallery-product img {
   margin: 0;
 }
 
+ul#shopCaseDesigns {
+    width: 100%;
+}
+
 ul.gallery-products, ul#shopCaseDesigns {
   list-style: none;
 }
+
+#orderOverView {
+    float: right;
+    margin-top: 30px;
+    width: 35%;
+}
+
+#orderOverView table {
+    padding: 10px;
+    border-collapse: separate;
+    border-spacing: 2px;
+    width: 80%;
+    margin: auto;
+}
+
+#orderOverView table td {
+    vertical-align: middle;
+    padding: 5px;
+    text-align: center;
+}
+
+#orderOverView button {
+    display: block;
+    margin: auto;
+}
+
 #main div.product-view img {
   width: 140px;
   height: auto;

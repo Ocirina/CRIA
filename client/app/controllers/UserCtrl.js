@@ -8,8 +8,14 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
         user.$save(function(data) {
             if(data.result.username === $scope.user.username) {
                 window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
+                $scope.hasUser = true;
             }
         });
+    };
+
+    $scope.logoutUser = function() {
+        window.sessionStorage.removeItem("loggedInUser");
+        $scope.hasUser = false;
     };
 
     $scope.registerUser = function() {
@@ -61,8 +67,9 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
     };
 
     $scope.checkLoggedInUser = function() {
-        if(window.sessionStorage['loggedInUser']) {
+        if(window.sessionStorage['loggedInUser'] != undefined) {
             $scope.hasUser = true;
+            $scope.user = JSON.parse(window.sessionStorage["loggedInUser"]);
         } else {
             $scope.hasUser = false;
         }
@@ -81,11 +88,11 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
     };
 
     $scope.saveNawInformation = function() {
-        console.log($scope.user._id);
-        var User = $resource('http://autobay.tezzt.nl\\:43083/user/:id' ,{ 'id' : $scope.user._id }, {update:{method:'PUT'}});
+       var User = $resource('http://autobay.tezzt.nl\\:43083/user/:id',{ id:"@_id"},
+           {update: {method:'PUT'}}
+       );
 
-        var user = new User($scope.user);
-        user.$update();
-
+       var user = new User($scope.user);
+       user.$update();
     }
 });

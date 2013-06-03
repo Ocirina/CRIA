@@ -28,3 +28,32 @@
         <button class="orangeButton" data-ng-click="saveNawInformation()">Gegevens wijzigen</button>
     </form>
 </div>
+
+<div id="orderOverView" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
+    <h2>Overzicht</h2>
+    <table>
+        <tbody data-ng-repeat="orderline in orderLines">
+            <tr>
+                <td rowspan="2">
+                    <img style="width: 50px; height: 100px;" data-ng-src="{{orderline.product.preview}}">
+                </td>
+                <td>
+                    Prijs: &euro;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Aantal:  {{ orderline.aantal }}
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    Totaal: &euro; <!-- totaal prijs -->
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <button class="orangeButton">Afrekenen</button>
+</div>
