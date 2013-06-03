@@ -1,8 +1,13 @@
 app.controller('UserCtrl', function($scope, $location, $http, $resource) {
     $scope.loginUser = function() {
-       $http.post('/users/signin', $scope.user).success(function(data) {
-          console.log(data);
-       })
+        var User = $resource('http://autobay.tezzt.nl\\:43083/user/check',{},
+            {charge: {method:'POST', params:{charge:true}}}
+        );
+
+        var user = $scope.user;
+        user.$save(function(data) {
+            console.log(data);
+        });
     };
 
     $scope.registerUser = function() {
