@@ -1,10 +1,21 @@
 <h1>Winkelwagen</h1>
-<ul id="shopCaseDesigns" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
+<ul id="shopCaseDesigns" data-ng-init="loadShopCartDesigns()">
     <li class="gallery-product" data-ng-show="shopCartDesigns" data-ng-repeat="orderline in orderLines">
         <img data-ng-src="{{orderline.product.preview}}"/>
         <input type="number" min="1" max="99" data-ng-model="orderline.aantal" required>
     </li>
     <li data-ng-hide="shopCartDesigns">
-        <h2>Er zijn geen designs aan de winkelwagen toegevoegd</h2>
+        <h3>Er zijn geen designs aan de winkelwagen toegevoegd</h3>
     </li>
 </ul>
+
+<h2>N.A.W. Gegevens</h2>
+<div data-ng-controller="UserCtrl" data-ng-init="loadUser()">
+    <form>
+        <label>Voor- en Achternaam:</label><br />
+        <input id="firstName" type="text" data-ng-model="user.firstName" required>
+        <input id="lastName" type="text" data-ng-model="user.lastName" required><br />
+        <label>Email: </label><br />
+        <input type="email" data-ng-model="user.email" required><br />
+    </form>
+</div>
