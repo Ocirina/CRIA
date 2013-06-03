@@ -21,10 +21,11 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
         });
     };
 
-    $scope.addProductToShopCart = function(product) {
+    $scope.addProductToShopCart = function() {
         if (!window.localStorage['shopCartDesigns']) {
             window.localStorage['shopCartDesigns'] = [];
         }
-        window.localStorage['shopCartDesigns'].push({"product": product, "amount":1})
+
+        window.localStorage['shopCartDesigns'].push({"product": $scope.product, "amount":1})
     }
 });
