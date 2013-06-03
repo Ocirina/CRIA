@@ -1,0 +1,46 @@
+.design-process{
+    width: 100%;
+}
+
+    .design-process input {
+        position: relative;
+        float: right;
+    }
+
+    .design-process .design-box {
+        position: relative;
+        float: left;
+        width: 800px;
+        height: 800px;
+    }
+
+        .design-process .design-box .choose-phone {
+            position: relative;
+            width: 200px;
+            height: 220px;
+            background-color: #E5E5E5;
+            border: 1px solid #6EBDC4;
+            border-radius: 5px;
+        }
+
+            .design-process .design-box .choose-phone > div {
+                cursor: pointer;
+                position: relative;
+                float: left;
+                width: 45%;
+                height: 75%;
+                margin: 5px;
+                margin-top: 20px;
+                background-color: #807A7C;
+                border-radius: 5px;
+                text-align: center;
+                line-height: 140px;
+                color: #3B393A;
+                font-size: 39px;
+            }
+
+            .design-process .design-box .choose-phone > div:nth-of-type(1) {
+                height: 65%;
+                margin-top: 41px;
+                line-height: 130px;
+            }

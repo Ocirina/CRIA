@@ -1,7 +1,27 @@
 <div class="design-process">
     <h1>{{ design.name }}</h1>
     <div class="design-box">
+        <div class="choose-phone">
+            <h2>Kies je iPhone</h2>
+            <div data-ng-click="activatePhone(4);">
+                <h3>4</h3>
+            </div>
 
+            <div data-ng-click="activatePhone(5);">
+                <h3>5</h3>
+            </div>
+        </div>
+
+        <div class="choose-phone">
+            <h2>Kies je iPhone</h2>
+            <div data-ng-click="activatePhone(4);">
+                <h3>4</h3>
+            </div>
+
+            <div data-ng-click="activatePhone(5);">
+                <h3>5</h3>
+            </div>
+        </div>
     </div>
     <input type="text" data-ng-init="design.name = 'Nieuw ontwerp'" data-ng-model="design.name">
 </div>
