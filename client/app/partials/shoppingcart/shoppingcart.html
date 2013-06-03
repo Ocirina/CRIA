@@ -9,13 +9,21 @@
     </li>
 </ul>
 
-<h2>N.A.W. Gegevens</h2>
-<div data-ng-controller="UserCtrl" data-ng-init="loadUser()">
+<div id="nawSection" data-ng-controller="UserCtrl" data-ng-init="loadUserShopCart()">
+    <h2>N.A.W. Gegevens</h2>
     <form>
-        <label>Voor- en Achternaam:</label><br />
-        <input id="firstName" type="text" data-ng-model="user.firstName" required>
-        <input id="lastName" type="text" data-ng-model="user.lastName" required><br />
-        <label>Email: </label><br />
+        <label>*Voor- en Achternaam:</label><br />
+        <input class="leftCol" type="text" data-ng-model="user.firstName" required>
+        <input class="rightCol" type="text" data-ng-model="user.lastName" required><br />
+        <label>*Email: </label><br />
         <input type="email" data-ng-model="user.email" required><br />
+        <label class="leftCol">*Postcode: </label>
+        <label class="rightCol">*Huisnummer: </label><br />
+        <input class="leftCol" type="text" data-ng-model="address.postalCode" required>
+        <input class="rightCol" type="text" data-ng-model="address.houseNumber" required><br />
+        <label>*Straatnaam: </label><br />
+        <input type="email" data-ng-model="address.street" required><br />
+        <label>*Plaats: </label><br />
+        <input type="email" data-ng-model="address.city" required><br />
     </form>
 </div>

@@ -9,7 +9,7 @@ Address = Schema({
     postalCode:   {type:String, required:true, index:true, unique:true},
     place:        {type:String, required:true},
     country:      {type:String, required:true},
-    province:     {type:String, required:true},
+    province:     {type:String, required:true}, // , weghalen
 });
 
 modelName = "Address";

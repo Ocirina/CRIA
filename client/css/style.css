@@ -196,16 +196,18 @@ nav{
 	height:567px;	
 }
 
-#main #registerForm {
-    padding-top: 60px;
+#main #registerForm, #main #nawSection {
+    float: left;
+    padding-top: 30px;
     width: 440px;
+    clear: both;
 }
 
 #main #registerForm h1 {
     margin-bottom: 20px;
 }
 
-#main #registerForm input {
+#main #registerForm input, #main #nawSection input{
     border: 1px solid #ccc;
     border-radius: 3px;
     padding: 5px 5px;
@@ -213,15 +215,15 @@ nav{
     width:96%;
 }
 
-    #main #registerForm #firstName {
-        width: 40%;
+    #main #registerForm #firstName, #main #nawSection .leftCol {
+        width: 40% !important;
         float: left;
         margin-right: 1%;
     }
 
-    #main #registerForm #lastName {
+    #main #registerForm #lastName, #main #nawSection .rightCol {
         float: left;
-        width: 52%;
+        width: 52% !important;
     }
 
     #main #registerForm #secondPassword {
@@ -234,7 +236,7 @@ nav{
     font-size: 12px;
 }
 
-#main #registerForm label {
+#main #registerForm label, #main #nawSection label {
     float: left;
     width: 100%;
 }
