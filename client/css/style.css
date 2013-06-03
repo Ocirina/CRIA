@@ -199,12 +199,8 @@ nav{
 #main #registerForm, #main #nawSection {
     float: left;
     margin-top: 30px;
-    width: 440px;
-    clear: both;
-}
-
-#nawSection {
     width: 55%;
+    clear: both;
 }
 
 #nawSection, #orderOverView {
