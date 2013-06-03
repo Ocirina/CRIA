@@ -4,6 +4,14 @@
     border-radius: 5px;
 }
 
+.sign-ok {
+    position: absolute;
+    bottom: 15%;
+    left: 5%;
+    line-height: 0px;
+    color: #FFF;
+}
+
 .design-process{
     width: 100%;
 }
