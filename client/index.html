@@ -32,7 +32,7 @@
 
 
         <div id="main" class="wrap">
-            <div id="loginContainer" class="wrap hidden" ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()">
+            <div id="loginContainer" class="wrap hidden" data-ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()">
                 <form data-ng-hide="hasUser">
                     <label>Gebruikersnaam</label><br />
                     <input type="text" data-ng-change="#" data-ng-model="user.username" maxlength="20" required><br />
