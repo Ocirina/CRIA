@@ -1,3 +1,9 @@
+.round-border-style {
+    background-color: #E5E5E5;
+    border: 1px solid #6EBDC4;
+    border-radius: 5px;
+}
+
 .design-process{
     width: 100%;
 }
@@ -14,13 +20,52 @@
         height: 800px;
     }
 
+        .design-process .design-box .choose-type-case {
+            position: absolute;
+            top: 300px;
+            left: 0px;
+            width: 300px;
+            height: 220px;
+        }
+
+            .design-process .design-box .choose-type-case > div {
+                 cursor: pointer;
+                 position: relative;
+                 float: left;
+                 width: 30%;
+                 height: 75%;
+                 margin: 20px 5px 5px 5px;
+                 background-color: #807A7C;
+                 border-radius: 5px;
+                 text-align: center;
+                 line-height: 180px;
+                 color: #3B393A;
+                 font-size: 19px;
+             }
+
+                .design-process .design-box .choose-type-case > div > h3{
+                    -webkit-transform: rotate(-90deg);
+                    -moz-transform: rotate(-90deg);
+                }
+
+        .design-process .design-box .phone {
+            position: absolute;
+            top: 50px;
+            left: 350px;
+            width: 270px;
+        }
+
+            .design-process .design-box .phone img {
+                width: 270px !important;
+                height: auto !important;
+            }
+
         .design-process .design-box .choose-phone {
-            position: relative;
+            position: absolute;
+            top: 50px;
+            left: 0px;
             width: 200px;
             height: 220px;
-            background-color: #E5E5E5;
-            border: 1px solid #6EBDC4;
-            border-radius: 5px;
         }
 
             .design-process .design-box .choose-phone > div {
@@ -29,8 +74,7 @@
                 float: left;
                 width: 45%;
                 height: 75%;
-                margin: 5px;
-                margin-top: 20px;
+                margin: 20px 5px 5px 5px;
                 background-color: #807A7C;
                 border-radius: 5px;
                 text-align: center;

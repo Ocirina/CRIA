@@ -1,7 +1,7 @@
 <div class="design-process">
     <h1>{{ design.name }}</h1>
     <div class="design-box">
-        <div class="choose-phone">
+        <div class="round-border-style choose-phone">
             <h2>Kies je iPhone</h2>
             <div data-ng-click="activatePhone(4);">
                 <h3>4</h3>
@@ -12,15 +12,25 @@
             </div>
         </div>
 
-        <div class="choose-phone">
-            <h2>Kies je iPhone</h2>
-            <div data-ng-click="activatePhone(4);">
-                <h3>4</h3>
+        <div class="round-border-style choose-type-case">
+            <h2>Kies een soort case</h2>
+
+            <div data-ng-click="setCaseType(1);">
+                <h3>Bestickerd</h3>
             </div>
 
-            <div data-ng-click="activatePhone(5);">
-                <h3>5</h3>
+            <div data-ng-click="setCaseType(2);">
+                <h3>Hard</h3>
             </div>
+
+            <div data-ng-click="setCaseType(3);">
+                <h3>Silicon</h3>
+            </div>
+        </div>
+
+        <div class="phone">
+            <img data-ng-show="phone.iphone4" src="img/iphone4.png" class="iphone-4">
+            <img data-ng-show="phone.iphone5" src="img/iphone5.png" class="iphone-5">
         </div>
     </div>
     <input type="text" data-ng-init="design.name = 'Nieuw ontwerp'" data-ng-model="design.name">
