@@ -1,6 +1,6 @@
 app.factory('casedesigns', function ($http) {
   var yql = {};
-  var url = 'http://autobay.tezzt.nl\:43083/casedesigns/';
+  var url = 'http://autobay.tezzt.nl\\:43083/casedesigns/';
 
   return {
     get: function (callback) {
