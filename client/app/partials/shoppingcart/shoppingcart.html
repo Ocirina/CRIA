@@ -19,11 +19,12 @@
         <input type="email" data-ng-model="user.email" required><br />
         <label class="leftCol">*Postcode: </label>
         <label class="rightCol">*Huisnummer: </label><br />
-        <input class="leftCol" type="text" data-ng-model="address.postalCode" required>
+        <input class="leftCol" type="text" data-ng-model="address.postalCode" required pattern="[0-9]{4}[a-zA-Z]{2}">
         <input class="rightCol" type="text" data-ng-model="address.houseNumber" required><br />
         <label>*Straatnaam: </label><br />
-        <input type="email" data-ng-model="address.street" required><br />
+        <input type="text" data-ng-model="address.street" required><br />
         <label>*Plaats: </label><br />
-        <input type="email" data-ng-model="address.city" required><br />
+        <input type="text" data-ng-model="address.city" required><br />
+        <button class="orangeButton" data-ng-click="saveNawInformation()">Gegevens wijzigen</button>
     </form>
 </div>

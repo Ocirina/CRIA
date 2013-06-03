@@ -78,5 +78,17 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
         User.get(function(data) {
             $scope.user = data.result;
         });
+    };
+
+    $scope.saveNawInformation = function() {
+        var User = $resource('http://autobay.tezzt.nl\\:43083/user/' + $scope.user._id,{},
+            {charge: {method:'POST', params:{charge:true}}}
+        );
+
+        User.save($scope.user, function(data) {
+            console.log(data);
+        });
+
+
     }
 });
