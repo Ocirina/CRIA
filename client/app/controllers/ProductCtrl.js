@@ -7,7 +7,7 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource) {
         var product = Products.get();
 
         console.log(product);
-        console.log(product['result']);
+        console.log(product.result);
 
 //        $scope.product.products = products.result;
     };
