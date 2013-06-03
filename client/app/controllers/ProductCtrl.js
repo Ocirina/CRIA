@@ -6,8 +6,12 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource) {
 
         var product = Products.get();
 
-        console.log(product);
-        console.log(product.result);
+        console.log(product.$get("result"));
+        console.log(product['g']);
+
+        for(var index in product) {
+            console.warn(product[index], index);
+        }
 
 //        $scope.product.products = products.result;
     };

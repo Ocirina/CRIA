@@ -9,7 +9,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
         var User = $resource('http://autobay.tezzt.nl\\:43083/users',{},
           {charge: {method:'POST', params:{charge:true}}}
         );
-        
+
         var user = new User($scope.user);
         user.$save();
     };
