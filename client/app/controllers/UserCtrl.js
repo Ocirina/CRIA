@@ -7,7 +7,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
         var user = new User($scope.user);
         user.$save(function(data) {
             if(data.result.username === $scope.user.username) {
-                window.sessionStorage["loggedInUser"] = data.result;
+                window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
             }
         });
     };
@@ -58,7 +58,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
                 $location.path('/gebruiker/login');
             }
         });
-    }
+    };
 
     $scope.checkLoggedInUser = function() {
         if(window.sessionStorage['loggedInUser']) {
@@ -69,13 +69,14 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
     };
 
     $scope.loadUserShopCart = function() {
-        var User = $resource('http://autobay.tezzt.nl\\:43083/user/:id',{},
+        var loggedInUser = JSON.parse(window.sessionStorage["loggedInUser"]);
+
+        var User = $resource('http://autobay.tezzt.nl\\:43083/user/' + loggedInUser["_id"],{},
             {charge: {method:'GET', params:{charge:true}}}
         );
 
-        var user = new User(window.sessionStorage["loggedInUser"]._id);
-        user.get(function(data) {
-            console.log(data);
+        User.get(function(data) {
+            $scope.user = data.result;
         });
     }
 });
