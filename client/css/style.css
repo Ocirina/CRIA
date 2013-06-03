@@ -332,3 +332,7 @@ ul.gallery-products, ul#shopCaseDesigns {
   border: 1px solid #000;
   padding: 2px 5px;
 }
+.left-column, .right-column {
+  width: 25%;
+  float: left;
+}
