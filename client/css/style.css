@@ -81,7 +81,8 @@ nav{
 		height:300px;
 	}
 		#welkom{
-			height:280px;
+			height: 260px;
+      overflow: hidden;
 		}
 		#button{
 			height:40px;
@@ -316,7 +317,7 @@ div#main .gallery-product img {
   margin: 0;
 }
 
-ul.gallery-products {
+ul.gallery-products, ul#shopCaseDesigns {
   list-style: none;
 }
 #main div.product-view img {
