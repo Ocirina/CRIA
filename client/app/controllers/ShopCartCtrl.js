@@ -4,7 +4,9 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
             {charge: {method:'GET', params:{charge:true}}}
         );
 
-        ShopCartDesigns.get(function(data){
+
+        ShopCartDesigns.get(function(data) {
+            console.log(data);
             $scope.shopCartDesigns = data;
         });
     }
