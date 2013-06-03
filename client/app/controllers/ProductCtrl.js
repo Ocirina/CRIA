@@ -22,10 +22,16 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
     };
 
     $scope.addProductToShopCart = function() {
+        var products;
         if (!window.localStorage['shopCartDesigns']) {
-            window.localStorage['shopCartDesigns'] = [];
+            products = [];
+            window.localStorage['shopCartDesigns'] = JSON.stringify(products);
         }
 
-        window.localStorage['shopCartDesigns'].push({"product": $scope.product, "amount":1})
+        products = JSON.parse(window.localStorage['shopCartDesigns']);
+        products.push({"product": $scope.product, "amount":1});
+
+        window.localStorage['shopCartDesigns'] = JSON.stringify(products);
+        console.log(window.localStorage['shopCartDesigns']);
     }
 });
