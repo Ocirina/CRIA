@@ -44,12 +44,13 @@ nav{
         float: left;
     }
 
-    nav li:last-child {
-        float: right;
+    nav li:hover {
+        cursor: pointer;
+        background:#895c43;
     }
 
-    nav li:hover {
-        background:#895c43;
+    nav li:last-child {
+        float: right;
     }
 
     nav a{

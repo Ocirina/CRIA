@@ -12,8 +12,23 @@ function EventController() {
         };
 
         this.showLoginForm = function() {
-            document.getElementById("inloggen").onclick = function() {
+            var inlogNav = document.getElementById("inloggen");
+            inlogNav.onclick = function() {
+                show();
+            };
+
+            var show = function() {
                 $("#loginContainer").slideDown();
-            }
+                inlogNav.onclick = function() {
+                    hide();
+                };
+            };
+
+            var hide = function() {
+                $("#loginContainer").slideUp();
+                inlogNav.onclick = function() {
+                    show();
+                };
+            };
         };
 }
