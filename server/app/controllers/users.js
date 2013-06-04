@@ -1,8 +1,6 @@
-var mongoose, User, PasswordHasher;
-
-/* Include dependencies */
-mongoose = require('mongoose');
-User = mongoose.model('User');
+// Include dependencies
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
 /**
  * Type: POST
@@ -24,11 +22,9 @@ exports.create = function (req, res) {
  * Route: /users
  */
 exports.index = function (req, res) {
-  var conditions, fields, options;
-
-  conditions = {};
-  fields = {};
-  options = {'name': -1};
+  var conditions = {};
+  var fields = {};
+  var options = {'name': -1};
 
   User.find(conditions, fields, options)
       .exec(function (err, users) {
@@ -44,12 +40,9 @@ exports.index = function (req, res) {
  * Route: /user/:id
  */
 exports.show = function (req, res) {
-  var id = req.params.id;
-  
   User
-    .findOne({_id: id})
+    .findOne({_id: req.params.id}, '-password')
     .exec(function (err, user) {
-      delete user.password;
       return res.send({
         "error": err,
         "result": user
@@ -60,11 +53,21 @@ exports.show = function (req, res) {
 /**
  * Type: PUT
  * Route: /user/:id
+ *
+ * Note:
+ * The delete on req.body._id is a fix for a Mongoose error.
+ * The ID was send within the body and because it can't update an error 
+ * is thrown.
+ *
+ * Note:
+ * The reason for not using findOneAndUpdate() method is that the method doesn't
+ * call the post/pre "save" middleware when executed. This conflicts with the
+ * middleware that was specialy written to fix the creation of address.
  */
 exports.update = function (req, res) {
-  delete req.body._id
+  delete req.body._id; // See first note above.
 
-  User.findOne({_id: req.params.id})
+  User.findOne({_id: req.params.id}) // See second note above
       .exec(function(err, user){
         if (!err) {
           user.email = req.body.email;

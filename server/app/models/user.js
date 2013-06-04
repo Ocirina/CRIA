@@ -17,6 +17,12 @@ var User = Schema({
  * this is true then it will save the address to the database.
  * I've chosen for a middleware function to keep the controllers more clean.
  * @see http://mongoosejs.com/docs/middleware.html
+ *
+ * Note:
+ *  I found a problem which wasn't described in the documentation online.
+ *  The documentation doesn't say a thing about executing the callback given
+ *  with the save method. This method must be executed manually within the middleware.
+ *  Found the solution with this url: https://github.com/LearnBoost/mongoose/issues/499
  */
 User.pre('save', function(next, req, user, callback){
   if (req.body['address']) {
@@ -27,6 +33,17 @@ User.pre('save', function(next, req, user, callback){
       else {next(err);}
     });
   }
+});
+
+/**
+ * After removal of account the users address and design are removed.
+ * @see http://mongoosejs.com/docs/middleware.html
+ */
+User.post('remove', function(user){
+  var Address = mongoose.models["Address"];
+  var CaseDesigns = mongoose.models["CaseDesigns"];
+  Address.find({user: user._id}).remove();
+  CaseDesigns.find({user: user._id}).remove();
 });
 
 // Define the Mongoose model.
