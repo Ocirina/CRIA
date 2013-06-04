@@ -1,11 +1,9 @@
-var mongoose, User, Schema;
-
 // Include dependencies.
-mongoose = require('mongoose');
-Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 // Schema definition for User.
-User = Schema({
+var User = Schema({
     name:         {type: String, required: true, index: true, unique: true},
     email:        {type: String, required: true, index: true, unique: true},
     firstName:    {type: String, required: true},

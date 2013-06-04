@@ -1,15 +1,14 @@
-var mongoose, CaseDesign, Schema, modelName, collectionName, passwordHash;
+// Include dependencies.
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-mongoose = require('mongoose');
-Schema = mongoose.Schema;
-
-CaseDesign = Schema({
-    name:           {type: String,  required:true, index:true},
-    shared:         {type: Boolean, required:true},
+// Schema definition for CaseDesign.
+var CaseDesign = Schema({
+    name:           {type: String,  required: true, index: true},
+    shared:         {type: Boolean, required: true},
     previewImage:   {type: Schema.Types.ObjectId, ref: 'CaseDesign'},
     caseModel:      {type: Schema.Types.ObjectId, ref: 'CaseModel'}
 });
 
-modelName = "CaseDesign";
-collectionName = "CaseDesigns";
-CaseDesign = mongoose.model(modelName, CaseDesign, collectionName);
+// Define the Mongoose model.
+mongoose.model("CaseDesign", CaseDesign, "CaseDesigns");

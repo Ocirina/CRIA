@@ -1,12 +1,11 @@
-var mongoose, Phone, Schema, modelName, collectionName, passwordHash;
+// Include dependencies.
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-mongoose = require('mongoose');
-Schema = mongoose.Schema;
-
-Phone = Schema({
+// Schema definition for Phone.
+var Phone = Schema({
     type: {type: String, required: true, index: true},
 });
 
-modelName = "Phone";
-collectionName = "Phones";
-Phone = mongoose.model(modelName, Phone, collectionName);
+// Define the Mongoose model.
+mongoose.model("Phone", Phone, "Phones");

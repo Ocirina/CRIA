@@ -1,14 +1,13 @@
-var mongoose, CaseModel, Schema, modelName, collectionName, passwordHash;
+// Include dependencies.
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-mongoose = require('mongoose');
-Schema = mongoose.Schema;
-
-CaseModel = Schema({
-  name:   {type: String, required: true, index: true},
-  type:   {type: String, required: true, index: true},
-  colors: {type: Array}
+// Schema definition for CaseModel.
+var CaseModel = Schema({
+    name:   {type: String, required: true, index: true},
+    type:   {type: String, required: true, index: true},
+    colors: {type: Array}
 });
 
-modelName = "CaseModel";
-collectionName = "CaseModels";
-Phone = mongoose.model(modelName, CaseModel, collectionName);
+// Define the Mongoose model.
+mongoose.model("CaseModel", CaseModel, "CaseModels");

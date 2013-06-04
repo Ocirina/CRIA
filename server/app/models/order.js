@@ -1,14 +1,9 @@
-/**
-* @author Willem van Lent (willemvanlent@live.nl)
-* @copyright Copyright (c) 2013, HAN, Arnhem - All rights reserved
-* @version 1.0.0
-*/
-var mongoose, Order, Schema, modelName, collectionName, passwordHash;
+// Include dependencies.
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-mongoose = require('mongoose');
-Schema = mongoose.Schema;
-
-Order = Schema({
+// Schema definition for Oder.
+var Order = Schema({
     id:         {type: Number, required: true, index: true, unique: true},
     name:       {type: String, required: true, index: true},
     user:       {type: Schema.Types.ObjectId, ref: 'User', required: true},
@@ -16,6 +11,5 @@ Order = Schema({
     orderState: {type: Schema.Types.ObjectId, ref: 'OrderState', required: true}
 });
 
-modelName = "Order";
-collectionName = "Orders";
-Order = mongoose.model(modelName, Order, collectionName);
+// Define the Mongoose model.
+mongoose.model("Order", Order, "Orders");

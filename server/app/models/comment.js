@@ -1,14 +1,13 @@
-var mongoose, Comment, Schema, modelName, collectionName, passwordHash;
+// Include dependencies.
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-mongoose = require('mongoose');
-Schema = mongoose.Schema;
-
-Comment = Schema({
+// Schema definition for Comment.
+var Comment = Schema({
     comment:      {type: String, required: true},
     user:         {type: Schema.Types.ObjectId, ref: 'User', required: true},
     caseDesign:   {type: Schema.Types.ObjectId, ref: 'CaseDesign', required: true}
 });
 
-modelName = "Comment";
-collectionName = "Comments";
-Comment = mongoose.model(modelName, Comment, collectionName);
+// Define the Mongoose model.
+mongoose.model("Comment", Comment, "Comments");

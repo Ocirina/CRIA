@@ -1,13 +1,12 @@
-var mongoose, User, Schema, modelName, collectionName;
+// Include dependencies.
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-mongoose = require('mongoose');
-Schema = mongoose.Schema;
-
-OderLine = Schema({
+// Schema definition for OderLine.
+var OderLine = Schema({
     caseDesign: {type: Schema.Types.ObjectId, ref: 'CaseDesign'},
-    oder:       {type: Schema.Types.ObjectId, ref: 'Oder'},
+    order:      {type: Schema.Types.ObjectId, ref: 'Oder'},
 });
 
-modelName = "OderLine";
-collectionName = "OderLines";
-User = mongoose.model(modelName, OderLine, collectionName);
+// Define the Mongoose model.
+mongoose.model("OderLine", OderLine, "OderLines");

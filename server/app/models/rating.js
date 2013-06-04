@@ -1,14 +1,13 @@
-var mongoose, Rating, Schema, modelName, collectionName;
+// Include dependencies.
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-mongoose = require('mongoose');
-Schema = mongoose.Schema;
-
-Rating = Schema({
+// Schema definition for Rating.
+var Rating = Schema({
     amount:       {type: Number, required: true},
     user:         {type: Schema.Types.ObjectId, ref: 'User', required: true},
     caseDesign:   {type: Schema.Types.ObjectId, ref: 'CaseDesign', required: true}
 });
 
-modelName = "Rating";
-collectionName = "Ratings";
-Rating = mongoose.model(modelName, Rating, collectionName);
+// Define the Mongoose model.
+mongoose.model("Rating", Rating, "Ratings");
