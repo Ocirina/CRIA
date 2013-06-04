@@ -67,7 +67,7 @@ exports.show = function (req, res) {
 exports.update = function (req, res) {
   delete req.body._id; // See first note above.
 
-  User.findOne({_id: req.params.id}) // See second note above
+  User.findOne({_id: req.params.id}) // See second note above.
       .exec(function(err, user){
         if (!err) {
           user.email = req.body.email;
