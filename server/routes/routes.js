@@ -8,7 +8,7 @@ module.exports = function (app) {
     SessionsCtrl    = require('../app/controllers/sessions.js');
 
     // User
-    app.get('/users', UserCtrl.index);
+    //app.get('/users', UserCtrl.index);
     app.post('/users', UserCtrl.create);
     app.get('/user/:id', UserCtrl.show);
     app.put('/user/:id', UserCtrl.update);
