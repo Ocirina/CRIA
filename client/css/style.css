@@ -297,7 +297,7 @@ nav{
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 div#main ul#shopCaseDesigns .gallery-product {
   width: 100px;
