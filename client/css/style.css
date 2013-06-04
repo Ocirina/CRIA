@@ -207,9 +207,12 @@ nav{
     clear: both;
 }
 
-#nawSection, #orderOverView {
-    background-color: #a2a2a9;
-    padding: 10px;
+#main #nawSection, #orderOverView {
+    background-color: #f8f8f8;
+    padding: 0 10px;
+    border: 1px solid #92cdd1;
+    border-radius: 5px;
+    margin-top: 15px;
 }
 
 #main #registerForm h1 {
@@ -219,8 +222,8 @@ nav{
 #main #registerForm input, #main #nawSection input{
     border: 1px solid #ccc;
     border-radius: 3px;
-    padding: 5px 5px;
-    margin:5px 0 10px 2px;
+    padding: 2px 5px;
+    margin:5px 0 7px 0;
     width:96%;
 }
 
@@ -337,21 +340,24 @@ ul.gallery-products, ul#shopCaseDesigns {
 
 #orderOverView {
     float: right;
-    margin-top: 30px;
     width: 35%;
 }
 
 #orderOverView table {
-    padding: 10px;
+    padding: 5px;
     border-collapse: separate;
     border-spacing: 2px;
     width: 80%;
     margin: auto;
 }
 
+#orderOverView table thead > tr { background-color: #f28e6e }
+
+#orderOverView table tbody > tr:nth-child(odd){ background-color: #fff; }
+#orderOverView table tbody > tr:nth-child(even){ background-color: #f8f8ff; }
+
 #orderOverView table td {
     vertical-align: middle;
-    padding: 5px;
     text-align: center;
 }
 
