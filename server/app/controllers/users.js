@@ -3,14 +3,14 @@ var mongoose, User, PasswordHasher;
 /* Include dependencies */
 mongoose = require('mongoose');
 User = mongoose.model('User');
-PasswordHasher = require('password-hash');
+//PasswordHasher = require('password-hash');
 
 /**
  * Type: POST
  * Route: /users
  */
 exports.create = function (req, res) {
-  req.body.password = PasswordHasher.generate(req.body.password);
+  //req.body.password = PasswordHasher.generate(req.body.password);
   var user = new User(req.body);
   user.save(function (err) {
     return res.send({
@@ -63,16 +63,18 @@ exports.show = function (req, res) {
  * Route: /user/:id
  */
 exports.update = function (req, res) {
-  req.body.password = PasswordHasher.generate(req.body.password);
+  //req.body.password = PasswordHasher.generate(req.body.password);
+  delete req.body._id
   var conditions = {_id: req.params.id},
-      update = req.body,
-      options = { multi: true },
-      callback = function (err, user) {
+      update     = req.body,
+      options    = {},
+      callback   = function (err, user) {
         return res.send({
           "error": err,
           "result": user
         });
       };
+
   User.findOneAndUpdate(conditions, update, options, callback);
 }
 
