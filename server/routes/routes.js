@@ -21,7 +21,7 @@ module.exports = function (app) {
     
     // CaseDesign
     app.get('/casedesigns', CaseDesignCtrl.index);    
-    app.post('/casedesigns/new', CaseDesignCtrl.create);
+    app.post('/casedesigns', CaseDesignCtrl.create);
     app.get('/casedesign/:id', CaseDesignCtrl.show);
     app.put('/casedesign/:id', CaseDesignCtrl.update);
     app.delete('/casedesign/:id', CaseDesignCtrl.destroy);
