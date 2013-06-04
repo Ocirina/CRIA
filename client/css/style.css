@@ -370,6 +370,12 @@ ul.gallery-products, ul#shopCaseDesigns {
     margin: auto;
 }
 
+#main .paymentDiv {
+    padding: 5px;
+    border: 1px solid #92cdd1;
+    border-radius: 5px;
+}
+
 #main div.product-view img {
   width: 140px;
   height: auto;

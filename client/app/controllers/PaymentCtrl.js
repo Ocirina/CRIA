@@ -1,3 +1,3 @@
-app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
+app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
 
 });
