@@ -81,14 +81,18 @@ nav{
 		height:300px;
 	}
 		#welkom{
-			height: 260px;
+			height: 300px;
       overflow: hidden;
 		}
+      #welkom p {
+        height: 260px;
+      }
 		#button{
-			height:40px;
+      display: inline-block;
+			height: 20px;
 			width: 320px;
       padding: 10px;
-      line-height: 15px;
+      line-height: 20px;
       text-align: center;
       color: #f8f8f8;
       font-weight: bold;
