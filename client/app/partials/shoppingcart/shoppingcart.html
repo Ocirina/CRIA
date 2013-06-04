@@ -1,6 +1,7 @@
 <h1>Winkelwagen</h1>
 <ul id="shopCaseDesigns" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
     <li class="gallery-product" data-ng-show="shopCartDesigns" data-ng-repeat="orderline in orderLines">
+        <h5>{{ orderline.product.name }}</h5>
         <img data-ng-src="{{orderline.product.preview}}"/>
         <input type="number" min="1" max="99" data-ng-model="orderline.aantal" required>
     </li>
@@ -32,24 +33,29 @@
 <div id="orderOverView" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
     <h2>Overzicht</h2>
     <table>
-        <tbody data-ng-repeat="orderline in orderLines">
+        <thead>
             <tr>
-                <td rowspan="2">
-                    <img style="width: 50px; height: 100px;" data-ng-src="{{orderline.product.preview}}">
-                </td>
-                <td>
-                    Prijs: &euro;
-                </td>
+                <th>Naam</th>
+                <th>Prijs</th>
+                <th>Aantal</th>
             </tr>
-            <tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="orderline in orderLines">
                 <td>
-                    Aantal:  {{ orderline.aantal }}
+                    {{ orderline.product.name }}
+                </td>
+                <td>
+                    &euro;
+                </td>
+                <td>
+                    {{ orderline.aantal }}
                 </td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2">
+                <td colspan="3">
                     Totaal: &euro; <!-- totaal prijs -->
                 </td>
             </tr>
