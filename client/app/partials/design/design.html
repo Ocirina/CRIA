@@ -37,6 +37,20 @@
         <div class="phone">
             <img data-ng-show="phone.phone == 4" src="img/iphone4.png" class="iphone-4">
             <img data-ng-show="phone.phone == 5" src="img/iphone5.png" class="iphone-5">
+
+            <canvas id="case-editor"></canvas>
+        </div>
+
+        <div class="round-border-style case-background">
+            <div>
+                <h2>Achtergrond</h2>
+                <p>Zoek een eigen afbeelding op, en sleep deze vervolgens uit de map op de preview en laat de afbeeling los.</p>
+
+                <button class="round-button-style">Uploaden</button>
+            </div>
+            <div>
+                <h2>Standaard achtergrond</h2>
+            </div>
         </div>
     </div>
     <input type="text" data-ng-init="design.name = 'Nieuw ontwerp'" data-ng-model="design.name">
