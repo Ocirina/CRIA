@@ -24,6 +24,7 @@ app.config(function ($routeProvider) {
         })
 
         .when('/betalen/kiezen', {
+            controller: 'PaymentCtrl',
             templateUrl: 'app/partials/payment/methods.html'
         })
 
