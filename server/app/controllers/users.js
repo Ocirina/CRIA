@@ -42,6 +42,7 @@ exports.index = function (req, res) {
 exports.show = function (req, res) {
   User
     .findOne({_id: req.params.id}, '-password')
+    .populate('Address')
     .exec(function (err, user) {
       return res.send({
         "error": err,
