@@ -10,8 +10,8 @@ var User = Schema({
     lastName:     {type: String, required: true},
     dateOfBirth:  {type: Date,   required: true},
     password:     {type: String, required: true},
-    caseDesigns:  [{type: Schema.Types.ObjectId, ref: 'CaseDesigns'}],
-    addresses:    [{type: Schema.Types.ObjectId, ref: 'Address'}]
+    address:      {type: Schema.Types.ObjectId, ref: 'Address'},
+    caseDesigns:  [{type: Schema.Types.ObjectId, ref: 'CaseDesigns'}]
 });
 
 /**
@@ -34,7 +34,7 @@ User.pre('save', function(next, req, user, callback){
   if (req.body['address']) {
     var Address = mongoose.models["Address"];
     var item = new Address(req.body.address);
-    this.addresses.push(item._id);
+    this.addresses = item._id;
     item.save(function(err, addr){
       if (!err) {next(callback);}
       else {next(err);}

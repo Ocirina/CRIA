@@ -43,7 +43,7 @@ exports.show = function (req, res) {
   User
     .findOne({_id: req.params.id}, '-password')
     .populate({
-      path: 'addresses',
+      path: 'address',
       select: '-user -__v'
     })
     .exec(function (err, user) {
