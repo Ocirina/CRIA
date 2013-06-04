@@ -42,7 +42,10 @@ exports.index = function (req, res) {
 exports.show = function (req, res) {
   User
     .findOne({_id: req.params.id}, '-password')
-    .populate('Address')
+    .populate({
+      path: 'addresses',
+      select: '-user -__v'
+    })
     .exec(function (err, user) {
       return res.send({
         "error": err,
