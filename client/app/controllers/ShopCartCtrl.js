@@ -13,14 +13,17 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
     $scope.changeAmount = function(product, input){
         if(window.localStorage['shopCartDesigns']) {
             $scope.shopCartDesigns = JSON.parse(window.localStorage['shopCartDesigns']);
-            var orderlines = [];
+            var orderlines = [],
+                amount = 0;
 
             for(var i = 0; i < $scope.shopCartDesigns.length; i++) {
+                amount = $scope.shopCartDesigns[i]["aantal"];
+
                 if($scope.shopCartDesigns[i].product._id == product._id){
-                    orderlines[i] = {product:$scope.shopCartDesigns[i]["product"], aantal: input.orderline.aantal};
-                } else {
-                    orderlines[i] = {product:$scope.shopCartDesigns[i]["product"], aantal: $scope.shopCartDesigns[i]["aantal"]};
+                    amount = input.orderline.aantal;
                 }
+
+                orderlines[i] = {product:$scope.shopCartDesigns[i]["product"], aantal: amount};
             }
 
             window.localStorage['shopCartDesigns'] = JSON.stringify(orderlines);
