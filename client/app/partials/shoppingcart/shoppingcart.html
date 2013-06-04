@@ -3,7 +3,7 @@
     <li class="gallery-product" data-ng-show="shopCartDesigns" data-ng-repeat="orderline in orderLines">
         <h5>{{ orderline.product.name }}</h5>
         <img data-ng-src="{{orderline.product.preview}}"/>
-        <input type="number" min="1" max="99" data-ng-model="orderline.aantal" required>
+        <input type="number" min="1" max="99" data-ng-change="changeAmount({{ orderline.product }}, this)" data-ng-model="orderline.aantal" required>
     </li>
     <li data-ng-hide="shopCartDesigns">
         <h3>Er zijn geen designs aan de winkelwagen toegevoegd</h3>
