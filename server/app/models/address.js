@@ -4,12 +4,11 @@ mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 Address = Schema({
+    user:         {type: Schema.Types.ObjectId, ref: 'User'},
     street:       {type:String, required:true},
     houseNumber:  {type:String, required:true},
     postalCode:   {type:String, required:true, index:true, unique:true},
-    place:        {type:String, required:true},
-    country:      {type:String, required:true},
-    province:     {type:String, required:true}, // , weghalen
+    city:         {type:String, required:true}
 });
 
 modelName = "Address";
