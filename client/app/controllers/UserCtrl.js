@@ -83,6 +83,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
         );
 
         User.get(function(data) {
+            console.log(data);
             $scope.user = data.result;
         });
     };
