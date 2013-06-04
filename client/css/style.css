@@ -297,7 +297,7 @@ nav{
 }
 
 .hidden {
-    display: none !important;
+    display: none;
 }
 div#main ul#shopCaseDesigns .gallery-product {
   width: 100px;
@@ -347,7 +347,7 @@ ul.gallery-products, ul#shopCaseDesigns {
     width: 35%;
 }
 
-#orderOverView table {
+#main table {
     padding: 5px;
     border-collapse: separate;
     border-spacing: 2px;
@@ -355,12 +355,12 @@ ul.gallery-products, ul#shopCaseDesigns {
     margin: auto;
 }
 
-#orderOverView table thead > tr { background-color: #92cdd1 }
+#main table thead > tr { background-color: #92cdd1 }
 
-#orderOverView table tbody > tr:nth-child(odd){ background-color: #fff; }
-#orderOverView table tbody > tr:nth-child(even){ background-color: #f8f8ff; }
+#main table tbody > tr:nth-child(odd){ background-color: #fff; }
+#main table tbody > tr:nth-child(even){ background-color: #f8f8ff; }
 
-#orderOverView table td {
+#main table td {
     vertical-align: middle;
     text-align: center;
 }
@@ -370,10 +370,41 @@ ul.gallery-products, ul#shopCaseDesigns {
     margin: auto;
 }
 
+#main #paymentMethodsPage, #main #paymentMethodsPage #paymentMethods {
+    margin-top: 30px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
 #main .paymentDiv {
     padding: 5px;
     border: 1px solid #92cdd1;
     border-radius: 5px;
+    width: 30%;
+}
+
+#main #paymentMethodsPage #paymentMethods {
+    width: 90%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: auto;
+}
+
+#main #paymentMethodsPage #paymentMethods a {
+    width: 45%;
+    height: 50px;
+    margin: 0 0 20px 0px;
+    background-color: #ff5000;
 }
 
 #main div.product-view img {

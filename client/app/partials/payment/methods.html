@@ -1,8 +1,52 @@
 <h1>Afrekenen</h1>
+<div id="paymentMethodsPage">
+    <div class="paymentDiv">
+        <h5>Verzend opties</h5>
+        <input type="checkbox"><span> Levering volgende dag</span><br />
+        <input type="checkbox"><span> Normale Levering</span> <br />
+        <input type="checkbox"><span> Aangetekend</span> <br />
+    </div>
 
-<div class="paymentDiv">
-    <h5>Verzend opties</h5>
-    <input type="checkbox"><span> Levering volgende dag</span><br />
-    <input type="checkbox"><span> Normale Levering</span> <br />
-    <input type="checkbox"><span> Aangetekend</span> <br />
+    <div class="paymentDiv">
+        <h5>Betaal optie</h5>
+        <div id="paymentMethods">
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+        </div>
+    </div>
+
+    <div class="paymentDiv" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
+        <h5>Bestelling</h5>
+        <table>
+            <thead>
+            <tr>
+                <th>Naam</th>
+                <th>Prijs</th>
+                <th>Aantal</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="orderline in orderLines">
+                <td>
+                    {{ orderline.product.name }}
+                </td>
+                <td>
+                    &euro;
+                </td>
+                <td>
+                    {{ orderline.aantal }}
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">
+                    Totaal: &euro; <!-- totaal prijs -->
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
