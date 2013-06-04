@@ -1,5 +1,5 @@
 <h1>Winkelwagen</h1>
-<ul id="shopCaseDesigns" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
+<ul id="shopCaseDesigns" data-ng-init="loadShopCartDesigns()">
     <li class="gallery-product" data-ng-show="shopCartDesigns" data-ng-repeat="orderline in orderLines">
         <h5>{{ orderline.product.name }}</h5>
         <img data-ng-src="{{orderline.product.preview}}"/>
@@ -31,7 +31,7 @@
     </form>
 </div>
 
-<div id="orderOverView" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
+<div id="orderOverView">
     <h2>Overzicht</h2>
     <table>
         <thead>

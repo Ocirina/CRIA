@@ -20,6 +20,7 @@ app.config(function ($routeProvider) {
         })
 
         .when('/winkelwagen', {
+            controller: 'ShopCartCtrl',
             templateUrl: 'app/partials/shoppingcart/shoppingcart.html'
         })
 
