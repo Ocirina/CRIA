@@ -3,16 +3,15 @@ var mongoose, User, PasswordHasher;
 /* Include dependencies */
 mongoose = require('mongoose');
 User = mongoose.model('User');
-//PasswordHasher = require('password-hash');
 
 /**
  * Type: POST
  * Route: /users
  */
 exports.create = function (req, res) {
-  //req.body.password = PasswordHasher.generate(req.body.password);
   var user = new User(req.body);
-  user.save(function (err) {
+  req.body.address.user = user._id;
+  user.save(req, user, function (err) {
     return res.send({
       "error":  err,
       "result": user
@@ -63,19 +62,25 @@ exports.show = function (req, res) {
  * Route: /user/:id
  */
 exports.update = function (req, res) {
-  //req.body.password = PasswordHasher.generate(req.body.password);
   delete req.body._id
-  var conditions = {_id: req.params.id},
-      update     = req.body,
-      options    = {},
-      callback   = function (err, user) {
-        return res.send({
-          "error": err,
-          "result": user
-        });
-      };
 
-  User.findOneAndUpdate(conditions, update, options, callback);
+  User.findOne({_id: req.params.id})
+      .exec(function(err, user){
+        if (!err) {
+          user.email = req.body.email;
+          user.firstName = req.body.firstName;
+          user.lastName = req.body.lastName;
+          
+          req.body.address.user = user._id;
+          
+          user.save(req, user, function(err) {
+            return res.send({
+              "error": err,
+              "result": user
+            });
+          });
+        }
+      });
 }
 
 /**
