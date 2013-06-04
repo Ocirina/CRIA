@@ -215,16 +215,21 @@ nav{
     margin-top: 15px;
 }
 
-#main #registerForm h1 {
-    margin-bottom: 20px;
+#nawSection > button {
+    float: right;
+    clear: both;
 }
 
-#main #registerForm input, #main #nawSection input{
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    padding: 2px 5px;
-    margin:5px 0 7px 0;
-    width:96%;
+    #main #registerForm h1 {
+        margin-bottom: 20px;
+    }
+
+    #main #registerForm input, #main #nawSection input{
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 2px 5px;
+        margin:5px 0 7px 0;
+        width:96%;
 }
 
     #main #registerForm #firstName, #main #nawSection .leftCol {
@@ -348,10 +353,7 @@ ul.gallery-products, ul#shopCaseDesigns {
 }
 
 #main table {
-    padding: 5px;
-    border-collapse: separate;
-    border-spacing: 2px;
-    width: 80%;
+    width: 90%;
     margin: auto;
 }
 
@@ -388,6 +390,23 @@ ul.gallery-products, ul#shopCaseDesigns {
     width: 30%;
 }
 
+    #main .paymentDiv h5 {
+        width: 90%;
+        padding: 10px 0;
+        display: block;
+        margin: auto;
+        text-decoration: underline;
+    }
+
+    #main .paymentDiv input {
+        margin-bottom: 10px;
+        width: 10%;
+    }
+
+    #main .paymentDiv span {
+        width: 90%;
+    }
+
 #main #paymentMethodsPage #paymentMethods {
     width: 90%;
     display: -webkit-flex;
@@ -400,12 +419,16 @@ ul.gallery-products, ul#shopCaseDesigns {
     margin: auto;
 }
 
-#main #paymentMethodsPage #paymentMethods a {
-    width: 45%;
-    height: 50px;
-    margin: 0 0 20px 0px;
-    background-color: #ff5000;
-}
+    #main #paymentMethodsPage #paymentMethods a {
+        width: 45%;
+        height: 50px;
+        margin: 0 0 20px 0px;
+        background-color: #ff5000;
+        font-size: 12px;
+        color: #FFF;
+        line-height: 50px;
+        text-align: center;
+    }
 
 #main div.product-view img {
   width: 140px;

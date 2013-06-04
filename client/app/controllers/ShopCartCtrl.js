@@ -12,5 +12,5 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
 
     $scope.loadPaymentMethods = function() {
         $location.path('/betalen/kiezen');
-    }
+    };
 });

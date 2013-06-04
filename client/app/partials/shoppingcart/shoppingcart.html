@@ -28,6 +28,7 @@
         <input type="text" data-ng-model="user.address.city" required><br />
         <button class="round-button-style" data-ng-click="saveNawInformation()">Gegevens wijzigen</button>
     </form>
+    <button class="round-button-style" data-ng-controller="ShopCartCtrl" data-ng-click="continueShopping()">Verder winkelen</button>
 </div>
 
 <div id="orderOverView" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
