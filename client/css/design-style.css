@@ -136,6 +136,11 @@
             }
 
             .design-process .case-background > div:nth-of-type(1) {
+                 border-right: 1px solid #6EBDC4;
+                 width: 38%;
+            }
+
+            .design-process .case-background > div:nth-of-type(2) > div {
                 border-right: 1px solid #6EBDC4;
                 width: 38%;
             }
