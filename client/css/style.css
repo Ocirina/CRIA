@@ -215,9 +215,8 @@ nav{
     margin-top: 15px;
 }
 
-#nawSection > button {
+#nawSection form > a {
     float: right;
-    clear: both;
 }
 
     #main #registerForm h1 {
