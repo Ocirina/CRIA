@@ -23,6 +23,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/shoppingcart/shoppingcart.html'
         })
 
+        .when('/betalen/kiezen', {
+            templateUrl: 'app/partials/payment/methods.html'
+        })
+
         //Design
         .when('/ontwerpen', {
             controller: 'DesignCtrl',

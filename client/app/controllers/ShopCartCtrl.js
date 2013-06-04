@@ -8,5 +8,9 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
                 $scope.orderLines[i] = {product:$scope.shopCartDesigns[i]["product"], aantal: $scope.shopCartDesigns[i]["amount"]};
             }
         }
+    };
+
+    $scope.loadPaymentMethods = function() {
+        $location.path('/betalen/kiezen');
     }
 });
