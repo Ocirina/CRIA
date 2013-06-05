@@ -1,6 +1,6 @@
-exports.index = function (req, res) {
-    res.render('index');
-};
+//exports.index = function (req, res) {
+//    res.render('index');
+//};
 
 /* Make sure we export all routes */
 var fs = require('fs'),
