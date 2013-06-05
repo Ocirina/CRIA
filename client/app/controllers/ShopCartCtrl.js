@@ -34,16 +34,17 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
 
     $scope.removeProduct = function(caseDesignId) {
         if(window.localStorage['Order']) {
-            $scope.order = JSON.parse(window.localStorage['Order']);
+            var order = JSON.parse(window.localStorage['Order']);
 
-            for(var i = 0; i < $scope.order.orderlines.length; i++) {
-                if(caseDesignId === $scope.order.orderlines[i].caseDesign._id){
-                    caseDesignId.order.orderlines.splice(i, 1);
+            for(var i = 0; i < order.orderlines.length; i++) {
+                if(caseDesignId === order.orderlines[i].caseDesign._id){
+                    $scope.order.orderlines.splice(i, 1);
+                    order.orderlines.splice(i,1)
                     break;
                 }
             }
 
-            window.localStorage['Order'] = JSON.stringify($scope.order);
+            window.localStorage['Order'] = JSON.stringify(order);
         }
     };
 
