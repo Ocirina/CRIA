@@ -36,7 +36,13 @@ exports.index = function (req, res) {
         "result": calculateAverage(ratings)
       });
     });
-    
+  
+  /**
+   * Calculates the average rating of the product. The algorithm is the default
+   * for calculation averages. The sum of all the ratings divided by the amout of
+   * ratings.
+   * @param {Array} ratings An array with ratings.
+   */
   function calculateAverage(ratings){
     var sum = 0, count = 0, index;
     for (index in ratings) {
