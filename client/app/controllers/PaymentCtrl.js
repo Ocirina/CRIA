@@ -49,8 +49,13 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
             onSelected: function(data){
                 if(data.selectedData.value == 1) {
                     $("#paymentBanks").show();
+                    $scope.disableOrEnablePaymentButton(true);
+                } else if(data.selectedData.value == 0) {
+                    $("#paymentBanks").hide();
+                    $scope.disableOrEnablePaymentButton(true);
                 } else {
                     $("#paymentBanks").hide();
+                    $scope.disableOrEnablePaymentButton(false);
                 }
             }
         });
@@ -61,7 +66,7 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
             {
                 value: 0,
                 selected: true,
-                description: "Kies uw bank",
+                description: "Kies uw bank"
             },
             {
                 value: 1,
@@ -120,11 +125,25 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
             selectText: "Selecteer een betaal methode",
             imagePosition:"left",
             onSelected: function(data){
-
+                if(data.selectedData.value == 0) {
+                    $scope.disableOrEnablePaymentButton(true);
+                } else {
+                    $scope.disableOrEnablePaymentButton(false);
+                }
             }
         });
-
-
         $('#paymentBanks').hide();
+    }
+
+
+    $scope.disableOrEnablePaymentButton = function(disable) {
+        var toPaymentButton = document.getElementById("toPayment");
+        if(!disable) {
+            toPaymentButton.disabled = false;
+            toPaymentButton.classList.remove("disabled");
+        } else {
+            toPaymentButton.disabled = true;
+            toPaymentButton.classList.add("disabled");
+        }
     }
 });
