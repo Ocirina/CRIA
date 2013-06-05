@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 // Schema definition for Oder.
 var Order = Schema({
     user:        {type: Schema.Types.ObjectId, ref: 'User', required: true},
-    orderlines:  [{type: Schema.Types.ObjectId, ref: 'OrderLine'}],
-    orderState:  {type: Schema.Types.ObjectId, ref: 'OrderState'}
+    orderlines:  [{type: Schema.Types.ObjectId, ref: 'OrderLine'}]
+    //,orderState:  {type: Schema.Types.ObjectId, ref: 'OrderState'}
 });
 
 /**
@@ -26,14 +26,14 @@ var Order = Schema({
  */
 Order.pre('save', function(next, req, callback){
   var order = this; // See second note above.
-  var cb = function(err){
+  var cb = function(err, line){
     if (!err) {
       order.orderlines.push(line._id);
       next(callback);
     }
     else {next(err);}
   };
-  createOrderlines(req.body.order.orderlines, order, cb);
+  createOrderlines(req.body.orderlines, order, cb);
   
   /**
    * Loops throught the orderlines and calls the createOrder method.
@@ -43,7 +43,7 @@ Order.pre('save', function(next, req, callback){
    */
   function createOrderlines(orderlines, order, cb) {
     for (var index in orderlines) {
-      createOrder(orderlines[index], order, cb);
+      createOrderline(orderlines[index], order, cb);
     }
   }
   
