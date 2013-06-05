@@ -56,9 +56,9 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
 
     $scope.checkProductInShopCart = function(productId) {
         var order = JSON.parse(window.localStorage['Order']);
-        for(var i = 0; i < order.orderLines.length; i++) {
-            if(order.orderLines[i]["product"]._id == productId) {
-                order.orderLines[i]["aantal"] += 1;
+        for(var i = 0; i < order.orderlines.length; i++) {
+            if(order.orderlines[i]["product"]._id == productId) {
+                order.orderlines[i]["aantal"] += 1;
                 window.localStorage['Order'] = JSON.stringify(order);
                 return true;
             }

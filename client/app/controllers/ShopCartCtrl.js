@@ -1,12 +1,16 @@
 app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
     $scope.loadShopCartDesigns = function() {
         if(window.localStorage['Order']) {
-            $scope.order = JSON.parse(window.localStorage['Order']);
-            $scope.order.orderlines = [];
+            var order = JSON.parse(window.localStorage['Order']);
+            $scope.order = {
+                orderlines: []
+            };
 
-            for(var i = 0; i < $scope.order.orderlines.length; i++) {
-                $scope.order.orderlines[i] = {product:$scope.order.orderlines[i]["product"], aantal: $scope.order.orderlines[i]["aantal"]};
+            for(var i = 0; i < order.orderlines.length; i++) {
+                console.log(order.orderlines[i]);
+                $scope.order.orderlines.push({product:order.orderlines[i]["product"], aantal: order.orderlines[i]["aantal"]});
             }
+            console.log($scope.order);
         }
     };
 
