@@ -161,7 +161,9 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
                 );
 
                 order = new Order(order);
-                order.$save();
+                order.$save(function(data) {
+                    // verwerk betaling voor user
+                });
             } else {
                 alert("U heeft geen bestellingen geplaatst");
             }

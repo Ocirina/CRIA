@@ -23,10 +23,8 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
                 amount = shopCartDesigns.orderlines[i]["aantal"];
 
                 if(shopCartDesigns.orderlines[i].caseDesign._id === caseDesign._id){
-                    console.log(input);
                     amount = input.orderline.aantal;
                 }
-                console.log(amount);
 
                 order.orderlines[i] = {caseDesign:shopCartDesigns.orderlines[i]["caseDesign"], aantal: amount};
             }
