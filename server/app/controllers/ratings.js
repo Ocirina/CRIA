@@ -38,12 +38,12 @@ exports.index = function (req, res) {
     });
     
   function calculateAverage(ratings){
-    var sum = 0, count = 0;
+    var sum = 0, count = 0, index;
     for (index in ratings) {
-      sum += parseInt(ratings[index]);
+      sum += +ratings[index].amount;
       count += 1
     }
-    return (sum / count);
+    return Math.round(sum / count);
   }
 }
 
