@@ -51,15 +51,10 @@ User.pre('save', function(next, req, callback){
  * @see http://mongoosejs.com/docs/middleware.html
  */
 User.post('remove', function(user){
-  var Address = mongoose.models["Address"];
-  var CaseDesigns = mongoose.models["CaseDesigns"];
-  var Ratings = mongoose.models["CaseDesigns"];
-  var Comments = mongoose.models["CaseDesigns"];
-  
-  Address.find({user: user._id}).remove();
-  CaseDesigns.find({user: user._id}).remove();
-  Ratings.find({user: user._id}).remove();
-  Comments.find({user: user._id}).remove();
+  mongoose.models["Address"].find({user: user._id}).remove();
+  mongoose.models["CaseDesigns"].find({user: user._id}).remove();
+  mongoose.models["Ratings"].find({user: user._id}).remove();
+  mongoose.models["Comments"].find({user: user._id}).remove();
 });
 
 // Define the Mongoose model.
