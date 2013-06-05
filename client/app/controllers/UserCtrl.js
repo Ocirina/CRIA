@@ -4,11 +4,13 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
             {charge: {method:'POST', params:{charge:true}}}
         );
 
+        var self = this;
         var user = new User($scope.user);
         user.$save(function(data) {
             if(data.result.username === $scope.user.username) {
                 window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
                 $scope.hasUser = true;
+                self.loadUserShopCart();
             }
         });
     };
@@ -95,10 +97,5 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
 
         var user = new User($scope.user);
         user.$update();
-
-        var Address = $resource('http://autobay.tezzt.nl\\:43083/address/' + loggedInUser["_id"],{},
-            {charge: {method:'GET', params:{charge:true}}}
-        );
-
     }
 });
