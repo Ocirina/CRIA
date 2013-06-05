@@ -151,6 +151,9 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
                         order.orderlines[i].amount = order.orderlines[i].aantal;
                         delete order.orderlines[i].aantal;
                     }
+                    if(order.orderlines[i].caseDesign != undefined) {
+                        order.orderlines[i].caseDesign = order.orderlines[i].caseDesign._id;
+                    }
                 }
 
                 var Order = $resource('http://autobay.tezzt.nl\\:43083/orders',{},

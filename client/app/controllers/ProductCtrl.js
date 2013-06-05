@@ -50,7 +50,7 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
         order = JSON.parse(window.localStorage['Order']);
         var productAdded = $scope.checkProductInShopCart($scope.product._id);
         if(!productAdded) {
-            order.orderlines.push({"caseDesign": $scope.product._id, "aantal":1});
+            order.orderlines.push({"caseDesign": $scope.product, "aantal":1});
             window.localStorage['Order'] = JSON.stringify(order);
         }
 
