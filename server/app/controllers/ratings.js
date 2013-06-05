@@ -1,8 +1,6 @@
-var mongoose, Rating;
-
-/* Include dependencies */
-mongoose = require('mongoose');
-Rating = mongoose.model('Rating');
+// Include dependencies
+var mongoose = require('mongoose');
+var Rating = mongoose.model('Rating');
 
 
 /**
@@ -12,7 +10,8 @@ Rating = mongoose.model('Rating');
 exports.create = function (req, res) {
   var rating = new Rating({
     amount: req.body.rating,
-    caseDesign: req.params.id
+    caseDesign: req.params.id,
+    user: req.body.userid
   });
     
   rating.save(function (err) {
@@ -28,21 +27,16 @@ exports.create = function (req, res) {
  * Route: /casedesign/:id/ratings
  */
 exports.index = function (req, res) {
-  var conditions, fields, options;
-
-  conditions = {};
-  fields = {};
-  options = {'amount': -1};
+  
   Rating
-    .find(conditions, fields, options)
-    .where(CaseDesign).eq(req.params.id)
+    .find({caseDesign: req.params.id}, {}, {})
     .exec(function (err, ratings) {
-      // TODO: calculate average rating for design
       return res.send({
         "error": err,
         "result": calculateAverage(ratings)
       });
     });
+    
   function calculateAverage(ratings){
     var sum = 0, count = 0;
     for (index in ratings) {
