@@ -4,14 +4,13 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
             {charge: {method:'POST', params:{charge:true}}}
         );
 
-        var self = this;
         var user = new User($scope.user);
         user.$save(function(data) {
             if(data.result.username === $scope.user.username) {
                 window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
                 $scope.hasUser = true;
-                self.loadUserShopCart();
             }
+            // feedback voor inloggen hier
         });
     };
 
@@ -26,7 +25,10 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
         );
 
         var user = new User($scope.user);
-        user.$save();
+        user.$save(function(data) {
+            // callback
+            // feedback voor registreren hier!
+        });
     };
 
     $scope.checkRegister = function(){
@@ -85,7 +87,6 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
         );
 
         User.get(function(data) {
-            console.log(data);
             $scope.user = data.result;
         });
     };
@@ -96,6 +97,9 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
         );
 
         var user = new User($scope.user);
-        user.$update();
+        user.$update(function(data) {
+            // callback
+            // Feedback voor wijzigen N.A.W. gegevens hier!
+        });
     }
 });

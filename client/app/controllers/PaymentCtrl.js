@@ -126,7 +126,7 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
             }
         });
         $('#paymentBanks').hide();
-    }
+    };
 
     $scope.disableOrEnablePaymentButton = function(disable) {
         var toPaymentButton = document.getElementById("toPayment");
@@ -137,7 +137,7 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
             toPaymentButton.disabled = true;
             toPaymentButton.classList.add("disabled");
         }
-    }
+    };
 
     $scope.pay = function() {
         var user = JSON.parse(window.sessionStorage["loggedInUser"]);
@@ -162,7 +162,8 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
 
                 order = new Order(order);
                 order.$save(function(data) {
-                    // verwerk betaling voor user
+                    // Callback
+                    // Feedback betaling
                 });
             } else {
                 alert("U heeft geen bestellingen geplaatst");
