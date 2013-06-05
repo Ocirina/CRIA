@@ -22,16 +22,16 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
     };
 
     $scope.addProductToShopCart = function() {
-        var orderLines;
+        var orderLines = [];
+
         if (!window.localStorage['shopCartDesigns']) {
-            orderLines = [];
             window.localStorage['shopCartDesigns'] = JSON.stringify(orderLines);
         }
 
         orderLines = JSON.parse(window.localStorage['shopCartDesigns']);
         var productAdded = $scope.checkProductInShopCart($scope.product._id);
         if(!productAdded) {
-            orderLines.push({"product": $scope.product, "amount":1});
+            orderLines.push({"product": $scope.product, "aantal":1});
             window.localStorage['shopCartDesigns'] = JSON.stringify(orderLines);
         }
 
@@ -42,7 +42,7 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
         var orderLines = JSON.parse(window.localStorage['shopCartDesigns']);
         for(var i = 0; i < orderLines.length; i++) {
             if(orderLines[i]["product"]._id == productId) {
-                orderLines[i]["amount"] += 1;
+                orderLines[i]["aantal"] += 1;
                 window.localStorage['shopCartDesigns'] = JSON.stringify(orderLines);
                 return true;
             }
