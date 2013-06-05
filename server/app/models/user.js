@@ -30,13 +30,16 @@ var User = Schema({
  * The reference to this is to the User instance which will be saved.
  * This wasn't documented and solution was found here: http://stackoverflow.com/a/14774743/1988125
  */
-User.pre('save', function(next, req, user, callback){
+User.pre('save', function(next, req, callback){
   if (req.body['address']) {
     var Address = mongoose.models["Address"];
     var item = new Address(req.body.address);
-    this.addresses = item._id;
-    item.save(function(err, addr){
-      if (!err) {next(callback);}
+    var self = this; // See second node above.
+    item.save(function(err){
+      if (!err) {
+        self.addresses = item._id;
+        next(callback);
+      }
       else {next(err);}
     });
   }

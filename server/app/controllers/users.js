@@ -9,7 +9,7 @@ var User = mongoose.model('User');
 exports.create = function (req, res) {
   var user = new User(req.body);
   req.body.address.user = user._id;
-  user.save(req, user, function (err) {
+  user.save(req, function (err) {
     return res.send({
       "error":  err,
       "result": user
