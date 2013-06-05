@@ -18,17 +18,18 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
 
         var product = Product.get(function(data){
             $scope.product = data.result;
-            $scope.getRating($scope.product._id);
+            $scope.getSociable($scope.product._id, 'ratings');
+            $scope.getSociable($scope.product._id, 'comments');
         });
     };
 
-    $scope.getRating = function(productId) {
-        var Rating = $resource('http://autobay.tezzt.nl\\:43083/casedesign/' + productId + '/ratings',{},
+    $scope.getSociable = function(id, type) {
+        var Item = $resource('http://autobay.tezzt.nl\\:43083/casedesign/' + id + '/' + type,{},
             {charge: {method:'GET', params:{charge:true}}}
         );
 
-        var rating = Rating.get(function(data){
-            $scope.rating = data.result;
+        Item.get(function(data) {
+            $scope[type] = data.result;
         });
     };
 
