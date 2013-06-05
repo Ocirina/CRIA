@@ -7,9 +7,14 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
     $scope.addPaymentMethodDropdown = function() {
         var paymentMethods = [
             {
+                value: 0,
+                selected: true,
+                description: "Kies de betaal methode"
+            },
+            {
                 text: "iDeal",
                 value: 1,
-                selected: true,
+                selected: false,
                 description: "Betalen met uw eigen bank",
                 imageSrc: "http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
             },
@@ -54,9 +59,14 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
     $scope.addPaymentBankDropdown = function() {
         var paymentBanks = [
             {
-                text: "Rabobank",
-                value: 1,
+                value: 0,
                 selected: true,
+                description: "Kies uw bank",
+            },
+            {
+                value: 1,
+                selected: false,
+                description: "Rabobank",
                 imageSrc: "http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
             },
             {
@@ -113,6 +123,8 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
 
             }
         });
+
+
         $('#paymentBanks').hide();
     }
 });

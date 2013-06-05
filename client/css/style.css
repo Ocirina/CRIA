@@ -376,17 +376,6 @@ ul.gallery-products, ul#shopCaseDesigns {
 
 #main #paymentMethodsPage {
     margin-top: 30px;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -moz-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
-    flex-direction: row;
 }
 
 #main .paymentDiv {
@@ -394,6 +383,9 @@ ul.gallery-products, ul#shopCaseDesigns {
     border: 1px solid #92cdd1;
     border-radius: 5px;
     width: 30%;
+    float: left;
+    margin-right: 20px;
+    height: 200px;
 }
 
     #main .paymentDiv h5 {
