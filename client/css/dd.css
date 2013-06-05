@@ -17,6 +17,7 @@
 
 .dd-selected
 {
+    color: #000;
     overflow:hidden;
     display:block;
     font-weight:700;

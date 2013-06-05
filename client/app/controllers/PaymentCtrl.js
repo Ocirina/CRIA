@@ -1,6 +1,10 @@
 app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
     $scope.addImageDropDowns = function() {
+        this.addPaymentMethodDropdown();
+        this.addPaymentBankDropdown();
+    };
 
+    $scope.addPaymentMethodDropdown = function() {
         var paymentMethods = [
             {
                 text: "iDeal",
@@ -29,31 +33,86 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
                 selected: false,
                 description: "Betalen met Visa",
                 imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
-            },
-            {
-                text: "American Express",
-                value: 5,
-                selected: false,
-                description: "Betaal met American Express",
-                imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
-            },
-            {
-                text: "Discover Network",
-                value: 6,
-                selected: false,
-                description: "Betaal met het Discover Network",
-                imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
-            }];
+            }
+        ];
 
         $('#paymentMethods').ddslick({
             data:paymentMethods,
             width:300,
             selectText: "Selecteer een betaal methode",
             imagePosition:"left",
-            onSelected: function(selectedData){
+            onSelected: function(data){
+                if(data.selectedData.value == 1) {
+                    $("#paymentBanks").show();
+                } else {
+                    $("#paymentBanks").hide();
+                }
+            }
+        });
+    };
+
+    $scope.addPaymentBankDropdown = function() {
+        var paymentBanks = [
+            {
+                text: "Rabobank",
+                value: 1,
+                selected: true,
+                imageSrc: "http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
+            },
+            {
+                text: "ABN Amro",
+                value: 2,
+                selected: false,
+                imageSrc: "http://dl.dropbox.com/u/40036711/Images/twitter-icon-32.png"
+            },
+            {
+                text: "ING",
+                value: 3,
+                selected: false,
+                imageSrc: "http://dl.dropbox.com/u/40036711/Images/linkedin-icon-32.png"
+            },
+            {
+                text: "ASN",
+                value: 4,
+                selected: false,
+                imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
+            },
+            {
+                text: "SNS Reaal",
+                value: 5,
+                selected: false,
+                imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
+            },
+            {
+                text: "Fortis",
+                value: 6,
+                selected: false,
+                description: "Betaal met American Express",
+                imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
+            },
+            {
+                text: "Triodos",
+                value: 7,
+                selected: false,
+                imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
+            },
+            {
+                text: "Friesland Bank",
+                value: 8,
+                selected: false,
+                imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
+            }
+        ];
+
+        $('#paymentBanks').ddslick({
+            data:paymentBanks,
+            width:300,
+            selectText: "Selecteer een betaal methode",
+            imagePosition:"left",
+            onSelected: function(data){
 
             }
         });
-
+        $('#paymentBanks').hide();
     }
 });
