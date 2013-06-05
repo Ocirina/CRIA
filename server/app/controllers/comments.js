@@ -12,7 +12,8 @@ Comment = mongoose.model('Comment');
 exports.create = function (req, res) {
   var comment = new Comment({
     comment: req.body.comment,
-    caseDesign: req.params.id
+    caseDesign: req.params.id,
+    user: req.body.userid
   });
     
   comment.save(function (err) {
@@ -28,14 +29,8 @@ exports.create = function (req, res) {
  * Route: /casedesign/:id/comments
  */
 exports.index = function (req, res) {
-  var conditions, fields, options;
-
-  conditions = {};
-  fields = {};
-  options = {'name': -1};
   Comment
-    .find(conditions, fields, options)
-    .where(CaseDesign).eq(req.params.id)
+    .find({caseDesign: req.params.id}, {}, {'posted_at': -1})
     .exec(function (err, comments) {
       return res.send({
         "error": err,
