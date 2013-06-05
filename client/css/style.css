@@ -377,8 +377,12 @@ ul.gallery-products, ul#shopCaseDesigns {
 #main #paymentMethodsPage, #main #paymentMethodsPage #paymentMethods {
     margin-top: 30px;
     display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
     display: flex;
     -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     -webkit-justify-content: space-between;
     justify-content: space-between;
