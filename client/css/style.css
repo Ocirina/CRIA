@@ -115,7 +115,7 @@ nav{
 		#button a{
 			color:#222;
 		}
-	#main img{
+	#main #welkom img{
 		height:300px;
 		width:660px;
 		float:left;
@@ -374,7 +374,7 @@ ul.gallery-products, ul#shopCaseDesigns {
     margin: auto;
 }
 
-#main #paymentMethodsPage, #main #paymentMethodsPage #paymentMethods {
+#main #paymentMethodsPage {
     margin-top: 30px;
     display: -webkit-flex;
     display: -moz-flex;
@@ -404,36 +404,9 @@ ul.gallery-products, ul#shopCaseDesigns {
         text-decoration: underline;
     }
 
-    #main .paymentDiv input {
+    #main .paymentDiv:first-child input {
         margin-bottom: 10px;
         width: 10%;
-    }
-
-    #main .paymentDiv span {
-        width: 90%;
-    }
-
-#main #paymentMethodsPage #paymentMethods {
-    width: 90%;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
-    flex-direction: row;
-    margin: auto;
-}
-
-    #main #paymentMethodsPage #paymentMethods a {
-        width: 45%;
-        height: 50px;
-        margin: 0 0 20px 0px;
-        background-color: #ff5000;
-        font-size: 12px;
-        color: #FFF;
-        line-height: 50px;
-        text-align: center;
     }
 
 #main div.product-view img {

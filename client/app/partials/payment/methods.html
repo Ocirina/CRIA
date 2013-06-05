@@ -1,5 +1,5 @@
 <h1>Afrekenen</h1>
-<div id="paymentMethodsPage">
+<div id="paymentMethodsPage" data-ng-init="addImageDropDowns()">
     <div class="paymentDiv">
         <h5>Verzend opties</h5>
         <input type="checkbox"><span> Levering volgende dag</span><br />
@@ -9,12 +9,8 @@
 
     <div class="paymentDiv">
         <h5>Betaal optie</h5>
-        <div id="paymentMethods">
-            <a>Moneybookers</a>
-            <a>iDeal</a>
-            <a>Paypal</a>
-            <a>Automatische incasso</a>
-        </div>
+        <div id="paymentMethods"></div><br />
+        <div id="paymentBanks"></div>
     </div>
 
     <div class="paymentDiv" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
