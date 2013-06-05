@@ -90,7 +90,7 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
                 text: "ASN",
                 value: 4,
                 selected: false,
-                imageSrc: "./img/paymenticons/IDEAL.png"
+                imageSrc: "./img/paymenticons/ASN.png"
             },
             {
                 text: "SNS Reaal",
@@ -128,7 +128,6 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
         $('#paymentBanks').hide();
     }
 
-
     $scope.disableOrEnablePaymentButton = function(disable) {
         var toPaymentButton = document.getElementById("toPayment");
         if(!disable) {
@@ -138,5 +137,9 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
             toPaymentButton.disabled = true;
             toPaymentButton.classList.add("disabled");
         }
+    }
+
+    $scope.pay = function() {
+
     }
 });

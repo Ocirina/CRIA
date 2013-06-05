@@ -33,28 +33,32 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
     };
 
     $scope.addProductToShopCart = function() {
-        var orderLines = [];
+        var order = {
+            user: "51a7be85315f97dc39000001",
+            orderlines: []
 
-        if (!window.localStorage['shopCartDesigns']) {
-            window.localStorage['shopCartDesigns'] = JSON.stringify(orderLines);
+        };
+
+        if (!window.localStorage['Order']) {
+            window.localStorage['Order'] = JSON.stringify(order);
         }
 
-        orderLines = JSON.parse(window.localStorage['shopCartDesigns']);
+        order = JSON.parse(window.localStorage['Order']);
         var productAdded = $scope.checkProductInShopCart($scope.product._id);
         if(!productAdded) {
-            orderLines.push({"product": $scope.product, "aantal":1});
-            window.localStorage['shopCartDesigns'] = JSON.stringify(orderLines);
+            order.orderlines.push({"product": $scope.product, "aantal":1});
+            window.localStorage['Order'] = JSON.stringify(order);
         }
 
         $location.path('/winkelwagen');
     };
 
     $scope.checkProductInShopCart = function(productId) {
-        var orderLines = JSON.parse(window.localStorage['shopCartDesigns']);
-        for(var i = 0; i < orderLines.length; i++) {
-            if(orderLines[i]["product"]._id == productId) {
-                orderLines[i]["aantal"] += 1;
-                window.localStorage['shopCartDesigns'] = JSON.stringify(orderLines);
+        var order = JSON.parse(window.localStorage['Order']);
+        for(var i = 0; i < order.orderLines.length; i++) {
+            if(order.orderLines[i]["product"]._id == productId) {
+                order.orderLines[i]["aantal"] += 1;
+                window.localStorage['Order'] = JSON.stringify(order);
                 return true;
             }
         }

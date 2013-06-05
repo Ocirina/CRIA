@@ -401,6 +401,10 @@ ul.gallery-products, ul#shopCaseDesigns {
         width: 10%;
     }
 
+    #main .paymentDiv #toPayment {
+        margin-top: 10px;
+    }
+
 #main div.product-view img {
   width: 140px;
   height: auto;
