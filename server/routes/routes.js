@@ -37,9 +37,7 @@ module.exports = function (app) {
     //app.delete('/rating/:id', RatingCtrl.destroy);
 
     // Order
-    app.get('/orders', OrderCtrl.index);
-    app.post('/orders/new', OrderCtrl.create);
+    app.post('/orders', OrderCtrl.create);
     app.get('/order/:id', OrderCtrl.show);
-    app.put('/order/:id', OrderCtrl.update);
     app.delete('/order/:id', OrderCtrl.destroy);
 }
