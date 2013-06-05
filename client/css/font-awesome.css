@@ -702,6 +702,9 @@ ul.icons-ul > li .icon-li {
 .icon-retweet:before {
   content: "\f079";
 }
+.icon-shopping-cart {
+    cursor: pointer;
+}
 .icon-shopping-cart:before {
   content: "\f07a";
 }

@@ -1,16 +1,33 @@
 <div data-ng-init="getProduct()"></div>
 <div class="product-view left-column">
     <img data-ng-src="{{product.preview}}"/>
-    <span class="icon-shopping-cart" data-ng-click="addProductToShopCart()"></span>
+    <span class="icon-shopping-cart" title="Toevoegen aan winkelmand" data-ng-click="addProductToShopCart()"></span>
     <span class="stars"></span>
 </div>
 <div class="product-details right-column">
     <div class="detail-view">
-        <dl>
-            <dt>Titel</dt><dd>{{product.name}}</dd>
-            <dt>Auteur</dt><dd>{{}}</dd>
-            <dt>Datum</dt><dd>{{}}</dd>
-        </dl>
+        <table>
+            <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Waarde</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Titel</td>
+                    <td>{{product.name}}</td>
+                </tr>
+                <tr>
+                    <td>Auteur</td>
+                    <td>{{ 5 + 5}}</td>
+                </tr>
+                <tr>
+                    <td>Datum</td>
+                    <td>{{ 6 + 6 }}</td>
+                </tr>
+            </tbody>
+        </table>
         <!-- a href="#">Gebruik als basis</a>-->
         <div class="stars vote"></div>
     </div>
