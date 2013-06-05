@@ -3,10 +3,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // Schema definition for OderLine.
-var OderLine = Schema({
+var OrderLine = Schema({
     caseDesign: {type: Schema.Types.ObjectId, ref: 'CaseDesign'},
-    order:      {type: Schema.Types.ObjectId, ref: 'Oder'},
+    order:      {type: Schema.Types.ObjectId, ref: 'Order'},
 });
 
 // Define the Mongoose model.
-mongoose.model("OderLine", OderLine, "OderLines");
+mongoose.model("OrderLine", OrderLine, "OrderLines");
