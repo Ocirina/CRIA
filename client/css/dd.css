@@ -104,7 +104,8 @@
     vertical-align:middle;
     float:left;
     margin-right:5px;
-    max-width:64px;
+    max-width:30px;
+    max-height:30px;
 }
 
 .dd-image-right
