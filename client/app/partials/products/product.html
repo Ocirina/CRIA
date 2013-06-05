@@ -28,19 +28,23 @@
                 </tr>
                 <tr>
                     <td>Rating</td>
-                    <td>{{ ratings }}</td>
+                    <td>
+                        <div data-ng-repeat="n in ratings">
+                            <i class="{{n}}"></i>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
         <!-- a href="#">Gebruik als basis</a>-->
-        <div class="stars vote"></div>
     </div>
-    <p>Comments</p>
+
+    <h3>Comments</h3>
     <div class="comments">
         <ul>
-            <li>
-                <span>&lt;naam&gt; said on 21 may</span>
-                <p>Lorum ipsum dolor sit amet.</p>
+            <li data-ng-repeat="comment in comments">
+                <span><strong>{{ comment.user.name }}</strong> - heeft op {{ comment.posted_at }} het volgende bericht geplaatst.</span>
+                <p>{{ comment.comment }}</p>
             </li>
         </ul>
     </div>
