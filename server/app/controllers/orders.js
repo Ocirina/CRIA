@@ -1,8 +1,6 @@
-var mongoose, Order;
-
-/* Include dependencies */
-mongoose = require('mongoose');
-Order = mongoose.model('Order');
+// Include dependencies
+var mongoose = require('mongoose');
+var Order = mongoose.model('Order');
 
 
 /**
