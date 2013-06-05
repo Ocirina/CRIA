@@ -8,8 +8,10 @@ var Order = mongoose.model('Order');
  * Route: /order
  */
 exports.create = function (req, res) {
-  var order = new Order(req.body);
-  order.save(function (err) {
+  var order = new Order({
+    user: req.body.user
+  });
+  order.save(req, function (err) {
     return res.send({
       "error":  err,
       "result": order
