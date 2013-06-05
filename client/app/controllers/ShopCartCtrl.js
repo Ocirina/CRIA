@@ -1,11 +1,11 @@
 app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
     $scope.loadShopCartDesigns = function() {
         if(window.localStorage['Order']) {
-            $scope.shopCartDesigns = JSON.parse(window.localStorage['Order']);
-            $scope.order.orderLines = [];
+            $scope.order = JSON.parse(window.localStorage['Order']);
+            $scope.order.orderlines = [];
 
-            for(var i = 0; i < $scope.shopCartDesigns.length; i++) {
-                $scope.order.orderLines[i] = {product:$scope.shopCartDesigns[i]["product"], aantal: $scope.shopCartDesigns[i]["aantal"]};
+            for(var i = 0; i < $scope.order.orderlines.length; i++) {
+                $scope.order.orderlines[i] = {product:$scope.order.orderlines[i]["product"], aantal: $scope.order.orderlines[i]["aantal"]};
             }
         }
     };
@@ -16,17 +16,17 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
             var orderlines = [],
                 amount = 0;
 
-            for(var i = 0; i < $scope.shopCartDesigns.length; i++) {
-                amount = $scope.shopCartDesigns[i]["aantal"];
+            for(var i = 0; i < $scope.order.orderlines.length; i++) {
+                amount = $scope.order.orderlines[i]["aantal"];
 
-                if($scope.shopCartDesigns[i].product._id === product._id){
+                if($scope.order.orderlines[i].product._id === product._id){
                     amount = input.orderline.aantal;
                 }
 
-                orderlines[i] = {product:$scope.shopCartDesigns[i]["product"], aantal: amount};
+                orderlines[i] = {product:$scope.order.orderlines[i]["product"], aantal: amount};
             }
-
-            window.localStorage['Order'] = JSON.stringify(orderlines);
+            $scope.order.orderlines = orderlines;
+            window.localStorage['Order'] = JSON.stringify($scope.order);
         }
     };
 
@@ -34,9 +34,9 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
         if(window.localStorage['Order']) {
             $scope.order = JSON.parse(window.localStorage['Order']);
 
-            for(var i = 0; i < $scope.shopCartDesigns.length; i++) {
-                if(productId === $scope.shopCartDesigns[i].product._id){
-                    $scope.order.orderLines.splice(i, 1);
+            for(var i = 0; i < $scope.order.orderlines.length; i++) {
+                if(productId === $scope.order.orderlines[i].product._id){
+                    $scope.order.orderlines.splice(i, 1);
                     break;
                 }
             }
