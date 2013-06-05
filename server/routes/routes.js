@@ -16,8 +16,8 @@ module.exports = function (app) {
     
     // Sessions
     app.post('/user/signin', SessionsCtrl.create);
-    app.post('/user/check', SessionsCtrl.check);
-    app.delete('/user/signout', SessionsCtrl.destroy);
+    //app.post('/user/check', SessionsCtrl.check);
+    //app.delete('/user/signout', SessionsCtrl.destroy);
     
     // CaseDesign
     app.get('/casedesigns', CaseDesignCtrl.index);    
