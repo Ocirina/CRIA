@@ -27,13 +27,13 @@ module.exports = function (app) {
     app.delete('/casedesign/:id', CaseDesignCtrl.destroy);
 
     // Comment
-    app.get('/casedesigns/:id/comments', CommentsCtrl.index);
-    app.post('/casedesigns/:id/comments', CommentsCtrl.create);
+    app.get('/casedesign/:id/comments', CommentsCtrl.index);
+    app.post('/casedesign/:id/comments', CommentsCtrl.create);
     //app.delete('/comment/:id', CommentsCtrl.destroy);
 
     // Rating
-    app.get('/casedesigns/:id/ratings', RatingCtrl.index);
-    app.post('/casedesigns/:id/ratings', RatingCtrl.create);
+    app.get('/casedesign/:id/ratings', RatingCtrl.index);
+    app.post('/casedesign/:id/ratings', RatingCtrl.create);
     //app.delete('/rating/:id', RatingCtrl.destroy);
 
     // Order
