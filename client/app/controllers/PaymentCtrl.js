@@ -140,6 +140,30 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
     }
 
     $scope.pay = function() {
+        var user = JSON.parse(window.sessionStorage["loggedInUser"]);
+        var order = JSON.parse(window.localStorage["Order"]);
 
+        if(user != undefined) {
+            if(order != undefined) {
+                order.user = user._id;
+                for(var i = 0; i < order.orderlines.length; i++) {
+                    if(order.orderlines[i].aantal != undefined) {
+                        order.orderlines[i].amount = order.orderlines[i].aantal;
+                        delete order.orderlines[i].aantal;
+                    }
+                }
+
+                var Order = $resource('http://autobay.tezzt.nl\\:43083/orders',{},
+                    {charge: {method:'POST', params:{charge:true}}}
+                );
+
+                order = new Order(order);
+                order.$save();
+            } else {
+                alert("U heeft geen bestellingen geplaatst");
+            }
+        } else {
+            alert("U moet ingelogd zijn om iets te bestellen");
+        }
     }
 });

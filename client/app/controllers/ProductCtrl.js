@@ -41,7 +41,6 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
         var order = {
             user: "51a7be85315f97dc39000001",
             orderlines: []
-
         };
 
         if (!window.localStorage['Order']) {
@@ -51,7 +50,7 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
         order = JSON.parse(window.localStorage['Order']);
         var productAdded = $scope.checkProductInShopCart($scope.product._id);
         if(!productAdded) {
-            order.orderlines.push({"caseDesign": $scope.product, "aantal":1});
+            order.orderlines.push({"caseDesign": $scope.product._id, "aantal":1});
             window.localStorage['Order'] = JSON.stringify(order);
         }
 
@@ -68,7 +67,7 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
             }
         }
         return false;
-    }
+    };
 
     $scope.createStarsFromNumber = function(data) {
         var ratings = [];
