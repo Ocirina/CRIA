@@ -34,16 +34,14 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
         if(window.localStorage['shopCartDesigns']) {
             $scope.shopCartDesigns = JSON.parse(window.localStorage['shopCartDesigns']);
 
-            console.log($scope.shopCartDesigns);
-
             for(var i = 0; i < $scope.shopCartDesigns.length; i++) {
                 if(productId === $scope.shopCartDesigns[i].product._id){
-                    //$scope.shopCartDesigns[i];
                     $scope.shopCartDesigns.splice(i, 1);
+                    $scope.orderLines.splice(i, 1);
+                    break;
+                    $location.path();
                 }
             }
-
-            console.log($scope.shopCartDesigns);
 
             window.localStorage['shopCartDesigns'] = JSON.stringify($scope.shopCartDesigns);
         }
