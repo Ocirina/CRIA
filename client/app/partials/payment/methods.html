@@ -2,9 +2,9 @@
 <div id="paymentMethodsPage" data-ng-init="addImageDropDowns()">
     <div class="paymentDiv">
         <h5>Verzend opties</h5>
-        <input type="radio">Levering volgende dag <span>+ &euro;10,00 </span><br />
-        <input type="radio">Normale Levering<span>+ &euro;0,00</span> <br />
-        <input type="checkbox">Aangetekend<span>+ &euro;5,00</span> <br />
+        <input type="radio">Levering volgende dag <span>+&euro;10,00 </span><br />
+        <input type="radio">Normale Levering<span>+ &euro; 0,00</span> <br />
+        <input type="checkbox">Aangetekend<span>+ &euro; 5,00</span> <br />
     </div>
 
     <div class="paymentDiv">
@@ -30,7 +30,7 @@
                     {{ orderline.caseDesign.name }}
                 </td>
                 <td>
-                    &euro;
+                    &euro; {{ 7.50 * orderline.aantal }}
                 </td>
                 <td>
                     {{ orderline.aantal }}
@@ -40,7 +40,7 @@
             <tfoot>
             <tr>
                 <td colspan="3">
-                    Totaal: &euro; <!-- totaal prijs -->
+                    Totaal: &euro; {{order.orderlines.length * 7.50 }} <!-- totaal prijs -->
                 </td>
             </tr>
             </tfoot>

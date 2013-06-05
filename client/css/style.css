@@ -401,6 +401,11 @@ ul.gallery-products, ul#shopCaseDesigns {
         width: 10%;
     }
 
+    #main .paymentDiv:first-child span {
+        float: right;
+        font-weight: bold;
+    }
+
     #main .paymentDiv #toPayment {
         margin-top: 10px;
     }
