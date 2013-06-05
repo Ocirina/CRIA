@@ -29,6 +29,10 @@ exports.create = function (req, res) {
 exports.index = function (req, res) {
   Comment
     .find({caseDesign: req.params.id}, {}, {'posted_at': -1})
+    .populate({
+      path: 'user',
+      select: 'name'
+    })
     .exec(function (err, comments) {
       return res.send({
         "error": err,
