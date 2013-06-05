@@ -1,8 +1,6 @@
-var mongoose, Comment;
-
-/* Include dependencies */
-mongoose = require('mongoose');
-Comment = mongoose.model('Comment');
+// Include dependencies
+var mongoose = require('mongoose');
+var Comment = mongoose.model('Comment');
 
 
 /**
