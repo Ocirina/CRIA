@@ -7,9 +7,9 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
     $scope.addPaymentMethodDropdown = function() {
         var paymentMethods = [
             {
+                text: "Kies de betaal methode",
                 value: 0,
-                selected: true,
-                description: "Kies de betaal methode"
+                selected: true
             },
             {
                 text: "iDeal",
@@ -64,9 +64,9 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
     $scope.addPaymentBankDropdown = function() {
         var paymentBanks = [
             {
+                text: "Kies uw bank",
                 value: 0,
-                selected: true,
-                description: "Kies uw bank"
+                selected: true
             },
             {
                 text: "Rabobank",
