@@ -22,13 +22,7 @@ exports.create = function (req, res) {
  * Route: /orders
  */
 exports.index = function (req, res) {
-  var conditions, fields, options;
-
-  conditions = {};
-  fields = {};
-  options = {'name': -1};
-
-  Order.find(conditions, fields, options)
+  Order.find({}, {}, {})
       .exec(function (err, orders) {
         return res.send({
           "error": err,
@@ -42,10 +36,12 @@ exports.index = function (req, res) {
  * Route: /order/:id
  */
 exports.show = function (req, res) {
-  var id = req.params.id;
-  
   Order
-    .findOne({_id: id})
+    .findOne({_id: req.params.id})
+    .populate({
+      path: 'orderlines',
+      select: '-order'
+    })
     .exec(function (err, order) {
       return res.send({
         "error": err,
@@ -53,24 +49,6 @@ exports.show = function (req, res) {
       });
     });
 }
-
-/**
- * Type: PUT
- * Route: /order/:id
- */
-exports.update = function (req, res) {
-  var conditions = {_id: req.params.id},
-      update = req.body,
-      options = { multi: true },
-      callback = function (err, order) {
-        return res.send({
-          "error": err,
-          "result": order
-        });
-      };
-  Order.findOneAndUpdate(conditions, update, options, callback);
-}
-
 /**
  * Type: DELETE
  * Route: /order/:id
