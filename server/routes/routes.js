@@ -1,43 +1,52 @@
+function authenticated(req, res, next) {
+  return next();
+  /*if (req.isAuthenticated()) {
+      return next();
+  }
+  return res.send({
+    "error": new Error("U moet zich eerst authenticeren voordat u deze actie mag uitvoeren"),
+    "result": null
+  });*/
+}
+
 module.exports = function (app) {
-    var UserCtrl, CaseDesignCtrl, CommentCtrl, RatingCtrl;
-    UserCtrl        = require('../app/controllers/users.js');
-    CaseDesignCtrl  = require('../app/controllers/case_designs.js');
-    RatingCtrl      = require('../app/controllers/ratings.js');
-    CommentsCtrl    = require('../app/controllers/comments.js');
-    OrderCtrl       = require('../app/controllers/orders.js');
-    SessionsCtrl    = require('../app/controllers/sessions.js');
+    var User, CaseDesign, Rating, Comment, Order, Session;
+    User        = require('../app/controllers/users.js');
+    CaseDesign  = require('../app/controllers/case_designs.js');
+    Rating      = require('../app/controllers/ratings.js');
+    Comment     = require('../app/controllers/comments.js');
+    Order       = require('../app/controllers/orders.js');
+    Session     = require('../app/controllers/sessions.js');
 
     // User
-    //app.get('/users', UserCtrl.index);
-    app.post('/users', UserCtrl.create);
-    app.get('/user/:id', UserCtrl.show);
-    app.put('/user/:id', UserCtrl.update);
-    app.delete('/user/:id', UserCtrl.destroy);
+    app.post('/users', User.create);
+    app.get('/user/:id', User.show);
+    app.put('/user/:id', authenticated, User.update);
+    app.delete('/user/:id', authenticated, User.destroy);
     
     // Sessions
-    app.post('/user/signin', SessionsCtrl.create);
-    //app.post('/user/check', SessionsCtrl.check);
-    //app.delete('/user/signout', SessionsCtrl.destroy);
+    app.post('/user/signin', Session.create);
+    app.delete('/user/signout', Session.destroy);
     
     // CaseDesign
-    app.get('/casedesigns', CaseDesignCtrl.index);    
-    app.post('/casedesigns', CaseDesignCtrl.create);
-    app.get('/casedesign/:id', CaseDesignCtrl.show);
-    app.put('/casedesign/:id', CaseDesignCtrl.update);
-    app.delete('/casedesign/:id', CaseDesignCtrl.destroy);
+    app.get('/casedesigns', CaseDesign.index);    
+    app.get('/casedesign/:id', CaseDesign.show);
+    app.post('/casedesigns', authenticated, CaseDesign.create);
+    app.put('/casedesign/:id', authenticated, CaseDesign.update);
+    app.delete('/casedesign/:id', authenticated, CaseDesign.destroy);
 
     // Comment
-    app.get('/casedesign/:id/comments', CommentsCtrl.index);
-    app.post('/casedesign/:id/comments', CommentsCtrl.create);
-    //app.delete('/comment/:id', CommentsCtrl.destroy);
+    app.get('/casedesign/:id/comments', Comment.index);
+    app.post('/casedesign/:id/comments', authenticated, Comment.create);
+    //app.delete('/comment/:id', Comment.destroy);
 
     // Rating
-    app.get('/casedesign/:id/ratings', RatingCtrl.index);
-    app.post('/casedesign/:id/ratings', RatingCtrl.create);
-    //app.delete('/rating/:id', RatingCtrl.destroy);
+    app.get('/casedesign/:id/ratings', Rating.index);
+    app.post('/casedesign/:id/ratings', authenticated, Rating.create);
+    //app.delete('/rating/:id', Rating.destroy);
 
     // Order
-    app.post('/orders', OrderCtrl.create);
-    app.get('/order/:id', OrderCtrl.show);
-    app.delete('/order/:id', OrderCtrl.destroy);
+    app.post('/orders', authenticated, Order.create);
+    app.get('/order/:id', authenticated, Order.show);
+    app.delete('/order/:id', authenticated, Order.destroy);
 }
