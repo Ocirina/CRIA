@@ -44,10 +44,8 @@ exports.index = function (req, res) {
  * Route: /casedesign/:id
  */
 exports.show = function (req, res) {
-  var id = req.params.id;
-
   CaseDesign
-    .findOne({_id: id})
+    .findOne({_id: req.params.id})
     .exec(function (err, casedesigns) {
       return res.send({
         "error": err,
@@ -63,7 +61,7 @@ exports.show = function (req, res) {
 exports.update = function (req, res) {
   var conditions = {_id: req.params.id},
       update = req.body,
-      options = { multi: true },
+      options = { multi: false },
       callback = function (err, casedesign) {
         return res.send({
           "error": err,
