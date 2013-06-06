@@ -6,9 +6,7 @@
  * @param {Function} next The next function (The destination controller action).
  */
 function authenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-      return next();
-  }
+  if (req.isAuthenticated()) { return next(); }
   return res.send({
     "error": "U moet zich eerst authenticeren voordat u deze actie mag uitvoeren",
     "result": null
