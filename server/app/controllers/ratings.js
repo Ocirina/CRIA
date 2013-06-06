@@ -9,7 +9,7 @@ var Rating = mongoose.model('Rating');
  */
 exports.create = function (req, res) {
   var rating = new Rating({
-    amount: req.body.rating,
+    amount: +req.body.rating,
     caseDesign: req.params.id,
     user: req.body.user
   });
