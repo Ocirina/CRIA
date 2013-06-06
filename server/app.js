@@ -113,6 +113,7 @@ passport.use(new LocalStrategy(
             console.log("password: ", password);
             console.log("passwordHash.verify(password, hashedPassword): ", passwordHash.verify(password, hashedPassword));
             console.log("done): ", done);
+            
             // Verify given password (or empty string) with stored password
             // @see https://github.com/davidwood/node-password-hash/blob/master/README.md
             if (password === "" || !passwordHash.verify(password, hashedPassword)) {
@@ -147,9 +148,10 @@ app.post('/signin', function(req, res, next) {
     }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
+      delete user.password;
       return res.send({
         "error": null,
-        "result": user.name
+        "result": user
       });
     });
   })(req, res, next);
