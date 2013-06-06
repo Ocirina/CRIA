@@ -127,8 +127,6 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
                 comment:    $scope.comment
             };
 
-            console.log(comment);
-
             var comment = new Comments(comment);
             comment.$save(function(data) {
                 // callback
