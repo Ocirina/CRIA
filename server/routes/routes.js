@@ -17,23 +17,18 @@ function authenticated(req, res, next) {
 }
 
 module.exports = function (app) {
-    var User, CaseDesign, Rating, Comment, Order, Session;
+    var User, CaseDesign, Rating, Comment, Order;
     User        = require('../app/controllers/users.js');
     CaseDesign  = require('../app/controllers/case_designs.js');
     Rating      = require('../app/controllers/ratings.js');
     Comment     = require('../app/controllers/comments.js');
     Order       = require('../app/controllers/orders.js');
-    Session     = require('../app/controllers/sessions.js');
 
     // User
     app.post('/users', User.create);
     app.get('/user/:id', User.show);
     app.put('/user/:id', authenticated, User.update);
     app.delete('/user/:id', authenticated, User.destroy);
-    
-    // Sessions
-    app.post('/user/signin', Session.create);
-    app.delete('/user/signout', Session.destroy);
     
     // CaseDesign
     app.get('/casedesigns', CaseDesign.index);    
