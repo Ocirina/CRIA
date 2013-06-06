@@ -8,16 +8,11 @@ var Comment = mongoose.model('Comment');
  * Route: /casedesign/:id/comments
  */
 exports.create = function (req, res) {
-  var comment = new Comment({
-    comment: req.body.comment,
-    caseDesign: req.params.id,
-    user: req.body.userid
-  });
-    
+  var comment = new Comment(req.body);
   comment.save(function (err) {
     return res.send({
       "error":  err,
-      "result": comment
+      "result": (!comment ? null : comment)
     });
   });
 }
