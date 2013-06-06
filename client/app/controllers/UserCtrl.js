@@ -10,7 +10,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
 
         var user = new User($scope.user);
         user.$save(function(data) {
-            if(data.result === $scope.user.username) {
+            if(data.result.username === $scope.user.username) {
                 window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
                 $scope.hasUser = true;
             }
