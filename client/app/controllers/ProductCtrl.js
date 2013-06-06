@@ -131,7 +131,6 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
 
             var comment = new Comments(comment);
             comment.$save(function(data) {
-                console.log(data);
                 // callback
                 // feedback voor add comment hier!
             });
