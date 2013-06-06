@@ -43,6 +43,7 @@ User.pre('save', function(next, req, callback){
       else {next(err);}
     });
   }
+  else {next(callback);}
 });
 
 /**
