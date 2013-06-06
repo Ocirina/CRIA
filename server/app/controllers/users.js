@@ -1,6 +1,7 @@
 // Include dependencies
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var PasswordHash = require('password-hash');
 
 /**
  * Checks if an address object has been posted with the user.
@@ -22,6 +23,7 @@ function setIdForAddress(body, user) {
  */
 exports.create = function (req, res) {
   var user = new User(req.body);
+  req.body.password = PasswordHash.generate(req.body.password || "default");
   req.body = setIdForAddress(req.body, user);
   user.save(req, function (err) {
     return res.send({
