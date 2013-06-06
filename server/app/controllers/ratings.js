@@ -43,7 +43,7 @@ exports.index = function (req, res) {
    * ratings.
    * @param {Array} ratings An array with ratings.
    */
-  function calculateAverage(ratings){
+  function calculateAverage(ratings) {
     var sum = 0, count = 0, index;
     for (index in ratings) {
       sum += +ratings[index].amount;
