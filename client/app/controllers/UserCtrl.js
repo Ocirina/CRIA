@@ -4,7 +4,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
      * The whole user object is send away to verify if the user is real.
      */
     $scope.loginUser = function() {
-        var User = $resource('http://autobay.tezzt.nl\\:43083/user/signin',{},
+        var User = $resource('http://autobay.tezzt.nl\\:43083/signin',{},
             {charge: {method:'POST', params:{charge:true}}}
         );
 
