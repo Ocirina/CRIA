@@ -40,13 +40,13 @@
             <div id="loginContainer" class="wrap hidden" data-ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()">
                 <form data-ng-hide="hasUser">
                     <label>Gebruikersnaam</label><br />
-                    <input type="text" data-ng-change="#" data-ng-model="user.username" maxlength="20" required><br />
-                    <a href="#/gebruiker/registreren">Registreer</a><br />
+                    <input type="text" data-ng-change="#" data-ng-model="user.username" maxlength="20" tabindex="1" required><br />
+                    <a href="#/gebruiker/registreren" tabindex="4">Registreer</a><br />
                     <label>Wachtwoord</label><br />
-                    <input type="password" data-ng-change="#" data-ng-model="user.password" required><br />
-                    <a href="#/gebruiker/wachtwoordvergeten">Wachtwoord Vergeten</a><br />
+                    <input type="password" data-ng-change="#" data-ng-model="user.password" tabindex="2" required><br />
+                    <a href="#/gebruiker/wachtwoordvergeten" tabindex="5">Wachtwoord Vergeten</a><br />
                     <input type="checkbox"><span> Onthouden</span> <br />
-                    <button class="orangeButton" data-ng-click="loginUser()">Login</button>
+                    <button class="orangeButton" data-ng-click="loginUser()" tabindex="3">Login</button>
                 </form>
                 <form data-ng-show="hasUser">
                     <label>Gebruikersnaam: {{user.username}}</label><br />
