@@ -11,7 +11,7 @@ exports.create = function (req, res) {
   var rating = new Rating({
     amount: req.body.rating,
     caseDesign: req.params.id,
-    user: req.body.userid
+    user: req.body.user
   });
     
   rating.save(function (err) {
