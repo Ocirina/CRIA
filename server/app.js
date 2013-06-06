@@ -60,17 +60,14 @@ http.createServer(app).listen(app.get('port'), function () {
 // Bootstrap routes
 require('./routes/routes.js')(app);
 
-// vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+// Authentication functions
 var User = mongoose.model('User');
 var errorMessage = "Incorrecte gebruikersnaam en/of wachtwoord.";
 
 passport.deserializeUser(function (id, done) {
   User.findOne({ _id: id }, function (err, doc) {
-      
     if (err) { return done(err);  }
     if (!doc) { return done(null, false, { message: errorMessage }); }
-    
-    // Create user object
     return done(err, {
       username: doc.name,
       email: doc.email
@@ -78,65 +75,52 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-// Passport session setup.
-//   To support persistent login sessions, Passport needs to be able to
-//   serialize users into and deserialize users out of the session.  Typically,
-//   this will be as simple as storing the user ID when serializing, and finding
-//   the user by ID when deserializing.
+/**
+ * To support persistent login sessions, Passport needs to be able to
+ * serialize users into and deserialize users out of the session.  Typically,
+ * this will be as simple as storing the user ID when serializing, and finding
+ * the user by ID when deserializing.
+ */
 passport.serializeUser(function (user, done) {
-  console.log('serializing');
-  console.log('done:', done);
-  if (!user && !user.id) {
-      user = {};
-      user.id = 0;
-  }
-  done(null, user.id);
+  var id = 0;
+  if (user && user.id) { id = user.id; }
+  done(null, id);
 });
 
 
-// Use the LocalStrategy within Passport.
-//   Strategies in passport require a `verify` function, which accept
-//   credentials (in this case, a username and password), and invoke a callback
-//   with a user object.  In the real world, this would query a database;
-//   however, in this example we are using a baked-in set of users.
+/**
+ * Strategies in passport require a `verify` function, which accept
+ * credentials (in this case, a username and password), and invoke a callback
+ * with a user object.  In the real world, this would query a database;
+ * however, in this example we are using a baked-in set of users.
+ */
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        console.log('passport.use(new LocalStrategy');
         User.findOne({ name: username }, function (err, doc) {
-            var hashedPassword = "";
-            if (doc && doc.password) {
-                hashedPassword = doc.password;
-            }
-            console.log("hashedPassword: ", hashedPassword);
-            console.log("doc: ", doc);
-            console.log("err: ", err);
-            console.log("password: ", password);
-            console.log("passwordHash.verify(password, hashedPassword): ", passwordHash.verify(password, hashedPassword));
-            console.log("done): ", done);
-            
-            // Verify given password (or empty string) with stored password
-            // @see https://github.com/davidwood/node-password-hash/blob/master/README.md
-            if (password === "" || !passwordHash.verify(password, hashedPassword)) {
-                console.log('xxxx 1');
-                doc = {};
-                return done(err);
-            }
-
-            if (err) {
-                console.log('xxxx 2');
-                return done(err);
-            }
-            if (!doc) {
-                console.log('xxxx 3');
-                return done(null, false, { message: errorMessage });
-            }
-            console.log('returning...');
-            return done(null, doc);
+          if (!doc) { return done(null, false, { message: errorMessage }); }
+          if (!isPassword (password, doc.password) || err) {
+              return done(err);
+          }
+          return done(null, doc);
         });
+    }
+    /**
+     * Verifies if the given password matches the users password.
+     * @see https://github.com/davidwood/node-password-hash/blob/master/README.md
+     * @param {String} password The password given.
+     * @param {String} hashedPassword The users password.
+     * @return {Boolean} True if it's a correct password.
+     */
+    function isPassword (password, hashedPassword) {
+      return (password && passwordHash.verify(password, hashedPassword));
     }
 ));
 
-// Routes for signin and signout
+/**
+ * Type: POST
+ * Route: /signin
+ * Description: This will sign in the user for a session.
+ */
 app.post('/signin', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
@@ -157,6 +141,11 @@ app.post('/signin', function(req, res, next) {
   })(req, res, next);
 });
 
+/**
+ * Type: GET
+ * Route: /signout
+ * Description: This will sign out the current session signed in user.
+ */
 app.get('/signout', function (req, res) {
   req.logout();
   res.send({
@@ -164,4 +153,3 @@ app.get('/signout', function (req, res) {
     "result": "U bent successvol uitgelogd."
   });
 });
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
