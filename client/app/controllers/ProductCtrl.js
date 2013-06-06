@@ -114,6 +114,27 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
     };
 
     $scope.addComment = function() {
+        if(window.sessionStorage['loggedInUser'] !== undefined){
+            var Comments = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/comments', {id: '@caseDesign'},
+                {charge: {method:'POST', params:{charge:true}}}
+            );
 
+            var user = JSON.parse(window.sessionStorage['loggedInUser']);
+
+            var comment = {
+                user:       user._id,
+                caseDesign: $scope.product._id,
+                comment:    $scope.comment
+            };
+
+            console.log(comment);
+
+            var comment = new Comments(comment);
+            comment.$save(function(data) {
+                console.log(data);
+                // callback
+                // feedback voor add comment hier!
+            });
+        }
     };
 });
