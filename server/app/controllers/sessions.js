@@ -1,9 +1,6 @@
-var mongoose, User, PasswordHasher;
-
-/* Include dependencies */
-mongoose = require('mongoose');
-User = mongoose.model('User');
-//PasswordHasher = require('password-hash');
+// Include dependencies
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
 
 /**
@@ -11,38 +8,21 @@ User = mongoose.model('User');
  * Route: /user/signin
  */
 exports.create = function (req, res) {
-  //req.body.password = PasswordHasher.generate(req.body.password);
-  // Create session with user password.
   User
-    .findOne({
-      name: req.body.username,
-      password: req.body.password
-    })
+    .findOne({name: req.body.username})
     .exec(function (err, user) {
-      delete user.password;
-      // TODO: start session
-      req.session['username'] = user.name;
-      req.session.lastAccess = new Date().getTime();
+      if (req.body.password === user.password) {
+        req.session['username'] = user.name;
+        req.session['lastAccess'] = new Date().getTime();
+      } else {
+        user = null;
+        err = new Error("Wachtwoord en/of gebruikersnaam is incorrect.");
+      }
       return res.send({
         "error": err,
-        "result": {username: user.name, _id: user._id }
+        "result": user
       });
     });
-}
-
-/**
- * Type: POST
- * Route: /user/check
- */
-exports.check = function (req, res) {
-  var result = {"error": "Not signed in!", "result": false};
-console.log(req.session);
-  if (req.session['username'] === res.body.username) {
-    req.session.lastAccess = new Date().getTime();
-    result.error = null;
-    result.result = true;
-  }
-  res.send(result);
 }
 
 /**
@@ -50,6 +30,6 @@ console.log(req.session);
  * Route: /user/signout
  */
 exports.destroy = function (req, res) {
-  // TODO: Destroy session.
-  req.session = {}; // Possible?
+  delete req.session.username
+  delete req.session.lastAccess
 }
