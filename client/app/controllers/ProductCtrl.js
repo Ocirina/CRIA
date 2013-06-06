@@ -103,16 +103,49 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
         var ratings = [];
 
         for(var i=0; i < 5; i++){
+            var newArray = [];
             if(i < data.result){
-                ratings.push('icon-star');
+                newArray.name = 'icon-star';
             } else {
-                ratings.push('icon-star-empty');
+                newArray.name = 'icon-star-empty';
             }
+            newArray.i = i + 1;
+
+            ratings.push(newArray);
         }
 
         $scope.ratings = ratings;
     };
 
+    $scope.addRating = function(value) {
+        console.log(value);
+        if(window.sessionStorage['loggedInUser'] !== undefined){
+            var Ratings = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/ratings', {id: '@caseDesign'},
+                {charge: {method:'POST', params:{charge:true}}}
+            );
+
+            var user = JSON.parse(window.sessionStorage['loggedInUser']);
+
+            var ratings = {
+                user:       user._id,
+                caseDesign: $scope.product._id,
+                amount:     +value
+            };
+
+            console.log(ratings);
+
+            var rating = new Ratings(ratings);
+            rating.$save(function(data) {
+                if(data.result !== null){
+                    $scope.getSociable($scope.product._id, 'ratings', $scope.createStarsFromNumber);
+                }
+            });
+        }
+    };
+
+    /**
+     * This function will post an comment to the server that wil save it. It's also directly showed on the website.
+     */
     $scope.addComment = function() {
         if(window.sessionStorage['loggedInUser'] !== undefined){
             var Comments = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/comments', {id: '@caseDesign'},
@@ -129,8 +162,10 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
 
             var comment = new Comments(comment);
             comment.$save(function(data) {
-                // callback
-                // feedback voor add comment hier!
+                if(data.result !== null){
+                    data.result.user = user;
+                    $scope.comments.push(data.result);
+                }
             });
         }
     };

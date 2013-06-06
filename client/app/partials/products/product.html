@@ -30,7 +30,7 @@
                     <td>Rating</td>
                     <td>
                         <span data-ng-repeat="n in ratings">
-                            <i class="{{n}}"></i>
+                            <i data-ng-init="value = n.i" data-ng-click="addRating(value);" class="{{n.name}}"></i>
                         </span>
                     </td>
                 </tr>
