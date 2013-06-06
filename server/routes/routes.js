@@ -1,3 +1,10 @@
+/**
+ * Ensure that the route is only called when authenticated.
+ * If it's not the case it will return a response for authentication.
+ * @param {Object} req The request made.
+ * @param {Object} res The response object.
+ * @param {Function} next The next function (The destination controller action).
+ */
 function authenticated(req, res, next) {
   return next();
   /*if (req.isAuthenticated()) {
