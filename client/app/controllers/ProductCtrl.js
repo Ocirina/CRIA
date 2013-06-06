@@ -138,6 +138,7 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
             rating.$save(function(data) {
                 if(data.result !== null){
                     $scope.getSociable($scope.product._id, 'ratings', $scope.createStarsFromNumber);
+                    Application.notify('ok', 'Rating succesvol geplaatst.');
                 }
             });
         }
