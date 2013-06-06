@@ -8,7 +8,9 @@ var User = mongoose.model('User');
  */
 exports.create = function (req, res) {
   var user = new User(req.body);
-  req.body.address.user = user._id;
+  if (req.body.hasOwnProperty('address')) {
+    req.body.address = {user: user._id};
+  }
   user.save(req, function (err) {
     return res.send({
       "error":  err,
