@@ -3,14 +3,26 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 /**
+ * Checks if an address object has been posted with the user.
+ * If so then it sets the user ID on the address object and returns it.
+ * @param {Object} body The body of the request.
+ * @param {Object} user The user from which the ID must be set.
+ * @return {Object} Body of the request.
+ */
+function setIdForAddress(body, user) {
+  if (body.hasOwnProperty('address')) {
+    body.address = {user: user._id};
+  }
+  return body;
+}
+
+/**
  * Type: POST
  * Route: /users
  */
 exports.create = function (req, res) {
   var user = new User(req.body);
-  if (req.body.hasOwnProperty('address')) {
-    req.body.address = {user: user._id};
-  }
+  req.body = setIdForAddress(req.body, user);
   user.save(req, function (err) {
     return res.send({
       "error":  err,
@@ -76,12 +88,8 @@ exports.update = function (req, res) {
   User.findOne({_id: req.params.id}) // See second note above.
       .exec(function(err, user){
         if (!err) {
-          user.email = req.body.email;
-          user.firstName = req.body.firstName;
-          user.lastName = req.body.lastName;
-          
-          req.body.address.user = user._id;
-          
+          user = setNewUserValues(user, req.body);
+          req.body = setIdForAddress(req.body, user);
           user.save(req, user, function(err) {
             return res.send({
               "error": err,
@@ -90,6 +98,19 @@ exports.update = function (req, res) {
           });
         }
       });
+  
+  /**
+   * Updates the fields for the user object.
+   * @param {Object} user The user from which the ID must be set.
+   * @param {Object} body The body of the request.
+   * @return {Object} User object.
+   */
+  function setNewUserValues(user, body) {
+    user.email = body.email;
+    user.firstName = body.firstName;
+    user.lastName = body.lastName;
+    return user;
+  }
 }
 
 /**
