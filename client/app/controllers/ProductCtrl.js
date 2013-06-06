@@ -58,7 +58,6 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
      */
     $scope.addProductToShopCart = function() {
         var order = {
-            user: "51a7be85315f97dc39000001",
             orderlines: []
         };
 
@@ -112,5 +111,9 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
         }
 
         $scope.ratings = ratings;
+    };
+
+    $scope.addComment = function() {
+
     };
 });
