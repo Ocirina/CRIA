@@ -426,3 +426,18 @@ ul.gallery-products, ul#shopCaseDesigns {
   width: 25%;
   float: left;
 }
+
+#notifier {
+    position: absolute;
+    top: 20%;
+    left: 0px;
+}
+
+.notification-ok {
+    position: relative;
+    background-color: #a2e50e;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid rgb(102, 143, 50);
+    margin-left: 5px;
+}
