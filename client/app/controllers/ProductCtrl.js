@@ -136,9 +136,11 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
 
             var rating = new Ratings(ratings);
             rating.$save(function(data) {
-                if(data.result !== null){
+                if(data.error === null){
                     $scope.getSociable($scope.product._id, 'ratings', $scope.createStarsFromNumber);
                     Application.notify('ok', 'Rating succesvol geplaatst.');
+                } else {
+                    Application.notify('error', 'Rating is niet geplaatst.');
                 }
             });
         }
