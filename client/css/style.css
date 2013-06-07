@@ -433,6 +433,10 @@ ul.gallery-products, ul#shopCaseDesigns {
     left: 0px;
 }
 
+    #notifier div {
+        width: 210px;
+    }
+
 .notification-ok {
     position: relative;
     background-color: #a2e50e;
