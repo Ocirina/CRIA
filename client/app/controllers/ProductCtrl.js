@@ -72,6 +72,8 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
             window.localStorage['Order'] = JSON.stringify(order);
         }
 
+        Application.notify('ok', 'Product is toegevoegd.');
+
         $location.path('/winkelwagen');
     };
 

@@ -10,11 +10,13 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
 
         var user = new User($scope.user);
         user.$save(function(data) {
-            if(data.result.name === $scope.user.username) {
+            if(data.error !== null){
+                Application.notify('error', data.error);
+            } else if(data.result.name === $scope.user.username) {
                 window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
                 $scope.hasUser = true;
+                Application.notify('ok', 'Je bent succesvol ingelogd.');
             }
-            // feedback voor inloggen hier
         });
     };
 
@@ -37,6 +39,9 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
 
         var user = new User($scope.user);
         user.$save(function(data) {
+            if(data.error !== null){
+                Application.notify('ok', 'Account is succesvol aangemaakt.');
+            }
             // callback
             // feedback voor registreren hier!
         });
@@ -125,6 +130,9 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
 
         var user = new User($scope.user);
         user.$update(function(data) {
+            if(data.error !== null){
+                Application.notify('ok', 'NAW gegevens zijn succesvol aangepast.');
+            }
             // callback
             // Feedback voor wijzigen N.A.W. gegevens hier!
         });

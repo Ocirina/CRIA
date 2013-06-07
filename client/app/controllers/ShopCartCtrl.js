@@ -40,6 +40,8 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
                 if(caseDesignId === order.orderlines[i].caseDesign._id){
                     $scope.order.orderlines.splice(i, 1);
                     order.orderlines.splice(i,1)
+
+                    Application.notify('ok', 'Product is verwijderd.');
                     break;
                 }
             }
