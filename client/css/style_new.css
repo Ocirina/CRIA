@@ -1,0 +1,306 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*----Reset----*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+html,body{
+    width:100%;
+    height:100%;
+    color:#222;
+    font-family:'grandesignr';
+    background:#f8f8f8 url('../img/pattern.png');
+}
+
+/*----Text----*/
+a:link,visited,hover,active{
+    text-decoration:none;
+}
+h2{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:30px;
+    font-weight:normal;
+    margin-bottom:30px;
+    line-height:0;
+}
+h3{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:20px;
+    font-weight:normal;
+    margin:0 0 0 10px;
+    line-height:40px;
+}
+h4{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+}
+.casep h4{
+    font-size:16px;
+}
+h5{
+    font-size:16px;
+    font-family:'grandesigni';
+    margin-bottom:15px;
+}
+.casep h5{
+    font-size:20px;
+}
+p{
+    text-align:justify;
+}
+span{
+    float:right;
+    margin-right:15px;
+    font-size:16px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+/*----Structure----*/
+.no-scroll{
+    overflow:hidden;
+}
+.ontop{
+    margin-top:60px;
+}
+.top{
+    margin-top:20px;
+}
+.bg{
+    background:#f8f8f8;
+}
+.line{
+    height:1px;
+    background:#6ebdc4;
+
+}
+/*----Nav----*/
+nav{
+    width:100%;
+    height:40px;
+    position: fixed;
+    z-index: 1;
+    top:0;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:16px;
+
+    background-image: -webkit-linear-gradient(top, #444444, #222222);
+    background-image: -moz-linear-gradient(top, #444444, #222222);
+    background-image: -o-linear-gradient(top, #444444, #222222);
+    background-image: -ms-linear-gradient(top, #444444, #222222);
+
+}
+nav ul{}
+nav ul li{
+    float:left;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    color:#f8f8f8;
+}
+nav ul li a:hover, nav ul li.active{
+    cursor: pointer;
+    background:#f25a29;
+    color:#f8f8f8;
+
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ff8555), to(#f25a29));
+    background-image: -webkit-linear-gradient(top, #ff8555, #f25a29);
+    background-image: -moz-linear-gradient(top, #ff8555, #f25a29);
+    background-image: -o-linear-gradient(top, #ff8555, #f25a29);
+    background-image: -ms-linear-gradient(top, #ff8555, #f25a29);
+
+}
+nav ul li a{
+    color: #f8f8f8;
+    font-size:18px;
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+
+/*----Main----*/
+.big img{
+    width:100%;
+}
+.homebtn{
+    height:530px;
+    background-position:left;
+
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+    -ms-border-radius: 8px;
+
+    transition: 0.3s all ease-out;
+    -webkit-transition: 0.3s all ease-out;
+    -moz-transition: 0.3s all ease-out;
+    -o-transition: 0.3s all ease-out;
+    -ms-transition: 0.3s all ease-out;
+}
+.homebtn h4{
+    color:#ff5000;
+    font-size:70px;
+    margin:106px 0 0 40px;
+    text-shadow: 2px 2px #222222;
+
+    transform: rotate(-30deg);
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+}
+.homebtn:nth-child(1){
+    background: url(../img/wedstrijd.png);
+}
+.homebtn:nth-child(2){
+    background:#6ebdc4 url(../img/ontwerp.png);
+}
+.homebtn:nth-child(3){
+    background:url(../img/gallery.png);
+}
+.homebtn:hover{
+    background-position:right top;
+}
+.form-search{
+    margin-top:-10px;
+}
+.accordion-heading a{
+    color:#222;
+    font-family:'grandesigni';
+}
+.accordion-group,input[type="text"] {
+    border:1px solid #6ebdc4;
+}
+.searchbtn{
+    margin-left:20px;
+    border:1px solid #6ebdc4;
+}
+.gallery{
+    width:1200px;
+}
+.gallery .case{
+    height:290px;
+    display:block;
+    overflow:hidden;
+    background:no-repeat;
+    cursor:pointer;
+    margin-bottom:15px;
+
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+    -ms-border-radius: 8px;
+
+    transition: 0.3s all ease-out;
+    -webkit-transition: 0.3s all ease-out;
+    -moz-transition: 0.3s all ease-out;
+    -o-transition: 0.3s all ease-out;
+    -ms-transition: 0.3s all ease-out;
+}
+.gallery .case img{
+    float:left;
+
+}
+.gallery .case .txt{
+    width:140px;
+    height:285px;
+    display:inline-block;
+    margin:5px 5px 5px 15px;
+}
+.gallery .case:hover{
+    width:300px;
+    z-index:5;
+    background:#f8f8f8 no-repeat;
+    box-shadow:3px 3px 5px #222222;
+}
+.gallery .case:nth-child(6n+7){
+    clear:both;
+}
+.price{
+    margin-top:90px;
+}
+.rating{
+    height:17px;
+    width:100px;
+    text-align:center;
+}
+.casep .rating{
+    width:140px;
+    float:left;
+}
+.reacties{
+}
+.reacties h4{
+    font-size:16px;
+}
+.comments{
+    height:287px;
+    overflow:auto;
+}
+.comments ul li span{
+    float:none;
+    text-align:left;
+    font-size:12px;
+}
+.comments p{
+
+}
+.react textarea{
+    float:left;
+    margin-left:15px;
+}
+
+.react button{
+    float:left;
+}
+
+/*----Footer----*/
+footer{
+    height:30px;
+    width:100%;
+    position:fixed;
+    bottom:0;
+    background:#6ebdc4;
+
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#80ccce), to(#6ebdc4));
+    background-image: -webkit-linear-gradient(top, #80ccce, #6ebdc4);
+    background-image: -moz-linear-gradient(top, #80ccce, #6ebdc4);
+    background-image: -o-linear-gradient(top, #80ccce, #6ebdc4);
+    background-image: -ms-linear-gradient(top, #80ccce, #6ebdc4);
+
+}
+footer ul li{
+    line-height:30px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+footer ul li a{
+    color:#f8f8f8;
+}

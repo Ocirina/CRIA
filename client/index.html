@@ -1,89 +1,82 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html data-ng-app="design_your_own">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
 
-        <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <link href="css/design-style.css" rel="stylesheet" type="text/css" />
-        <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
-        <link href="css/font.css" rel="stylesheet" type="text/css" />
-        <link href="css/dd.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="css/font.css" rel="stylesheet" type="text/css" />
+    <link href="css/style_new.css" rel="stylesheet" type="text/css" />
+    <link href="css/dd.css" rel="stylesheet" type="text/css" />
 
-        <!-- Javascript -->
-        <script type="text/javascript" src="js/lib/jquery-1.8.0.min.js"></script>
-        <script type="text/javascript" src="js/lib/jquery.ddslick.min.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
-
-
-        <title>Design your own iPhone - {{title}}</title>
-    </head>
-
-    <body>
-        <nav>
-            <a id="shoppingCart" href="#/winkelwagen" class="icon-shopping-cart" title="Winkelwagen"></a>
-            <div class="wrap">
-                <ul>
-                    <li id="home"><a href="#/">Home</a></li>
-
-                    <!--<li data-ng-hide="user.loggedIn"><a href="#/">Mijn ontwerpen</a></li>
-                    <li data-ng-hide="user.loggedIn"><a href="#/">Ontwerp zoeken</a></li>
-                    <li data-ng-hide="user.loggedIn"><a href="#/gebruiker/loguit">Uitloggen</a></li>
-                    <li data-ng-show="user.loggedIn" id="inloggen"><a href="#/gebruiker/login">Inloggen</a></li>-->
-                    <li id="inloggen"><a>Mijn account</a></li>
-                </ul>
-            </div>
-        </nav>
+    <!-- Javascript -->
+    <script type="text/javascript" src="js/lib/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.ddslick.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 
 
-        <div id="main" class="wrap">
-            <div id="loginContainer" class="wrap hidden" data-ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()">
-                <form data-ng-hide="hasUser">
-                    <label>Gebruikersnaam</label><br />
-                    <input type="text" data-ng-change="#" data-ng-model="user.username" maxlength="20" tabindex="1" required><br />
-                    <a href="#/gebruiker/registreren" tabindex="4">Registreer</a><br />
-                    <label>Wachtwoord</label><br />
-                    <input type="password" data-ng-change="#" data-ng-model="user.password" tabindex="2" required><br />
-                    <a href="#/gebruiker/wachtwoordvergeten" tabindex="5">Wachtwoord Vergeten</a><br />
-                    <input type="checkbox"><span> Onthouden</span> <br />
-                    <button class="orangeButton" data-ng-click="loginUser()" tabindex="3">Login</button>
-                </form>
-                <form data-ng-show="hasUser">
-                    <label>Gebruikersnaam: {{user.username}}</label><br />
-                    <a href="#/gebruiker/beheren">Profiel Beheren</a><br />
-                    <button class="orangeButton" data-ng-click="logoutUser()">Logout</button>
-                </form>
-            </div>
+    <title>Design your own iPhone - {{title}}</title>
+</head>
+<body>
+<nav>
+    <div class="container">
+        <ul class="row">
+            <li class="span2 active"><a href="index.html">Home</a></li>
+            <li id="inloggen" class="span2 offset7"><a href="#">Mijn Account</a></li>
+            <li class="span1"><a href="#/winkelwagen"><div class="icon-shopping-cart"></div></a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div id="loginContainer" class="wrap hidden" data-ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()">
+        <form data-ng-hide="hasUser">
+            <label>Gebruikersnaam</label><br />
+            <input type="text" data-ng-change="#" data-ng-model="user.username" maxlength="20" tabindex="1" required><br />
+            <a href="#/gebruiker/registreren" tabindex="4">Registreer</a><br />
+            <label>Wachtwoord</label><br />
+            <input type="password" data-ng-change="#" data-ng-model="user.password" tabindex="2" required><br />
+            <a href="#/gebruiker/wachtwoordvergeten" tabindex="5">Wachtwoord Vergeten</a><br />
+            <input type="checkbox"><span> Onthouden</span> <br />
+            <button class="orangeButton" data-ng-click="loginUser()" tabindex="3">Login</button>
+        </form>
+        <form data-ng-show="hasUser">
+            <label>Gebruikersnaam: {{user.username}}</label><br />
+            <a href="#/gebruiker/beheren">Profiel Beheren</a><br />
+            <button class="orangeButton" data-ng-click="logoutUser()">Logout</button>
+        </form>
+    </div>
+    
+    <div style="margin-top: 50px;" data-ng-view></div>
+</div>
 
-            <div id="notifier"></div>
+<footer>
+    <ul class="container">
+        <li class="span2 offset2"><a href="http://www.recolorit.com/">Recolorit</a></li>
+        <li class="span2"><a href="overons.html">Over ons</a></li>
+        <li class="span2"><a href="faq.html">F.A.Q.</a></li>
+        <li class="span1"><a href="#" class="icon-facebook"></a></li>
+        <li class="span1"><a href="#" class="icon-twitter"></a></li>
+    </ul>
+</footer>
 
-            <div style="margin-top: 50px;" data-ng-view></div>
-        </div>
+<!-- Scripts -->
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/angular-resource.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
-        <div id="footer">
-            <ul>
-                <li><a href="#">Recolorit</a></li>
-                <li><a href="#">Over ons</a></li>
-                <li><a href="#">F.A.Q.</a></li>
-            </ul>
-        </div>
+<!-- App -->
+<script src="app/app.js"></script>
 
-        <!-- Scripts -->
-        <script src="js/lib/angular.min.js"></script>
-        <script src="js/lib/angular-resource.min.js"></script>
+<!-- Controllers -->
+<script src="app/controllers/IndexCtrl.js"></script>
+<script src="app/controllers/UserCtrl.js"></script>
+<script src="app/controllers/ProductCtrl.js"></script>
+<script src="app/controllers/ShopCartCtrl.js"></script>
+<script src="app/controllers/DesignCtrl.js"></script>
+<script src="app/controllers/PaymentCtrl.js"></script>
 
-        <!-- App -->
-        <script src="app/app.js"></script>
-
-        <!-- Controllers -->
-        <script src="app/controllers/IndexCtrl.js"></script>
-        <script src="app/controllers/UserCtrl.js"></script>
-        <script src="app/controllers/ProductCtrl.js"></script>
-        <script src="app/controllers/ShopCartCtrl.js"></script>
-        <script src="app/controllers/DesignCtrl.js"></script>
-        <script src="app/controllers/PaymentCtrl.js"></script>
-
-        <script src="js/init.js"></script>
-
-    </body>
+<script src="js/init.js"></script>
+</body>
 </html>

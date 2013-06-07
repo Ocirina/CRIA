@@ -194,13 +194,13 @@ nav{
 		}
 
 .iphone{
-	position:fixed;	
+	position:fixed;
 	left:50%;
 	top:50%;
 	margin:-284px 0 0 -135px;
 	width:270px;
 	background:url(../IMG/iphone5.png);
-	height:567px;	
+	height:567px;
 }
 
 #main #registerForm, #main #nawSection {
