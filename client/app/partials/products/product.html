@@ -1,53 +1,39 @@
 <div data-ng-init="getProduct()"></div>
-<div class="product-view left-column">
-    <img data-ng-src="{{product.preview}}"/>
-    <span class="icon-shopping-cart" title="Toevoegen aan winkelmand" data-ng-click="addProductToShopCart()"></span>
-    <span class="stars"></span>
+<div class="row ontop">
+    <h2 class="span12">{{ product.name }}</h2>
+    <img class="span3" data-ng-src="{{product.preview}}">
+    <div class="span9 casep">
+        <h4>Auteur</h4>
+        <h5>T. Frankema</h5>
+        <h4>Laatste gewijzigd</h4>
+        <h5>13 - 05 - 2013</h5>
+        <div class="rating">
+            <span style="float: none; margin-right: 0;" data-ng-repeat="n in ratings">
+                <i data-ng-init="value = n.i" data-ng-click="addRating(value);" class="{{n.name}}"></i>
+            </span>
+        </div>
+        <button class="span2 btn btn-primary btn-blue">Gebruik als basis</button>
+    </div>
+    <div class="product-details right-column ng-scope span9 reacties top">
+        <div class="detail-view">
+        </div>
+        <h4>Reacties</h4>
+        <div class="comments">
+            <ul>
+                <li data-ng-repeat="comment in comments" class="ng-scope">
+                    <span class="ng-binding"><strong class="ng-binding">{{ comment.user.name }}</strong> Schreef op {{ comment.posted_at }} :</span>
+                    <p class="ng-binding">{{ comment.comment }}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-<div class="product-details right-column">
-    <div class="detail-view">
-        <table>
-            <thead>
-                <tr>
-                    <th>Naam</th>
-                    <th>Waarde</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Titel</td>
-                    <td>{{product.name}}</td>
-                </tr>
-                <tr>
-                    <td>Auteur</td>
-                    <td>{{ 5 + 5}}</td>
-                </tr>
-                <tr>
-                    <td>Datum</td>
-                    <td>{{ 6 + 6 }}</td>
-                </tr>
-                <tr>
-                    <td>Rating</td>
-                    <td>
-                        <span data-ng-repeat="n in ratings">
-                            <i data-ng-init="value = n.i" data-ng-click="addRating(value);" class="{{n.name}}"></i>
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <!-- a href="#">Gebruik als basis</a>-->
-    </div>
 
-    <h3>Reacties</h3>
-    <div class="comments">
-        <ul>
-            <li data-ng-repeat="comment in comments">
-                <span><strong>{{ comment.user.name }}</strong> - heeft op {{ comment.posted_at }} het volgende bericht geplaatst.</span>
-                <p>{{ comment.comment }}</p>
-            </li>
-        </ul>
+<div class="container">
+    <div class="row react top">
+        <h4 class="span3">Prijs: <span data-ng-click="addProductToShopCart()" class="icon-shopping-cart"></span><span>€9,99</span></h4>
+
+        <textarea data-ng-model="comment" rows="4" class="span4 ng-pristine ng-valid"></textarea>
+        <button data-ng-click="addComment()" class="btn span3">Plaats bericht</button>
     </div>
-    <textarea data-ng-model="comment"></textarea>
-    <button data-ng-click="addComment()" class="button">Plaats bericht</button>
 </div>

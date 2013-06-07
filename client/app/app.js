@@ -29,6 +29,16 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/payment/methods.html'
         })
 
+        //Footer
+
+        .when('/faq', {
+            templateUrl: 'app/partials/footer/faq.html'
+        })
+
+        .when('/over-ons', {
+            templateUrl: 'app/partials/footer/over-ons.html'
+        })
+
         //Design
         .when('/ontwerpen', {
             controller: 'DesignCtrl',
