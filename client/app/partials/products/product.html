@@ -6,7 +6,7 @@
         <h4>Auteur</h4>
         <h5>T. Frankema</h5>
         <h4>Laatste gewijzigd</h4>
-        <h5>{{ product.created_at | date:'dd MM yyyy' }}</h5>
+        <h5>{{ product.created_at | date:'dd-MM-yyyy' }}</h5>
         <div class="rating">
             <span style="float: none; margin-right: 0;" data-ng-repeat="n in ratings">
                 <i data-ng-init="value = n.i" data-ng-click="addRating(value);" class="{{n.name}}"></i>

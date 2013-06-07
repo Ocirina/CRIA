@@ -20,7 +20,7 @@
                 <h4>Auteur:</h4>
                 <h5>{{ product.title }}</h5>
                 <h4>Laatst gewijzigd:</h4>
-                <h5>{{ product.title }}</h5>
+                <h5>{{ product.created_at | date:'dd-MM-yyyy' }}</h5>
                 <div class="rating"></div>
                 <h4 class="price">Prijs:
                     <span class="icon-shopping-cart"></span>
