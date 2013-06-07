@@ -76,7 +76,7 @@ h5{
 p{
     text-align:justify;
 }
-span{
+.gallery span{
     float:right;
     margin-right:15px;
     font-size:16px;
@@ -148,19 +148,52 @@ nav ul li a{
 #loginContainer {
     position: fixed;
     top: 40px;
-    right: 0;
-    float: right;
+    margin-left: 720px;
     color: #ffffff;
-    width: 15%;
-    background-color: #000000;
+    width: 200px;
+    background-color: #222;
     padding: 0px 10px 10px 10px;
     z-index: 1;
 }
+
+    #loginContainer input[type="text"], #loginContainer input[type="password"],#loginContainer input[type="checkbox"] {
+        padding: 0;
+        margin-bottom: 0;
+        margin-top: 5px;
+    }
+
+    #loginContainer input[type="checkbox"] {
+        margin-bottom: 5px;
+    }
+
+    #loginContainer button {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#ff8555), to(#f25a29));
+        background-image: -webkit-linear-gradient(top, #ff8555, #f25a29);
+        background-image: -moz-linear-gradient(top, #ff8555, #f25a29);
+        background-image: -o-linear-gradient(top, #ff8555, #f25a29);
+        background-image: -ms-linear-gradient(top, #ff8555, #f25a29);
+        color: #FFF;
+        border: 1px;
+        padding: 5px 20px;
+    }
+
+    #loginContainer label {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    #loginContainer span {
+        font-size: 12px;
+    }
 
     #loginContainer a{
         text-decoration: underline;
         font-size: 10px;
     }
+
+        #loginContainer form:last-child button {
+            margin-top: 10px;
+        }
 
 .visible {
     display: block;

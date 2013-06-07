@@ -5,15 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="css/font.css" rel="stylesheet" type="text/css" />
+    <link href="http://94.210.234.160/_design_your_own/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://94.210.234.160/_design_your_own/css/font.css" rel="stylesheet" type="text/css" />
+    <link href="http://94.210.234.160/_design_your_own/css/dd.css" rel="stylesheet" type="text/css" />
     <link href="css/style_new.css" rel="stylesheet" type="text/css" />
-    <link href="css/dd.css" rel="stylesheet" type="text/css" />
 
     <!-- Javascript -->
-    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
-    <script type="text/javascript" src="js/lib/jquery.ddslick.min.js"></script>
+    <script type="text/javascript" src="http://94.210.234.160/_design_your_own/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://94.210.234.160/_design_your_own/js/jquery.ddslick.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 
 
@@ -24,7 +23,7 @@
     <div class="container">
         <ul class="row">
             <li class="span2 active"><a href="index.html">Home</a></li>
-            <li id="inloggen" class="span2 offset7"><a href="#">Mijn Account</a></li>
+            <li id="inloggen" class="span2 offset7"><a>Mijn Account</a></li>
             <li class="span1"><a href="#/winkelwagen"><div class="icon-shopping-cart"></div></a></li>
         </ul>
     </div>
@@ -35,19 +34,19 @@
 <div class="container">
     <div id="loginContainer" class="loginHidden" data-ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()">
         <form data-ng-hide="hasUser">
-            <label>Gebruikersnaam</label><br />
-            <input type="text" data-ng-change="#" data-ng-model="user.username" maxlength="20" tabindex="1" required><br />
+            <label class="control-label">Gebruikersnaam</label>
+            <input class="input-medium" type="text" data-ng-change="#" data-ng-model="user.username" maxlength="20" tabindex="1" required><br />
             <a href="#/gebruiker/registreren" tabindex="4">Registreer</a><br />
-            <label>Wachtwoord</label><br />
-            <input type="password" data-ng-change="#" data-ng-model="user.password" tabindex="2" required><br />
+            <label class="control-label">Wachtwoord</label>
+            <input class="input-medium" type="password" data-ng-change="#" data-ng-model="user.password" tabindex="2" required><br />
             <a href="#/gebruiker/wachtwoordvergeten" tabindex="5">Wachtwoord Vergeten</a><br />
-            <input type="checkbox"><span> Onthouden</span> <br />
-            <button class="orangeButton" data-ng-click="loginUser()" tabindex="3">Login</button>
+            <input class="input-mini" type="checkbox"><span> Onthouden</span> <br />
+            <button class="img-rounded" data-ng-click="loginUser()" tabindex="3">Login</button>
         </form>
         <form data-ng-show="hasUser">
-            <label>Gebruikersnaam: {{user.username}}</label><br />
+            <label class="control-label">Gebruikersnaam: {{user.username}}</label>
             <a href="#/gebruiker/beheren">Profiel Beheren</a><br />
-            <button class="orangeButton" data-ng-click="logoutUser()">Logout</button>
+            <button class="img-rounded" data-ng-click="logoutUser()">Logout</button>
         </form>
     </div>
     
@@ -57,18 +56,18 @@
 <footer>
     <ul class="container">
         <li class="span2 offset2"><a href="http://www.recolorit.com/">Recolorit</a></li>
-        <li class="span2"><a href="overons.html">Over ons</a></li>
-        <li class="span2"><a href="faq.html">F.A.Q.</a></li>
+        <li class="span2"><a href="#/over-ons">Over ons</a></li>
+        <li class="span2"><a href="#/faq">F.A.Q.</a></li>
         <li class="span1"><a href="#" class="icon-facebook"></a></li>
         <li class="span1"><a href="#" class="icon-twitter"></a></li>
     </ul>
 </footer>
 
 <!-- Scripts -->
-<script src="js/lib/angular.min.js"></script>
-<script src="js/lib/angular-resource.min.js"></script>
-<script src="js/lib/jquery.min.js"></script>
-<script src="js/lib/bootstrap.min.js"></script>
+<script src="http://94.210.234.160/_design_your_own/js/angular.min.js"></script>
+<script src="http://94.210.234.160/_design_your_own/js/angular-resource.min.js"></script>
+<script src="http://94.210.234.160/_design_your_own/js/jquery.min.js"></script>
+<script src="http://94.210.234.160/_design_your_own/js/bootstrap.min.js"></script>
 
 
 <!-- App -->
