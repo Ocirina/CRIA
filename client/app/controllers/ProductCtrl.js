@@ -118,7 +118,6 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
     };
 
     $scope.addRating = function(value) {
-        console.log(value);
         if(window.sessionStorage['loggedInUser'] !== undefined){
             var Ratings = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/ratings', {id: '@caseDesign'},
                 {charge: {method:'POST', params:{charge:true}}}
@@ -132,8 +131,6 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
                 amount:     +value
             };
 
-            console.log(ratings);
-
             var rating = new Ratings(ratings);
             rating.$save(function(data) {
                 if(data.error === null){
@@ -143,6 +140,8 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
                     Application.notify('error', 'Rating is niet geplaatst.');
                 }
             });
+        } else {
+            Application.notify('error', 'Je moet ingelogd zijn om te stemmen.');
         }
     };
 
@@ -170,6 +169,8 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
                     $scope.comments.push(data.result);
                 }
             });
+        } else {
+            Application.notify('error', 'Je moet ingelogd zijn om te reageren.');
         }
     };
 });
