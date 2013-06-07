@@ -376,11 +376,12 @@ footer ul li a{
 #notifier {
     position: absolute;
     top: 20%;
-    left: 0px;
+    left: 0;
 }
 
 #notifier div {
-    width: 210px;
+    max-width: 170px;
+    height: auto;
 }
 
 .notification-ok {
