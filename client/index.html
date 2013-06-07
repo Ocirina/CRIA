@@ -12,7 +12,7 @@
     <link href="css/dd.css" rel="stylesheet" type="text/css" />
 
     <!-- Javascript -->
-    <script type="text/javascript" src="js/lib/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
     <script type="text/javascript" src="js/lib/jquery.ddslick.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 
@@ -29,8 +29,11 @@
         </ul>
     </div>
 </nav>
+
+<div id="notifier"></div>
+
 <div class="container">
-    <div id="loginContainer" class="wrap hidden" data-ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()">
+    <div id="loginContainer" class="loginHidden" data-ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()">
         <form data-ng-hide="hasUser">
             <label>Gebruikersnaam</label><br />
             <input type="text" data-ng-change="#" data-ng-model="user.username" maxlength="20" tabindex="1" required><br />
@@ -64,7 +67,9 @@
 <!-- Scripts -->
 <script src="js/lib/angular.min.js"></script>
 <script src="js/lib/angular-resource.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+
 
 <!-- App -->
 <script src="app/app.js"></script>

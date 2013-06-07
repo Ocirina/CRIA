@@ -144,6 +144,33 @@ nav ul li a{
     display: block;
 }
 
+/*----Login----*/
+#loginContainer {
+    position: fixed;
+    top: 40px;
+    right: 0;
+    float: right;
+    color: #ffffff;
+    width: 15%;
+    background-color: #000000;
+    padding: 0px 10px 10px 10px;
+    z-index: 1;
+}
+
+    #loginContainer a{
+        text-decoration: underline;
+        font-size: 10px;
+    }
+
+.visible {
+    display: block;
+}
+
+.loginHidden{
+    display: none;
+}
+
+
 /*----Main----*/
 .big img{
     width:100%;
@@ -244,6 +271,7 @@ nav ul li a{
 .gallery .case:nth-child(6n+7){
     clear:both;
 }
+
 .price{
     margin-top:90px;
 }
@@ -282,6 +310,12 @@ nav ul li a{
     float:left;
 }
 
+
+.paymentMethodsPage {
+    margin-top: 30px;
+}
+
+
 /*----Footer----*/
 footer{
     height:30px;
@@ -303,4 +337,34 @@ footer ul li{
 }
 footer ul li a{
     color:#f8f8f8;
+}
+
+/*----Notifier----*/
+#notifier {
+    position: absolute;
+    top: 20%;
+    left: 0px;
+}
+
+#notifier div {
+    width: 210px;
+}
+
+.notification-ok {
+    position: relative;
+    background-color: #a2e50e;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid rgb(102, 143, 50);
+    margin-left: 5px;
+}
+
+.notification-error {
+    position: relative;
+    background-color: rgb(255, 55, 55);
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid rgb(0, 0, 0);
+    margin-left: 5px;
+    color: #FFF;
 }

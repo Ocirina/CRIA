@@ -14,6 +14,7 @@ function EventController() {
     this.showLoginForm = function() {
         var inlogNav = document.getElementById("inloggen");
         inlogNav.onclick = function() {
+            console.log(this);
             show();
         };
 
