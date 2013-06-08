@@ -21,8 +21,9 @@
         <div class="comments">
             <ul>
                 <li data-ng-repeat="comment in comments" class="ng-scope">
-                    <span class="ng-binding"><strong class="ng-binding">{{ comment.user.name }}</strong> Schreef op {{ comment.posted_at }} :</span>
-                    <p class="ng-binding">{{ comment.comment }}</p>
+                    <span class="ng-binding"><strong class="ng-binding">{{ comment.user.name }}</strong> schreef op {{ comment.posted_at }} :</span>
+                    <span class="offset1 icon-remove-sign"></span>
+                    <p class="ng-binding">{{ comment.comment }}</p><br />
                 </li>
             </ul>
         </div>
