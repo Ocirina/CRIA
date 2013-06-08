@@ -162,14 +162,17 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
 
                 order = new Order(order);
                 order.$save(function(data) {
-                    // Callback
-                    // Feedback betaling
+                    if(data.error === null){
+                        Application.notify('ok', 'Bestelling is geplaatst.');
+                    } else {
+                        Application.notify('error', 'Bestelling is niet geplaatst.');
+                    }
                 });
             } else {
-                alert("U heeft geen bestellingen geplaatst");
+                Application.notify('error', 'U heeft geen bestellingen geplaatst.');
             }
         } else {
-            alert("U moet ingelogd zijn om iets te bestellen");
+            Application.notify('error', 'U moet ingelogd zijn om iets te bestellen.');
         }
     }
 });
