@@ -322,6 +322,11 @@ nav ul li a{
 .reacties h4{
     font-size:16px;
 }
+
+h4 .icon-shopping-cart {
+    float: right;
+}
+
 .comments{
     height:287px;
     overflow:auto;
