@@ -348,39 +348,39 @@ h4 .icon-shopping-cart {
     float:left;
 }
 
-    .paymentMethodsPage ul { margin-bottom: 20px}
+    .shoppingCartPage ul { margin-bottom: 20px}
 
-    .paymentMethodsPage ul > li {
+    .shoppingCartPage ul > li {
         width: 80px;
         float: left;
     }
 
-    .paymentMethodsPage ul > li:nth-child(1n+2){ margin-left: 40px; }
+    .shoppingCartPage ul > li:nth-child(1n+2){ margin-left: 40px; }
 
-    .paymentMethodsPage ul > li > img,.paymentMethodsPage ul > li > h5 {
+    .shoppingCartPage ul > li > img,.paymentMethodsPage ul > li > h5 {
         display: block;
         margin: auto;
     }
 
-    .paymentMethodsPage ul > li > h5 { height: 40px}
+    .shoppingCartPage ul > li > h5 { height: 40px}
 
-    .paymentMethodsPage ul > li .input-mini {
+    .shoppingCartPage ul > li .input-mini {
         width: 49px;
     }
 
-    .paymentMethodsPage ul > li .icon-remove-sign { cursor: pointer; }
+    .shoppingCartPage ul > li .icon-remove-sign { cursor: pointer; }
 
-    .paymentMethodsPage .offset2 {
+    .shoppingCartPage .offset2 {
         margin-left: 100px;
     }
 
-    .paymentMethodsPage form label {  display: inline;  }
+    .shoppingCartPage form label {  display: inline;  }
 
-    .paymentMethodsPage .input-medium { width: 162px; }
+    .shoppingCartPage .input-medium { width: 162px; }
 
-    .paymentMethodsPage .input-large { width: 242px; }
+    .shoppingCartPage .input-large { width: 242px; }
 
-    .paymentMethodsPage .input-xlarge { width: 422px; }
+    .shoppingCartPage .input-xlarge { width: 422px; }
 
 
 /*----Footer----*/

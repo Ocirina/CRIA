@@ -43,7 +43,7 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
 
         $('#paymentMethods').ddslick({
             data:paymentMethods,
-            width:300,
+            width:250,
             selectText: "Selecteer een betaal methode",
             imagePosition:"left",
             onSelected: function(data){
@@ -114,7 +114,7 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
 
         $('#paymentBanks').ddslick({
             data:paymentBanks,
-            width:300,
+            width:250,
             selectText: "Selecteer een betaal methode",
             imagePosition:"left",
             onSelected: function(data){

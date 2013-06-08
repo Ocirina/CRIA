@@ -1,22 +1,22 @@
-<h1>Afrekenen</h1>
-<div id="paymentMethodsPage" data-ng-init="addImageDropDowns()">
-    <div class="paymentDiv">
+<article class="row ontop">
+    <h2 class="span12">Afrekenen</h2>
+    <div class="well span3">
         <h5>Verzend opties</h5>
         <input type="radio">Levering volgende dag <span>+&euro;10,00 </span><br />
         <input type="radio">Normale Levering<span>+ &euro; 0,00</span> <br />
         <input type="checkbox">Aangetekend<span>+ &euro; 5,00</span> <br />
     </div>
 
-    <div class="paymentDiv">
+    <div class="well span4" data-ng-init="addImageDropDowns()">
         <h5>Betaal optie</h5>
         <div id="paymentMethods"></div><br />
         <div id="paymentBanks"></div>
         <button id="toPayment" class="round-button-style disabled" data-ng-click="pay()" disabled>Naar Betalen</button>
     </div>
 
-    <div class="paymentDiv" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
+    <div class="well span4" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
         <h5>Bestelling</h5>
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th>Naam</th>
@@ -30,7 +30,8 @@
                     {{ orderline.caseDesign.name }}
                 </td>
                 <td>
-                    &euro; {{ 7.50 * orderline.aantal }}
+                    &euro;
+                    {{ 7.50 * orderline.aantal}}
                 </td>
                 <td>
                     {{ orderline.aantal }}
@@ -38,12 +39,15 @@
             </tr>
             </tbody>
             <tfoot>
-            <tr>
-                <td colspan="3">
-                    Totaal: &euro; {{order.orderlines.length * 7.50 }} <!-- totaal prijs -->
+            <tr data-ng-init="calculateTotalPrice()">
+                <td>
+                    Totaal:
+                </td>
+                <td colspan="2">
+                    &euro; {{totalPrice}}
                 </td>
             </tr>
             </tfoot>
         </table>
     </div>
-</div>
+</article>
