@@ -1,68 +1,72 @@
-<h1>Winkelwagen</h1>
-<ul id="shopCaseDesigns" data-ng-init="loadShopCartDesigns()">
-    <li class="gallery-product" data-ng-show="order" data-ng-repeat="orderline in order.orderlines">
-        <h5>{{ orderline.product.name }}</h5>
-        <img data-ng-src="{{orderline.caseDesign.preview}}"/>
-        <input type="number" min="1" max="99" data-ng-change="changeAmount({{ orderline.caseDesign }}, this)" data-ng-model="orderline.aantal" required>
-        <div style="cursor: pointer;" data-ng-init="caseId = orderline.caseDesign._id" data-ng-click="removeProduct(caseId)" class="icon-remove-sign"></div>
-    </li>
-    <li data-ng-hide="order">
-        <h3>Er zijn geen designs aan de winkelwagen toegevoegd</h3>
-    </li>
-</ul>
+<article class="row ontop paymentMethodsPage">
+    <h2 class="span12">Winkelwagen</h2>
+    <ul class="span12" data-ng-init="loadShopCartDesigns()">
+        <li data-ng-show="order" data-ng-repeat="orderline in order.orderlines">
+            <h5>{{ orderline.caseDesign.name }}</h5>
+            <img data-ng-src="{{orderline.caseDesign.preview}}"/><br/>
+            <input class="input-mini" type="number" min="1" max="99" data-ng-change="changeAmount({{ orderline.caseDesign }}, this)" data-ng-model="orderline.aantal" required>
+            <div data-ng-init="caseId = orderline.caseDesign._id" data-ng-click="removeProduct(caseId)" class="icon-remove-sign"></div>
+        </li>
+        <li data-ng-hide="order">
+            <h3>Er zijn geen designs aan de winkelwagen toegevoegd</h3>
+        </li>
+    </ul>
 
-<div id="nawSection" data-ng-controller="UserCtrl" data-ng-init="loadUserShopCart()">
-    <h2>N.A.W. Gegevens</h2>
-    <form>
-        <label>*Voor- en Achternaam:</label><br />
-        <input class="leftCol" type="text" data-ng-model="user.firstName" required>
-        <input class="rightCol" type="text" data-ng-model="user.lastName" required><br />
-        <label>*Email: </label><br />
-        <input type="email" data-ng-model="user.email" required><br />
-        <label class="leftCol">*Postcode: </label>
-        <label class="rightCol">*Huisnummer: </label><br />
-        <input class="leftCol" type="text" data-ng-model="user.address.postalCode" required pattern="[0-9]{4}[a-zA-Z]{2}">
-        <input class="rightCol" type="text" data-ng-model="user.address.houseNumber"><br />
-        <label>*Straatnaam: </label><br />
-        <input type="text" data-ng-model="user.address.street" required><br />
-        <label>*Plaats: </label><br />
-        <input type="text" data-ng-model="user.address.city" required><br />
-        <button class="round-button-style" data-ng-click="saveNawInformation()">Gegevens wijzigen</button>
-        <a class="round-button-style" data-ng-controller="ShopCartCtrl" data-ng-click="continueShopping()">Verder winkelen</a>
-    </form>
-</div>
+    <div class="well span6" data-ng-controller="UserCtrl" data-ng-init="loadUserShopCart()">
+        <h2>N.A.W. Gegevens</h2>
+        <form>
+            <label class="control-label">*Voor- en Achternaam:</label><br />
+            <input class="input-medium" type="text" data-ng-model="user.firstName" placeholder="Voornaam" required>
+            <input class="input-large" type="text" data-ng-model="user.lastName" placeholder="Achternaam" required><br />
+            <label class="control-label">*Email: </label><br />
+            <input class="input-xlarge" type="email" data-ng-model="user.email" placeholder="voorbeeld@info.nl" required><br />
+            <label class="">*Postcode en Huisnummer: </label><br />
+            <input class="input-medium" type="text" data-ng-model="user.address.postalCode" placeholder="1234AA" required pattern="[0-9]{4}[a-zA-Z]{2}">
+            <input class="input-mini" type="text" data-ng-model="user.address.houseNumber" placeholder="0"><br />
+            <label class="control-label">*Straatnaam: </label><br />
+            <input class="input-xlarge" type="text" data-ng-model="user.address.street" placeholder="Straat" required><br />
+            <label class="control-label">*Plaats: </label><br />
+            <input class="input-xlarge" type="text" data-ng-model="user.address.city" placeholder="Drop of Stad" required><br />
+            <button class="btn btn-primary" data-ng-click="saveNawInformation()">Gegevens wijzigen</button>
+            <a class="btn btn-primary" data-ng-controller="ShopCartCtrl" data-ng-click="continueShopping()">Verder winkelen</a>
+        </form>
+    </div>
 
-<div id="orderOverView">
-    <h2>Overzicht</h2>
-    <table>
-        <thead>
+    <div class="well offset2 span4">
+        <h2>Overzicht</h2>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Naam</th>
                 <th>Prijs</th>
                 <th>Aantal</th>
             </tr>
-        </thead>
-        <tbody>
-            <tr data-ng-repeat="orderline in order.orderlines">
-                <td>
-                    {{ orderline.caseDesign.name }}
-                </td>
-                <td>
-                    &euro;
-                    {{ 7.50 * orderline.aantal}}
-                </td>
-                <td>
-                    {{ orderline.aantal }}
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3">
-                    Totaal: &euro; <!-- totaal prijs -->
-                </td>
-            </tr>
-        </tfoot>
-    </table>
-    <button class="round-button-style" data-ng-click="loadPaymentMethods()">Afrekenen</button>
-</div>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="orderline in order.orderlines">
+                    <td>
+                        {{ orderline.caseDesign.name }}
+                    </td>
+                    <td>
+                        &euro;
+                        {{ 7.50 * orderline.aantal}}
+                    </td>
+                    <td>
+                        {{ orderline.aantal }}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr data-ng-init="calculateTotalPrice()">
+                    <td>
+                        Totaal:
+                    </td>
+                    <td colspan="2">
+                        &euro; {{totalPrice}}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <button class="btn btn-primary" data-ng-click="loadPaymentMethods()">Afrekenen</button>
+    </div>
+</article>

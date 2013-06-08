@@ -29,6 +29,7 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
                 order.orderlines[i] = {caseDesign:shopCartDesigns.orderlines[i]["caseDesign"], aantal: amount};
             }
             window.localStorage['Order'] = JSON.stringify(order);
+            $scope.calculateTotalPrice();
         }
     };
 
@@ -49,6 +50,15 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
             window.localStorage['Order'] = JSON.stringify(order);
         }
     };
+
+    $scope.calculateTotalPrice = function() {
+        $scope.totalPrice = 0;
+
+        for(var i = 0; i < $scope.order.orderlines.length; i++) {
+            $scope.totalPrice += $scope.order.orderlines[i].aantal * 7.5;
+        }
+    };
+
 
     $scope.loadPaymentMethods = function() {
         $location.path('/betalen/kiezen');

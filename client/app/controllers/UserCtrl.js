@@ -109,15 +109,17 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
      * This will get the user out of the storage and will get the right user info.
      */
     $scope.loadUserShopCart = function() {
-        var loggedInUser = JSON.parse(window.sessionStorage["loggedInUser"]);
+        if(window.sessionStorage['loggedInUser'] != undefined) {
+            var loggedInUser = JSON.parse(window.sessionStorage["loggedInUser"]);
 
-        var User = $resource('http://autobay.tezzt.nl\\:43083/user/' + loggedInUser["_id"],{},
-            {charge: {method:'GET', params:{charge:true}}}
-        );
+            var User = $resource('http://autobay.tezzt.nl\\:43083/user/' + loggedInUser["_id"],{},
+                {charge: {method:'GET', params:{charge:true}}}
+            );
 
-        User.get(function(data) {
-            $scope.user = data.result;
-        });
+            User.get(function(data) {
+                $scope.user = data.result;
+            });
+        }
     };
 
     /**
