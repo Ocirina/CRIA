@@ -363,6 +363,8 @@ nav ul li a{
         width: 49px;
     }
 
+    .paymentMethodsPage ul > li .icon-remove-sign { cursor: pointer; }
+
     .paymentMethodsPage .offset2 {
         margin-left: 100px;
     }
