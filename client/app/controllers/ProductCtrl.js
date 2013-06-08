@@ -173,6 +173,9 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
                 if(data.result !== null){
                     data.result.user = user;
                     $scope.comments.push(data.result);
+                    Application.notify('ok', 'Commentaar succesvol geplaatst.');
+                } else {
+                    Application.notify('error', 'Commentaar is niet opgeslagen, probeer opnieuw.');
                 }
             });
         } else {
