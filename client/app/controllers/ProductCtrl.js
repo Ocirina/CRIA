@@ -119,6 +119,10 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
         $scope.ratings = ratings;
     };
 
+    /**
+     * This function will add the rating to the server.
+     * @param {Number} value
+     */
     $scope.addRating = function(value) {
         if(window.sessionStorage['loggedInUser'] !== undefined){
             var Ratings = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/ratings', {id: '@caseDesign'},
