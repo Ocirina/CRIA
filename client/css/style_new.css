@@ -144,6 +144,11 @@ nav ul li a{
     display: block;
 }
 
+/*----Register----*/
+.registerPage .span2,.profilePage .span2 {
+    width: 143px;
+}
+
 /*----Login----*/
 #loginContainer {
     position: fixed;
@@ -348,6 +353,7 @@ h4 .icon-shopping-cart {
     float:left;
 }
 
+/*----Winkelwagen----*/
     .shoppingCartPage ul { margin-bottom: 20px}
 
     .shoppingCartPage ul > li {

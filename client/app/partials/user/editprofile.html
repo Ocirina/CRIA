@@ -1,0 +1,28 @@
+<article class="row ontop profilePage" data-ng-init="loadUserShopCart()">
+    <h2 class="span12">Profiel beheren</h2>
+    <form class="well span5" data-ng-init="user = { check: true, passCheck: true }">
+        <h3>Gebruikersgegevens</h3>
+        <label>Gebruikersnaam: </label><br />
+        <input class="span5" type="text" data-ng-change="checkRegister()" data-ng-model="user.name" maxlength="20" required><br>
+        <label>Email: </label><br />
+        <input class="span5" type="email" data-ng-change="checkRegister()" data-ng-model="user.email" required><br />
+        <label>Voor- en Achternaam:</label><br />
+        <input class="span2" type="text" data-ng-change="checkRegister()" data-ng-model="user.firstName" required>
+        <input class="span3" type="text" data-ng-change="checkRegister()" data-ng-model="user.lastName" required><br />
+        <label>Geboortedatum: </label><br />
+        <input class="span5" type="date" data-ng-change="checkRegister()" data-ng-model="user.dateOfBirth" required><br />
+        <button class="btn btn-primary" data-ng-click="saveNawInformation()">Opslaan</button>
+    </form>
+
+    <form class="well span5" data-ng-init="user = { check: true, passCheck: true }">
+        <h3>Adresgegevens</h3>
+        <label>Postcode en Huisnummer: </label><br />
+        <input class="span3" type="text" data-ng-model="user.address.postalCode" placeholder="1234AA" required pattern="[0-9]{4}[a-zA-Z]{2}">
+        <input class="span2" type="text" data-ng-model="user.address.houseNumber" placeholder="0"><br />
+        <label>Straatnaam: </label><br />
+        <input class="span5" type="text" data-ng-model="user.address.street" placeholder="Straat" required><br />
+        <label>Plaats: </label><br />
+        <input class="span5" type="text" data-ng-model="user.address.city" placeholder="Drop of Stad" required><br />
+        <button class="btn btn-primary" data-ng-click="saveNawInformation()">Opslaan</button>
+    </form>
+</article>

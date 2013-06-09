@@ -51,6 +51,11 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/user/register.html'
         })
 
+        .when('/gebruiker/profiel', {
+            controller: 'UserCtrl',
+            templateUrl: 'app/partials/user/editprofile.html'
+        })
+
         .when('/gebruiker/wachtwoordvergeten', {
             controller: 'UserCtrl',
             templateUrl: 'app/partials/user/wachtwoordvergeten.html'

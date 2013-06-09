@@ -1,18 +1,20 @@
-<form id="registerForm" data-ng-init="user = { check: true, passCheck: true }" ng-controller="UserCtrl">
-    <h1>Registreren</h1>
-    <label>Gebruikersnaam: </label><br />
-    <input type="text" data-ng-change="checkRegister()" data-ng-model="user.name" maxlength="20" required><br>
-    <label>Email: </label><br />
-    <input type="email" data-ng-change="checkRegister()" data-ng-model="user.email" required><br />
-    <label>Voor- en Achternaam:</label><br />
-    <input id="firstName" type="text" data-ng-change="checkRegister()" data-ng-model="user.firstName" required>
-    <input id="lastName" type="text" data-ng-change="checkRegister()" data-ng-model="user.lastName" required><br />
-    <label>Geboortedatum: </label><br />
-    <input type="date" data-ng-change="checkRegister()" data-ng-model="user.dateOfBirth" required><br />
-    <label>Wachtwoord: </label><br />
-    <input type="password" data-ng-change="checkRegister()" data-ng-model="user.password" required><br />
-    <label>Herhaal wachtwoord:</label><br />
-    <input id="secondPassword" type="password" data-ng-change="checkRegister()" data-ng-model="user.passwordCheck" required>
-    <div data-ng-hide="user.passCheck">Wachtwoorden komen niet overeen</div>
-    <button class="orangeButton" data-ng-disabled="user.check" data-ng-click="registerUser()">Registreer!</button>
-</form>
+<article class="row ontop registerPage">
+    <h2 class="span12">Registreren</h2>
+    <form class="well span6" data-ng-init="user = { check: true, passCheck: true }" ng-controller="UserCtrl">
+        <label>Gebruikersnaam: </label><br />
+        <input class="span6" type="text" data-ng-change="checkRegister()" data-ng-model="user.name" maxlength="20" required><br>
+        <label>Email: </label><br />
+        <input class="span6" type="email" data-ng-change="checkRegister()" data-ng-model="user.email" required><br />
+        <label>Voor- en Achternaam:</label><br />
+        <input class="span2" type="text" data-ng-change="checkRegister()" data-ng-model="user.firstName" required>
+        <input class="span4" type="text" data-ng-change="checkRegister()" data-ng-model="user.lastName" required><br />
+        <label>Geboortedatum: </label><br />
+        <input class="span6" type="date" data-ng-change="checkRegister()" data-ng-model="user.dateOfBirth" required><br />
+        <label>Wachtwoord: </label><br />
+        <input class="span6" type="password" data-ng-change="checkRegister()" data-ng-model="user.password" required><br />
+        <label>Herhaal wachtwoord:</label><br />
+        <input id="secondPassword" class="span6" type="password" data-ng-change="checkRegister()" data-ng-model="user.passwordCheck" required>
+        <div data-ng-hide="user.passCheck">Wachtwoorden komen niet overeen</div>
+        <button class="btn btn-primary" data-ng-disabled="user.check" data-ng-click="registerUser()">Registreer!</button>
+    </form>
+</article>
