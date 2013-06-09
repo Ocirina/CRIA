@@ -1,21 +1,20 @@
-<article class="row ontop">
+<article class="row ontop paymentMethodsPage">
     <h2 class="span12">Afrekenen</h2>
-    <div class="well span3">
-        <h5>Verzend opties</h5>
-        <input type="radio">Levering volgende dag <span>+&euro;10,00 </span><br />
-        <input type="radio">Normale Levering<span>+ &euro; 0,00</span> <br />
-        <input type="checkbox">Aangetekend<span>+ &euro; 5,00</span> <br />
-    </div>
+    <div class="well span5" data-ng-init="addImageDropDowns()">
+        <h3>Verzend opties</h3>
+        <label><input type="radio"> Levering volgende dag <span>+&euro;10,00 </span></label><br />
+        <label><input type="radio"> Normale Levering<span>+ &euro; 0,00</span></label> <br />
+        <label><input type="checkbox"> Aangetekend<span>+ &euro; 5,00</span></label> <br />
 
-    <div class="well span4" data-ng-init="addImageDropDowns()">
-        <h5>Betaal optie</h5>
+        <h3>Betaal optie</h3>
         <div id="paymentMethods"></div><br />
         <div id="paymentBanks"></div>
-        <button id="toPayment" class="round-button-style disabled" data-ng-click="pay()" disabled>Naar Betalen</button>
+        <button id="toPayment" class="btn btn-primary disabled" data-ng-click="pay()" disabled>Naar Betalen</button>
+        <span class="icon-question"></span>
     </div>
 
-    <div class="well span4" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
-        <h5>Bestelling</h5>
+    <div class="well span5" data-ng-controller="ShopCartCtrl" data-ng-init="loadShopCartDesigns()">
+        <h3>Bestelling</h3>
         <table class="table">
             <thead>
             <tr>
@@ -49,5 +48,12 @@
             </tr>
             </tfoot>
         </table>
+        <div data-ng-controller="UserCtrl" data-ng-init="loadUserShopCart()">
+            <h3>Wordt verstuurd naar</h3>
+            <label>{{user.firstName}} {{user.lastName}}</label>
+            <label>{{user.address.street}} {{user.address.houseNumber}}</label>
+            <label>{{user.address.postalCode}} {{ user.address.city }}<a href="#/winkelwagen">Wijzigen</a></label>
+        </div>
     </div>
+
 </article>

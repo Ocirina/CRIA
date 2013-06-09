@@ -48,6 +48,7 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
             }
 
             window.localStorage['Order'] = JSON.stringify(order);
+            $scope.calculateTotalPrice();
         }
     };
 

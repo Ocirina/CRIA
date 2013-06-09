@@ -357,7 +357,7 @@ h4 .icon-shopping-cart {
 
     .shoppingCartPage ul > li:nth-child(1n+2){ margin-left: 40px; }
 
-    .shoppingCartPage ul > li > img,.paymentMethodsPage ul > li > h5 {
+    .shoppingCartPage ul > li > img,.shoppingCartPage ul > li > h5 {
         display: block;
         margin: auto;
     }
@@ -381,6 +381,32 @@ h4 .icon-shopping-cart {
     .shoppingCartPage .input-large { width: 242px; }
 
     .shoppingCartPage .input-xlarge { width: 422px; }
+
+
+/*----Betalen/Afrekenen----*/
+
+.paymentMethodsPage span.icon-question {
+    float: right;
+    font-size: 16px;
+}
+
+    .paymentMethodsPage span.icon-question:hover {
+        cursor: pointer;
+    }
+
+.paymentMethodsPage label > span , .paymentMethodsPage label > span {
+    float: right;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.paymentMethodsPage div label {
+    width: 100%;
+}
+
+.paymentMethodsPage div label > a {
+    float: right;
+}
 
 
 /*----Footer----*/
