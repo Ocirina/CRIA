@@ -8,7 +8,7 @@
 
         <h3>Betaal optie</h3>
         <div id="paymentMethods"></div><br />
-        <div id="paymentBanks"></div>
+        <div id="paymentBanks"></div><br />
         <button id="toPayment" class="btn btn-primary disabled" data-ng-click="pay()" disabled>Naar Betalen</button>
         <span class="icon-question"></span>
     </div>
@@ -50,9 +50,11 @@
         </table>
         <div data-ng-controller="UserCtrl" data-ng-init="loadUserShopCart()">
             <h3>Wordt verstuurd naar</h3>
-            <label>{{user.firstName}} {{user.lastName}}</label>
-            <label>{{user.address.street}} {{user.address.houseNumber}}</label>
-            <label>{{user.address.postalCode}} {{ user.address.city }}<a href="#/winkelwagen">Wijzigen</a></label>
+            <div style="margin-left: 10px;">
+                <label>{{user.firstName}} {{user.lastName}}</label>
+                <label>{{user.address.street}} {{user.address.houseNumber}}</label>
+                <label>{{user.address.postalCode}} {{ user.address.city }}<a href="#/winkelwagen">Wijzigen</a></label>
+            </div>
         </div>
     </div>
 
