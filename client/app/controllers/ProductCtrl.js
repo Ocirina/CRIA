@@ -18,6 +18,8 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
      * So if we loop trough the array we can use the classes to generate stars filled in or not.
      */
     $scope.getProduct = function() {
+        $scope.loggedinUser = JSON.parse(window.sessionStorage['loggedInUser']);
+
         var id = $routeParams.id;
 
         var Product = $resource('http://autobay.tezzt.nl\\:43083/casedesign/' + id,{},
@@ -190,4 +192,21 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
             Application.notify('error', 'Je moet ingelogd zijn om te reageren.');
         }
     };
+
+    $scope.removeSociable = function(type, id){
+        if(window.sessionStorage['loggedInUser'] !== undefined){
+            var Sociable = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/' + type, {id: '@id', type: '@type'},
+                {charge: {method:'DELETE', params:{charge:true}}}
+            );
+
+            var sociable = {
+                id:     id,
+                type:   type
+            };
+
+            new Sociable(sociable);
+        } else {
+            Application.notify('error', 'Je moet ingelogd zijn een reactie te verwijderen.');
+        }
+    }
 });

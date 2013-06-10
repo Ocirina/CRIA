@@ -9,14 +9,14 @@
 	
 	<div class="span2 well sel-phone">
 		<h6>Welke Iphone heb je?</h6>
-		<div data-ng-click="activatePhone(4);" class="phone4">
+		<div data-ng-click="activatePhone(4);" class="phone4 span1">
 			<h3>4</h3>
 			<div class="icon-ok-sign span1 sign-ok" data-ng-show="phone.phone == 4"></div>
 		</div>
-		<div date-ng-click="activatePhone(5)" class="phone5">
-			<h3>5</h3>
-			<div class="icon-ok-sign span1 sign-ok" data-ng-show="phone.phone == 5"></div>
-		</div>
+        <div data-ng-click="activatePhone(5);" class="phone5 span1">
+            <h3>5</h3>
+            <div class="icon-ok-sign span1 sign-ok" data-ng-show="phone.phone == 5"></div>
+        </div>
 	</div>
 	
 	<div class="span4 pull-right well sel-bg">
@@ -110,9 +110,6 @@
 	</div>
 	
     <div class="phone phone-{{phone.phone}} span4">
-        <img data-ng-show="phone.phone == 4" src="img/iphone4.png" class="iphone-4">
-        <img data-ng-show="phone.phone == 5" src="img/iphone5.png" class="iphone-5">
-
         <canvas id="case-editor"></canvas>
     </div>
 	

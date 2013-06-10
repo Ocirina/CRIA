@@ -47,7 +47,12 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
                 }
             }
 
-            window.localStorage['Order'] = JSON.stringify(order);
+            if(order.orderlines.length === 0){
+                window.localStorage.removeItem('Order');
+            } else {
+                window.localStorage['Order'] = JSON.stringify(order);
+            }
+
             $scope.calculateTotalPrice();
         }
     };
