@@ -20,8 +20,8 @@
 	</div>
 	
 	<div class="span4 pull-right well sel-bg">
-			<h6>Achtergrond</h6>
-			<p>Zoek een eigen afbeelding op, en sleed deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
+		<h6>Achtergrond</h6>
+		<p>Zoek een eigen afbeelding op, en sleep deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
 	    <input type="file" multiple id="upload" placeholder"Uplouden">
 		<div>
 			<div class="icon-caret-left"></div>
@@ -70,27 +70,26 @@
 	
 	<div class="span3 well pull-right sel-text" id="text">
 			<h6 class="span2">Tekststijl</h6>
-		<button class="span1 btn"><i class="icon-font"/></i></button>
 			
 		<div class="btn-toolbar">
 		  <div class="btn-group">
-		    <a class="btn" href="#"><i class="icon-align-left"></i></a>
-		    <a class="btn" href="#"><i class="icon-align-center"></i></a>
-		    <a class="btn" href="#"><i class="icon-align-right"></i></a>
-		    <a class="btn" href="#"><i class="icon-align-justify"></i></a>
+		    <a class="btn" href="#" id="align-left"><i class="icon-align-left"></i></a>
+		    <a class="btn" href="#" id="align-center"><i class="icon-align-center"></i></a>
+		    <a class="btn" href="#" id="align-right"><i class="icon-align-right"></i></a>
+		    <a class="btn" href="#" id="align-justify"><i class="icon-align-justify"></i></a>
 		  </div>
 		</div>
 			
 		<div class="btn-toolbar">
 		  <div class="btn-group">
-		    <a class="btn" href="#"><i class="icon-bold"></i></a>
-		    <a class="btn" href="#"><i class="icon-italic"></i></a>
-		    <a class="btn" href="#"><i class="icon-underline"></i></a>
-		    <a class="btn" href="#"><i class="icon-strikethrough"></i></a>
+		    <a class="btn" href="#" id="set-bold"><i class="icon-bold"></i></a>
+		    <a class="btn" href="#" id="set-italic"><i class="icon-italic"></i></a>
+		    <a class="btn" href="#" id="set-underline"><i class="icon-underline"></i></a>
+		    <a class="btn" href="#" id="set-strikethrough"><i class="icon-strikethrough"></i></a>
 		  </div>
 		</div>
 			
-		<select>
+		<select id="set-font">
 		  <option>Verdana</option>
 		  <option>Georgie</option>
 		  <option>Arial</option>
@@ -99,8 +98,10 @@
 		</select>
 		
 		<form>
-			<input class="span1" type="tekst" value="23"/>
-			<input class="span1 offset1" type="color"/>
+			<input id="set-font-size" class="span1" type="tekst" value="23"/>
+			<input id="set-font-color" class="span1 offset1" type="color"/>
+            <textarea id="set-text"></textarea>
+            <button class="span1 btn" id="add-text">Voeg tekst toe</button>
 		</form>
 	</div>
 	
