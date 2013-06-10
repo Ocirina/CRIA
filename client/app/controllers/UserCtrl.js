@@ -40,7 +40,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
 
         var user = new User($scope.user);
         user.$save(function(data) {
-            if(data.error !== null){
+            if(data.error === null){
                 Application.notify('ok', 'Account is succesvol aangemaakt.');
             }
             // callback
@@ -133,7 +133,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
 
         var user = new User($scope.user);
         user.$update(function(data) {
-            if(data.error !== null){
+            if(data.error === null){
                 Application.notify('ok', 'NAW gegevens zijn succesvol aangepast.');
             } else {
                 Application.notify('error','NAW Gegevens zijn niet aangepast, er is iets misgegaan.');
