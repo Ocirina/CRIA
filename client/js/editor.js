@@ -1,23 +1,28 @@
-var canvas = new fabric.Canvas('case-editor');
-canvas.setWidth(270);
-canvas.setHeight(572);
-//addTextToCanvas("Hello, this is dog!!!", 'normal');
-
-if (window.File && window.FileReader && window.FileList && window.Blob) {
-    var zone = document.querySelector('.canvas-container');
-    zone.addEventListener('dragover', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-    }, false);
+$(document).on('StartEditor', function(e){
+  var canvas = new fabric.Canvas('case-editor');
+  canvas.setWidth(270);
+  canvas.setHeight(572);
+  addTextToCanvas("Hello, this is dog!!!", 'normal', canvas);
+  
+  if (hasFileUploadSupport()) {
+      var zone = document.querySelector('.canvas-container');
+      zone.addEventListener('dragover', function(e) {
+          e.stopPropagation();
+          e.preventDefault();
+      }, false);
     
-    zone.addEventListener('drop', function(e) {
-        addFiles(e.dataTransfer.files);
-        e.stopPropagation();
-        e.preventDefault();
-    }, false);
-}
+      zone.addEventListener('drop', function(e) {
+          addFiles(e.dataTransfer.files, canvas);
+          e.stopPropagation();
+          e.preventDefault();
+      }, false);
+  }
+});
 
-function addTextToCanvas(text, weight) {
+function hasFileUploadSupport() {
+  return (window.File && window.FileReader && window.FileList && window.Blob);
+}
+function addTextToCanvas(text, weight, canvas) {
     var text = new fabric.Text(text, {
       fontSize: 20,
       lineHeight: 1,
@@ -27,28 +32,26 @@ function addTextToCanvas(text, weight) {
     });
     canvas.add(text);
 }
-function addImageToCanvas(data) {
+function addImageToCanvas(data, canvas) {
     fabric.Image.fromURL(data, function(obj) {
-        var ratio = calculateRatio(data, 400, 400);
-        var settings = calculateCenter(500, 500);
+        var ratio = calculateRatio(data, 270, 572);
+        var settings = calculateCenter(270, 572);
         canvas.add(obj.scale(ratio).set(settings));
     });
 }
-
-function addFiles(files) {
+function addFiles(files, canvas) {
     var reader = null;
     for (var i = 0, f; f = files[i]; i++) {
         if (!f.type.match('image.*')) { continue; }
         reader = new FileReader();
         reader.onload = (function(theFile) {
             return function(e) {
-                addImageToCanvas(e.target.result);
+                addImageToCanvas(e.target.result, canvas);
             };
         })(f);
         reader.readAsDataURL(f);
     }
 }
-
 function calculateRatio(data, canvasHeight, canvasWidth) {
     var img = document.createElement('img');
     img.src = data;
@@ -61,7 +64,6 @@ function calculateRatio(data, canvasHeight, canvasWidth) {
     var vRatio = canvasHeight / photoImgHeight;
     return Math.min(hRatio, vRatio);
 }
-
 function calculateCenter(canvasWidth, canvasHeight) {
     var finalWidth = (canvasWidth/2);
     var finalHeight = (canvasHeight/2);
