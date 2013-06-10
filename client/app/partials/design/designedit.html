@@ -1,0 +1,124 @@
+<div class="row ontop" data-ng-init="phone = []">
+    <form class="span12 form-horizontal">
+		<label for="name">Geef je ontwerp een naam</label>
+        <input name="name" type="text" class="input-medium" value"{{ design.name }}">
+    </form>
+</div>
+
+http://94.210.234.160/_design_your_own/img/
+
+<div class="row top">
+	<div class="span2">
+		<h2>Welke Iphone heb je?</h2>
+		<div data-ng-click="activatePhone(4);">
+			<h3>4</h3>
+			<div class="icon-ok-sign span1 sign-ok" data-ng-show="phone.phone == 4">
+			</div></div>
+		<div date-ng-click="activatePhone(5)">
+			<h3>5</h3>
+			<div class="icon-ok-sign span1 sign-ok" data-ng-show="phone.phone == 5">
+			</div></div>
+		</div>
+	</div>
+	
+	<div class="span3 clean">
+		<h2>Wat voor case wil je?</h2>
+        <div data-ng-click="setCaseType(1);" class="span1">
+            <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 1"></div>
+        </div>
+
+        <div data-ng-click="setCaseType(2);" class="span1">
+            <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 2"></div>
+        </div>
+
+        <div data-ng-click="setCaseType(3);" class="span1">
+            <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 3"></div>
+        </div>
+	</div>
+	
+	<div class="span4 clean">
+		<h2>Objecten toevoegen</h2>
+	</div>
+	
+    <div class="phone phone-{{phone.phone}} span2 offset1">
+        <img data-ng-show="phone.phone == 4" src="img/iphone4.png" class="iphone-4">
+        <img data-ng-show="phone.phone == 5" src="img/iphone5.png" class="iphone-5">
+
+        <canvas id="case-editor"></canvas>
+    </div>
+	
+	<div class="span4 offset1">
+		<div class="span4">
+			<h2>Achtergrond</h2>
+			<p>Zoek een eigen afbeelding op, en sleed deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
+			
+            <input type="file" multiple id="upload" placeholder"Uplouden">
+        </div>
+		<div class="span4">
+			<div class="icon-caret-left"></div>
+			<div id="background-slider">
+				<div class="sliderow row-top">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+				</div>
+				<div class="sliderow row-bottom">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+                    <img src="#">
+				</div>
+			</div>
+			<div class="icon-caret-right hidden"></div>
+		</div>
+	</div>
+	
+	<div class="span3 offset1" id="text">
+			<h2 class="span2">Tekststijl</h2>
+		<i class="icon-font span1"/>
+			
+		<div class="btn-toolbar">
+		  <div class="btn-group">
+		    <a class="btn" href="#"><i class="icon-align-left"></i></a>
+		    <a class="btn" href="#"><i class="icon-align-center"></i></a>
+		    <a class="btn" href="#"><i class="icon-align-right"></i></a>
+		    <a class="btn" href="#"><i class="icon-align-justify"></i></a>
+		  </div>
+		</div>
+			
+		<div class="btn-toolbar">
+		  <div class="btn-group">
+		    <a class="btn" href="#"><i class="icon-bold"></i></a>
+		    <a class="btn" href="#"><i class="icon-italic"></i></a>
+		    <a class="btn" href="#"><i class="icon-underline"></i></a>
+		    <a class="btn" href="#"><i class="icon-striketrough"></i></a>
+		  </div>
+		</div>
+			
+		<select>
+		  <option>Verdana</option>
+		  <option>Georgie</option>
+		  <option>Arial</option>
+		  <option>Granddesign</option>
+		  <option>Time New Roman</option>
+		</select>
+		
+		<div class="span1"></div>
+		<input type="color"/>
+	</div>
+	
+	<div class="span4">
+					
+		
+			

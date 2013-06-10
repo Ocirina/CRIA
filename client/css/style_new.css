@@ -469,3 +469,15 @@ footer ul li a{
     margin-left: 5px;
     color: #FFF;
 }
+
+/*----Designer----*/
+.clean{
+	clear:both;
+}
+.absolute{
+	position:absolute;
+	top:50%;
+	margin-top:-200px;
+}
+
+
