@@ -56,19 +56,27 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
     /**
      * This function will add the product to the local storage cart. This product will be provided by the $scope var.
      */
-    $scope.addProductToShopCart = function() {
+    $scope.addProductToShopCart = function(productParam) {
         var order = {
             orderlines: []
         };
+
+        var product;
+
+        if(productParam === undefined){
+            product = $scope.product;
+        } else {
+            product = productParam;
+        }
 
         if (!window.localStorage['Order']) {
             window.localStorage['Order'] = JSON.stringify(order);
         }
 
         order = JSON.parse(window.localStorage['Order']);
-        var productAdded = $scope.checkProductInShopCart($scope.product._id);
+        var productAdded = $scope.checkProductInShopCart(product._id);
         if(!productAdded) {
-            order.orderlines.push({"caseDesign": $scope.product, "aantal":1});
+            order.orderlines.push({"caseDesign": product, "aantal":1});
             window.localStorage['Order'] = JSON.stringify(order);
         }
 
