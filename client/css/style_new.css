@@ -71,6 +71,7 @@ h5{
     margin-bottom:15px;
 }
 h6{
+	margin-bottom:10px;
 	font-size:14px;
 }
 .casep h5{
@@ -483,16 +484,27 @@ footer ul li a{
 	height:532px;
 }
 .phone4{
-	background:url('http://94.210.234.160/_design_your_own/img/iphone4.png');
-	height:;
+	background:url('http://94.210.234.160/_design_your_own/img/iphone4.png')no-repeat;
+	background-size:60px 118px;
+	height:118px;
+	margin:0;
 }
 .phone-5{
-	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png');
+	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png' );
 	height:569px;
 }
 .phone5{
-	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png');
-	height:;
+	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png')no-repeat;
+	background-size:60px 126px;
+	height:126px;
+}
+.phone5, .phone4, .sticker, .hardcase, .silicone{
+	cursor:pointer;
+	color:#f8f8f8;
+	position:relative;
+}
+.phone5 p, .phone4 p{
+	text-align:center;
 }
 .ontwerpen{
 	position:relative;
@@ -506,11 +518,11 @@ footer ul li a{
 }
 .sel-case{
 	left:0;
-	top:150px;
+	top:210px;
 }
 .sel-object{
 	left:0;
-	top:300px;
+	top:407px;
 }
 .sel-text{
 	right:0;
@@ -520,9 +532,68 @@ footer ul li a{
 	right:0;
 	top:0;
 }
+.sel-bg p{
+	font-size:12px;
+}
 .ontwerpen .phone{
 	position:absolute;
 	top:0;
 	left:285px;
 	width:270px;
 }
+
+.sticker{
+	height:114px;
+	background:url('http://94.210.234.160/_design_your_own/img/sticker.png');
+	background-size:60px 114px;
+	margin:0;
+}
+.hardcase{
+	height:114px;
+	background:url('http://94.210.234.160/_design_your_own/img/hardcase.png');
+	background-size:60px 114px;
+}
+.silicone{
+	height:114px;
+	background:url('http://94.210.234.160/_design_your_own/img/silicone.png');
+	background-size:60px 114px;
+}
+.sign-ok {
+    position: absolute;
+    bottom: 15%;
+    left: 5%;
+    line-height: 0px;
+    color: #FFF;
+}
+.icon-caret-left, .icon-caret-right {
+  width: 10px !important;
+  height: 10px;
+  margin: 50px 0;
+  float: left;
+  border: none !important;
+  cursor: pointer;
+}
+.icon-caret-left:before, 
+.icon-caret-right:before {
+    color: #6EBDC4;
+    font-size: 12px;
+  }
+  .sliderow {
+    min-width: 100%;
+    height: 50px;
+    border: none;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .sliderow.row-bottom {
+    top: 50px;
+  }
+  
+    .sliderow img {
+      width: 40px;
+      height: 40px;
+      float: left;
+      margin: 5px;
+    }
