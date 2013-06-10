@@ -33,8 +33,25 @@ var User = Schema({
 User.pre('save', function(next, req, callback){
   if (req.body['address']) {
     var Address = mongoose.models["Address"];
-    var item = new Address(req.body.address);
-    var self = this; // See second node above.
+    if (req.body.address._id) {
+      update(req.body.address._id, req.body.address, next, callback);
+    }
+    else {
+      var self = this; // See second node above.
+      create(req.body.address, next, callback, self);
+    }
+  }
+  else {next(callback);}
+  
+  function update(id, body, next, callback) {
+    Address.findOneAndUpdate({_id: id}, body, {}, function(err){
+      if (!err) {next(callback);}
+      else {next(err);}
+    });
+  }
+  
+  function create(body, next, callback, self) {
+    var item = new Address(body);
     item.save(function(err){
       if (!err) {
         self.addresses = item._id;
@@ -43,7 +60,6 @@ User.pre('save', function(next, req, callback){
       else {next(err);}
     });
   }
-  else {next(callback);}
 });
 
 /**
