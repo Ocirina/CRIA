@@ -15,7 +15,7 @@ $(document).on('StartEditor', function (e) {
     }
 
     console.log($('#add-text'));
-    
+
     $('#add-text').on('click', function (e) {
         console.log($('#set-font').val());
         /*var settings = {
@@ -100,16 +100,19 @@ $(document).on('StartEditor', function (e) {
 
     function addFiles(files, canvas) {
         var reader = null;
+
         for (var i = 0, f; f = files[i]; i++) {
             if (!f.type.match('image.*')) {
                 continue;
             }
+
             reader = new FileReader();
             reader.onload = (function (theFile) {
                 return function (e) {
                     addImageToCanvas(e.target.result, canvas);
                 };
             })(f);
+
             reader.readAsDataURL(f);
         }
     }
@@ -119,9 +122,11 @@ $(document).on('StartEditor', function (e) {
         img.src = data;
         var photoImgWidth = img.width;
         var photoImgHeight = img.height;
+
         if (photoImgWidth < canvasWidth && photoImgHeight < canvasHeight) {
             return 1;
         }
+
         var hRatio = canvasWidth / photoImgWidth;
         var vRatio = canvasHeight / photoImgHeight;
         return Math.min(hRatio, vRatio);
