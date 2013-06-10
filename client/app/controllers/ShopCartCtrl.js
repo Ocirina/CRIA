@@ -61,8 +61,12 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
     $scope.calculateTotalPrice = function() {
         $scope.totalPrice = 0;
 
-        for(var i = 0; i < $scope.order.orderlines.length; i++) {
-            $scope.totalPrice += $scope.order.orderlines[i].aantal * 7.5;
+        if($scope.order !== undefined && $scope.order !== null){
+            if($scope.order.orderlines.length !== 0){
+                for(var i = 0; i < $scope.order.orderlines.length; i++) {
+                    $scope.totalPrice += $scope.order.orderlines[i].aantal * 7.5;
+                }
+            }
         }
     };
 
