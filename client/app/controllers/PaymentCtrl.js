@@ -16,28 +16,28 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
                 value: 1,
                 selected: false,
                 description: "Betalen met uw eigen bank",
-                imageSrc: "./img/paymenticons/IDEAL.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/IDEAL.png"
             },
             {
                 text: "Mastercard",
                 value: 2,
                 selected: false,
                 description: "Betalen met Mastercard",
-                imageSrc: "./img/paymenticons/Mastercard.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/Mastercard.png"
             },
             {
                 text: "Paypal",
                 value: 3,
                 selected: false,
                 description: "Betaal met uw Paypal-account",
-                imageSrc: "./img/paymenticons/Paypal.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/Paypal.png"
             },
             {
                 text: "Visa",
                 value: 4,
                 selected: false,
                 description: "Betalen met Visa",
-                imageSrc: "./img/paymenticons/Visa.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/Visa.png"
             }
         ];
 
