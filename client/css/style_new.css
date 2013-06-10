@@ -547,6 +547,9 @@ footer ul li a{
 .sel-text .btn-group{
 	display:inline-block;
 }
+.sel-text .text-color{
+	margin-left:80px;
+}
 .sel-bg{
 	right:0;
 	top:0;
