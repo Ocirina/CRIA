@@ -2,37 +2,30 @@ $(document).on('StartEditor', function(e){
   var canvas = new fabric.Canvas('case-editor');
   canvas.setWidth(270);
   canvas.setHeight(572);
-  addTextToCanvas("Hello, this is dog!!!", 'normal', canvas);
+
   
-  if (hasFileUploadSupport()) {
-<<<<<<< Local Changes
-<<<<<<< Local Changes
-    $('#upload').on('change', function(e){
-      addFiles(e.target.files, canvas);
-      return stopEvent(e);
-    });
-    //$(document.body).on({"dragover": stopEvent, "drop": stopEvent});
-    //$('.phone').on({"dragover": stopEvent, "drop": handleDroppedFiles});
-  }
-  $('#add-text').on('click', function(e){
+if (hasFileUploadSupport()) {
+  $('#upload').on('change', function(e) {
+    addFiles(e.target.files, canvas);
     return stopEvent(e);
   });
-  var textSample = new fabric.Text(text.slice(0, getRandomInt(0, text.length)), {
-        left: getRandomInt(350, 400),
-        top: getRandomInt(350, 400),
-        fontFamily: 'helvetica',
-        angle: getRandomInt(-10, 10),
-        fill: '#' + getRandomColor(),
-        scaleX: 0.5,
-        scaleY: 0.5,
-        fontWeight: '',
-        originX: 'left',
-        hasRotatingPoint: true
-      });
-      canvas.add(textSample);
-  
-  
-  
+  //$(document.body).on({"dragover": stopEvent, "drop": stopEvent});
+  //$('.phone').on({"dragover": stopEvent, "drop": handleDroppedFiles});
+}
+console.log($('#add-text'));
+$('#add-text').on('click', function(e) {
+  console.log($('#set-font').val());
+  /*var settings = {
+      fontFamily: $('#set-font').val(),
+      fontWeight: 'normal',
+      fontSize: $('#set-font-size').val(),
+      color: $('#set-font-color').val()
+    },
+    text = $('#set-text').val();
+  addText(text, settings, canvas);*/
+  return stopEvent(e);
+});
+
   function handleDroppedFiles(e) {
     console.log(e);
     //addFiles(e.dataTransfer.files, canvas);
@@ -48,15 +41,10 @@ $(document).on('StartEditor', function(e){
   function hasFileUploadSupport() {
     return (window.File && window.FileReader && window.FileList && window.Blob);
   }
-  function addTextToCanvas(text, weight, canvas) {
-      var text = new fabric.Text(text, {
-        fontSize: 20,
-        lineHeight: 1,
-        originX: 'left',
-        fontFamily: 'Helvetica',
-        fontWeight: weight
-      });
-      canvas.add(text);
+  function addText(text, settings, canvas) {
+    console.log(text, settings, canvas);
+    var text = new fabric.Text(text, settings);
+    canvas.add(text);
   }
   function addImageToCanvas(data, canvas) {
       fabric.Image.fromURL(data, function(obj) {
@@ -76,53 +64,8 @@ $(document).on('StartEditor', function(e){
               };
           })(f);
           reader.readAsDataURL(f);
-=======
-      var input = document.getElementById('upload');
-      input.addEventListener('change', function(e){
-        addFiles(e.dataTransfer.files, canvas);
-        return stopEvent(e);
-      }, false);
-      
-      var zone = document.querySelector('.canvas-container');
-      zone.addEventListener('dragover', function(e) {
-        return stopEvent(e);
-      }, false);
-    
-      zone.addEventListener('drop', function(e) {
-        addFiles(e.dataTransfer.files, canvas);
-        return stopEvent(e);
-      }, false);
-      
-      function stopEvent(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        return false;
->>>>>>> External Changes
-=======
-      var input = document.getElementById('upload');
-      input.addEventListener('change', function(e){
-        addFiles(e.dataTransfer.files, canvas);
-        return stopEvent(e);
-      }, false);
-      
-      var zone = document.querySelector('.canvas-container');
-      zone.addEventListener('dragover', function(e) {
-        return stopEvent(e);
-      }, false);
-    
-      zone.addEventListener('drop', function(e) {
-        addFiles(e.dataTransfer.files, canvas);
-        return stopEvent(e);
-      }, false);
-      
-      function stopEvent(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        return false;
->>>>>>> External Changes
       }
   }
-});
 
 function hasFileUploadSupport() {
   return (window.File && window.FileReader && window.FileList && window.Blob);
@@ -174,3 +117,5 @@ function calculateCenter(canvasWidth, canvasHeight) {
     var finalHeight = (canvasHeight/2);
     return { left: finalWidth, top: finalHeight };
 }
+
+}); // End of StartEditor Event!
