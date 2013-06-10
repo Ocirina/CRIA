@@ -247,7 +247,7 @@ nav ul li a{
 }
 .homebtn:nth-child(1){
     background: url("http://94.210.234.160/_design_your_own/img/wedstrijd.jpg");
-    margin-left: 0;
+    margin-left: 20px;
 }
 .homebtn:nth-child(2){
     background:#6ebdc4 url("http://94.210.234.160/_design_your_own/img/ontwerp.jpg");
@@ -513,12 +513,13 @@ footer ul li a{
 	height:118px;
 	background-size:60px 118px;
 }
-.phone4, .phone5, .hardcase, .silicone, .sticker{
+.phone4, .phone5, .hardcase, .silicone, .sticker, .sel-phone p, .sel-case p{
 	cursor:pointer;
 	position:relative;
 	color:#ffffff;
 	text-align:center;
 }
+
 .ontwerpen{
 	position:relative;
 }
@@ -553,4 +554,11 @@ footer ul li a{
 	top:0;
 	left:285px;
 	width:270px;
+}
+.sign-ok {
+    position: absolute;
+    bottom: 15%;
+    left: 5%;
+    line-height: 0px;
+    color: #FFF;
 }
