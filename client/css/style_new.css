@@ -242,10 +242,10 @@ nav ul li a{
     -ms-transform: rotate(-30deg);
 }
 .homebtn:nth-child(1){
-    background: url("http://94.210.234.160/_design_your_own/img/wedstrijd.png");
+    background: url("http://94.210.234.160/_design_your_own/img/wedstrijd.jpg");
 }
 .homebtn:nth-child(2){
-    background:#6ebdc4 url("http://94.210.234.160/_design_your_own/img/ontwerp.png");
+    background:#6ebdc4 url("http://94.210.234.160/_design_your_own/img/ontwerp.jpg");
 }
 .homebtn:nth-child(3){
     background:url("http://94.210.234.160/_design_your_own/img/gallery.png");
