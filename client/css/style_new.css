@@ -541,14 +541,55 @@ footer ul li a{
 .sel-text{
 	right:0;
 	top:250px;
+	text-align:center;
+}
+.sel-text .btn-group{
+	display:inline-block;
 }
 .sel-bg{
 	right:0;
 	top:0;
 }
-.sel-bg .bg-txt {
-    position: relative;
+	.sel-bg .bg-txt {
+    	position: relative;
+	}
+	.sel-bg > div {
+    	position: relative;
+	}
+	.sel-bg p{
+		font-size:12px;
+	}
+	.sel-bg .icon-caret-left, .sel-bg .icon-caret-right {
+  		width: 10px !important;
+		height: 10px;
+  		margin: 50px 0;
+  	  	float: left;
+  	  	border: none !important;
+  	 	cursor: pointer;
+	}
+  	.sel-bg .icon-caret-left:before, 
+  	.sel-bg .icon-caret-right:before {
+    	color: #6EBDC4;
+    	font-size: 12px;
+  	}
+.sliderow {
+	min-width: 100%;
+  	height: 50px;
+  	border: none;
+  	overflow: hidden;
+  	position: absolute;
+  	top: 0;
+  	left: 0;
 }
+	.sliderow.row-bottom {
+		top: 50px;
+		}
+	.sliderow img {
+    	width: 40px;
+    	height: 40px;
+    	float: left;
+    	margin: 5px;
+  	}
 .ontwerpen .phone{
 	position:absolute;
 	top:0;
@@ -562,3 +603,4 @@ footer ul li a{
     line-height: 0px;
     color: #FFF;
 }
+
