@@ -6,6 +6,7 @@ app.controller('DesignCtrl', function($scope, $location) {
      */
     $scope.activatePhone = function(phoneId) {
         $scope.phone.phone = phoneId;
+        $.event.trigger('StartEditor');
     }
 
     /**
