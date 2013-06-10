@@ -16,15 +16,14 @@
             <img data-ng-src="{{product.preview}}" alt=""/>
             <div class="txt">
                 <h4>Titel:</h4>
-                <h5>{{ product.title }}</h5>
+                <h5>{{ product.name }}</h5>
                 <h4>Auteur:</h4>
-                <h5>{{ product.title }}</h5>
+                <h5>T. Frankena</h5>
                 <h4>Laatst gewijzigd:</h4>
                 <h5>{{ product.created_at | date:'dd-MM-yyyy' }}</h5>
                 <div class="rating"></div>
                 <h4 class="price">Prijs:
-                    <span class="icon-shopping-cart"></span>
-                    <span>€9,99</span>
+                    <span>€9,99 <i data-ng-click="addProductToShopCart()" class="icon-shopping-cart"/i></span>
                 </h4>
             </div>
         </div>
