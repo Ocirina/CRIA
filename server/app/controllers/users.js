@@ -11,7 +11,7 @@ var PasswordHash = require('password-hash');
  * @return {Object} Body of the request.
  */
 function setIdForAddress(body, user) {
-  if (body.hasOwnProperty('address')) {
+  if (body.hasOwnProperty('address')) { // TODO: Idiotic code won't work with PUT if check is added for address._id
     body.address = {user: user._id};
   }
   return body;
