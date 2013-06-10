@@ -477,6 +477,23 @@ footer ul li a{
 .clean{
 	clear:both;
 }
+
+.phone-4{
+	background:url('http://94.210.234.160/_design_your_own/img/iphone4.png');
+	height:532px;
+}
+.phone4{
+	background:url('http://94.210.234.160/_design_your_own/img/iphone4.png');
+	height:;
+}
+.phone-5{
+	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png');
+	height:569px;
+}
+.phone5{
+	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png');
+	height:;
+}
 .ontwerpen{
 	position:relative;
 }
@@ -503,5 +520,9 @@ footer ul li a{
 	right:0;
 	top:0;
 }
-
-
+.ontwerpen .phone{
+	position:absolute;
+	top:0;
+	left:285px;
+	width:270px;
+}
