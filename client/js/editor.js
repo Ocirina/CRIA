@@ -8,22 +8,23 @@ $(document).on('StartEditor', function(e){
       var input = document.getElementById('upload');
       input.addEventListener('change', function(e){
         addFiles(e.dataTransfer.files, canvas);
-        stopEvent(e);
+        return stopEvent(e);
       }, false);
       
       var zone = document.querySelector('.canvas-container');
       zone.addEventListener('dragover', function(e) {
-          stopEvent(e);
+        return stopEvent(e);
       }, false);
     
       zone.addEventListener('drop', function(e) {
-          addFiles(e.dataTransfer.files, canvas);
-          stopEvent(e);
+        addFiles(e.dataTransfer.files, canvas);
+        return stopEvent(e);
       }, false);
       
       function stopEvent(e) {
         e.stopPropagation();
         e.preventDefault();
+        return false;
       }
   }
 });
