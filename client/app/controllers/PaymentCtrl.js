@@ -72,43 +72,43 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
                 text: "Rabobank",
                 value: 1,
                 selected: false,
-                imageSrc: "./img/paymenticons/Rabobank.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/Rabobank.png"
             },
             {
                 text: "ABN Amro",
                 value: 2,
                 selected: false,
-                imageSrc: "./img/paymenticons/ABNAMBRO.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/ABNAMBRO.png"
             },
             {
                 text: "ING",
                 value: 3,
                 selected: false,
-                imageSrc: "./img/paymenticons/ING.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/ING.png"
             },
             {
                 text: "ASN",
                 value: 4,
                 selected: false,
-                imageSrc: "./img/paymenticons/ASN.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/ASN.png"
             },
             {
                 text: "SNS Reaal",
                 value: 5,
                 selected: false,
-                imageSrc: "./img/paymenticons/Sns.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/Sns.png"
             },
             {
                 text: "Fortis",
                 value: 6,
                 selected: false,
-                imageSrc: "./img/paymenticons/Fortis.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/Fortis.png"
             },
             {
                 text: "Triodos",
                 value: 7,
                 selected: false,
-                imageSrc: "./img/paymenticons/Triodos Bank.png"
+                imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/Triodos Bank.png"
             }
         ];
 
