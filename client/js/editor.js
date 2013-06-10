@@ -3,6 +3,14 @@ $(document).on('StartEditor', function (e) {
     canvas.setWidth(270);
     canvas.setHeight(572);
 
+    canvas.on('object:selected', function(e){
+        var selectedObject = e.target;
+
+        if(selectedObject.type === 'text'){
+            $("#set-text").val(selectedObject.get('text'));
+        }
+    });
+
     if (hasFileUploadSupport()) {
         $('#upload').on('change', function (e) {
             addFiles(e.target.files, canvas);
@@ -134,5 +142,4 @@ $(document).on('StartEditor', function (e) {
         var finalHeight = (canvasHeight / 2);
         return { left: finalWidth, top: finalHeight };
     }
-
-}); // End of StartEditor Event!
+});
