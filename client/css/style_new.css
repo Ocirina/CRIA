@@ -70,6 +70,9 @@ h5{
     font-family:'grandesigni';
     margin-bottom:15px;
 }
+h6{
+	font-size:14px;
+}
 .casep h5{
     font-size:20px;
 }
@@ -474,10 +477,31 @@ footer ul li a{
 .clean{
 	clear:both;
 }
-.absolute{
+.ontwerpen{
+	position:relative;
+}
+.ontwerpen .well{
 	position:absolute;
-	top:50%;
-	margin-top:-200px;
+}
+.sel-phone{
+	left:0;
+	top:0;
+}
+.sel-case{
+	left:0;
+	top:150px;
+}
+.sel-object{
+	left:0;
+	top:300px;
+}
+.sel-text{
+	right:0;
+	top:250px;
+}
+.sel-bg{
+	right:0;
+	top:0;
 }
 
 
