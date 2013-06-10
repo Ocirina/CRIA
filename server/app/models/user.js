@@ -34,10 +34,12 @@ User.pre('save', function(next, req, callback){
   if (req.body['address']) {
     var Address = mongoose.models["Address"];
     if (req.body.address._id) {
-      update(req.body.address._id, req.body.address, next, callback);
+      var id = req.body.address._id;
+      delete req.body.address._id;
+      update(id, req.body, next, callback);
     }
     else {
-      var self = this; // See second node above.
+      var self = this; // See second note above.
       create(req.body.address, next, callback, self);
     }
   }
