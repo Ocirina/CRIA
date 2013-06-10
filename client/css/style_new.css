@@ -214,7 +214,7 @@ nav ul li a{
     width:100%;
 }
 .homebtn{
-    height:530px;
+    height: 600px;
     background-position:left;
 
     border-radius: 15px;
@@ -243,6 +243,7 @@ nav ul li a{
 }
 .homebtn:nth-child(1){
     background: url("http://94.210.234.160/_design_your_own/img/wedstrijd.jpg");
+    margin-left: 0;
 }
 .homebtn:nth-child(2){
     background:#6ebdc4 url("http://94.210.234.160/_design_your_own/img/ontwerp.jpg");
