@@ -3,6 +3,11 @@
     border: 1px solid #6EBDC4;
     border-radius: 5px;
 }
+.designbox h2{
+	font-size:20px;
+	font-weight:normal;
+	line-height:20px;
+}
 
 .round-button-style {
     cursor: pointer;
@@ -44,17 +49,10 @@
     }
 
     .design-process .design-box {
-        position: relative;
-        float: left;
-        width: 1000px;
         height: 800px;
     }
 
         .design-process .design-box .choose-type-case {
-            position: absolute;
-            top: 300px;
-            left: 0px;
-            width: 300px;
             height: 220px;
         }
 
@@ -88,7 +86,7 @@
             left: 350px;
             width: 270px;
         }
-
+		
             .design-process .design-box .phone img {
                 width: 270px !important;
                 height: auto !important;

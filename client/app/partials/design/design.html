@@ -1,41 +1,43 @@
 <link rel="stylesheet" href="css/design-style.css" media="screen">
 <div data-ng-init="phone = []"></div>
 <div class="design-process">
-    <h1>{{ design.name }}</h1>
-    <div class="design-box">
-        <div class="round-border-style choose-phone">
+	<div class="row ontop">
+	    <form class="form-search span4">
+	        <input type="text" class="input-medium search-query" value"{{ design.name }}">
+	    </form>
+	</div>
+ 
+    <div class="design-box row">
+        <div class="round-border-style choose-phone span2">
             <h2>Kies je iPhone</h2>
             <div data-ng-click="activatePhone(4);">
                 <h3>4</h3>
-                <div class="icon-ok-sign sign-ok" data-ng-show="phone.phone == 4"></div>
+                <div class="icon-ok-sign sign-ok span1" data-ng-show="phone.phone == 4"></div>
             </div>
 
             <div data-ng-click="activatePhone(5);">
                 <h3>5</h3>
-                <div class="icon-ok-sign sign-ok" data-ng-show="phone.phone == 5"></div>
+                <div class="icon-ok-sign sign-ok span1" data-ng-show="phone.phone == 5"></div>
             </div>
         </div>
 
-        <div class="round-border-style choose-type-case">
+        <div class="round-border-style span3 choose-type-case">
             <h2>Kies een soort case</h2>
 
-            <div data-ng-click="setCaseType(1);">
-                <h3>Bestickerd</h3>
+            <div data-ng-click="setCaseType(1);" class="span1">
                 <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 1"></div>
             </div>
 
-            <div data-ng-click="setCaseType(2);">
-                <h3>Hard</h3>
+            <div data-ng-click="setCaseType(2);" class="span1">
                 <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 2"></div>
             </div>
 
-            <div data-ng-click="setCaseType(3);">
-                <h3>Silicon</h3>
+            <div data-ng-click="setCaseType(3);" class="span1">
                 <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 3"></div>
             </div>
         </div>
 
-        <div class="phone">
+        <div class="phone phone-{{phone.phone}} span2 offset1">
             <img data-ng-show="phone.phone == 4" src="img/iphone4.png" class="iphone-4">
             <img data-ng-show="phone.phone == 5" src="img/iphone5.png" class="iphone-5">
 
@@ -47,7 +49,7 @@
                 <h2>Achtergrond</h2>
                 <p>Zoek een eigen afbeelding op, en sleep deze vervolgens uit de map op de preview en laat de afbeeling los.</p>
 
-                <button class="round-button-style">Uploaden</button>
+                <input type="file" multiple id="upload" placeholder"Uplouden">
             </div>
             <div>
                 <h2>Standaard achtergrond</h2>
