@@ -3,7 +3,6 @@ $(document).on('StartEditor', function (e) {
     canvas.setWidth(270);
     canvas.setHeight(572);
 
-
     if (hasFileUploadSupport()) {
         $('#upload').on('change', function (e) {
             addFiles(e.target.files, canvas);
@@ -14,18 +13,17 @@ $(document).on('StartEditor', function (e) {
         //$('.phone').on({"dragover": stopEvent, "drop": handleDroppedFiles});
     }
 
-    console.log($('#add-text'));
-
     $('#add-text').on('click', function (e) {
-        console.log($('#set-font').val());
-        /*var settings = {
-         fontFamily: $('#set-font').val(),
-         fontWeight: 'normal',
-         fontSize: $('#set-font-size').val(),
-         color: $('#set-font-color').val()
-         },
-         text = $('#set-text').val();
-         addText(text, settings, canvas);*/
+        var settings = {
+            originX:        'left',
+            lineHeight:     1,
+            fontFamily:     $('#set-font').val().toLowerCase(),
+            fontSize:       +$('#set-font-size').val(),
+            fill:           $('#set-font-color').val(),
+            fontWeight:     'normal'
+         };
+
+        addText($('#set-text').val(), settings);
         return stopEvent(e);
     });
 
@@ -45,13 +43,12 @@ $(document).on('StartEditor', function (e) {
         return (window.File && window.FileReader && window.FileList && window.Blob);
     }
 
-    function addText(text, settings, canvas) {
-        console.log(text, settings, canvas);
+    function addText(text, settings) {
         var text = new fabric.Text(text, settings);
         canvas.add(text);
     }
 
-    function addImageToCanvas(data, canvas) {
+    function addImageToCanvas(data) {
         fabric.Image.fromURL(data, function (obj) {
             var ratio = calculateRatio(data, 270, 572);
             var settings = calculateCenter(270, 572);
@@ -59,7 +56,7 @@ $(document).on('StartEditor', function (e) {
         });
     }
 
-    function addFiles(files, canvas) {
+    function addFiles(files) {
         var reader = null;
         for (var i = 0, f; f = files[i]; i++) {
             if (!f.type.match('image.*')) {
@@ -79,7 +76,7 @@ $(document).on('StartEditor', function (e) {
         return (window.File && window.FileReader && window.FileList && window.Blob);
     }
 
-    function addTextToCanvas(text, weight, canvas) {
+    function addTextToCanvas(text, weight) {
         var text = new fabric.Text(text, {
             fontSize: 20,
             lineHeight: 1,
@@ -90,7 +87,7 @@ $(document).on('StartEditor', function (e) {
         canvas.add(text);
     }
 
-    function addImageToCanvas(data, canvas) {
+    function addImageToCanvas(data) {
         fabric.Image.fromURL(data, function (obj) {
             var ratio = calculateRatio(data, 270, 572);
             var settings = calculateCenter(270, 572);
@@ -98,7 +95,7 @@ $(document).on('StartEditor', function (e) {
         });
     }
 
-    function addFiles(files, canvas) {
+    function addFiles(files) {
         var reader = null;
 
         for (var i = 0, f; f = files[i]; i++) {
