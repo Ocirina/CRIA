@@ -5,17 +5,26 @@ $(document).on('StartEditor', function(e){
   addTextToCanvas("Hello, this is dog!!!", 'normal', canvas);
   
   if (hasFileUploadSupport()) {
+      var input = document.getElementById('upload');
+      input.addEventListener('change', function(e){
+        addFiles(e.dataTransfer.files, canvas);
+        stopEvent(e);
+      }, false);
+      
       var zone = document.querySelector('.canvas-container');
       zone.addEventListener('dragover', function(e) {
-          e.stopPropagation();
-          e.preventDefault();
+          stopEvent(e);
       }, false);
     
       zone.addEventListener('drop', function(e) {
           addFiles(e.dataTransfer.files, canvas);
-          e.stopPropagation();
-          e.preventDefault();
+          stopEvent(e);
       }, false);
+      
+      function stopEvent(e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
   }
 });
 
