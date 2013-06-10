@@ -73,6 +73,7 @@ h5{
 h6{
 	font-size:14px;
 	margin-bottom:10px;
+	text-align:left !important;
 }
 .casep h5{
     font-size:20px;
@@ -545,6 +546,9 @@ footer ul li a{
 }
 .sel-text .btn-group{
 	display:inline-block;
+}
+.sel-text .text-color{
+	margin-left:80px;
 }
 .sel-bg{
 	right:0;
