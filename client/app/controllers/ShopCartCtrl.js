@@ -49,6 +49,7 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
 
             if(order.orderlines.length === 0){
                 window.localStorage.removeItem('Order');
+                $scope.order = null;
             } else {
                 window.localStorage['Order'] = JSON.stringify(order);
             }
