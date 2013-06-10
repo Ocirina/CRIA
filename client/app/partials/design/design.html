@@ -7,74 +7,68 @@
 
 <div class="row top ontwerpen">
 	
-	<div class="span2 well">
+	<div class="span2 well sel-phone">
 		<h6>Welke Iphone heb je?</h6>
-		<div data-ng-click="activatePhone(4);">
+		<div data-ng-click="activatePhone(4);" class="phone4">
 			<h3>4</h3>
-			<div class="icon-ok-sign span1 sign-ok" data-ng-show="phone.phone == 4">
-			</div></div>
-		<div date-ng-click="activatePhone(5)">
+			<div class="icon-ok-sign span1 sign-ok" data-ng-show="phone.phone == 4"></div>
+		</div>
+		<div date-ng-click="activatePhone(5)" class="phone5">
 			<h3>5</h3>
-			<div class="icon-ok-sign span1 sign-ok" data-ng-show="phone.phone == 5">
-			</div></div>
+			<div class="icon-ok-sign span1 sign-ok" data-ng-show="phone.phone == 5"></div>
 		</div>
 	</div>
 	
-	<div class="span4 well">
-			
-				<h6>Achtergrond</h6>
-				<p>Zoek een eigen afbeelding op, en sleed deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
-			
-	            <input type="file" multiple id="upload" placeholder"Uplouden">
-			
-	<div>
-		<div class="icon-caret-left"></div>
-		<div id="background-slider">
-			<div class="sliderow row-top">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
+	<div class="span4 pull-right well sel-bg">
+		<h6>Achtergrond</h6>
+		<p>Zoek een eigen afbeelding op, en sleed deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
+	    <input type="file" multiple id="upload" placeholder"Uplouden">
+		<div>
+			<div class="icon-caret-left"></div>
+			<div id="background-slider">
+				<div class="sliderow row-top">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+               	 	<img src="#">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+				</div>
+				<div class="sliderow row-bottom">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+                	<img src="#">
+				</div>
 			</div>
-			<div class="sliderow row-bottom">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-                <img src="#">
-			</div>
+			<div class="icon-caret-right hidden"></div>
 		</div>
-		<div class="icon-caret-right hidden"></div>
 	</div>
-</div>
 	
-</div>	
-<div class="row top ontwerpen">
-	<div class="span3 well">
+	<div class="span3 well sel-case">
 		<h6>Wat voor case wil je?</h6>
-        <div data-ng-click="setCaseType(1);" class="span1">
+        <div data-ng-click="setCaseType(1);" class="span1 sticker">
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 1"></div>
         </div>
 
-        <div data-ng-click="setCaseType(2);" class="span1">
+        <div data-ng-click="setCaseType(2);" class="span1 hardcase">
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 2"></div>
         </div>
 
-        <div data-ng-click="setCaseType(3);" class="span1">
+        <div data-ng-click="setCaseType(3);" class="span1 silicone">
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 3"></div>
         </div>
 	</div>
 	
-	<div class="span3 offset1 well" id="text">
+	<div class="span3 well pull-right sel-text" id="text">
 			<h6 class="span2">Tekststijl</h6>
 		<button class="span1 btn"><i class="icon-font"/></i></button>
 			
@@ -110,10 +104,7 @@
 		</form>
 	</div>
 	
-</div>
-
-<div class="row top ontwerpen">
-	<div class="span3 well">
+	<div class="span3 well sel-object">
 		<h6>Objecten toevoegen</h6>
 	</div>
 	
@@ -124,6 +115,6 @@
         <canvas id="case-editor"></canvas>
     </div>
 	
-					
+</div>		
 		
 			
