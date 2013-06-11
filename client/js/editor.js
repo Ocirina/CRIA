@@ -4,12 +4,19 @@ $(document).on('StartEditor', function (e) {
     canvas.setHeight(572);
 
     canvas.on('object:selected', function(e){
-        var selectedObject = e.target;
-
-        if(selectedObject.type === 'text'){
+      var selectedObject = e.target,
+          type = selectedObject.type,
+          fn = 'handle'+capitaliseFirstLetter(type)+'Object';
+      console.log(type);
+      fn(selectedObject);
+      /*if (type === 'text') {
             $("#set-text").val(selectedObject.get('text'));
-        }
+        }*/
     });
+    
+    function handleTextObject(obj) {
+      console.log(obj);
+    }
 
     if (hasFileUploadSupport()) {
         $('#upload').on('change', function (e) {
@@ -34,7 +41,10 @@ $(document).on('StartEditor', function (e) {
         addText($('#set-text').val(), settings);
         return stopEvent(e);
     });
-
+    
+    function capitaliseFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     function handleDroppedFiles(e) {
         console.log(e);
         //addFiles(e.dataTransfer.files, canvas);
