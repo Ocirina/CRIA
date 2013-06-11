@@ -12,6 +12,18 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
 		});
     };
 
+    $scope.getProductsByLoggedInUser = function() {
+        var user = JSON.parse(window.sessionStorage["loggedInUser"]);
+
+        var Products = $resource('http://autobay.tezzt.nl\\:43083/user/:id/casedesigns',{ id: user._id},
+            {charge: {method:'GET', params:{charge:true}}}
+        );
+
+        Products.get(function(data){
+            $scope.products = data.result;
+        });
+    };
+
     /**
      * This function will put the product in the $scope.product variable. The id will be get out of the URL.
      * Also it will get the comments and ratings. The ratings will be converted to an array with CSS classes.

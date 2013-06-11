@@ -15,6 +15,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
             } else if(data.result.name === $scope.user.username) {
                 window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
                 $scope.hasUser = true;
+                $scope.user.name = data.result.name;
                 Application.notify('ok', 'Je bent succesvol ingelogd.');
             }
         });

@@ -14,6 +14,11 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/products/gallery.html'
         })
 
+        .when('/producten/user', {
+            controller: 'ProductCtrl',
+            templateUrl: 'app/partials/products/galerij_gebruiker.html'
+        })
+
         .when('/product/:id', {
             controller: 'ProductCtrl',
             templateUrl: 'app/partials/products/product.html'
