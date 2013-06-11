@@ -50,7 +50,7 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
             for(var i = 0; i < order.orderlines.length; i++) {
                 if(caseDesignId === order.orderlines[i].caseDesign._id){
                     $scope.order.orderlines.splice(i, 1);
-                    order.orderlines.splice(i,1)
+                    order.orderlines.splice(i,1);
 
                     Application.notify('ok', 'Product is verwijderd.');
                     break;

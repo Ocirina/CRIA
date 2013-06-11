@@ -18,7 +18,9 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
      * So if we loop trough the array we can use the classes to generate stars filled in or not.
      */
     $scope.getProduct = function() {
-        $scope.loggedinUser = JSON.parse(window.sessionStorage['loggedInUser']);
+        if(window.sessionStorage['loggedInUser']) {
+            $scope.loggedinUser = JSON.parse(window.sessionStorage['loggedInUser']);
+        }
 
         var id = $routeParams.id;
 
