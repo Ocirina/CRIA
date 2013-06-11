@@ -7,9 +7,19 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
             };
 
             for(var i = 0; i < order.orderlines.length; i++) {
-                $scope.order.orderlines.push({caseDesign:order.orderlines[i]["caseDesign"], aantal: order.orderlines[i]["aantal"]});
+                order.orderlines[i]["aantal"] = $scope.getAmount(order.orderlines[i]["aantal"]);
+                $scope.order.orderlines.push({caseDesign:order.orderlines[i]["caseDesign"],
+                                              aantal:  order.orderlines[i]["aantal"]
+                });
             }
         }
+    };
+
+    $scope.getAmount = function(amount) {
+        if(isNaN(amount) || amount <= 0) {
+            return 1;
+        }
+        return amount;
     };
 
     $scope.changeAmount = function(caseDesign, input){

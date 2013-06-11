@@ -37,7 +37,7 @@ html,body{
     height:100%;
     color:#222;
     font-family:'grandesignr';
-    background:#f8f8f8 url('../img/pattern.png');
+    background:#f8f8f8 url('http://94.210.234.160/_design_your_own/img/pattern.png');
 }
 
 /*----Text----*/
@@ -247,14 +247,14 @@ nav ul li a{
     -ms-transform: rotate(-30deg);
 }
 .homebtn:nth-child(1){
-    background: url("../img/wedstrijd.png");
+    background: url("http://94.210.234.160/_design_your_own/img/wedstrijd.jpg");
     margin-left: 20px;
 }
 .homebtn:nth-child(2){
-    /*background:#6ebdc4 url("http://94.210.234.160/_design_your_own/img/ontwerp.jpg");*/
+    background:#6ebdc4 url("http://94.210.234.160/_design_your_own/img/ontwerp.jpg");
 }
 .homebtn:nth-child(3){
-    background:url("../img/gallery.png");
+    background:url("http://94.210.234.160/_design_your_own/img/gallery.png");
 }
 .homebtn:hover{
     background-position:right top;
@@ -484,37 +484,37 @@ footer ul li a{
 	clear:both;
 }
 .phone-4{
-	background:url('../img/iphone4.png');
+	background:url('http://94.210.234.160/_design_your_own/img/iphone4.png');
 	height:532px;
 }
 .phone4{
-	background:url('../img/iphone4.png') no-repeat;
+	background:url('http://94.210.234.160/_design_your_own/img/iphone4.png') no-repeat;
 	height:114px;
 	background-size:60px 114px;
 	margin-left:0;
 }
 .phone-5{
-	background:url('../img/iphone5.png');
+	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png');
 	height:569px;
 }
 .phone5{
-	background:url('../img/iphone5.png')no-repeat;
+	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png')no-repeat;
 	height:124px;
 	background-size:60px 124px;
 }
 .sticker{
-	/*background:url('../img/sticker.png')no-repeat;*/
+	background:url('http://94.210.234.160/_design_your_own/img/sticker.png')no-repeat;
 	height:114px;
 	background-size:60px 114px;
 	margin-left:0;
 }
 .hardcase{
-	/*background:url('http://94.210.234.160/_design_your_own/img/hardcase.png')no-repeat;*/
+	background:url('http://94.210.234.160/_design_your_own/img/hardcase.png')no-repeat;
 	height:114px;
 	background-size:60px 114px;
 }
 .silicone{
-	/*background:url('http://94.210.234.160/_design_your_own/img/silicone.png')no-repeat;*/         
+	background:url('http://94.210.234.160/_design_your_own/img/silicone.png')no-repeat;
 	height:118px;
 	background-size:60px 118px;
 }
