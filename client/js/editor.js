@@ -1,22 +1,30 @@
 $(document).on('StartEditor', function (e) {
-    var canvas = new fabric.Canvas('case-editor');
+    var canvas = new fabric.Canvas('case-editor', {
+      centerTransform: true,
+      controlsAboveOverlay: true,
+      selectionBorderColor: "black",
+      selectionColor: "rgba(255, 255, 255, 0.3)",
+      selectionLineWidth: 2
+    });
     canvas.setWidth(270);
     canvas.setHeight(572);
-
+    
+    var Handler = {
+      handleTextObject: function(obj) {
+        console.log(obj);
+      },
+      handleImageObject: function(obj) {
+        console.log(obj);
+      }
+    };
+    
     canvas.on('object:selected', function(e){
       var selectedObject = e.target,
           type = selectedObject.type,
           fn = 'handle'+capitaliseFirstLetter(type)+'Object';
       console.log(type);
-      fn(selectedObject);
-      /*if (type === 'text') {
-            $("#set-text").val(selectedObject.get('text'));
-        }*/
+      Handler[fn](selectedObject);
     });
-    
-    function handleTextObject(obj) {
-      console.log(obj);
-    }
 
     if (hasFileUploadSupport()) {
         $('#upload').on('change', function (e) {
@@ -108,8 +116,8 @@ $(document).on('StartEditor', function (e) {
     function addImageToCanvas(data) {
         fabric.Image.fromURL(data, function (obj) {
             var ratio = calculateRatio(data, 270, 572);
-            var settings = calculateCenter(270, 572);
-            canvas.add(obj.scale(ratio).set(settings));
+            //var settings = calculateCenter(270, 572);
+            canvas.add(obj.scale(ratio));
         });
     }
 
