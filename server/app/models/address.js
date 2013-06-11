@@ -7,7 +7,7 @@ var Address = Schema({
     user:         {type: Schema.Types.ObjectId, ref: 'User', index: true},
     street:       {type: String, required: true},
     houseNumber:  {type: String, required: true},
-    postalCode:   {type: String, required: true, index: true, unique: true},
+    postalCode:   {type: String, required: true, index: true},
     city:         {type: String, required: true}
 });
 

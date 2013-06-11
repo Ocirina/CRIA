@@ -12,7 +12,9 @@ var PasswordHash = require('password-hash');
  */
 function setIdForAddress(body, user) {
   if (body.hasOwnProperty('address')) { // TODO: Idiotic code won't work with PUT if check is added for address._id
-    body.address = {user: user._id};
+    if (typeof body.address._id === "undefined") {
+      body.address['user'] = user._id;
+    }
   }
   return body;
 }
@@ -92,11 +94,17 @@ exports.update = function (req, res) {
         if (!err) {
           user = setNewUserValues(user, req.body);
           req.body = setIdForAddress(req.body, user);
-          user.save(req, user, function(err) {
+          user.save(req, function(err) {
             return res.send({
               "error": err,
               "result": user
             });
+          });
+        }
+        else {
+          return res.send({
+            "error": err,
+            "result": null
           });
         }
       });

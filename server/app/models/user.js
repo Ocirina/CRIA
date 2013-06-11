@@ -36,14 +36,14 @@ User.pre('save', function(next, req, callback){
     if (req.body.address._id) {
       var id = req.body.address._id;
       delete req.body.address._id;
-      update(id, req.body, next, callback);
+      update(id, req.body.address, next, callback);
     }
     else {
       var self = this; // See second note above.
       create(req.body.address, next, callback, self);
     }
   }
-  else {next(callback);}
+  else { next(callback); }
   
   function update(id, body, next, callback) {
     Address.findOneAndUpdate({_id: id}, body, {}, function(err){
@@ -54,12 +54,12 @@ User.pre('save', function(next, req, callback){
   
   function create(body, next, callback, self) {
     var item = new Address(body);
-    item.save(function(err){
+    item.save(function(err) {
       if (!err) {
-        self.addresses = item._id;
+        self.address = item._id;
         next(callback);
       }
-      else {next(err);}
+      else { next(err); }
     });
   }
 });
