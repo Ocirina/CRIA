@@ -164,6 +164,7 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
                 order.$save(function(data) {
                     if(data.error === null){
                         Application.notify('ok', 'Bestelling is geplaatst.');
+                        $location.path("#/betalen/geslaagd")
                     } else {
                         Application.notify('error', 'Bestelling is niet geplaatst.');
                     }
