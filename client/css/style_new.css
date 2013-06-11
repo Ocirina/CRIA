@@ -578,6 +578,7 @@ footer ul li a{
     	color: #6EBDC4;
     	font-size: 12px;
   	}
+	
 .sliderow {
 	min-width: 100%;
   	height: 50px;
@@ -595,6 +596,7 @@ footer ul li a{
     	height: 40px;
     	float: left;
     	margin: 5px;
+		curser:pointer;
   	}
 .ontwerpen .phone{
 	position:absolute;
