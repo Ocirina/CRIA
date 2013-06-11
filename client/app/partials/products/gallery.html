@@ -11,10 +11,8 @@
 </div>
 
 <div class="row gallery">
-	<div class="gal-box" data-ng-repeat="product in products.result">
-    <a href="#/product/{{product._id}}">
-        <div class="span2 case">
-            <img data-ng-src="{{product.preview}}" alt=""/>
+        <div class="span2 case" data-ng-repeat="product in products.result">
+            <a href="#/product/{{product._id}}"><img data-ng-src="{{product.preview}}" alt=""/></a>
             <div class="txt">
                 <h4>Titel:</h4>
                 <h5>{{ product.name }}</h5>
@@ -25,10 +23,8 @@
                 <div class="rating"></div>
                 <h4 class="price">Prijs:
                     <span>€9,99</span>
+					<i data-ng-click="addProductToShopCart(product)" class="icon-shopping-cart"></i>
                 </h4>
             </div>
         </div>
-    </a>
-	<i data-ng-click="addProductToShopCart(product)" class="icon-shopping-cart"></i>
-</div>
 </div>

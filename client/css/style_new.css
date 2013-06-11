@@ -82,8 +82,7 @@ p{
     text-align:justify;
 }
 .gallery span{
-    float:right;
-    margin-right:15px;
+    margin-left:20px;
     font-size:16px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
 }
@@ -315,10 +314,10 @@ nav ul li a{
 .gallery a:nth-child(6n+7) .case {
     clear:both;
 }
-.gal-box{
-	position:absolute;
-	bottom:10px;
-	right:10px;
+.gallery .case i{
+	float:right;
+	font-size:16px;
+	margin-right:5px;
 }
 .price{
     margin-top:90px;
