@@ -29,6 +29,11 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/payment/methods.html'
         })
 
+        .when('/betalen/geslaagd', {
+            controller: 'PaymentCtrl',
+            templateUrl: 'app/partials/payment/paymentSucceed.html'
+        })
+
         //Footer
 
         .when('/faq', {
