@@ -4,14 +4,13 @@
 
 <div class="row ontop">
     <h2 class="span8">Gallery</h2>
-    <form class="form-search span4">
-        <input type="text" class="input-medium search-query">
-        <button type="submit" class="btn border-blue searchbtn">Search</button>
+    <form class="form-search span2">
+        <input type="text" placeholder="Zoeken" data-ng-model="searchContent" class="input-medium search-query">
     </form>
 </div>
 
 <div class="row gallery">
-        <div class="span2 case" data-ng-repeat="product in products.result">
+        <div class="span2 case" data-ng-repeat="product in products.result | filter:searchContent">
             <a href="#/product/{{product._id}}"><img data-ng-src="{{product.preview}}" alt=""/></a>
             <div class="txt">
                 <h4>Titel:</h4>

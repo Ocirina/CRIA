@@ -259,6 +259,10 @@ nav ul li a{
 }
 .form-search{
     margin-top:-10px;
+    float: right;
+}
+.form-search .input-medium {
+    width:110px;
 }
 .accordion-heading a{
     color:#222;
