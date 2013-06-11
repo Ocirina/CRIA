@@ -8,15 +8,21 @@ $(document).on('StartEditor', function (e) {
     });
     canvas.setWidth(270);
     canvas.setHeight(560);
-    
+
     var Handler = {
-      handleTextObject: function(obj) {
+        handleTextObject: function(obj) {
         $('#text').find('button').attr('disabled', false);
-        $('#text textarea').val(obj.getText());
-      },
-      handleImageObject: function(obj) {
-        console.log(obj);
-      }
+            $('#text textarea').val(obj.getText());
+        },
+        handleImageObject: function(obj) {
+            console.log(obj);
+        },
+        handlePathObject: function(obj) {
+            console.log(obj);
+        },
+        handleGroupObject: function(obj) {
+            console.log(obj);
+        }
     };
     
     canvas.on('object:selected', function(e){
@@ -56,6 +62,41 @@ $(document).on('StartEditor', function (e) {
       var src = e.target.src;
       setBackground(src);
     });
+
+    $('.sel-object').find('.background-slider').on('click', 'img', function(e){
+        var src = e.target.src;
+        addSvg(src);
+    });
+
+    function addSvg(svg) {
+        console.log(svg);
+        fabric.loadSVGFromURL(svg, function(objects, options) {
+            var loadedObject = fabric.util.groupSVGElements(objects, options);
+
+            var offset = 50,
+            left = fabric.util.getRandomInt(0 + offset, 270 - offset),
+            top = fabric.util.getRandomInt(0 + offset, 650 - offset),
+            angle = fabric.util.getRandomInt(-20, 40);
+            //width = fabric.util.getRandomInt(30, 50),
+            //opacity = (function(min, max){ return Math.random() * (max - min) + min; })(0.5, 1);
+
+            loadedObject.set({
+                left: left,
+                top: top,
+                angle: angle,
+                padding: 10,
+                cornersize: 10
+            });
+
+            loadedObject/*.scaleToWidth(300)*/.setCoords();
+
+            //loadedObject.hasRotatingPoint = true;
+
+            canvas.add(loadedObject);
+            updateComplexity();
+            canvas.calcOffset();
+        });
+    }
     
     function setBackground(background, hex) {
       var setting = background;
