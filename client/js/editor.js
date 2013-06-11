@@ -11,7 +11,8 @@ $(document).on('StartEditor', function (e) {
     
     var Handler = {
       handleTextObject: function(obj) {
-        console.log(obj);
+        $('#text').find('button').attr('disabled', false);
+        $('#text textarea').val(obj.getText());
       },
       handleImageObject: function(obj) {
         console.log(obj);
@@ -47,8 +48,24 @@ $(document).on('StartEditor', function (e) {
          };
 
         addText($('#set-text').val(), settings);
+        $('#set-text').val('');
         return stopEvent(e);
     });
+    
+    $('#background-slider').on('click', 'img', function(e){
+      var src = e.target.src;
+      setBackground(src);
+    });
+    
+    function setBackground(background, hex) {
+      var setting = background;
+      if (hex === null) { hex = false; }
+      if (!hex) { setting = { source: background, repeat: 'repeat' }; }
+      canvas.setBackgroundColor(setting, function () {
+        canvas.renderAll();
+        proceed();
+      });
+    }
     
     function capitaliseFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
@@ -116,8 +133,8 @@ $(document).on('StartEditor', function (e) {
     function addImageToCanvas(data) {
         fabric.Image.fromURL(data, function (obj) {
             var ratio = calculateRatio(data, 270, 572);
-            //var settings = calculateCenter(270, 572);
-            canvas.add(obj.scale(ratio));
+            var settings = calculateCenter(270, 572);
+            canvas.add(obj.scale(ratio).set(settings));
         });
     }
 
