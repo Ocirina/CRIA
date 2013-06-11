@@ -24,9 +24,21 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
      * Logs out user, hasUser will be set on false and the the user is removed from the sessionStorage.
      */
     $scope.logoutUser = function() {
-        window.sessionStorage.removeItem("loggedInUser");
-        $scope.hasUser = false;
-        $location.path('/');
+        var User = $resource('http://autobay.tezzt.nl\\:43083/signout',{},
+            {charge: {method:'GET', params:{charge:true}}}
+        );
+
+        var user = new User($scope.user);
+        user.get(function(data) {
+            if(data.error === null){
+                Application.notify('ok', 'Succesvol uitgelogd.');
+                window.sessionStorage.removeItem("loggedInUser");
+                $scope.hasUser = false;
+                $location.path('/');
+            } else {
+                Application.notify('error', 'U bent niet uitgelogd, er is iets misgegaan.');
+            }
+        });
     };
 
     /**
