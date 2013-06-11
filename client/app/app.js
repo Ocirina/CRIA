@@ -55,6 +55,11 @@ app.config(function ($routeProvider) {
             templateUrl: 'app/partials/design/design.html'
         })
 
+        .when("/ontwerpen/bewerken/:id", {
+            controller: 'DesignCtrl',
+            templateUrl: 'app/partials/design/designedit.html'
+        })
+
         //User login and register
         .when('/gebruiker/registreren', {
             controller: 'UserCtrl',

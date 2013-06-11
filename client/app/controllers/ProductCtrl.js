@@ -7,21 +7,40 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
             {charge: {method:'GET', params:{charge:true}}}
         );
 
-        var product = Products.get(function(data){
+        Products.get(function(data){
 			$scope.products = data;
 		});
     };
 
     $scope.getProductsByLoggedInUser = function() {
-        var user = JSON.parse(window.sessionStorage["loggedInUser"]);
+        if(window.sessionStorage["loggedInUser"]) {
+            $scope.hasUser = true;
+            var user = JSON.parse(window.sessionStorage["loggedInUser"]);
 
-        var Products = $resource('http://autobay.tezzt.nl\\:43083/user/:id/casedesigns',{ id: user._id},
-            {charge: {method:'GET', params:{charge:true}}}
-        );
+            /*var Products = $resource('http://autobay.tezzt.nl\\:43083/user/:id/casedesigns',{ id: user._id},
+                {charge: {method:'GET', params:{charge:true}}}
+            );
 
-        Products.get(function(data){
-            $scope.products = data.result;
-        });
+            Products.get(function(data){
+                $scope.products = data.result;
+            });
+            */
+            /* TODO: TEMPORARY DATA */
+            var Products = $resource('http://autobay.tezzt.nl\\:43083/casedesigns',{},
+                {charge: {method:'GET', params:{charge:true}}}
+            );
+
+            Products.get(function(data){
+                $scope.products = data;
+            });
+        } else {
+            $scope.hasUser = false;
+        }
+    };
+
+    $scope.openDesignInEditor = function(caseDesignId) {
+        console.log(caseDesignId);
+        $location.path("/ontwerpen/bewerken/" + caseDesignId);
     };
 
     /**

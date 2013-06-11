@@ -4,10 +4,10 @@
 
 <div class="row ontop">
     <h2 class="span8">Gallery</h2>
-    <a href="#/producten/user"></a>
     <form class="form-search span2">
         <input type="text" placeholder="Zoeken" data-ng-model="searchContent" class="input-medium search-query">
     </form>
+    <a class="btn form-search" data-ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()" data-ng-show="hasUser" href="#/producten/user">Mijn Galerij</a>
 </div>
 
 <div class="row gallery">

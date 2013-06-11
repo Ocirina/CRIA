@@ -1,21 +1,29 @@
 <article data-ng-init="getProductsByLoggedInUser()">
     <div class="row ontop">
-        <h2 class="span8">Mijn gallerij</h2>
-        <form class="form-search span2">
+        <h2 class="span8">Mijn galerij</h2>
+        <form data-ng-show="hasUser" class="form-search span2">
             <input type="text" placeholder="Zoeken" data-ng-model="searchContent" class="input-medium search-query">
         </form>
     </div>
 
-    <div class="row gallery">
+    <div data-ng-show="hasUser" class="row gallery">
         <div class="span2 case" data-ng-repeat="product in products.result | filter:searchContent">
-            <a href="#/product/{{product._id}}"><img data-ng-src="{{product.preview}}" alt=""/></a>
+            <img data-ng-src="{{product.preview}}" alt=""/>
             <div class="txt">
                 <h4>Titel:</h4>
                 <h5>{{ product.name }}</h5>
                 <h4>Laatst gewijzigd:</h4>
                 <h5>{{ product.created_at | date:'dd-MM-yyyy' }}</h5>
-                <div class="rating"></div>
+                <button class="btn btn-primary" data-ng-click="openDesignInEditor(product._id)">
+                    Bewerken
+                </button>
             </div>
         </div>
+    </div>
+
+    <div data-ng-hide="hasUser">
+        <h3>
+            Je bent niet ingelogd, log in bij "Mijn Account" om je eigen galerij te bekijken.
+        </h3>
     </div>
 </article>
