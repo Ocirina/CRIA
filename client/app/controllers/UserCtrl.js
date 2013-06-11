@@ -28,8 +28,7 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
             {charge: {method:'GET', params:{charge:true}}}
         );
 
-        var user = new User($scope.user);
-        user.get(function(data) {
+        User.get(function(data) {
             if(data.error === null){
                 Application.notify('ok', 'Succesvol uitgelogd.');
                 window.sessionStorage.removeItem("loggedInUser");
