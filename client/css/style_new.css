@@ -303,6 +303,7 @@ nav ul li a{
     height:285px;
     display:inline-block;
     margin:5px 5px 5px 15px;
+	position:relative;
 }
 .gallery .case:hover{
     width:300px;
@@ -310,16 +311,18 @@ nav ul li a{
     background:#f8f8f8 no-repeat;
     box-shadow:3px 3px 5px #222222;
 }
-.gallery a:nth-child(6n+7) .case {
+.gallery .case:nth-child(6n+7){
     clear:both;
 }
 .gallery .case i{
 	float:right;
 	font-size:16px;
-	margin-right:5px;
+	width:35px;
+	text-align:right;
 }
 .price{
-    margin-top:90px;
+  position:absolute;
+  top:255px;
 }
 .rating{
     height:17px;
@@ -596,7 +599,7 @@ footer ul li a{
     	height: 40px;
     	float: left;
     	margin: 5px;
-		curser:pointer;
+		cursor:pointer;
   	}
 .ontwerpen .phone{
 	position:absolute;
