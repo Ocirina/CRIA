@@ -19,7 +19,7 @@
         </div>
 	</div>
 	
-	<div class="span4 pull-right well sel-bg">
+	<div data-ng-show="phone.phone && phone.case" class="span4 pull-right well sel-bg">
 		<h6>Achtergrond</h6>
 		<p>Zoek een eigen afbeelding op, en sleep deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
 	    <input type="file" multiple id="upload" placeholder"Uplouden">
@@ -53,7 +53,7 @@
 		</div>
 	</div>
 	
-	<div class="span3 well sel-case">
+	<div data-ng-show="phone.phone" class="span3 well sel-case">
 		<h6>Wat voor case wil je?</h6>
         <div data-ng-click="setCaseType(1);" class="span1 sticker">
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 1"></div>
@@ -68,7 +68,7 @@
         </div>
 	</div>
 	
-	<div class="span3 well pull-right sel-text" id="text">
+	<div data-ng-show="phone.phone && phone.case" class="span3 well pull-right sel-text" id="text">
 			<h6>Tekststijl</h6>
 			
 		<div class="btn-toolbar">
@@ -105,7 +105,7 @@
 		</form>
 	</div>
 	
-	<div class="span3 well sel-object">
+	<div  data-ng-show="phone.phone && phone.case" class="span3 well sel-object">
 		<h6>Objecten toevoegen</h6>
 		<div>
 			<div class="icon-caret-left"></div>
