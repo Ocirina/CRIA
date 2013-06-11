@@ -22,15 +22,23 @@ $(document).on('StartEditor', function (e) {
         },
         handleGroupObject: function(obj) {
             console.log(obj);
+        },
+        handleDefaultObject: function(obj) {
+            console.log(obj);
         }
     };
     
     canvas.on('object:selected', function(e){
-      var selectedObject = e.target,
-          type = selectedObject.type,
-          fn = 'handle'+capitaliseFirstLetter(type)+'Object';
-      console.log(type);
-      Handler[fn](selectedObject);
+        var selectedObject = e.target,
+        type = selectedObject.type,
+        fn = 'handle'+capitaliseFirstLetter(type)+'Object';
+
+        try {
+            Handler[fn](selectedObject);
+        }
+        catch(err) {
+            Handler.handleDefaultObject(selectedObject);
+        }
     });
 
     if (hasFileUploadSupport()) {
