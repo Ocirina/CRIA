@@ -7,7 +7,7 @@ $(document).on('StartEditor', function (e) {
       selectionLineWidth: 2
     });
     canvas.setWidth(270);
-    canvas.setHeight(572);
+    canvas.setHeight(560);
     
     var Handler = {
       handleTextObject: function(obj) {
@@ -52,7 +52,7 @@ $(document).on('StartEditor', function (e) {
         return stopEvent(e);
     });
     
-    $('#background-slider').on('click', 'img', function(e){
+    $('.sel-bg').find('.background-slider').on('click', 'img', function(e){
       var src = e.target.src;
       setBackground(src);
     });
@@ -61,9 +61,8 @@ $(document).on('StartEditor', function (e) {
       var setting = background;
       if (hex === null) { hex = false; }
       if (!hex) { setting = { source: background, repeat: 'repeat' }; }
-      canvas.setBackgroundColor(setting, function () {
-        canvas.renderAll();
-        proceed();
+      canvas.setBackgroundColor(setting, function () { 
+        canvas.renderAll(); 
       });
     }
     
