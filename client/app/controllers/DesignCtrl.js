@@ -23,7 +23,15 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
         if(window.sessionStorage["loggedInUser"]) {
             var caseId = $routeParams.id;
 
-            // get json canvas with the case id.
+            var Design = $resource('http://autobay.tezzt.nl\\:43083/casedesign/' + caseId,{},
+                {charge: {method:'GET', params:{charge:true}}}
+            );
+
+            Design.get(function(data) {
+                $scope.design = data.result;
+            });
+
+            //TODO: get json canvas with the case id & load it in the editor.
         } else {
             // niet ingelogd
         }
