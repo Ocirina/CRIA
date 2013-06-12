@@ -301,7 +301,7 @@ nav ul li a{
 }
 .gallery .case img{
     float:left;
-
+    width: 140px;
 }
 .gallery .case .txt{
     width:140px;
