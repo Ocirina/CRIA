@@ -73,6 +73,26 @@ exports.show = function (req, res) {
 }
 
 /**
+ * Type: GET
+ * Route: /gallery/:id
+ */
+exports.gallery = function (req, res) {
+  User
+    .findOne({_id: req.params.id}, '-password')
+    .populate({
+      path: 'caseDesigns',
+      select: '-designObjects'
+    })
+    .exec(function (err, user) {
+      console.log(user, user.caseDesigns);
+      return res.send({
+        "error": err,
+        "result": user
+      });
+    });
+}
+
+/**
  * Type: PUT
  * Route: /user/:id
  *
