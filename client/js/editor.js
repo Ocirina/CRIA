@@ -7,7 +7,7 @@ $(document).on('StartEditor', function (e) {
       selectionLineWidth: 2
     });
     canvas.setWidth(270);
-    canvas.setHeight(560);
+    canvas.setHeight(569);
 
     var Handler = {
         handleTextObject: function(obj) {
@@ -76,8 +76,17 @@ $(document).on('StartEditor', function (e) {
         addSvg(src);
     });
 
+    $('.save-object button').on('click', function(){
+        console.log('Button works.');
+        if (!fabric.canvas.supports('toDataURL')) {
+            Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!');
+        } else {
+            console.log(canvas.toDataURL('png'));
+            window.open(canvas.toDataURL('png'));
+        }
+    });
+
     function addSvg(svg) {
-        console.log(svg);
         fabric.loadSVGFromURL(svg, function(objects, options) {
             var loadedObject = fabric.util.groupSVGElements(objects, options);
 
