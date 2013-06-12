@@ -486,6 +486,9 @@ footer ul li a{
 }
 
 /*----Designer----*/
+.designtop {
+    height:60px
+}
 .clean{
 	clear:both;
 }
