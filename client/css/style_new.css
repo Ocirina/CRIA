@@ -161,7 +161,7 @@ nav ul li a{
     width: 200px;
     background-color: #222;
     padding: 0px 10px 10px 10px;
-    z-index: 1;
+    z-index: 1000;
 }
 
     #loginContainer input[type="text"], #loginContainer input[type="password"],#loginContainer input[type="checkbox"] {
@@ -262,7 +262,7 @@ nav ul li a{
     float: right;
 }
 .form-search .input-medium , a.form-search.span2{
-    width:110px;
+    width:114px;
 }
 
 .accordion-heading a{
@@ -574,19 +574,29 @@ footer ul li a{
 	.sel-bg p{
 		font-size:12px;
 	}
-	.sel-bg .icon-caret-left, .sel-bg .icon-caret-right {
-  		width: 10px !important;
-		height: 10px;
-  		margin: 50px 0;
+	.sel-bg .icon-caret-left, 
+  .sel-object .icon-caret-left,
+  .sel-object .icon-caret-right,
+  .sel-bg .icon-caret-right {
+  		width: 20px !important;
+		height: 20px;
+  		margin: 40px 0;
   	  	float: left;
   	  	border: none !important;
   	 	cursor: pointer;
 	}
   	.sel-bg .icon-caret-left:before, 
-  	.sel-bg .icon-caret-right:before {
+  	.sel-bg .icon-caret-right:before,
+  	.sel-object .icon-caret-left:before, 
+  	.sel-object .icon-caret-right:before {
     	color: #6EBDC4;
-    	font-size: 12px;
+    	font-size: 20px;
   	}
+    
+    .sel-bg .icon-caret-right,
+    .sel-object .icon-caret-right {
+      float: right;
+    }
 	
 .sliderow {
 	min-width: 100%;
@@ -603,7 +613,6 @@ footer ul li a{
 	.sliderow img {
     	width: 40px;
     	height: 40px;
-    	float: left;
     	margin: 5px;
 		cursor:pointer;
   	}
@@ -645,4 +654,15 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.background-slider {
+  width: 250px;
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+}
+.sel-object .background-slider {
+  width: 180px;
 }
