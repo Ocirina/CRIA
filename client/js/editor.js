@@ -70,6 +70,45 @@ $(document).on('StartEditor', function (e, data) {
         //$('.phone').on({"dragover": stopEvent, "drop": handleDroppedFiles});
     }
 
+    $('.sel-bg').on('click', '.icon-caret-right', function(e){
+        move('.sel-bg .sliderow', '-=350');
+
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
+
+    $('.sel-bg').on('click', '.icon-caret-left', function(e){
+        move('.sel-bg .sliderow', '+=350');
+
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
+
+    $('.sel-object').on('click', '.icon-caret-right', function(e){
+        move('.sel-object .sliderow', '-=250');
+
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
+
+    $('.sel-object').on('click', '.icon-caret-left', function(e){
+        move('.sel-object .sliderow', '+=250');
+
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
+
+    function move(el, value) {
+        $(el).animate({
+            left: value,
+        }, 500, function() {
+        });
+    }
+
     $('#add-text').on('click', function (e) {
         var settings = {
             originX:        'left',

@@ -211,6 +211,26 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
             {
                 image:  "img/objects/zeshoekmetschevecirkel.svg",
                 alt:    "Rondje"
+            },
+            {
+                image:  "img/objects/chick1.svg",
+                alt:    "Gewoon"
+            },
+            {
+                image:  "img/objects/chick2.svg",
+                alt:    "Davidster"
+            },
+            {
+                image:  "img/objects/chick3.svg",
+                alt:    "Rondje"
+            },
+            {
+                image:  "img/objects/boy1.svg",
+                alt:    "Rondje"
+            },
+            {
+                image:  "img/objects/peace.svg",
+                alt:    "Rondje"
             }
         ];
 
@@ -250,6 +270,26 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
             {
                 image:  "img/objects/zeshoek.svg",
                 alt:    "Zeshoek"
+            },
+            {
+                image:  "img/objects/chick4.svg",
+                alt:    "Gewoon"
+            },
+            {
+                image:  "img/objects/chick5.svg",
+                alt:    "Davidster"
+            },
+            {
+                image:  "img/objects/chick6.svg",
+                alt:    "Rondje"
+            },
+            {
+                image:  "img/objects/iambuddhabiath.svg",
+                alt:    "Rondje"
+            },
+            {
+                image:  "img/objects/yinyang.svg",
+                alt:    "Rondje"
             }
         ];
     };
