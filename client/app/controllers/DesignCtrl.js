@@ -7,7 +7,11 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
     $scope.activatePhone = function(phoneId) {
         $scope.phone.phone = phoneId;
 
-        $.event.trigger('StartEditor');
+        $.event.trigger('StartEditor',
+            {
+                phone: phoneId
+            }
+        );
 
         $scope.backgroundsRowOne = [];
         $scope.backgroundsRowTwo = [];
