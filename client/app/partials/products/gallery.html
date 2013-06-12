@@ -17,7 +17,9 @@
                 <h4>Titel:</h4>
                 <h5>{{ product.name }}</h5>
                 <h4>Auteur:</h4>
-                <h5>{{ product.name }}</h5>
+                <a href="#/producten/{{product.user._id}}">
+                    <h5>{{ product.user.firstName}} {{ product.user.lastName }}</h5>
+                </a>
                 <h4>Laatst gewijzigd:</h4>
                 <h5>{{ product.created_at | date:'dd-MM-yyyy' }}</h5>
                 <div class="rating"></div>

@@ -8,7 +8,7 @@
     </div>
 
     <div data-ng-show="hasUser" class="row gallery">
-        <div class="span2 case" data-ng-repeat="product in products.result | filter:searchContent">
+        <div class="span2 case" data-ng-repeat="product in products | filter:searchContent">
             <img data-ng-src="{{product.preview}}" alt=""/>
             <div class="txt">
                 <h4>Titel:</h4>

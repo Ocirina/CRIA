@@ -13,29 +13,40 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
     };
 
     $scope.getProductsByLoggedInUser = function() {
+        $scope.hasUser = false;
         if(window.sessionStorage["loggedInUser"]) {
             $scope.hasUser = true;
+
             var user = JSON.parse(window.sessionStorage["loggedInUser"]);
 
-            /*var Products = $resource('http://autobay.tezzt.nl\\:43083/user/:id/casedesigns',{ id: user._id},
+            var Products = $resource('http://autobay.tezzt.nl\\:43083/gallery/:id',{ id: user._id},
                 {charge: {method:'GET', params:{charge:true}}}
             );
 
             Products.get(function(data){
-                $scope.products = data.result;
+                $scope.products = data.result.caseDesigns;
             });
-            */
-            /* TODO: TEMPORARY DATA */
-            var Products = $resource('http://autobay.tezzt.nl\\:43083/casedesigns',{},
-                {charge: {method:'GET', params:{charge:true}}}
-            );
 
-            Products.get(function(data){
-                $scope.products = data;
-            });
-        } else {
-            $scope.hasUser = false;
         }
+    };
+
+    $scope.getProductsByGivenUser = function() {
+        var userId = $routeParams.userid;
+
+        var Products = $resource('http://autobay.tezzt.nl\\:43083/gallery/:id',{ id: userId },
+            {charge: {method:'GET', params:{charge:true}}}
+        );
+
+        Products.get(function(data){
+            $scope.user = data.result;
+
+            if(window.sessionStorage["loggedInUser"]) {
+                var user = JSON.parse(window.sessionStorage["loggedInUser"]);
+                if($scope.user._id == user._id) {
+                    $location.path("/producten/user");
+                }
+            }
+        });
     };
 
     $scope.openDesignInEditor = function(caseDesignId) {

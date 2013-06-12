@@ -1,0 +1,22 @@
+<article data-ng-init="getProductsByGivenUser()">
+    <div class="row ontop">
+        <h2 class="span8">Galerij - {{user.firstName }} {{ user.lastName }}</h2>
+        <form class="form-search span2">
+            <input type="text" placeholder="Zoeken" data-ng-model="searchContent" class="input-medium search-query">
+        </form>
+        <a class="btn form-search" href="#/producten">Website Galerij</a>
+        <a data-ng-show="hasUser" class="btn form-search" href="#/producten/user">Mijn Galerij</a>
+    </div>
+
+    <div class="row gallery">
+        <div class="span2 case" data-ng-repeat="design in user.caseDesigns | filter:searchContent">
+            <a href="#/product/{{design._id}}"><img data-ng-src="{{design.preview}}" alt=""/></a>
+            <div class="txt">
+                <h4>Titel:</h4>
+                <h5>{{ design.name }}</h5>
+                <h4>Laatst gewijzigd:</h4>
+                <h5>{{ design.created_at | date:'dd-MM-yyyy' }}</h5>
+            </div>
+        </div>
+    </div>
+</article>

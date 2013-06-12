@@ -55,8 +55,6 @@ app.controller('UserCtrl', function($scope, $location, $http, $resource) {
             if(data.error === null){
                 Application.notify('ok', 'Account is succesvol aangemaakt.');
             }
-            // callback
-            // feedback voor registreren hier!
         });
     };
 
