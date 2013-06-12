@@ -1,7 +1,8 @@
-<div class="row ontop" data-ng-init="phone = []">
-    <form class="span12 form-horizontal">
-		<label for="name">Geef je ontwerp een naam</label>
-        <input name="name" type="text" class="input-medium" value="{{ design.name }}">
+<div class="row ontop designtop" data-ng-init="phone = []">
+    <form class="span4 form-horizontal">
+		<label class="control-labell" for="name">Geef je ontwerp een naam</label><br />
+        <input id="name" name="name" type="text" class="input-medium" value="{{ design.name }}">
+        <button class="btn btn-success">Opslaan!</button>
     </form>
 </div>
 
@@ -109,11 +110,6 @@
         <div class="phone-overlay"></div>
         <canvas id="case-editor"></canvas>
     </div>
-
-    <div class="save-object">
-        <button>Opslaan!</button>
-    </div>
-	
 </div>		
 		
 			
