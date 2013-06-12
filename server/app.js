@@ -96,23 +96,23 @@ passport.serializeUser(function (user, done) {
  */
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        User.findOne({ name: username }, function (err, doc) {
-          if (!doc) { return done(null, false, { message: errorMessage }); }
-          if (!isPassword (password, doc.password) || err) {
-              return done(err);
-          }
-          return done(null, doc);
-        });
-    }
-    /**
-     * Verifies if the given password matches the users password.
-     * @see https://github.com/davidwood/node-password-hash/blob/master/README.md
-     * @param {String} password The password given.
-     * @param {String} hashedPassword The users password.
-     * @return {Boolean} True if it's a correct password.
-     */
-    function isPassword (password, hashedPassword) {
-      return (password && passwordHash.verify(password, hashedPassword));
+      User.findOne({ name: username }, function (err, doc) {
+        if (!doc) { return done(null, false, { message: errorMessage }); }
+        if (!isPassword (password, doc.password) || err) {
+            return done(err);
+        }
+        return done(null, doc);
+      });
+      /**
+       * Verifies if the given password matches the users password.
+       * @see https://github.com/davidwood/node-password-hash/blob/master/README.md
+       * @param {String} password The password given.
+       * @param {String} hashedPassword The users password.
+       * @return {Boolean} True if it's a correct password.
+       */
+      function isPassword (password, hashedPassword) {
+        return (password && passwordHash.verify(password, hashedPassword));
+      }
     }
 ));
 
