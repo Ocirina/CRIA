@@ -9,7 +9,19 @@ var dimensions = {
   }
 };
 var canvas = null;
+
+window.onbeforeunload = function(e) {
+  canvas = null;
+  var elem = $(document.body);
+  console.log(elem);
+  if (elem.hasClass('case-editor')) {
+    elem.removeClass('case-editor');
+    return 'Weet u zeker dat u de pagina wilt verlaten zonder op te slaan?';
+  }
+};
+
 $(document).on('StartEditor', function (e, data) {
+  $(document.body).addClass('case-editor');
   
   if (canvas === null) {
     canvas = new fabric.Canvas('case-editor', {
