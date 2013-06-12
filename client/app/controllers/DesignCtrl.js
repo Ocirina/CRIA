@@ -150,7 +150,7 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern17.jpg",
+                image:  "img/patterns/VF_pattern21.jpg",
                 alt:    "Skull"
             },
             {
