@@ -135,9 +135,27 @@ $(document).on('StartEditor', function (e, data) {
     });
 
     $('.save-object').on('click', 'button', function(e){
+      if(window.sessionStorage["loggedInUser"]) 
         try {
-          var img = canvas.toDataURL('png');
-          var json = JSON.stringify(canvas);
+          
+          var img = canvas.toDataURL('png'),
+          json = JSON.stringify(canvas),
+          data = {},
+          user = JSON.parse(window.sessionStorage["loggedInUser"]);
+          
+          data.name = $('input#name').val();
+          data.preview = img;
+          data.canvas = json;
+          data.user = user._id;
+          
+          $.ajax({
+            url: 'http://autobay.tezzt.nl:43083/casedesigns',
+            method: 'POST',
+            data: data,
+            success: function(response) {
+              console.log(response);
+            }
+          });
           console.log(json);
         }
         catch(e) {
@@ -210,9 +228,7 @@ $(document).on('StartEditor', function (e, data) {
     function addFiles(files) {
         var reader = null;
         for (var i = 0, f; f = files[i]; i++) {
-            if (!f.type.match('image.*')) {
-                continue;
-            }
+            if (!f.type.match('image.*')) { continue; }
             reader = new FileReader();
             reader.onload = (function (theFile) {
                 return function (e) {
@@ -239,6 +255,7 @@ $(document).on('StartEditor', function (e, data) {
     }
 
     function addImageToCanvas(data) {
+      console.log(data);
         fabric.Image.fromURL(data, function (obj) {
             var ratio = calculateRatio(data, 270, 572);
             var settings = calculateCenter(270, 572);
