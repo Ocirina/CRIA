@@ -185,11 +185,11 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
                 alt:    "Rondje"
             },
             {
-                image:  "img/objects/gewoon.svg",
+                image:  "img/objects/hartje.svg",
                 alt:    "Gewoon"
             },
             {
-                image:  "img/objects/davidster.svg",
+                image:  "img/objects/thumb.svg",
                 alt:    "Davidster"
             },
             {
