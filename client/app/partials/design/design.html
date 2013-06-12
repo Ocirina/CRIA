@@ -95,26 +95,10 @@
 			<div class="icon-caret-left"></div>
 			<div class="background-slider">
 				<div class="sliderow row-top">
-                	<img src="img/objects/gewoon.svg" alt="">
-                	<img src="img/objects/davidster.svg" alt="">
-                	<img src="img/objects/rondje.svg" alt="">
-                    <img src="img/objects/gewoon.svg" alt="">
-                    <img src="img/objects/davidster.svg" alt="">
-                    <img src="img/objects/rondje.svg" alt="">
-                    <img src="img/objects/gewoon.svg" alt="">
-                    <img src="img/objects/davidster.svg" alt="">
-                    <img src="img/objects/rondje.svg" alt="">
+                    <img data-ng-repeat="pattern in objectsRowOne" data-ng-src="{{ pattern.image }}" alt="{{ pattern.alt }}">
 				</div>
 				<div class="sliderow row-bottom">
-                    <img src="img/objects/sterretje.svg" alt="">
-                    <img src="img/objects/zeester.svg" alt="">
-                    <img src="img/objects/zeshoek.svg" alt="">
-                    <img src="img/objects/sterretje.svg" alt="">
-                    <img src="img/objects/zeester.svg" alt="">
-                    <img src="img/objects/zeshoek.svg" alt="">
-                    <img src="img/objects/sterretje.svg" alt="">
-                    <img src="img/objects/zeester.svg" alt="">
-                    <img src="img/objects/zeshoek.svg" alt="">
+                    <img data-ng-repeat="pattern in objectsRowTwo" data-ng-src="{{ pattern.image }}" alt="{{ pattern.alt }}">
 				</div>
 			</div>
          </div>
