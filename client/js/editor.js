@@ -110,32 +110,21 @@ $(document).on('StartEditor', function (e, data) {
     });
 
     function addSvg(svg) {
-        fabric.loadSVGFromURL(svg, function(objects, options) {
-            var loadedObject = fabric.util.groupSVGElements(objects, options);
-
-            var offset = 50,
+      fabric.loadSVGFromURL(svg, function(objects, options) {
+        var loadedObject = fabric.util.groupSVGElements(objects, options);
+        var offset = 50,
             left = fabric.util.getRandomInt(0 + offset, 270 - offset),
             top = fabric.util.getRandomInt(0 + offset, 650 - offset),
             angle = fabric.util.getRandomInt(-20, 40);
-            //width = fabric.util.getRandomInt(30, 50),
-            //opacity = (function(min, max){ return Math.random() * (max - min) + min; })(0.5, 1);
-
-            loadedObject.set({
-                left: left,
-                top: top,
-                angle: angle,
-                padding: 10,
-                cornersize: 10
-            });
-
-            loadedObject/*.scaleToWidth(300)*/.setCoords();
-
-            //loadedObject.hasRotatingPoint = true;
-
-            canvas.add(loadedObject);
-            updateComplexity();
-            canvas.calcOffset();
+        loadedObject.set({
+          left: left,
+          top: top,
+          angle: angle,
+          padding: 10,
+          cornersize: 10
         });
+        canvas.add(loadedObject);
+      });
     }
     
     function setBackground(background, hex) {
