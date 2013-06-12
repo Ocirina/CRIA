@@ -489,17 +489,17 @@ footer ul li a{
 	clear:both;
 }
 .phone-4{
-	background:url('http://94.210.234.160/_design_your_own/img/iphone4.png');
+	background:url('http://94.210.234.160/_design_your_own/img/iphone4.png') no-repeat;
 	height:532px;
 }
-.phone4{
+.phone4 {
 	background:url('http://94.210.234.160/_design_your_own/img/iphone4.png') no-repeat;
 	height:114px;
 	background-size:60px 114px;
 	margin-left:0;
 }
 .phone-5{
-	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png');
+	background:url('http://94.210.234.160/_design_your_own/img/iphone5.png') no-repeat;
 	height:569px;
 }
 .phone5{
@@ -532,6 +532,7 @@ footer ul li a{
 
 .ontwerpen{
 	position:relative;
+  z-index: 100;
 }
 .ontwerpen .well{
 	position:absolute;
@@ -610,6 +611,7 @@ footer ul li a{
 	top:0;
 	left:285px;
 	width:270px;
+  padding-bottom: 50px;
 }
 .sign-ok {
     position: absolute;
@@ -619,3 +621,27 @@ footer ul li a{
     color: #FFF;
 }
 
+div.phone-overlay {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.phone-4 div.phone-overlay {
+  background: url('http://94.210.234.160/_design_your_own/img/iphone4f.png') no-repeat;
+}
+.phone-5 div.phone-overlay {
+  background: url('http://94.210.234.160/_design_your_own/img/iphone5f.png') no-repeat;
+}
+
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
