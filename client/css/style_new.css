@@ -669,3 +669,29 @@ body {
 .sel-object .background-slider {
   width: 180px;
 }
+
+/* Ontwerp */
+.selected-1 div.sticker {
+    background-size: 60px 114px;
+    background: url('http://94.210.234.160/_design_your_own/img/sticker.svg')no-repeat;
+}
+
+.selected-2 div.hardcase {
+    background-size: 60px 114px;
+    background: url('http://94.210.234.160/_design_your_own/img/hardcase.svg')no-repeat;
+}
+
+.selected-3 div.silicone {
+    background-size: 60px 114px;
+    background: url('http://94.210.234.160/_design_your_own/img/silicon.svg')no-repeat;
+}
+
+.selected-4 div.phone4 {
+    background-size: 60px 114px;
+    background: url('http://94.210.234.160/_design_your_own/img/iphone4grijs.png') no-repeat;
+}
+
+.selected-5 div.phone5 {
+    background-size: 60px 124px;
+    background: url('http://94.210.234.160/_design_your_own/img/iphone5grijs.png') no-repeat;
+}
