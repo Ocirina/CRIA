@@ -87,7 +87,7 @@ $(document).on('StartEditor', function (e, data) {
     });
 
     $('.sel-object').on('click', '.icon-caret-right', function(e){
-        move('.sel-object .sliderow', '-=250');
+        move('.sel-object .sliderow', '-=120');
 
         e.preventDefault();
         e.stopPropagation();
@@ -95,7 +95,7 @@ $(document).on('StartEditor', function (e, data) {
     });
 
     $('.sel-object').on('click', '.icon-caret-left', function(e){
-        move('.sel-object .sliderow', '+=250');
+        move('.sel-object .sliderow', '+=120');
 
         e.preventDefault();
         e.stopPropagation();
