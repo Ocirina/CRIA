@@ -173,27 +173,27 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
 
         $scope.objectsRowOne = [
             {
-                image:  "img/objects/gewoon.svg",
-                alt:    "Gewoon"
-            },
-            {
-                image:  "img/objects/davidster.svg",
-                alt:    "Davidster"
-            },
-            {
-                image:  "img/objects/rondje.svg",
-                alt:    "Rondje"
-            },
-            {
                 image:  "img/objects/hartje.svg",
                 alt:    "Gewoon"
             },
             {
-                image:  "img/objects/thumb.svg",
+                image:  "img/objects/patrickster.svg",
                 alt:    "Davidster"
             },
             {
+                image:  "img/objects/rarezeshoekl.svg",
+                alt:    "Rondje"
+            },
+            {
                 image:  "img/objects/rondje.svg",
+                alt:    "Gewoon"
+            },
+            {
+                image:  "img/objects/sterretje.svg",
+                alt:    "Davidster"
+            },
+            {
+                image:  "img/objects/thumb.svg",
                 alt:    "Rondje"
             },
             {
@@ -205,26 +205,26 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
                 alt:    "Davidster"
             },
             {
-                image:  "img/objects/rondje.svg",
+                image:  "img/objects/zeshoekmetschevecirkel.svg",
                 alt:    "Rondje"
             }
         ];
 
         $scope.objectsRowTwo = [
             {
-                image:  "img/objects/sterretje.svg",
+                image:  "img/objects/applelogogekleurd.svg",
                 alt:    "Sterretje"
             },
             {
-                image:  "img/objects/zeester.svg",
+                image:  "img/objects/applelogozwart.svg",
                 alt:    "Zeester"
             },
             {
-                image:  "img/objects/zeshoek.svg",
+                image:  "img/objects/cirkel.svg",
                 alt:    "Zeshoek"
             },
             {
-                image:  "img/objects/sterretje.svg",
+                image:  "img/objects/gewoon.svg",
                 alt:    "Sterretje"
             },
             {
