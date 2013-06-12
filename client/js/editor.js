@@ -134,23 +134,24 @@ $(document).on('StartEditor', function (e, data) {
         addSvg(src);
     });
 
-    $('.save-object').on('click', 'button', function(e){
-      if(window.sessionStorage["loggedInUser"]) 
+    $('.form-horizontal').on('click', 'button', function(e){
+        if(window.sessionStorage["loggedInUser"]) {
         try {
-          
+        
           var img = canvas.toDataURL('png'),
           json = JSON.stringify(canvas),
           data = {},
           user = JSON.parse(window.sessionStorage["loggedInUser"]);
-          
+        
           data.name = $('input#name').val();
           data.preview = img;
           data.canvas = json;
+          data.shared = true;
           data.user = user._id;
-          
+        
           $.ajax({
             url: 'http://autobay.tezzt.nl:43083/casedesigns',
-            method: 'POST',
+            type: 'POST',
             data: data,
             success: function(response) {
               console.log(response);
@@ -161,9 +162,10 @@ $(document).on('StartEditor', function (e, data) {
         catch(e) {
           Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!');
         }
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
     });
 
     function addSvg(svg) {
