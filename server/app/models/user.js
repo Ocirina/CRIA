@@ -11,7 +11,7 @@ var User = Schema({
     dateOfBirth:  {type: Date,   required: true},
     password:     {type: String, required: true},
     address:      {type: Schema.Types.ObjectId, ref: 'Address'},
-    caseDesigns:  [{type: Schema.Types.ObjectId, ref: 'CaseDesigns'}]
+    caseDesigns:  [{type: Schema.Types.ObjectId, ref: 'CaseDesign'}]
 });
 
 /**
