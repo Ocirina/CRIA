@@ -1,32 +1,51 @@
-$(document).on('StartEditor', function (e) {
-    var canvas = new fabric.Canvas('case-editor', {
+var dimensions = {
+  "4": {
+    width: 270,
+    height: 532
+  },
+  "5": {
+    width: 270,
+    height: 569
+  }
+};
+var canvas = null;
+$(document).on('StartEditor', function (e, data) {
+  
+  if (canvas === null) {
+    canvas = new fabric.Canvas('case-editor', {
       centerTransform: true,
       controlsAboveOverlay: true,
       selectionBorderColor: "black",
       selectionColor: "rgba(255, 255, 255, 0.3)",
       selectionLineWidth: 2
     });
-    canvas.setWidth(270);
-    canvas.setHeight(569);
+  }
+  
+  if (canvas) {
+    var id = data.phone;
+    canvas.setWidth(dimensions[id].width);
+    canvas.setHeight(dimensions[id].height);
+    canvas.renderAll();
+  }
 
-    var Handler = {
-        handleTextObject: function(obj) {
-        $('#text').find('button').attr('disabled', false);
-            $('#text textarea').val(obj.getText());
-        },
-        handleImageObject: function(obj) {
-            console.log(obj);
-        },
-        handlePathObject: function(obj) {
-            console.log(obj);
-        },
-        handleGroupObject: function(obj) {
-            console.log(obj);
-        },
-        handleDefaultObject: function(obj) {
-            console.log(obj);
-        }
-    };
+  var Handler = {
+      handleTextObject: function(obj) {
+      $('#text').find('button').attr('disabled', false);
+          $('#text textarea').val(obj.getText());
+      },
+      handleImageObject: function(obj) {
+          console.log(obj);
+      },
+      handlePathObject: function(obj) {
+          console.log(obj);
+      },
+      handleGroupObject: function(obj) {
+          console.log(obj);
+      },
+      handleDefaultObject: function(obj) {
+          console.log(obj);
+      }
+  };
     
     canvas.on('object:selected', function(e){
         var selectedObject = e.target,
@@ -76,14 +95,18 @@ $(document).on('StartEditor', function (e) {
         addSvg(src);
     });
 
-    $('.save-object button').on('click', function(){
-        console.log('Button works.');
-        if (!fabric.canvas.supports('toDataURL')) {
-            Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!');
-        } else {
-            console.log(canvas.toDataURL('png'));
-            window.open(canvas.toDataURL('png'));
+    $('.save-object').on('click', 'button', function(e){
+        try {
+          var img = canvas.toDataURL('png');
+          var json = JSON.stringify(canvas);
+          console.log(json);
         }
+        catch(e) {
+          Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!');
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
     });
 
     function addSvg(svg) {
