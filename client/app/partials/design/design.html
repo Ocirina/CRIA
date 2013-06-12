@@ -1,7 +1,7 @@
 <div class="row ontop" data-ng-init="phone = []">
     <form class="span12 form-horizontal">
 		<label for="name">Geef je ontwerp een naam</label>
-        <input name="name" type="text" class="input-medium" value"{{ design.name }}">
+        <input name="name" type="text" class="input-medium" value="{{ design.name }}">
     </form>
 </div>
 
@@ -22,7 +22,7 @@
 	<div data-ng-show="phone.phone && phone.case" class="span4 pull-right well sel-bg">
 		<h6>Achtergrond</h6>
 		<p>Zoek een eigen afbeelding op, en sleep deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
-	    <input type="file" multiple id="upload" placeholder"Uplouden">
+	    <input type="file" multiple id="upload" placeholder="Uplouden">
 		<div>
 			<div class="icon-caret-left"></div>
 			<div class="background-slider">
@@ -101,7 +101,8 @@
                     <img data-ng-repeat="pattern in objectsRowTwo" data-ng-src="{{ pattern.image }}" alt="{{ pattern.alt }}">
 				</div>
 			</div>
-         </div>
+            <div class="icon-caret-right"></div>
+        </div>
 	</div>
 	
     <div class="phone phone-{{phone.phone}} span4">
