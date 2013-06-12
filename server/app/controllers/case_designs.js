@@ -30,13 +30,37 @@ exports.index = function (req, res) {
   fields = {};
   options = {'name': -1};
 
-    CaseDesign.find(conditions, fields, options)
+    CaseDesign
+      .find(conditions, fields, options)
+      .populate({
+        path: 'user',
+        select: 'firstName lastName'
+      })
       .exec(function (err, casedesigns) {
+        casedesigns = shuffleArray(casedesigns);
         return res.send({
           "error": err,
           "result": casedesigns
         });
       });
+  /**
+   * Randomize array element order in-place.
+   * Using Fisher-Yates shuffle algorithm.
+   * @see http://en.wikipedia.org/wiki/Fisher-Yates_shuffle
+   * @param Array arr The array to shuffle.
+   * @return Shuffled array.
+   */
+   function shuffleArray ( arr ) {
+     var i = arr.length, j, temp;
+     if ( i === 0 ) { return false; }
+     while ( --i ) {
+        j = Math.floor( Math.random() * ( i + 1 ) );
+        temp = arr[i];
+        arr[i] = arr[j]; 
+        arr[j] = temp;
+      }
+      return arr;
+   }
 }
 
 /**
