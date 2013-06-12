@@ -24,11 +24,12 @@ module.exports = function (app) {
     // User
     app.post('/users', User.create);
     app.get('/user/:id', User.show);
+    app.get('/gallery/:id', User.gallery);
     app.put('/user/:id', authenticated, User.update);
     app.delete('/user/:id', authenticated, User.destroy);
     
     // CaseDesign
-    app.get('/casedesigns', CaseDesign.index);    
+    app.get('/casedesigns', CaseDesign.index);
     app.get('/casedesign/:id', CaseDesign.show);
     app.post('/casedesigns', authenticated, CaseDesign.create);
     app.put('/casedesign/:id', authenticated, CaseDesign.update);
@@ -37,7 +38,7 @@ module.exports = function (app) {
     // Comment
     app.get('/casedesign/:id/comments', Comment.index);
     app.post('/casedesign/:id/comments', authenticated, Comment.create);
-    //app.delete('/comment/:id', Comment.destroy);
+    app.delete('/comment/:id', Comment.destroy);
 
     // Rating
     app.get('/casedesign/:id/ratings', Rating.index);
