@@ -10,9 +10,11 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
         $.event.trigger('StartEditor');
 
         $scope.backgroundsRowOne = [];
-        $scope.backgroundsRowTwo = {};
+        $scope.backgroundsRowTwo = [];
+        $scope.objectsRowOne = [];
+        $scope.objectsRowTwo = [];
 
-        $scope.fillBackgrounds();
+        $scope.fillObjectArrays();
     };
 
     /**
@@ -42,7 +44,7 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
         }
     }
 
-    $scope.fillBackgrounds = function() {
+    $scope.fillObjectArrays = function() {
         $scope.backgroundsRowOne = [
             {
                 image:  "img/patterns/dogs.png",
@@ -166,6 +168,84 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
             {
                 image:  "img/patterns/winterswag.png",
                 alt:    "Skull"
+            }
+        ];
+
+        $scope.objectsRowOne = [
+            {
+                image:  "img/objects/gewoon.svg",
+                alt:    "Gewoon"
+            },
+            {
+                image:  "img/objects/davidster.svg",
+                alt:    "Davidster"
+            },
+            {
+                image:  "img/objects/rondje.svg",
+                alt:    "Rondje"
+            },
+            {
+                image:  "img/objects/gewoon.svg",
+                alt:    "Gewoon"
+            },
+            {
+                image:  "img/objects/davidster.svg",
+                alt:    "Davidster"
+            },
+            {
+                image:  "img/objects/rondje.svg",
+                alt:    "Rondje"
+            },
+            {
+                image:  "img/objects/gewoon.svg",
+                alt:    "Gewoon"
+            },
+            {
+                image:  "img/objects/davidster.svg",
+                alt:    "Davidster"
+            },
+            {
+                image:  "img/objects/rondje.svg",
+                alt:    "Rondje"
+            }
+        ];
+
+        $scope.objectsRowTwo = [
+            {
+                image:  "img/objects/sterretje.svg",
+                alt:    "Sterretje"
+            },
+            {
+                image:  "img/objects/zeester.svg",
+                alt:    "Zeester"
+            },
+            {
+                image:  "img/objects/zeshoek.svg",
+                alt:    "Zeshoek"
+            },
+            {
+                image:  "img/objects/sterretje.svg",
+                alt:    "Sterretje"
+            },
+            {
+                image:  "img/objects/zeester.svg",
+                alt:    "Zeester"
+            },
+            {
+                image:  "img/objects/zeshoek.svg",
+                alt:    "Zeshoek"
+            },
+            {
+                image:  "img/objects/sterretje.svg",
+                alt:    "Sterretje"
+            },
+            {
+                image:  "img/objects/zeester.svg",
+                alt:    "Zeester"
+            },
+            {
+                image:  "img/objects/zeshoek.svg",
+                alt:    "Zeshoek"
             }
         ];
     };
