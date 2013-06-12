@@ -31,7 +31,7 @@ var User = Schema({
  * This wasn't documented and solution was found here: http://stackoverflow.com/a/14774743/1988125
  */
 User.pre('save', function(next, req, callback){
-  if (req.body['address']) {
+  if (req !== null && req.body.hasOwnProperty('address')) {
     var Address = mongoose.models["Address"];
     if (req.body.address._id) {
       var id = req.body.address._id;

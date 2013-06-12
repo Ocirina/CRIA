@@ -1,21 +1,25 @@
-var mongoose, CaseDesign;
-
-/* Include dependencies */
-mongoose = require('mongoose');
-CaseDesign = mongoose.model('CaseDesign');
+// Include dependencies
+var mongoose = require('mongoose');
+var CaseDesign = mongoose.model('CaseDesign');
+var User = mongoose.model('User');
 
 
 /**
  * Type: POST
- * Route: /casedesign
+ * Route: /casedesigns
  */
 exports.create = function (req, res) {
   var caseDesign = new CaseDesign(req.body);
-    CaseDesign.save(function (err) {
-      return res.send({
-        "error":  err,
-        "result": caseDesign
+  User.findById(req.body.user, function(err, user) {
+    user.caseDesigns.push(caseDesign._id);
+    user.save(req, function(err) {
+      caseDesign.save(function (err) {
+        return res.send({
+          "error":  err,
+          "result": caseDesign
+        });
       });
+    });
   });
 }
 
@@ -27,22 +31,22 @@ exports.index = function (req, res) {
   var conditions, fields, options;
 
   conditions = {};
-  fields = {};
+  fields = '-canvas';
   options = {'name': -1};
 
-    CaseDesign
-      .find(conditions, fields, options)
-      .populate({
-        path: 'user',
-        select: 'firstName lastName'
-      })
-      .exec(function (err, casedesigns) {
-        casedesigns = shuffleArray(casedesigns);
-        return res.send({
-          "error": err,
-          "result": casedesigns
-        });
+  CaseDesign
+    .find(conditions, fields, options)
+    .populate({
+      path: 'user',
+      select: 'firstName lastName'
+    })
+    .exec(function (err, casedesigns) {
+      casedesigns = shuffleArray(casedesigns);
+      return res.send({
+        "error": err,
+        "result": casedesigns
       });
+    });
   /**
    * Randomize array element order in-place.
    * Using Fisher-Yates shuffle algorithm.

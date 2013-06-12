@@ -30,8 +30,8 @@ module.exports = function (app) {
     
     // CaseDesign
     app.get('/casedesigns', CaseDesign.index);
-    app.get('/casedesign/:id', CaseDesign.show);
     app.post('/casedesigns', authenticated, CaseDesign.create);
+    app.get('/casedesign/:id', CaseDesign.show);
     app.put('/casedesign/:id', authenticated, CaseDesign.update);
     app.delete('/casedesign/:id', authenticated, CaseDesign.destroy);
 

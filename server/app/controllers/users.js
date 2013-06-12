@@ -84,7 +84,6 @@ exports.gallery = function (req, res) {
       select: '-designObjects'
     })
     .exec(function (err, user) {
-      console.log(user, user.caseDesigns);
       return res.send({
         "error": err,
         "result": user
