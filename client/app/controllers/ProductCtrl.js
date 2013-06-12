@@ -42,6 +42,7 @@ app.controller('ProductCtrl', function($scope, $location, $http, $resource, $rou
 
             if(window.sessionStorage["loggedInUser"]) {
                 var user = JSON.parse(window.sessionStorage["loggedInUser"]);
+                $scope.hasUser = true;
                 if($scope.user._id == user._id) {
                     $location.path("/producten/user");
                 }

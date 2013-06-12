@@ -1,11 +1,11 @@
 <article data-ng-init="getProductsByGivenUser()">
     <div class="row ontop">
-        <h2 class="span8">Galerij - {{user.firstName }} {{ user.lastName }}</h2>
+        <h2 class="span6">Galerij - {{user.firstName }} {{ user.lastName }}</h2>
         <form class="form-search span2">
-            <input type="text" placeholder="Zoeken" data-ng-model="searchContent" class="input-medium search-query">
+            <input class="input-medium search-query pull-right" type="text" placeholder="Zoeken" data-ng-model="searchContent" class="input-medium search-query">
         </form>
-        <a class="btn form-search" href="#/producten">Website Galerij</a>
-        <a data-ng-show="hasUser" class="btn form-search" href="#/producten/user">Mijn Galerij</a>
+        <a class="btn span2 form-search" href="#/producten">Website Galerij</a>
+        <a data-ng-show="hasUser" class="btn span2 form-search" href="#/producten/user">Mijn Galerij</a>
     </div>
 
     <div class="row gallery">
