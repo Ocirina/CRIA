@@ -39,7 +39,7 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
 
             //TODO: get json canvas with the case id & load it in the editor.
         } else {
-            // niet ingelogd
+            Application.notify('error', 'U bent niet ingelogd.');
         }
     };
 
