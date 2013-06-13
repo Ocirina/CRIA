@@ -59,23 +59,23 @@
 			
 		<div class="btn-toolbar">
 		  <div class="btn-group">
-		    <a class="btn" id="align-left"><i class="icon-align-left"></i></a>
-		    <a class="btn" id="align-center"><i class="icon-align-center"></i></a>
-		    <a class="btn" id="align-right"><i class="icon-align-right"></i></a>
-		    <a class="btn" id="align-justify"><i class="icon-align-justify"></i></a>
+		    <a class="btn" data-type="textAlign" data-setting="left" id="align-left"><i class="icon-align-left"></i></a>
+		    <a class="btn" data-type="textAlign" data-setting="center" id="align-center"><i class="icon-align-center"></i></a>
+		    <a class="btn" data-type="textAlign" data-setting="right" id="align-right"><i class="icon-align-right"></i></a>
+		    <a class="btn" data-type="textAlign" data-setting="justify" id="align-justify"><i class="icon-align-justify"></i></a>
 		  </div>
 		</div>
 			
 		<div class="btn-toolbar">
 		  <div class="btn-group">
-		    <a class="btn" id="set-bold"><i class="icon-bold"></i></a>
-		    <a class="btn" id="set-italic"><i class="icon-italic"></i></a>
-		    <a class="btn" id="set-underline"><i class="icon-underline"></i></a>
-		    <a class="btn" id="set-strikethrough"><i class="icon-strikethrough"></i></a>
+		    <a class="btn" data-type="fontWeight" data-setting="bold" id="set-bold"><i class="icon-bold"></i></a>
+		    <a class="btn" data-type="fontStyle" data-setting="italic" id="set-italic"><i class="icon-italic"></i></a>
+		    <a class="btn" data-type="textDecoration" data-setting="underline" id="set-underline"><i class="icon-underline"></i></a>
+		    <a class="btn" data-type="textDecoration" data-setting="line-through" id="set-strikethrough"><i class="icon-strikethrough"></i></a>
 		  </div>
 		</div>
 			
-		<select id="set-font">
+		<select data-type="fontFamily" id="set-font">
 		  <option>Verdana</option>
 		  <option>Georgie</option>
 		  <option>Arial</option>
@@ -84,9 +84,9 @@
 		</select>
 		
 		<form>
-			<input id="set-font-size" class="span1" type="tekst" value="23"/>
-			<input id="set-font-color" class="span1 font-color" type="color"/>
-            <textarea id="set-text"></textarea>
+			<input id="set-font-size" data-type="fontSize" class="span1" type="number" value="23"/>
+			<input id="set-font-color" data-type="fill" class="span1 font-color" type="color"/>
+            <textarea data-type="text" id="set-text"></textarea>
             <button class="btn" id="add-text">Voeg tekst toe</button>
 		</form>
 	</div>
