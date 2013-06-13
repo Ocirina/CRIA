@@ -10,17 +10,59 @@ var User = mongoose.model('User');
  */
 exports.create = function (req, res) {
   var caseDesign = new CaseDesign(req.body);
-  User.findById(req.body.user, function(err, user) {
-    user.caseDesigns.push(caseDesign._id);
-    user.save(req, function(err) {
-      caseDesign.save(function (err) {
-        return res.send({
-          "error":  err,
-          "result": caseDesign
-        });
+  
+  /**
+   * Save base64 as png image
+   * @see http://stackoverflow.com/questions/6926016/nodejs-saving-a-base64-encoded-image-to-disk
+   */
+  var base64Data = req.body.preview.replace(/^data:image\/png;base64,/, "");
+  var fileName = "public/upload/"+safeFileName(caseDesign._id);
+  require("fs").writeFile(fileName, base64Data, 'base64', function(err) {
+    caseDesign.preview = fileName.replace("public/", "");
+    getUser(req, res, caseDesign);
+  });
+  
+  function getUser(req, res, caseDesign) {
+    User.findById(req.body.user, function(err, user) {
+      user.caseDesigns.push(caseDesign._id);
+      user.save(req, function(err) {
+        saveDesign(req, res, caseDesign);
       });
     });
-  });
+  }
+  
+  function saveDesign(req, res, caseDesign) {
+    caseDesign.save(function (err) {
+      return res.send({
+        "error":  err,
+        "result": caseDesign
+      });
+    });
+  }
+  
+  function safeFileName(name) {
+    name = name.toString();
+    name = slugify(name);
+    return name+'.png'
+  }
+  
+  function slugify(str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+
+    // remove accents, swap ñ for n, etc
+    var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+    var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+      str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+      .replace(/\s+/g, '-') // collapse whitespace and replace by -
+      .replace(/-+/g, '-'); // collapse dashes
+
+    return str;
+  }
 }
 
 /**
@@ -74,6 +116,30 @@ exports.index = function (req, res) {
 exports.show = function (req, res) {
   CaseDesign
     .findOne({_id: req.params.id})
+    .select('-canvas')
+    .populate({
+      path: 'user',
+      select: '_id firstName lastName'
+    })
+    .exec(function (err, casedesigns) {
+      return res.send({
+        "error": err,
+        "result": casedesigns
+      });
+    });
+}
+/**
+ * Type: GET
+ * Route: /canvas/:id
+ */
+exports.canvas = function (req, res) {
+  CaseDesign
+    .findOne({_id: req.params.id})
+    .select('_id', 'name', 'canvas', 'user')
+    .populate({
+      path: 'user',
+      select: '_id firstName lastName'
+    })
     .exec(function (err, casedesigns) {
       return res.send({
         "error": err,
