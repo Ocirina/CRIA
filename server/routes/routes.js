@@ -22,16 +22,17 @@ module.exports = function (app) {
     Order       = require('../app/controllers/orders.js');
 
     // User
-    app.post('/users', User.create);
     app.get('/user/:id', User.show);
     app.get('/gallery/:id', User.gallery);
+    app.post('/users', User.create);
     app.put('/user/:id', authenticated, User.update);
     app.delete('/user/:id', authenticated, User.destroy);
     
     // CaseDesign
     app.get('/casedesigns', CaseDesign.index);
-    app.post('/casedesigns', authenticated, CaseDesign.create);
     app.get('/casedesign/:id', CaseDesign.show);
+    app.get('/canvas/:id', authenticated, CaseDesign.canvas);
+    app.post('/casedesigns', authenticated, CaseDesign.create);
     app.put('/casedesign/:id', authenticated, CaseDesign.update);
     app.delete('/casedesign/:id', authenticated, CaseDesign.destroy);
 
