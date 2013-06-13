@@ -6,19 +6,11 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
      */
     $scope.activatePhone = function(phoneId) {
         $scope.phone.phone = phoneId;
-
         $.event.trigger('StartEditor',
             {
                 phone: phoneId
             }
         );
-
-        $scope.backgroundsRowOne = [];
-        $scope.backgroundsRowTwo = [];
-        $scope.objectsRowOne = [];
-        $scope.objectsRowTwo = [];
-
-        $scope.fillObjectArrays();
     };
 
     /**
@@ -49,6 +41,11 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
     };
 
     $scope.fillObjectArrays = function() {
+        $scope.backgroundsRowOne = [];
+        $scope.backgroundsRowTwo = [];
+        $scope.objectsRowOne = [];
+        $scope.objectsRowTwo = [];
+
         $scope.backgroundsRowOne = [
             {
                 image:  "img/patterns/dogs.png",

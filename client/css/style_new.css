@@ -304,6 +304,7 @@ nav ul li a{
     width: 140px;
 }
 .gallery .case .txt{
+    color:transparent;
     width:140px;
     height:285px;
     display:inline-block;
@@ -315,6 +316,9 @@ nav ul li a{
     z-index:5;
     background:#f8f8f8 no-repeat;
     box-shadow:3px 3px 5px #222222;
+}
+.gallery .case:hover .txt {
+    color:#000
 }
 .gallery .case:nth-child(6n+7){
     clear:both;
