@@ -135,13 +135,11 @@ $(document).on('StartEditor', function (e, data) {
     });
 
     $('.sel-bg').find('.background-slider').on('click', 'img', function (e) {
-        var src = e.target.src;
-        setBackground(src);
+        setBackground($(this).data('url'));
     });
 
     $('.sel-object').find('.background-slider').on('click', 'img', function (e) {
-        var src = e.target.src;
-        addSvg(src);
+        addSvg($(this).data('url'));
     });
 
     $('.form-horizontal').on('click', 'button', function (e) {
@@ -169,7 +167,7 @@ $(document).on('StartEditor', function (e, data) {
                 });
             }
             catch (e) {
-                Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!');
+                Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!' + e);
             }
         } else {
             Application.notify('error', 'Je moet ingelogd zijn om een ontwerp te kunnen opslaan.');
@@ -204,7 +202,10 @@ $(document).on('StartEditor', function (e, data) {
             hex = false;
         }
         if (!hex) {
-            setting = { source: background, repeat: 'repeat' };
+            setting = {
+                source: background,
+                repeat: 'repeat'
+            };
         }
         canvas.setBackgroundColor(setting, function () {
             canvas.renderAll();
