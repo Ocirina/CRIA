@@ -46,8 +46,8 @@ exports.create = function (req, res) {
    */
   function saveDesign(req, res, caseDesign) {
     caseDesign.save(function (err) {
+      delete caseDesign.canvas;
       return res.send({
-        delete caseDesign.canvas;
         "error":  err,
         "result": caseDesign
       });
