@@ -1,7 +1,8 @@
 <div class="row ontop designtop" data-ng-init="phone = []">
-    <form class="span4 form-horizontal">
+    <form class="span5 form-horizontal">
 		<label class="control-labell" for="name">Geef je ontwerp een naam</label><br />
         <input id="name" name="name" type="text" class="input-medium" value="{{ design.name }}">
+        <input type="checkbox" class="input-medium" data-ng-model="design.shared"> Gedeeld
         <button class="btn btn-success">Opslaan!</button>
     </form>
 </div>
