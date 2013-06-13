@@ -1,63 +1,63 @@
-app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
-    $scope.loadShopCartDesigns = function() {
-        if(window.localStorage['Order']) {
+app.controller('ShopCartCtrl', function ($scope, $location, $http, $resource) {
+    $scope.loadShopCartDesigns = function () {
+        if (window.localStorage['Order']) {
             var order = JSON.parse(window.localStorage['Order']);
             $scope.order = {
                 orderlines: []
             };
 
-            for(var i = 0; i < order.orderlines.length; i++) {
+            for (var i = 0; i < order.orderlines.length; i++) {
                 order.orderlines[i]["aantal"] = $scope.getAmount(order.orderlines[i]["aantal"]);
-                $scope.order.orderlines.push({caseDesign:order.orderlines[i]["caseDesign"],
-                                              aantal:  order.orderlines[i]["aantal"]
+                $scope.order.orderlines.push({caseDesign: order.orderlines[i]["caseDesign"],
+                    aantal: order.orderlines[i]["aantal"]
                 });
             }
         }
     };
 
-    $scope.getAmount = function(amount) {
-        if(isNaN(amount) || amount <= 0) {
+    $scope.getAmount = function (amount) {
+        if (isNaN(amount) || amount <= 0) {
             return 1;
         }
         return amount;
     };
 
-    $scope.changeAmount = function(caseDesign, input){
-        if(window.localStorage['Order']) {
+    $scope.changeAmount = function (caseDesign, input) {
+        if (window.localStorage['Order']) {
             var shopCartDesigns = JSON.parse(window.localStorage['Order']);
             var amount = 0, order = {
                 orderlines: []
             };
 
-            for(var i = 0; i < shopCartDesigns.orderlines.length; i++) {
+            for (var i = 0; i < shopCartDesigns.orderlines.length; i++) {
                 amount = shopCartDesigns.orderlines[i]["aantal"];
 
-                if(shopCartDesigns.orderlines[i].caseDesign._id === caseDesign._id){
+                if (shopCartDesigns.orderlines[i].caseDesign._id === caseDesign._id) {
                     amount = input.orderline.aantal;
                 }
 
-                order.orderlines[i] = {caseDesign:shopCartDesigns.orderlines[i]["caseDesign"], aantal: amount};
+                order.orderlines[i] = {caseDesign: shopCartDesigns.orderlines[i]["caseDesign"], aantal: amount};
             }
             window.localStorage['Order'] = JSON.stringify(order);
             $scope.calculateTotalPrice();
         }
     };
 
-    $scope.removeProduct = function(caseDesignId) {
-        if(window.localStorage['Order']) {
+    $scope.removeProduct = function (caseDesignId) {
+        if (window.localStorage['Order']) {
             var order = JSON.parse(window.localStorage['Order']);
 
-            for(var i = 0; i < order.orderlines.length; i++) {
-                if(caseDesignId === order.orderlines[i].caseDesign._id){
+            for (var i = 0; i < order.orderlines.length; i++) {
+                if (caseDesignId === order.orderlines[i].caseDesign._id) {
                     $scope.order.orderlines.splice(i, 1);
-                    order.orderlines.splice(i,1);
+                    order.orderlines.splice(i, 1);
 
                     Application.notify('ok', 'Product is verwijderd.');
                     break;
                 }
             }
 
-            if(order.orderlines.length === 0){
+            if (order.orderlines.length === 0) {
                 window.localStorage.removeItem('Order');
                 $scope.order = null;
             } else {
@@ -68,12 +68,12 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
         }
     };
 
-    $scope.calculateTotalPrice = function() {
+    $scope.calculateTotalPrice = function () {
         $scope.totalPrice = 0;
 
-        if($scope.order !== undefined && $scope.order !== null){
-            if($scope.order.orderlines.length !== 0){
-                for(var i = 0; i < $scope.order.orderlines.length; i++) {
+        if ($scope.order !== undefined && $scope.order !== null) {
+            if ($scope.order.orderlines.length !== 0) {
+                for (var i = 0; i < $scope.order.orderlines.length; i++) {
                     $scope.totalPrice += $scope.order.orderlines[i].aantal * 7.5;
                 }
             }
@@ -81,13 +81,13 @@ app.controller('ShopCartCtrl', function($scope, $location, $http, $resource) {
     };
 
 
-    $scope.loadPaymentMethods = function() {
-        if(window.sessionStorage["loggedInUser"] ) {
+    $scope.loadPaymentMethods = function () {
+        if (window.sessionStorage["loggedInUser"]) {
             var user = JSON.parse(window.sessionStorage["loggedInUser"]);
-            if(user.address != undefined) {
+            if (user.address != undefined) {
                 console.log($scope.totalPrice);
                 console.log(!(isNaN($scope.totalPrice)));
-                if($scope.totalPrice !== null && $scope.totalPrice !== undefined && !(isNaN($scope.totalPrice))) {
+                if ($scope.totalPrice !== null && $scope.totalPrice !== undefined && !(isNaN($scope.totalPrice))) {
                     $location.path('/betalen/kiezen');
                 } else {
                     Application.notify('error', 'Er is een verkeerd aantal ingevuld bij een product.');

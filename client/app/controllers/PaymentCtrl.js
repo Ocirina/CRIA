@@ -1,10 +1,10 @@
-app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
-    $scope.addImageDropDowns = function() {
+app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
+    $scope.addImageDropDowns = function () {
         this.addPaymentMethodDropdown();
         this.addPaymentBankDropdown();
     };
 
-    $scope.addPaymentMethodDropdown = function() {
+    $scope.addPaymentMethodDropdown = function () {
         var paymentMethods = [
             {
                 text: "Kies de betaal methode",
@@ -42,15 +42,15 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
         ];
 
         $('#paymentMethods').ddslick({
-            data:paymentMethods,
-            width:250,
+            data: paymentMethods,
+            width: 250,
             selectText: "Selecteer een betaal methode",
-            imagePosition:"left",
-            onSelected: function(data){
-                if(data.selectedData.value == 1) {
+            imagePosition: "left",
+            onSelected: function (data) {
+                if (data.selectedData.value == 1) {
                     $("#paymentBanks").show();
                     $scope.disableOrEnablePaymentButton(true);
-                } else if(data.selectedData.value == 0) {
+                } else if (data.selectedData.value == 0) {
                     $("#paymentBanks").hide();
                     $scope.disableOrEnablePaymentButton(true);
                 } else {
@@ -61,7 +61,7 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
         });
     };
 
-    $scope.addPaymentBankDropdown = function() {
+    $scope.addPaymentBankDropdown = function () {
         var paymentBanks = [
             {
                 text: "Kies uw bank",
@@ -113,12 +113,12 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
         ];
 
         $('#paymentBanks').ddslick({
-            data:paymentBanks,
-            width:250,
+            data: paymentBanks,
+            width: 250,
             selectText: "Selecteer een betaal methode",
-            imagePosition:"left",
-            onSelected: function(data){
-                if(data.selectedData.value == 0) {
+            imagePosition: "left",
+            onSelected: function (data) {
+                if (data.selectedData.value == 0) {
                     $scope.disableOrEnablePaymentButton(true);
                 } else {
                     $scope.disableOrEnablePaymentButton(false);
@@ -128,9 +128,9 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
         $('#paymentBanks').hide();
     };
 
-    $scope.disableOrEnablePaymentButton = function(disable) {
+    $scope.disableOrEnablePaymentButton = function (disable) {
         var toPaymentButton = document.getElementById("toPayment");
-        if(!disable) {
+        if (!disable) {
             toPaymentButton.disabled = false;
             toPaymentButton.classList.remove("disabled");
         } else {
@@ -139,30 +139,30 @@ app.controller('PaymentCtrl', function($scope, $location, $http, $resource) {
         }
     };
 
-    $scope.pay = function() {
+    $scope.pay = function () {
         var user = JSON.parse(window.sessionStorage["loggedInUser"]);
         var order = JSON.parse(window.localStorage["Order"]);
 
-        if(user != undefined) {
-            if(order != undefined) {
+        if (user != undefined) {
+            if (order != undefined) {
                 order.user = user._id;
-                for(var i = 0; i < order.orderlines.length; i++) {
-                    if(order.orderlines[i].aantal != undefined) {
+                for (var i = 0; i < order.orderlines.length; i++) {
+                    if (order.orderlines[i].aantal != undefined) {
                         order.orderlines[i].amount = order.orderlines[i].aantal;
                         delete order.orderlines[i].aantal;
                     }
-                    if(order.orderlines[i].caseDesign != undefined) {
+                    if (order.orderlines[i].caseDesign != undefined) {
                         order.orderlines[i].caseDesign = order.orderlines[i].caseDesign._id;
                     }
                 }
 
-                var Order = $resource('http://autobay.tezzt.nl\\:43083/orders',{},
-                    {charge: {method:'POST', params:{charge:true}}}
+                var Order = $resource('http://autobay.tezzt.nl\\:43083/orders', {},
+                    {charge: {method: 'POST', params: {charge: true}}}
                 );
 
                 order = new Order(order);
-                order.$save(function(data) {
-                    if(data.error === null){
+                order.$save(function (data) {
+                    if (data.error === null) {
                         Application.notify('ok', 'Bestelling is geplaatst.');
                         $location.path("#/betalen/geslaagd")
                     } else {

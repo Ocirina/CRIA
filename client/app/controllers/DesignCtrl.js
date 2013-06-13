@@ -46,249 +46,249 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
         } else {
             // niet ingelogd
         }
-    }
+    };
 
     $scope.fillObjectArrays = function() {
         $scope.backgroundsRowOne = [
             {
-                image:  "img/patterns/dogs.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/dogs.png",
                 alt:    "Dogs"
             },
             {
-                image:  "img/patterns/dogs&pussies.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/dogs&pussies.png",
                 alt:    "Dogs and cats"
             },
             {
-                image:  "img/patterns/dots_1.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/dots_1.png",
                 alt:    "Dots"
             },
             {
-                image:  "img/patterns/paarstreepjesG.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/paarstreepjesG.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern1.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern1.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern2.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern2.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern3.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern3.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern4.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern4.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern5.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern5.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern6.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern6.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern7.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern7.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern8.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern8.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern9.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern9.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pattern10.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pattern10.png",
                 alt:    "Stripes"
             },
             {
-                image:  "img/patterns/pittig_pattern.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/pittig_pattern.png",
                 alt:    "Stripes"
             }
         ];
 
         $scope.backgroundsRowTwo = [
             {
-                image:  "img/patterns/skull.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/skull.png",
                 alt:    "Dogs"
             },
             {
-                image:  "img/patterns/VF_pattern08.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern08.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern09.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern09.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern10.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern10.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern11.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern11.jpg",
                 alt:    "Dogs"
             },
             {
-                image:  "img/patterns/VF_pattern12.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern12.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern13.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern13.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern14.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern14.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern15.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern15.jpg",
                 alt:    "Dogs"
             },
             {
-                image:  "img/patterns/VF_pattern16.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern16.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern21.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern21.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern18.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern18.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/VF_pattern19.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern19.jpg",
                 alt:    "Dogs"
             },
             {
-                image:  "img/patterns/VF_pattern20.jpg",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/VF_pattern20.jpg",
                 alt:    "Skull"
             },
             {
-                image:  "img/patterns/winterswag.png",
+                image:  "http://94.210.234.160/_design_your_own/img/patterns/winterswag.png",
                 alt:    "Skull"
             }
         ];
 
         $scope.objectsRowOne = [
             {
-                image:  "img/objects/hartje.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/hartje.svg",
                 alt:    "Gewoon"
             },
             {
-                image:  "img/objects/patrickster.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/patrickster.svg",
                 alt:    "Davidster"
             },
             {
-                image:  "img/objects/rarezeshoekl.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/rarezeshoekl.svg",
                 alt:    "Rondje"
             },
             {
-                image:  "img/objects/rondje.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/rondje.svg",
                 alt:    "Gewoon"
             },
             {
-                image:  "img/objects/sterretje.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/sterretje.svg",
                 alt:    "Davidster"
             },
             {
-                image:  "img/objects/thumb.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/thumb.svg",
                 alt:    "Rondje"
             },
             {
-                image:  "img/objects/gewoon.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/gewoon.svg",
                 alt:    "Gewoon"
             },
             {
-                image:  "img/objects/davidster.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/davidster.svg",
                 alt:    "Davidster"
             },
             {
-                image:  "img/objects/zeshoekmetschevecirkel.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/zeshoekmetschevecirkel.svg",
                 alt:    "Rondje"
             },
             {
-                image:  "img/objects/chick1.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/chick1.svg",
                 alt:    "Gewoon"
             },
             {
-                image:  "img/objects/chick2.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/chick2.svg",
                 alt:    "Davidster"
             },
             {
-                image:  "img/objects/chick3.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/chick3.svg",
                 alt:    "Rondje"
             },
             {
-                image:  "img/objects/boy1.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/boy1.svg",
                 alt:    "Rondje"
             },
             {
-                image:  "img/objects/peace.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/peace.svg",
                 alt:    "Rondje"
             }
         ];
 
         $scope.objectsRowTwo = [
             {
-                image:  "img/objects/applelogogekleurd.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/applelogogekleurd.svg",
                 alt:    "Sterretje"
             },
             {
-                image:  "img/objects/applelogozwart.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/applelogozwart.svg",
                 alt:    "Zeester"
             },
             {
-                image:  "img/objects/cirkel.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/cirkel.svg",
                 alt:    "Zeshoek"
             },
             {
-                image:  "img/objects/gewoon.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/gewoon.svg",
                 alt:    "Sterretje"
             },
             {
-                image:  "img/objects/zeester.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/zeester.svg",
                 alt:    "Zeester"
             },
             {
-                image:  "img/objects/zeshoek.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/zeshoek.svg",
                 alt:    "Zeshoek"
             },
             {
-                image:  "img/objects/sterretje.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/sterretje.svg",
                 alt:    "Sterretje"
             },
             {
-                image:  "img/objects/zeester.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/zeester.svg",
                 alt:    "Zeester"
             },
             {
-                image:  "img/objects/zeshoek.svg",
-                alt:    "Zeshoek"
+                image:  "http://94.210.234.160/_design_your_own/img/objects/zeshoek.svg",
+                alt:    "http://94.210.234.160/_design_your_own/Zeshoek"
             },
             {
-                image:  "img/objects/chick4.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/chick4.svg",
                 alt:    "Gewoon"
             },
             {
-                image:  "img/objects/chick5.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/chick5.svg",
                 alt:    "Davidster"
             },
             {
-                image:  "img/objects/chick6.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/chick6.svg",
                 alt:    "Rondje"
             },
             {
-                image:  "img/objects/iambuddhabiath.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/iambuddhabiath.svg",
                 alt:    "Rondje"
             },
             {
-                image:  "img/objects/yinyang.svg",
+                image:  "http://94.210.234.160/_design_your_own/img/objects/yinyang.svg",
                 alt:    "Rondje"
             }
         ];
