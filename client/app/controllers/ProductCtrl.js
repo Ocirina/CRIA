@@ -12,6 +12,9 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
         });
     };
 
+    /**
+     * Get product by loggedin user. This will come from the session storage.
+     */
     $scope.getProductsByLoggedInUser = function () {
         $scope.hasUser = false;
         if (window.sessionStorage["loggedInUser"]) {

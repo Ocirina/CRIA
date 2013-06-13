@@ -22,6 +22,9 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
         $scope.phone.case = caseTypeId;
     };
 
+    /**
+     * This will get the canvas design for an given in case.
+     */
     $scope.getCanvasDesign = function() {
         if(window.sessionStorage["loggedInUser"]) {
             var caseId = $routeParams.id,
