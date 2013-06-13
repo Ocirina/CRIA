@@ -238,6 +238,12 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
         }
     };
 
+    /**
+     * Removes the sociabel
+     *
+     * @param {String} type
+     * @param {Number} id
+     */
     $scope.removeSociable = function (type, id) {
         if (window.sessionStorage['loggedInUser'] !== undefined) {
             var Sociable = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/' + type, {id: '@id', type: '@type'},
