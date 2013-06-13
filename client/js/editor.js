@@ -78,7 +78,7 @@ $(document).on('StartEditor', function (e, data) {
     }
 
     $('.sel-bg').on('click', '.icon-caret-right', function(e){
-        move('.sel-bg .sliderow', '-=350');
+        move('.sel-bg .sliderow', '-=300');
 
         e.preventDefault();
         e.stopPropagation();
@@ -86,7 +86,7 @@ $(document).on('StartEditor', function (e, data) {
     });
 
     $('.sel-bg').on('click', '.icon-caret-left', function(e){
-        move('.sel-bg .sliderow', '+=350');
+        move('.sel-bg .sliderow', '+=300');
 
         e.preventDefault();
         e.stopPropagation();
@@ -142,6 +142,7 @@ $(document).on('StartEditor', function (e, data) {
     });
 
     $('.form-horizontal').on('click', 'button', function(e){
+<<<<<<< HEAD
         if (window.sessionStorage["loggedInUser"]) {
         try {
           canvas.deactivateAll().renderAll();
@@ -162,14 +163,39 @@ $(document).on('StartEditor', function (e, data) {
             data: data,
             success: function(response) {
               console.log(response);
+=======
+        if(window.sessionStorage["loggedInUser"]) {
+            try {
+
+              var img = canvas.toDataURL('png'),
+              json = JSON.stringify(canvas),
+              data = {},
+              user = JSON.parse(window.sessionStorage["loggedInUser"]);
+
+              data.name = $('input#name').val();
+              data.preview = img;
+              data.canvas = json;
+              data.shared = true;
+              data.user = user._id;
+
+              $.ajax({
+                url: 'http://autobay.tezzt.nl:43083/casedesigns',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                  console.log(response);
+                    Application.notify('ok', 'Je hoesje is opgeslagen!');
+                }
+              });
+              console.log(json);
+>>>>>>> 51c45b3133d37318225351c2ca8dea98ff043f43
             }
-          });
-          console.log(json);
+            catch(e) {
+              Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!');
+            }
+      } else {
+            Application.notify('error', 'Je moet ingelogd zijn om een ontwerp te kunnen opslaan.');
         }
-        catch(e) {
-          Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!');
-        }
-      }
       e.preventDefault();
       e.stopPropagation();
       return false;
