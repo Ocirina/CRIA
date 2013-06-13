@@ -22,6 +22,13 @@ exports.create = function (req, res) {
     getUser(req, res, caseDesign);
   });
   
+  /**
+   * Finds the User that is logged into. When found it pushes the caseDesign
+   * into its collection. 
+   * @param Object req The request object.
+   * @param Object res The response object.
+   * @param Object caseDesign The new instance of caseDesign.
+   */
   function getUser(req, res, caseDesign) {
     User.findById(req.body.user, function(err, user) {
       user.caseDesigns.push(caseDesign._id);
@@ -31,21 +38,40 @@ exports.create = function (req, res) {
     });
   }
   
+  /**
+   * Saves the caseDesign and returns the object in the response.
+   * @param Object req The request object.
+   * @param Object res The response object.
+   * @param Object caseDesign The new instance of caseDesign.
+   */
   function saveDesign(req, res, caseDesign) {
     caseDesign.save(function (err) {
       return res.send({
+        delete caseDesign.canvas;
         "error":  err,
         "result": caseDesign
       });
     });
   }
   
+  /**
+   * Converts the given name into a name safe for files.
+   * @param String name The name to convert.
+   * @return String Save png filename.
+   */
   function safeFileName(name) {
     name = name.toString();
     name = slugify(name);
     return name+'.png'
   }
   
+  /**
+   * Converts the string to slugified string. This removes all spaces for "-".
+   * Swaps accents for there normal characters and removes unsave characters.
+   * Then it removes double dashes.
+   * @param String str The string to slugify.
+   * @return String The slugified string.
+   */
   function slugify(str) {
     str = str.replace(/^\s+|\s+$/g, ''); // trim
     str = str.toLowerCase();
