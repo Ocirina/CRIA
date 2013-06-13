@@ -61,15 +61,10 @@ $(document).on('StartEditor', function (e, data) {
     
     canvas.on('object:selected', function(e){
         var selectedObject = e.target,
-        type = selectedObject.type,
-        fn = 'handle'+capitaliseFirstLetter(type)+'Object';
-
-        try {
-            Handler[fn](selectedObject);
-        }
-        catch(err) {
-            Handler.handleDefaultObject(selectedObject);
-        }
+            type = selectedObject.type,
+            fn = 'handle'+capitaliseFirstLetter(type)+'Object';
+        try { Handler[fn](selectedObject); }
+        catch(err) { Handler.handleDefaultObject(selectedObject); }
     });
 
     if (hasFileUploadSupport()) {
@@ -147,9 +142,9 @@ $(document).on('StartEditor', function (e, data) {
     });
 
     $('.form-horizontal').on('click', 'button', function(e){
-        if(window.sessionStorage["loggedInUser"]) {
+        if (window.sessionStorage["loggedInUser"]) {
         try {
-        
+          canvas.deactivateAll().renderAll();
           var img = canvas.toDataURL('png'),
           json = JSON.stringify(canvas),
           data = {},
