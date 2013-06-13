@@ -36,7 +36,6 @@
   $doc.on('StartEditor', function (e, data) {
       $body.addClass('case-editor');
       initCanvas();
-      setCanvasDimensions(data.phone);
       canvas.on('object:selected', function (e) {
         var selectedObject = e.target,
             type = selectedObject.type,
@@ -161,7 +160,12 @@ $('.form-horizontal').on('click', 'button', function (e) {
                 type: 'POST',
                 data: data,
                 success: function (response) {
-                    console.log(response);
+                    if(response.error === null){
+                        window.location.hash = '/product/' + response.result._id;
+                        Application.notify('ok', 'Uw case is succesvol opgelsagen.');
+                    } else {
+                        Application.notify('error', respone.error);
+                    }
                 }
             });
         }
