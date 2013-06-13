@@ -489,6 +489,14 @@ footer ul li a{
     color: #FFF;
 }
 
+/*----Logo----*/
+#websiteLogo {
+    position: absolute;
+    left:5px;
+    top:50px;
+    width: 180px;
+}
+
 /*----Designer----*/
 .designtop {
     height:60px

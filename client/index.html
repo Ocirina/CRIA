@@ -12,8 +12,8 @@
 
     <!-- Javascript -->
     <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-
 
     <title>Design your own iPhone - {{title}}</title>
 </head>
@@ -29,7 +29,7 @@
 </nav>
 
 <div id="notifier"></div>
-<img style="position: absolute; left:0; top:50px; width: 180px; z-index:" src="http://94.210.234.160/_design_your_own/img/logo.svg">
+<img id="websiteLogo" src="http://94.210.234.160/_design_your_own/img/logo.svg">
 
 <div class="container">
     <div id="loginContainer" class="loginHidden" data-ng-controller="UserCtrl" data-ng-init="checkLoggedInUser()">
