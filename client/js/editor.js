@@ -6,6 +6,7 @@
   var canvas = null;
   var $body = $(document.body);
   var $doc = $(document);
+  var $window = $(window);
   var Handler = {
       handleTextObject: function (obj) {
           $('#text').find('button').attr('disabled', false);
@@ -25,28 +26,37 @@
       }
   };
   
-  window.onbeforeunload = function (e) {
-      canvas = null;
-      if ($body.hasClass('case-editor')) {
-          $body.removeClass('case-editor');
-          return 'Weet u zeker dat u de pagina wilt verlaten zonder op te slaan?';
-      }
-  };
-
+  $window.on('beforeunload', leavingPage);
+  $window.on('hashchange', leavingPage);
+  
+  function leavingPage(e) {
+    canvas = null;
+    $(document.body).removeClass('case-editor');
+    //TODO: onhashchange save canvas to sessionStorage.
+    if (e.type === "beforeunload") {
+      return 'Weet u zeker dat u de pagina wilt verlaten zonder op te slaan?';
+    }
+  }
+  $doc.ready(function(e) { $body.addClass('case-editor'); });
   $doc.on('StartEditor', function (e, data) {
       $body.addClass('case-editor');
       initCanvas();
-      canvas.on('object:selected', function (e) {
-        var selectedObject = e.target,
-            type = selectedObject.type,
-            fn = 'handle' + capitaliseFirstLetter(type) + 'Object';
-        try { Handler[fn](selectedObject); }
-        catch (err) { Handler.handleDefaultObject(selectedObject); }
-      });
+      setCanvasDimensions(data.phone);
+      setObjectSelected();
   });
   
+  function setObjectSelected() {
+    canvas.on('object:selected', function (e) {
+      var selectedObject = e.target,
+          type = selectedObject.type,
+          fn = 'handle' + capitaliseFirstLetter(type) + 'Object';
+      try { Handler[fn](selectedObject); }
+      catch (err) { Handler.handleDefaultObject(selectedObject); }
+    });
+  }
+  
   function initCanvas() {
-    if (canvas === null) {
+    if (isEmpty(canvas)) {
       canvas = new fabric.Canvas('case-editor', {
           centerTransform: true,
           controlsAboveOverlay: true,
@@ -58,7 +68,6 @@
   }
   
   function setCanvasDimensions(id) {
-    var id = data.phone;
     canvas.setWidth(dimensions[id].width);
     canvas.setHeight(dimensions[id].height);
     canvas.renderAll();
@@ -80,34 +89,22 @@ else {
 
 $('.sel-bg').on('click', '.icon-caret-right', function (e) {
     move('.sel-bg .sliderow', '-=250');
-
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
+    return stopEvent(e);
 });
 
 $('.sel-bg').on('click', '.icon-caret-left', function (e) {
     move('.sel-bg .sliderow', '+=250');
-
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
+    return stopEvent(e);
 });
 
 $('.sel-object').on('click', '.icon-caret-right', function (e) {
     move('.sel-object .sliderow', '-=150');
-
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
+    return stopEvent(e);
 });
 
 $('.sel-object').on('click', '.icon-caret-left', function (e) {
     move('.sel-object .sliderow', '+=150');
-
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
+    return stopEvent(e);
 });
 
 function move(el, value) {
@@ -140,34 +137,22 @@ $('.sel-object').find('.background-slider').on('click', 'img', function (e) {
     addSvg($(this).data('url'));
 });
 
+$('.form-horizontal').find('button').attr('disabled', true);
+$('input#name').on('keyup', function(e){
+  var target = $('.form-horizontal').find('button');
+  var val = $(this).val();
+  if (!isEmpty(val) && val.length > 3) { target.attr('disabled', false); }
+  else { target.attr('disabled', true); }
+});
+
 $('.form-horizontal').on('click', 'button', function (e) {
+    $(this).attr('disabled', true);
     if (window.sessionStorage["loggedInUser"]) {
         try {
             canvas.deactivateAll().renderAll();
-            var img = canvas.toDataURL('png'),
-                json = JSON.stringify(canvas),
-                data = {},
-                user = JSON.parse(window.sessionStorage["loggedInUser"]);
-
-            data.name = $('input#name').val();
-            data.preview = img;
-            data.canvas = json;
-            data.shared = true;
-            data.user = user._id;
-
-            $.ajax({
-                url: 'http://autobay.tezzt.nl:43083/casedesigns',
-                type: 'POST',
-                data: data,
-                success: function (response) {
-                    if(response.error === null){
-                        window.location.hash = '/product/' + response.result._id;
-                        Application.notify('ok', 'Uw case is succesvol opgelsagen.');
-                    } else {
-                        Application.notify('error', respone.error);
-                    }
-                }
-            });
+            var data = setJSONData();
+            console.log(data);
+            sendCanvasAsync(data);
         }
         catch (e) {
             Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!' + e);
@@ -176,9 +161,37 @@ $('.form-horizontal').on('click', 'button', function (e) {
         Application.notify('error', 'Je moet ingelogd zijn om een ontwerp te kunnen opslaan.');
 
     }
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
+    
+    function setJSONData() {
+      var img = canvas.toDataURL('png'),
+          json = JSON.stringify(canvas),
+          data = {},
+          user = JSON.parse(window.sessionStorage["loggedInUser"]);
+
+      data.name = $('input#name').val();
+      data.preview = img;
+      data.canvas = json;
+      data.shared = true;
+      data.user = user._id;
+      return data;
+    }
+    
+    function sendCanvasAsync(data) {
+      $.ajax({
+          url: 'http://autobay.tezzt.nl:43083/casedesigns',
+          type: 'POST',
+          data: data,
+          success: function (response) {
+              if (isEmpty(response.error)) {
+                  window.location.hash = '/product/' + response.result._id;
+                  Application.notify('ok', 'Uw case is succesvol opgelsagen.');
+              } else {
+                  Application.notify('error', response.error);
+              }
+          }
+      });
+    }
+    return stopEvent(e);
 });
 
 function addSvg(svg) {
@@ -201,10 +214,10 @@ function addSvg(svg) {
 
 function setBackground(background, hex) {
     var setting = background;
-    if (hex === null) {
+    if (isEmpty(hex)) {
         hex = false;
     }
-    if (!hex) {
+    if (!isEmpty(hex)) {
         setting = {
             source: background,
             repeat: 'repeat'
@@ -214,21 +227,10 @@ function setBackground(background, hex) {
         canvas.renderAll();
     });
 }
-
-function capitaliseFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 function handleDroppedFiles(e) {
     console.log(e);
     //addFiles(e.dataTransfer.files, canvas);
     return stopEvent(e);
-}
-
-function stopEvent(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    return false;
 }
 
 function hasFileUploadSupport() {
@@ -249,11 +251,9 @@ function addImageToCanvas(data) {
 }
 
 function addFiles(files) {
-    var reader = null;
-    for (var i = 0, f; f = files[i]; i++) {
-        if (!f.type.match('image.*')) {
-            continue;
-        }
+    var reader = null, i = 0;
+    for (i = 0, f; f = files[i]; i++) {
+        if (!f.type.match('image.*')) { continue; }
         reader = new FileReader();
         reader.onload = (function (theFile) {
             return function (e) {
@@ -262,10 +262,6 @@ function addFiles(files) {
         })(f);
         reader.readAsDataURL(f);
     }
-}
-
-function hasFileUploadSupport() {
-    return (window.File && window.FileReader && window.FileList && window.Blob);
 }
 
 function addTextToCanvas(text, weight) {
@@ -286,25 +282,6 @@ function addImageToCanvas(data) {
         var settings = calculateCenter(270, 572);
         canvas.add(obj.scale(ratio).set(settings));
     });
-}
-
-function addFiles(files) {
-    var reader = null;
-
-    for (var i = 0, f; f = files[i]; i++) {
-        if (!f.type.match('image.*')) {
-            continue;
-        }
-
-        reader = new FileReader();
-        reader.onload = (function (theFile) {
-            return function (e) {
-                addImageToCanvas(e.target.result, canvas);
-            };
-        })(f);
-
-        reader.readAsDataURL(f);
-    }
 }
 
 function calculateRatio(data, canvasHeight, canvasWidth) {
