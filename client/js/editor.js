@@ -43,6 +43,7 @@
       initCanvas();
       setCanvasDimensions(data.phone);
       setObjectSelected();
+      console.log(canvas);
   });
   
   function setObjectSelected() {
@@ -305,4 +306,33 @@ function calculateCenter(canvasWidth, canvasHeight) {
     return { left: finalWidth, top: finalHeight };
 }
 
+/* TEKST FUNCS */
+$('.sel-text').on('click', 'a', handleChange);
+$('.sel-text').on('change', 'input, select, textarea', handleChange)
+
+function handleChange(e) {
+  var $this = $(this),
+      type = $this.data('type'),
+      setting = $this.data('setting') || $this.val();
+  if ($this.attr('type') === 'number') { setting = parseInt(setting, 10); }
+  setChange(type, setting, $this);
+}
+
+function setChange(style, input, $this) {
+  var element = canvas.getActiveObject();
+  if (!isEmpty(element) && element.type === "text") {
+      if (element[style] == input) {
+          element[style] = "normal";
+          $this.toggleClass('active');
+      }
+      else {
+          element[style] = input;
+          $this.toggleClass('active');
+      }
+      canvas.renderAll();
+      canvas.calcOffset();
+  } else { console.log("u moet eerst een tekst selecteren!!"); }
+}
+    
+    
 })(jQuery, this);
