@@ -9,7 +9,7 @@
 
     <div data-ng-show="hasUser" class="row gallery">
         <div class="span2 case" data-ng-repeat="product in products | filter:searchContent">
-            <img data-ng-src="{{product.preview}}" alt=""/>
+            <a href="#/product/{{product._id}}"><img data-ng-src="{{product.preview}}" alt=""/></a>x
             <div class="txt">
                 <h4>Titel:</h4>
                 <h5>{{ product.name }}</h5>

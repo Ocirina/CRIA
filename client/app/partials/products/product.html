@@ -4,7 +4,7 @@
     <img class="span3" data-ng-src="{{product.preview}}">
     <div class="span9 casep">
         <h4>Auteur</h4>
-        <h5>T. Frankema</h5>
+        <a href="#/producten/{{product.user._id}}"><h5>{{product.user.firstName}} {{product.user.lastName}}</h5></a>
         <h4>Laatste gewijzigd</h4>
         <h5>{{ product.created_at | date:'dd-MM-yyyy' }}</h5>
         <div class="rating">
