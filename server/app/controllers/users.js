@@ -24,9 +24,11 @@ function setIdForAddress(body, user) {
  * Route: /users
  */
 exports.create = function (req, res) {
-  var user = new User(req.body);
   req.body.password = PasswordHash.generate(req.body.password || "default");
+  delete req.body.passwordCheck
   req.body = setIdForAddress(req.body, user);
+  
+  var user = new User(req.body);
   user.save(req, function (err) {
     return res.send({
       "error":  err,
