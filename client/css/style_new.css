@@ -145,6 +145,7 @@ nav ul li a{
     text-align: center;
     margin: auto;
     display: block;
+    height:40px
 }
 
 /*----Register----*/
@@ -342,6 +343,9 @@ nav ul li a{
     width:140px;
     float:left;
 }
+.rating > span {
+    cursor: pointer;
+}
 .reacties{
 }
 .reacties h4{
@@ -494,16 +498,25 @@ footer ul li a{
 }
 
 /*----Logo----*/
+
 #websiteLogo {
-    position: absolute;
-    left:5px;
-    top:50px;
-    width: 180px;
+    width: 13%;
+    float: left;
+    margin-left: 25px;
+    text-align: left;
+}
+
+#home {
+    line-height: 40px;
+    font-size: 18px;
+    padding: 0;
+    margin-left: 5px;
+    float: left;
 }
 
 /*----Designer----*/
 .designtop {
-    height:60px
+    height:33px
 }
 .clean{
 	clear:both;
@@ -572,7 +585,11 @@ footer ul li a{
 .sel-text{
 	right:0;
 	top:250px;
+    width: 150px;
 	text-align:center;
+}
+.sel-text select, .sel-text textarea{
+    width: 150px;
 }
 .sel-text .btn-group{
 	display:inline-block;
@@ -583,7 +600,11 @@ footer ul li a{
 .sel-bg{
 	right:0;
 	top:0;
+    padding-left: 58px;
 }
+    .sel-bg > div {
+        left:-25px
+    }
 	.sel-bg .bg-txt {
     	position: relative;
 	}
@@ -593,7 +614,7 @@ footer ul li a{
 	.sel-bg p{
 		font-size:12px;
 	}
-	.sel-bg .icon-caret-left, 
+	.sel-bg .icon-caret-left,
   .sel-object .icon-caret-left,
   .sel-object .icon-caret-right,
   .sel-bg .icon-caret-right {
@@ -604,19 +625,33 @@ footer ul li a{
   	  	border: none !important;
   	 	cursor: pointer;
 	}
-  	.sel-bg .icon-caret-left:before, 
+  	.sel-bg .icon-caret-left:before,
   	.sel-bg .icon-caret-right:before,
-  	.sel-object .icon-caret-left:before, 
+  	.sel-object .icon-caret-left:before,
   	.sel-object .icon-caret-right:before {
     	color: #6EBDC4;
     	font-size: 20px;
   	}
-    
+
     .sel-bg .icon-caret-right,
     .sel-object .icon-caret-right {
       float: right;
     }
-	
+
+    .sel-controls {
+        width: 140px;
+        top:250px;
+        left:560px
+    }
+    .sel-controls input[type="color"] {
+        margin-left: 7px;
+        width:20px;
+    }
+    .sel-controls input[type="number"] {
+        width:80px
+    }
+    .sel-controls input {padding:0;}
+
 .sliderow {
 	min-width: 100%;
   	height: 50px;

@@ -1,15 +1,14 @@
 <div class="row ontop designtop" data-ng-init="phone = []">
     <form class="span5 form-horizontal">
-		<label class="control-labell" for="name">Geef je ontwerp een naam</label><br />
-        <input id="name" name="name" type="text" class="input-medium" value="{{ design.name }}">
-        <input type="checkbox" class="input-medium" data-ng-model="design.shared"> Gedeeld
+        <input id="name" name="name" type="text" class="input-medium" placeholder="Ontwerpen" value="{{ design.name }}">
+        <input type="checkbox" class="input-medium" data-ng-model="design.shared"> Delen?
         <button class="btn btn-success">Opslaan!</button>
     </form>
 </div>
 
 <div class="row top ontwerpen" data-ng-init="fillObjectArrays()">
 	
-	<div data-ng-init="activatePhone(4);" class="span2 well sel-phone selected-{{phone.phone}}">
+	<div data-ng-init="activatePhone(4);" class="span3 well sel-phone selected-{{phone.phone}}">
 		<h6>Welke Iphone heb je?</h6>
 		<div data-ng-click="activatePhone(4);" class="phone4 span1">
 			<h3>4</h3>
@@ -92,7 +91,6 @@
 	
 	<div data-ng-show="phone.phone && phone.case" class="span3 well sel-object">
 		<h6>Afbeelding toevoegen</h6>
-		<p>Zoek een eigen afbeelding op, en sleep deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
 	    <input type="file" multiple id="upload">
 		<div>
 			<div class="icon-caret-left"></div>
@@ -115,10 +113,8 @@
     
 	<div data-ng-show="phone.phone && phone.case" class="span3 well sel-controls">
         <div id="object-controls" style="display:none;">
-            <label for="opacity">Opacity: </label>
+            <h6>Transparant: &nbsp; &nbsp; Kleur: </h6>
             <input type="number" id="opacity" min="1" max="100" value="100">
-        
-            <label for="color">Color: </label>
             <input type="color" id="color" data-type="fill">
         
             <div class="btn-toolbar index-group">
