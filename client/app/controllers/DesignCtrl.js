@@ -1,3 +1,5 @@
+/* global app, $ */
+/*jslint browser: true, node: true, nomen: true, plusplus: true */
 app.controller('DesignCtrl', function($scope, $location, $http, $resource, $routeParams) {
     /**
      * Set the certain type of phone.
@@ -26,7 +28,7 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
      * This will get the canvas design for an given in case.
      */
     $scope.getCanvasDesign = function() {
-        if(window.sessionStorage["loggedInUser"]) {
+        if(window.sessionStorage.loggedInUser) {
             var caseId = $routeParams.id,
 
                 Design = $resource('http://autobay.tezzt.nl\\:43083/casedesign/' + caseId,{},
@@ -43,7 +45,7 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
         }
     };
 
-    $scope.fillObjectArrays = function() {
+    $scope.fillObjectArrays = function () {
         $scope.backgroundsRowOne = [];
         $scope.backgroundsRowTwo = [];
         $scope.objectsRowOne = [];

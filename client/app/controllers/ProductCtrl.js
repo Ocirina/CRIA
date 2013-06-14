@@ -1,3 +1,5 @@
+/* global app, $ */
+/*jslint browser: true, node: true, nomen: true, plusplus: true */
 app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $routeParams) {
     /**
      * This function will get all the products by get request and put them in the $scope.products var.
@@ -17,12 +19,12 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      */
     $scope.getProductsByLoggedInUser = function () {
         $scope.hasUser = false;
-        if (window.sessionStorage["loggedInUser"]) {
+        if (window.sessionStorage.loggedInUser) {
             $scope.hasUser = true;
 
-            var user = JSON.parse(window.sessionStorage["loggedInUser"]);
+            var user = JSON.parse(window.sessionStorage.loggedInUser),
 
-            var Products = $resource('http://autobay.tezzt.nl\\:43083/gallery/:id', { id: user._id},
+                Products = $resource('http://autobay.tezzt.nl\\:43083/gallery/:id', { id: user._id},
                 {charge: {method: 'GET', params: {charge: true}}}
             );
 
@@ -143,9 +145,11 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      * @returns {boolean}
      */
     $scope.checkProductInShopCart = function (productId) {
-        var order = JSON.parse(window.localStorage['Order']);
-        for (var i = 0; i < order.orderlines.length; i++) {
-            if (order.orderlines[i]["caseDesign"]._id == productId) {
+        var order = JSON.parse(window.localStorage.Order),
+            i = 0;
+
+        for (i = 0; i < order.orderlines.length; i++) {
+            if (order.orderlines[i]["caseDesign"]._id === productId) {
                 order.orderlines[i]["aantal"] += 1;
                 window.localStorage['Order'] = JSON.stringify(order);
                 return true;
