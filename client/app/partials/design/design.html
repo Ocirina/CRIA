@@ -23,8 +23,6 @@
 	
 	<div data-ng-show="phone.phone && phone.case" class="span4 pull-right well sel-bg">
 		<h6>Achtergrond</h6>
-		<p>Zoek een eigen afbeelding op, en sleep deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
-	    <input type="file" multiple id="upload" placeholder="Uplouden">
 		<div>
 			<div class="icon-caret-left"></div>
 			<div class="background-slider">
@@ -91,8 +89,10 @@
 		</form>
 	</div>
 	
-	<div  data-ng-show="phone.phone && phone.case" class="span3 well sel-object">
-		<h6>Objecten toevoegen</h6>
+	<div data-ng-show="phone.phone && phone.case" class="span3 well sel-object">
+		<h6>Afbeelding toevoegen</h6>
+		<p>Zoek een eigen afbeelding op, en sleep deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
+	    <input type="file" multiple id="upload" placeholder="Uplouden">
 		<div>
 			<div class="icon-caret-left"></div>
 			<div class="background-slider">
