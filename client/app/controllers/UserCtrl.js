@@ -137,17 +137,22 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
      * This function will be save the user NAW information. This is done by a PUT request.
      */
     $scope.saveNawInformation = function () {
-        var User = $resource('http://autobay.tezzt.nl\\:43083/user/:id', { id: "@_id"},
+        var property,user, User = $resource('http://autobay.tezzt.nl\\:43083/user/:id', { id: "@_id"},
             {update: {method: 'PUT'}}
         );
 
-        var user = new User($scope.user);
-        user.$update(function (data) {
-            if (data.error === null) {
-                Application.notify('ok', 'NAW gegevens zijn succesvol aangepast.');
-            } else {
-                Application.notify('error', 'NAW Gegevens zijn niet aangepast, er is iets misgegaan.');
-            }
-        });
+        if(window.sessionStorage["loggedInUser"]) {
+            user = new User($scope.user);
+            user.$update(function (data) {
+                if (data.error === null) {
+                    Application.notify('ok', 'NAW gegevens zijn succesvol aangepast.');
+                    window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
+                } else {
+                    Application.notify('error', 'NAW Gegevens zijn niet aangepast, er is iets misgegaan.');
+                }
+            });
+        } else {
+            Application.notify('error', 'U moet ingelogd zijn om uw gegevens aan te passen.');
+        }
     }
 });
