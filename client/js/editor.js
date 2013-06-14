@@ -3,6 +3,7 @@
       "4": { width: 270, height: 532 },
       "5": { width: 270, height: 569 }
   };
+  var _phoneType = 4;
   var canvas = null;
   var $body = $(document.body);
   var $doc = $(document);
@@ -47,13 +48,22 @@
   });
   
   function setObjectSelected() {
-    canvas.on('object:selected', function (e) {
+    
+    canvas.on('object:selected', handleSelected);
+    canvas.on('group:selected', handleSelected);
+    canvas.on('selection:cleared', handleDeselected);
+    function handleSelected(e) {
       var selectedObject = e.target,
           type = selectedObject.type,
           fn = 'handle' + capitaliseFirstLetter(type) + 'Object';
+      $('#object-controls').show();
       try { Handler[fn](selectedObject); }
       catch (err) { Handler.handleDefaultObject(selectedObject); }
-    });
+    }
+    
+    function handleDeselected(e) {
+      $('#object-controls').hide();
+    }
   }
   
   function initCanvas() {
@@ -69,6 +79,7 @@
   }
   
   function setCanvasDimensions(id) {
+    _phoneType = id;
     canvas.setWidth(dimensions[id].width);
     canvas.setHeight(dimensions[id].height);
     canvas.renderAll();
@@ -215,10 +226,8 @@ function addSvg(svg) {
 
 function setBackground(background, hex) {
     var setting = background;
-    if (isEmpty(hex)) {
-        hex = false;
-    }
-    if (!isEmpty(hex)) {
+    if (isEmpty(hex)) { hex = false; }
+    if (!hex) {
         setting = {
             source: background,
             repeat: 'repeat'
@@ -234,19 +243,19 @@ function handleDroppedFiles(e) {
     return stopEvent(e);
 }
 
-function hasFileUploadSupport() {
-    return (window.File && window.FileReader && window.FileList && window.Blob);
-}
-
 function addText(text, settings) {
+    var dimensions = calculateCenter();
+    settings.left = dimensions.left;
+    settings.top = dimensions.top;
     var text = new fabric.Text(text, settings);
     canvas.add(text);
 }
 
 function addImageToCanvas(data) {
     fabric.Image.fromURL(data, function (obj) {
-        var ratio = calculateRatio(data, 270, 572);
-        var settings = calculateCenter(270, 572);
+        var ratio = calculateRatio(data, 
+          dimensions[_phoneType].width, dimensions[_phoneType].height);
+        var settings = calculateCenter();
         canvas.add(obj.scale(ratio).set(settings));
     });
 }
@@ -279,8 +288,9 @@ function addTextToCanvas(text, weight) {
 function addImageToCanvas(data) {
     console.log(data);
     fabric.Image.fromURL(data, function (obj) {
-        var ratio = calculateRatio(data, 270, 572);
-        var settings = calculateCenter(270, 572);
+        var ratio = calculateRatio(data,
+          dimensions[_phoneType].width, dimensions[_phoneType].height);
+        var settings = calculateCenter();
         canvas.add(obj.scale(ratio).set(settings));
     });
 }
@@ -300,9 +310,9 @@ function calculateRatio(data, canvasHeight, canvasWidth) {
     return Math.min(hRatio, vRatio);
 }
 
-function calculateCenter(canvasWidth, canvasHeight) {
-    var finalWidth = (canvasWidth / 2);
-    var finalHeight = (canvasHeight / 2);
+function calculateCenter() {
+    var finalWidth = (dimensions[_phoneType].width / 2);
+    var finalHeight = (dimensions[_phoneType].height / 2);
     return { left: finalWidth, top: finalHeight };
 }
 
@@ -311,16 +321,85 @@ $('.sel-text').on('click', 'a', handleChange);
 $('.sel-text').on('change', 'select, input', handleChange);
 $('.sel-text').on('keydown', 'input, textarea', handleChange);
 
+$('#color').on('change', handleColour);
+$('#opacity').on('change', handleOpacity);
+$('#del-object').on('click', handleDelete);
+$('#del-all').on('click', handleClear);
+$('.index-group').on('click', 'a', handleZIndex);
+
 function handleChange(e) {
   var $this = $(this),
       type = $this.data('type'),
-      setting = $this.data('setting') || $this.val();
-  if ($this.attr('type') === 'number') { setting = parseInt(setting, 10); }
+      setting = $this.data('setting') || $this.val(),
+      input = $this.attr('type');
+  if (input === 'number' || input === 'range') { setting = parseInt(setting, 10); }
   setChange(type, setting, $this);
+}
+
+function handleOpacity(e) {
+  var activeObject = canvas.getActiveObject(),
+      activeGroup = canvas.getActiveGroup();
+  if (activeObject || activeGroup) {
+    (activeObject || activeGroup).setOpacity(parseInt($(this).val(), 10) / 100);
+    canvas.renderAll();
+    canvas.calcOffset();
+  }
+  else { console.log("u moet eerst een element selecteren!!"); }
+}
+
+function handleDelete(e) {
+  var activeObject = canvas.getActiveObject(),
+      activeGroup = canvas.getActiveGroup();
+      
+  if (activeGroup) {
+    activeGroup.forEachObject(function(o){ canvas.remove(o) });
+    canvas.discardActiveGroup()
+    
+  } else if (activeObject) {
+    canvas.remove(canvas.getActiveObject());
+  }
+  else { 
+    console.log("u moet eerst een element selecteren!!"); 
+  }
+  canvas.calcOffset();
+  canvas.renderAll();
+}
+function handleClear(e) {
+  if (confirm("Weet u het zeker?")) {
+    canvas.setBackgroundColor('#000000');
+    canvas.clear();
+    canvas.renderAll();
+    canvas.calcOffset();
+  }
+}
+
+function handleZIndex(e) {
+  var activeObject = canvas.getActiveObject(),
+      activeGroup = canvas.getActiveGroup(),
+      fn = $(this).data('fn');
+  if (activeObject || activeGroup) {
+    (activeObject || activeGroup)[fn]();
+    canvas.renderAll();
+    canvas.calcOffset();
+  }
+  else { console.log("u moet eerst een element selecteren!!"); }
+}
+
+function handleColour(e) {
+  var activeObject = canvas.getActiveObject(),
+      activeGroup = canvas.getActiveGroup();
+  console.log(e);
+  if (activeObject || activeGroup) {
+    (activeObject || activeGroup).setFill($(this).val());
+    canvas.renderAll();
+    canvas.calcOffset();
+  }
+  else { console.log("u moet eerst een element selecteren!!"); }
 }
 
 function setChange(style, input, $this) {
   var element = canvas.getActiveObject();
+  console.log(style, input)
   if (!isEmpty(element) && element.type === "text") {
       if (element[style] == input) {
           element[style] = "normal";
@@ -334,6 +413,10 @@ function setChange(style, input, $this) {
       canvas.calcOffset();
   } else { console.log("u moet eerst een tekst selecteren!!"); }
 }
-    
+
+$('#background-color').on('change', function(e){
+  var color = $(this).val();
+  setBackground(color, true);
+});
     
 })(jQuery, this);
