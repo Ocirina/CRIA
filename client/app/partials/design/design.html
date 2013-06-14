@@ -23,6 +23,7 @@
 	
 	<div data-ng-show="phone.phone && phone.case" class="span4 pull-right well sel-bg">
 		<h6>Achtergrond</h6>
+        <input type="color" id="background-color">
 		<div>
 			<div class="icon-caret-left"></div>
 			<div class="background-slider">
@@ -110,6 +111,27 @@
     <div class="phone phone-{{phone.phone}} span4">
         <div class="phone-overlay"></div>
         <canvas id="case-editor"></canvas>
+    </div>
+    
+	<div data-ng-show="phone.phone && phone.case" class="span3 well sel-controls">
+        <div id="object-controls" style="display:none;">
+            <label for="opacity">Opacity: </label>
+            <input type="number" id="opacity" min="1" max="100" value="100">
+        
+            <label for="color">Color: </label>
+            <input type="color" id="color" data-type="fill">
+        
+            <div class="btn-toolbar index-group">
+                <div class="btn-group">
+                    <a class="btn" data-fn="sendToBack" id="to-back"><i class="icon-backward"></i></a>
+                    <a class="btn" data-fn="sendBackwards" id="backwards"><i class="icon-step-backward"></i></a>
+                    <a class="btn" data-fn="bringForward" id="forwards"><i class="icon-step-forward"></i></a>
+                    <a class="btn" data-fn="bringToFront" id="to-front"><i class="icon-forward"></i></a>
+                </div>
+            </div>
+            <a class="btn btn-danger" id="del-object">Verwijder</a>
+        </div>
+        <a class="btn btn-danger" id="del-all">Verwijder ALLES!</a>
     </div>
 </div>
 
