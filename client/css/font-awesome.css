@@ -605,6 +605,9 @@ ul.icons-ul > li .icon-li {
 .icon-remove-sign:before {
   content: "\f057";
 }
+.icon-remove-sign{
+    cursor: pointer;
+}
 .icon-ok-sign:before {
   content: "\f058";
 }

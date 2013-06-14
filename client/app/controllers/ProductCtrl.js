@@ -237,7 +237,7 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
                     $scope.comments.push(data.result);
                     Application.notify('ok', 'Commentaar succesvol geplaatst.');
                 } else {
-                    Application.notify('error', 'Commentaar is niet opgeslagen, probeer opnieuw.');
+                    Application.notify('error', data.error);
                 }
             });
         } else {
@@ -253,7 +253,7 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      */
     $scope.removeSociable = function (type, id) {
         if (window.sessionStorage['loggedInUser'] !== undefined) {
-            var Sociable = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/' + type, {id: '@id', type: '@type'},
+            var Sociable = $resource('http://autobay.tezzt.nl\\:43083/:type/:id', {id: '@id', type: '@type'},
                 {charge: {method: 'DELETE', params: {charge: true}}}
             );
 
@@ -262,9 +262,23 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
                 type: type
             };
 
-            new Sociable(sociable);
+            var comment = new Sociable(sociable);
+
+            comment.$delete(function(data){
+                if(data.result === true){
+                    for(var i = 0; i < $scope.comments.length; i++){
+                        if($scope.comments[i]._id === id){
+                            $scope.comments.splice(i, 1);
+                        }
+                    }
+
+                    Application.notify('ok', 'Comment is succesvol verwijderd.');
+                } else {
+                    Application.notify('error', data.error);
+                }
+            });
         } else {
             Application.notify('error', 'Je moet ingelogd zijn een reactie te verwijderen.');
         }
-    }
+    };
 });
