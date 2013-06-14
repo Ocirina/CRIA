@@ -308,7 +308,8 @@ function calculateCenter(canvasWidth, canvasHeight) {
 
 /* TEKST FUNCS */
 $('.sel-text').on('click', 'a', handleChange);
-$('.sel-text').on('change', 'input, select, textarea', handleChange)
+$('.sel-text').on('change', 'select', handleChange);
+$('.sel-text').on('keydown', 'input, textarea', handleChange);
 
 function handleChange(e) {
   var $this = $(this),
