@@ -199,13 +199,18 @@
     });
 
     $('.form-horizontal').on('click', 'button', function (e) {
-        $(this).attr('disabled', true);
+        var $this = $(this);
+        $this.attr('disabled', true);
         if (window.sessionStorage["loggedInUser"]) {
             try {
                 canvas.deactivateAll().renderAll();
                 var data = setJSONData();
                 console.log(data);
-                sendCanvasAsync(data);
+                if($(this).attr("id") === "postCanvas") {
+                    sendCanvasAsync(data, 'POST', "casedesigns");
+                } else if($(this).attr("id") === "putCanvas") {
+                    sendCanvasAsync(data, 'PUT', "casedesign/" + $this.data("id"));
+                }
             }
             catch (e) {
                 Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!' + e);
@@ -229,13 +234,14 @@
             };
         }
 
-        function sendCanvasAsync(data) {
+        function sendCanvasAsync(data, type, route) {
             $.ajax({
-                url: 'http://autobay.tezzt.nl:43083/casedesigns',
-                type: 'POST',
+                url: 'http://autobay.tezzt.nl:43083/' + route,
+                type: type,
                 data: data,
                 success: handleResponse
             });
+
             function handleResponse(response) {
               if (isEmpty(response.error)) {
                   window.location.hash = '/product/' + response.result._id;
@@ -480,6 +486,7 @@
     function loadCanvasFromData(data) {
         if (data.hasOwnProperty('canvas')) {
             canvas.loadFromJSON(data.canvas);
+            /*TODO: wordt niet ingeladen hier! */
             refreshCanvas();
         }
     }

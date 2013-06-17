@@ -35,18 +35,19 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
                 {charge: {method:'GET', params:{charge:true}}}
             );
 
+            /* TODO: Type telefoone en hoesje moet worden opgeslagen!! */
+            $scope.phone.phone = 4;
+
             Design.get(function(data) {
                 $scope.design = data.result;
-
                 $.event.trigger('StartEditor',
                     {
                         phone:  $scope.phone.phone,
-                        canvas: JSON.parse($scope.design.canvas)
+                        canvas: $scope.design.canvas
                     }
                 );
             });
 
-            //TODO: get json canvas with the case id & load it in the editor.
         } else {
             Application.notify('error', 'U bent niet ingelogd.');
         }

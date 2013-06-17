@@ -1,14 +1,14 @@
 <div class="row ontop designtop" data-ng-init="phone = []">
     <form class="span12 form-horizontal"  data-ng-init="getCanvasDesign()">
         <input id="name" name="name" type="text" class="input-medium" placeholder="Ontwerpen" value="{{ design.name }}">
-        <button class="btn btn-success">Opslaan!</button>
+        <button id="putCanvas" class="btn btn-success" data-id="{{design._id}}">Opslaan!</button>
         <a class="btn pull-right" href="#/producten/user">Terug naar Mijn Galerij</a>
     </form>
 </div>
 
 
 <div class="row top ontwerpen" data-ng-init="fillObjectArrays()" >
-    <div data-ng-init="activatePhone(4);" class="span3 well sel-phone selected-{{phone.phone}}">
+    <div class="span3 well sel-phone selected-{{phone.phone}}">
         <h6>Welke Iphone heb je?</h6>
         <div data-ng-click="activatePhone(4);" class="phone4 span1">
             <h3>4</h3>
