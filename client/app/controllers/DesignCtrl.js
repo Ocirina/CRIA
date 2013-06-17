@@ -43,7 +43,7 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
                 $.event.trigger('StartEditor',
                     {
                         phone:  $scope.phone.phone,
-                        canvas: $scope.design.canvas
+                        canvas: JSON.parse($scope.design.canvas)
                     }
                 );
             });
