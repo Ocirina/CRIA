@@ -31,7 +31,7 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
         if(window.sessionStorage.loggedInUser) {
             var caseId = $routeParams.id,
 
-                Design = $resource('http://autobay.tezzt.nl\\:43083/casedesign/' + caseId,{},
+                Design = $resource('http://autobay.tezzt.nl\\:43083/canvas/' + caseId,{},
                 {charge: {method:'GET', params:{charge:true}}}
             );
 
