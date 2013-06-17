@@ -1,12 +1,12 @@
-<form class="span12 form-horizontal"  data-ng-init="getCanvasDesign()"  data-ng-init="phone = []">
+<form class="span12 form-horizontal"  data-ng-init="getCanvasDesign()">
     <label>Ontwerpnaam</label>
     <input name="name" type="text" class="input-medium" value="{{design.name}}">
     <a class="btn pull-right" href="#/producten/user">Terug naar Mijn Galerij</a>
 </form>
 
 
-<div class="row top ontwerpen" data-ng-init="fillObjectArrays()">
-
+<div class="row top ontwerpen" data-ng-init="fillObjectArrays()" >
+    <div data-ng-init="phone = []"></div>
     <div data-ng-init="activatePhone(4);" class="span3 well sel-phone selected-{{phone.phone}}">
         <h6>Welke Iphone heb je?</h6>
         <div data-ng-click="activatePhone(4);" class="phone4 span1">
