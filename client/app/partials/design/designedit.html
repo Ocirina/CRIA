@@ -4,9 +4,10 @@
     <a class="btn pull-right" href="#/producten/user">Terug naar Mijn Galerij</a>
 </form>
 
-<div class="row top ontwerpen">
 
-    <div class="span2 well sel-phone">
+<div class="row top ontwerpen" data-ng-init="fillObjectArrays()">
+
+    <div data-ng-init="activatePhone(4);" class="span3 well sel-phone selected-{{phone.phone}}">
         <h6>Welke Iphone heb je?</h6>
         <div data-ng-click="activatePhone(4);" class="phone4 span1">
             <h3>4</h3>
@@ -20,23 +21,22 @@
 
     <div data-ng-show="phone.phone && phone.case" class="span4 pull-right well sel-bg">
         <h6>Achtergrond</h6>
-        <p>Zoek een eigen afbeelding op, en sleep deze vervolgens uit de map naar de preview en laat de afbeelding los.</p>
-        <input type="file" multiple id="upload" placeholder="Uplouden">
+        <input type="color" id="background-color">
         <div>
             <div class="icon-caret-left"></div>
             <div class="background-slider">
                 <div class="sliderow row-top">
-                    <img data-ng-repeat="pattern in backgroundsRowOne" data-ng-src="{{ pattern.image }}" alt="{{ pattern.alt }}">
+                    <img data-ng-repeat="pattern in backgroundsRowOne" data-url="{{ pattern.image }}" data-ng-src="http://94.210.234.160/_design_your_own/{{ pattern.image }}" alt="{{ pattern.alt }}">
                 </div>
                 <div class="sliderow row-bottom">
-                    <img data-ng-repeat="pattern in backgroundsRowTwo" data-ng-src="{{ pattern.image }}" alt="{{ pattern.alt }}">
+                    <img data-ng-repeat="pattern in backgroundsRowTwo" data-url="{{ pattern.image }}" data-ng-src="http://94.210.234.160/_design_your_own/{{ pattern.image }}" alt="{{ pattern.alt }}">
                 </div>
             </div>
             <div class="icon-caret-right"></div>
         </div>
     </div>
 
-    <div data-ng-show="phone.phone" class="span3 well sel-case">
+    <div data-ng-init="setCaseType(1);" data-ng-show="phone.phone" class="span3 well selected-{{phone.case}} sel-case">
         <h6>Wat voor case wil je?</h6>
         <div data-ng-click="setCaseType(1);" class="span1 sticker">
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 1"></div>
@@ -56,23 +56,23 @@
 
         <div class="btn-toolbar">
             <div class="btn-group">
-                <a class="btn" id="align-left"><i class="icon-align-left"></i></a>
-                <a class="btn" id="align-center"><i class="icon-align-center"></i></a>
-                <a class="btn" id="align-right"><i class="icon-align-right"></i></a>
-                <a class="btn" id="align-justify"><i class="icon-align-justify"></i></a>
+                <a class="btn" data-type="textAlign" data-setting="left" id="align-left"><i class="icon-align-left"></i></a>
+                <a class="btn" data-type="textAlign" data-setting="center" id="align-center"><i class="icon-align-center"></i></a>
+                <a class="btn" data-type="textAlign" data-setting="right" id="align-right"><i class="icon-align-right"></i></a>
+                <a class="btn" data-type="textAlign" data-setting="justify" id="align-justify"><i class="icon-align-justify"></i></a>
             </div>
         </div>
 
         <div class="btn-toolbar">
             <div class="btn-group">
-                <a class="btn" id="set-bold"><i class="icon-bold"></i></a>
-                <a class="btn" id="set-italic"><i class="icon-italic"></i></a>
-                <a class="btn" id="set-underline"><i class="icon-underline"></i></a>
-                <a class="btn" id="set-strikethrough"><i class="icon-strikethrough"></i></a>
+                <a class="btn" data-type="fontWeight" data-setting="bold" id="set-bold"><i class="icon-bold"></i></a>
+                <a class="btn" data-type="fontStyle" data-setting="italic" id="set-italic"><i class="icon-italic"></i></a>
+                <a class="btn" data-type="textDecoration" data-setting="underline" id="set-underline"><i class="icon-underline"></i></a>
+                <a class="btn" data-type="textDecoration" data-setting="line-through" id="set-strikethrough"><i class="icon-strikethrough"></i></a>
             </div>
         </div>
 
-        <select id="set-font">
+        <select data-type="fontFamily" id="set-font">
             <option>Verdana</option>
             <option>Georgie</option>
             <option>Arial</option>
@@ -81,23 +81,24 @@
         </select>
 
         <form>
-            <input id="set-font-size" class="span1" type="tekst" value="23"/>
-            <input id="set-font-color" class="span1 font-color" type="color"/>
-            <textarea id="set-text"></textarea>
+            <input id="set-font-size" data-type="fontSize" class="span1" type="number" value="23"/>
+            <input id="set-font-color" data-type="fill" class="span1 font-color" type="color"/>
+            <textarea data-type="text" id="set-text"></textarea>
             <button class="btn" id="add-text">Voeg tekst toe</button>
         </form>
     </div>
 
-    <div  data-ng-show="phone.phone && phone.case" class="span3 well sel-object">
-        <h6>Objecten toevoegen</h6>
+    <div data-ng-show="phone.phone && phone.case" class="span3 well sel-object">
+        <h6>Afbeelding toevoegen</h6>
+        <input type="file" multiple id="upload">
         <div>
             <div class="icon-caret-left"></div>
             <div class="background-slider">
                 <div class="sliderow row-top">
-                    <img data-ng-repeat="pattern in objectsRowOne" data-ng-src="{{ pattern.image }}" alt="{{ pattern.alt }}">
+                    <img data-ng-repeat="pattern in objectsRowOne" data-url="{{ pattern.image }}" data-ng-src="http://94.210.234.160/_design_your_own/{{ pattern.image }}" alt="{{ pattern.alt }}">
                 </div>
                 <div class="sliderow row-bottom">
-                    <img data-ng-repeat="pattern in objectsRowTwo" data-ng-src="{{ pattern.image }}" alt="{{ pattern.alt }}">
+                    <img data-ng-repeat="pattern in objectsRowTwo" data-url="{{ pattern.image }}" data-ng-src="http://94.210.234.160/_design_your_own/{{ pattern.image }}" alt="{{ pattern.alt }}">
                 </div>
             </div>
             <div class="icon-caret-right"></div>
@@ -108,5 +109,26 @@
         <div class="phone-overlay"></div>
         <canvas id="case-editor"></canvas>
     </div>
+
+    <div data-ng-show="phone.phone && phone.case" class="span3 well sel-controls">
+        <div id="object-controls" style="display:none;">
+            <h6>Transparant: &nbsp; &nbsp; Kleur: </h6>
+            <input type="number" id="opacity" min="1" max="100" value="100">
+            <input type="color" id="color" data-type="fill">
+
+            <div class="btn-toolbar index-group">
+                <div class="btn-group">
+                    <a class="btn" data-fn="sendToBack" id="to-back"><i class="icon-backward"></i></a>
+                    <a class="btn" data-fn="sendBackwards" id="backwards"><i class="icon-step-backward"></i></a>
+                    <a class="btn" data-fn="bringForward" id="forwards"><i class="icon-step-forward"></i></a>
+                    <a class="btn" data-fn="bringToFront" id="to-front"><i class="icon-forward"></i></a>
+                </div>
+            </div>
+            <a class="btn btn-danger" id="del-object">Verwijder</a>
+        </div>
+        <a class="btn btn-danger" id="del-all">Verwijder ALLES!</a>
+    </div>
 </div>
+
+<script src="js/editor.js" type="text/javascript" charset="utf-8"></script>
 
