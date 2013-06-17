@@ -13,18 +13,17 @@
             $('#text').find('button').attr('disabled', false);
             $('#text textarea').val(obj.getText());
         },
-        handleImageObject: function (obj) {
-            console.log(obj);
-        },
-        handlePathObject: function (obj) {
-            console.log(obj);
-        },
-        handleGroupObject: function (obj) {
-            console.log(obj);
-        },
-        handleDefaultObject: function (obj) {
-            console.log(obj);
-        }
+        handleImageObject: function (obj) {},
+        handlePathObject: function (obj) {},
+        handleGroupObject: function (obj) {},
+        handleDefaultObject: function (obj) {}
+    };
+    var CANVAS_SETTINGS = {
+        centerTransform: true,
+        controlsAboveOverlay: true,
+        selectionBorderColor: "black",
+        selectionColor: "rgba(255, 255, 255, 0.3)",
+        selectionLineWidth: 2
     };
 
     $window.on('beforeunload', leavingPage);
@@ -47,7 +46,6 @@
         initCanvas();
         setCanvasDimensions(data.phone);
         setObjectSelected();
-
         loadCanvasFromData(data);
     });
 
@@ -56,17 +54,22 @@
         canvas.on('object:selected', handleSelected);
         canvas.on('group:selected', handleSelected);
         canvas.on('selection:cleared', handleDeselected);
+        
         function handleSelected(e) {
             var selectedObject = e.target,
                 type = selectedObject.type,
                 fn = 'handle' + capitaliseFirstLetter(type) + 'Object';
             $('#object-controls').show();
-            try {
-                Handler[fn](selectedObject);
-            }
-            catch (err) {
-                Handler.handleDefaultObject(selectedObject);
-            }
+            handleType(fn, selectedObject);
+        }
+        
+        function handleType(fn, obj) {
+          try {
+              Handler[fn](obj);
+          }
+          catch (err) {
+              Handler.handleDefaultObject(obj);
+          }
         }
 
         function handleDeselected(e) {
@@ -76,13 +79,7 @@
 
     function initCanvas() {
         if (isEmpty(canvas)) {
-            canvas = new fabric.Canvas('case-editor', {
-                centerTransform: true,
-                controlsAboveOverlay: true,
-                selectionBorderColor: "black",
-                selectionColor: "rgba(255, 255, 255, 0.3)",
-                selectionLineWidth: 2
-            });
+            canvas = new fabric.Canvas('case-editor', CANVAS_SETTINGS);
         }
     }
 
@@ -237,36 +234,40 @@
                 url: 'http://autobay.tezzt.nl:43083/casedesigns',
                 type: 'POST',
                 data: data,
-                success: function (response) {
-                    if (isEmpty(response.error)) {
-                        window.location.hash = '/product/' + response.result._id;
-                        Application.notify('ok', 'Uw case is succesvol opgelsagen.');
-                    } else {
-                        Application.notify('error', response.error);
-                    }
-                }
+                success: handleResponse
             });
+            function handleResponse(response) {
+              if (isEmpty(response.error)) {
+                  window.location.hash = '/product/' + response.result._id;
+                  Application.notify('ok', 'Uw case is succesvol opgelsagen.');
+              } else {
+                  Application.notify('error', response.error);
+              }
+            }
         }
 
         return stopEvent(e);
     });
 
     function addSvg(svg) {
+        var loadedObject = null;
         fabric.loadSVGFromURL(svg, function (objects, options) {
-            var loadedObject = fabric.util.groupSVGElements(objects, options);
-            var offset = 50,
-                left = fabric.util.getRandomInt(0 + offset, 270 - offset),
-                top = fabric.util.getRandomInt(0 + offset, 650 - offset),
-                angle = fabric.util.getRandomInt(-20, 40);
-            loadedObject.set({
-                left: left,
-                top: top,
-                angle: angle,
+            loadedObject = fabric.util.groupSVGElements(objects, options);
+            loadedObject.set(svgSettings());
+            canvas.add(loadedObject);
+            refreshCanvas();
+        });
+        
+        function svgSettings() {
+          var offset = 50;
+          return {
+                left: fabric.util.getRandomInt(0 + offset, 270 - offset),
+                top: fabric.util.getRandomInt(0 + offset, 650 - offset),
+                angle: fabric.util.getRandomInt(-20, 40),
                 padding: 10,
                 cornersize: 10
-            });
-            canvas.add(loadedObject);
-        });
+            };
+        }
     }
 
     function setBackground(background, hex) {
@@ -281,12 +282,11 @@
             };
         }
         canvas.setBackgroundColor(setting, function () {
-            canvas.renderAll();
+            refreshCanvas();
         });
     }
 
     function handleDroppedFiles(e) {
-        console.log(e);
         //addFiles(e.dataTransfer.files, canvas);
         return stopEvent(e);
     }
@@ -297,6 +297,7 @@
         settings.top = dimensions.top;
         var text = new fabric.Text(text, settings);
         canvas.add(text);
+        refreshCanvas();
     }
 
     function addImageToCanvas(data) {
@@ -305,6 +306,7 @@
                 dimensions[_phoneType].width, dimensions[_phoneType].height);
             var settings = calculateCenter();
             canvas.add(obj.scale(ratio).set(settings));
+            refreshCanvas();
         });
     }
 
@@ -314,13 +316,17 @@
             if (!f.type.match('image.*')) {
                 continue;
             }
-            reader = new FileReader();
-            reader.onload = (function (theFile) {
-                return function (e) {
-                    addImageToCanvas(e.target.result, canvas);
-                };
-            })(f);
-            reader.readAsDataURL(f);
+            readFile(f);
+        }
+        
+        function readFile(f) {
+          reader = new FileReader();
+          reader.onload = (function (theFile) {
+              return function (e) {
+                  addImageToCanvas(e.target.result, canvas);
+              };
+          })(f);
+          reader.readAsDataURL(f);
         }
     }
 
@@ -333,15 +339,16 @@
             fontWeight: weight
         });
         canvas.add(text);
+        refreshCanvas();
     }
 
     function addImageToCanvas(data) {
-        console.log(data);
         fabric.Image.fromURL(data, function (obj) {
             var ratio = calculateRatio(data,
                 dimensions[_phoneType].width, dimensions[_phoneType].height);
             var settings = calculateCenter();
             canvas.add(obj.scale(ratio).set(settings));
+            refreshCanvas();
         });
     }
 
@@ -393,8 +400,7 @@
             activeGroup = canvas.getActiveGroup();
         if (activeObject || activeGroup) {
             (activeObject || activeGroup).setOpacity(parseInt($(this).val(), 10) / 100);
-            canvas.renderAll();
-            canvas.calcOffset();
+            refreshCanvas();
         }
         else {
             Application.notify('error', 'U heeft geen element geselecteerd.');
@@ -404,29 +410,24 @@
     function handleDelete(e) {
         var activeObject = canvas.getActiveObject(),
             activeGroup = canvas.getActiveGroup();
-
         if (activeGroup) {
             activeGroup.forEachObject(function (o) {
-                canvas.remove(o)
+                canvas.remove(o);
             });
             canvas.discardActiveGroup()
-
         } else if (activeObject) {
             canvas.remove(canvas.getActiveObject());
-
         } else {
             Application.notify('error', 'U heeft geen element geselecteerd.');
         }
-        canvas.calcOffset();
-        canvas.renderAll();
+        refreshCanvas();
     }
 
     function handleClear(e) {
         if (confirm("Weet u het zeker?")) {
             canvas.setBackgroundColor('#000000');
             canvas.clear();
-            canvas.renderAll();
-            canvas.calcOffset();
+            refreshCanvas();
         }
     }
 
@@ -436,8 +437,7 @@
             fn = $(this).data('fn');
         if (activeObject || activeGroup) {
             (activeObject || activeGroup)[fn]();
-            canvas.renderAll();
-            canvas.calcOffset();
+            refreshCanvas();
         }
         else {
             Application.notify('error', 'U heeft geen element geselecteerd.');
@@ -447,11 +447,9 @@
     function handleColour(e) {
         var activeObject = canvas.getActiveObject(),
             activeGroup = canvas.getActiveGroup();
-        console.log(e);
         if (activeObject || activeGroup) {
             (activeObject || activeGroup).setFill($(this).val());
-            canvas.renderAll();
-            canvas.calcOffset();
+            refreshCanvas();
         }
         else {
             Application.notify('error', 'U heeft geen element geselecteerd.');
@@ -460,29 +458,34 @@
 
     function setChange(style, input, $this) {
         var element = canvas.getActiveObject();
-        console.log(style, input)
         if (!isEmpty(element) && element.type === "text") {
-            if (element[style] == input) {
-                element[style] = "normal";
-                $this.toggleClass('active');
-            }
-            else {
-                element[style] = input;
-                $this.toggleClass('active');
-            }
-            canvas.renderAll();
-            canvas.calcOffset();
+            toggleInput(element, style, input, $this);
+            refreshCanvas();
         } else {
             Application.notify('error', 'U heeft geen tekst geselecteerd.');
+        }
+        
+        function toggleInput(element, style, input, $this) {
+          if (element[style] == input) {
+              element[style] = "normal";
+              $this.toggleClass('active');
+          }
+          else {
+              element[style] = input;
+              $this.toggleClass('active');
+          }
         }
     }
 
     function loadCanvasFromData(data) {
         if (data.hasOwnProperty('canvas')) {
             canvas.loadFromJSON(data.canvas);
-            canvas.calcOffset();
-            canvas.renderAll();
+            refreshCanvas();
         }
+    }
+    function refreshCanvas() {
+      canvas.calcOffset();
+      canvas.renderAll();
     }
 
     $('#background-color').on('change', function (e) {
