@@ -236,6 +236,7 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
                     data.result.user = user;
                     $scope.comments.push(data.result);
                     Application.notify('ok', 'Commentaar succesvol geplaatst.');
+                    $scope.comment = '';
                 } else {
                     Application.notify('error', data.error);
                 }
