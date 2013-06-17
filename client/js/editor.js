@@ -397,7 +397,7 @@
             canvas.calcOffset();
         }
         else {
-            console.log("u moet eerst een element selecteren!!");
+            Application.notify('error', 'U heeft geen element geselecteerd.');
         }
     }
 
@@ -413,9 +413,9 @@
 
         } else if (activeObject) {
             canvas.remove(canvas.getActiveObject());
-        }
-        else {
-            console.log("u moet eerst een element selecteren!!");
+
+        } else {
+            Application.notify('error', 'U heeft geen element geselecteerd.');
         }
         canvas.calcOffset();
         canvas.renderAll();
@@ -440,7 +440,7 @@
             canvas.calcOffset();
         }
         else {
-            console.log("u moet eerst een element selecteren!!");
+            Application.notify('error', 'U heeft geen element geselecteerd.');
         }
     }
 
@@ -454,7 +454,7 @@
             canvas.calcOffset();
         }
         else {
-            console.log("u moet eerst een element selecteren!!");
+            Application.notify('error', 'U heeft geen element geselecteerd.');
         }
     }
 
@@ -473,7 +473,7 @@
             canvas.renderAll();
             canvas.calcOffset();
         } else {
-            console.log("u moet eerst een tekst selecteren!!");
+            Application.notify('error', 'U heeft geen tekst geselecteerd.');
         }
     }
 
