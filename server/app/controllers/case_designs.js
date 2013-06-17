@@ -161,7 +161,7 @@ exports.show = function (req, res) {
 exports.canvas = function (req, res) {
   CaseDesign
     .findOne({_id: req.params.id})
-    .select('_id', 'name', 'canvas', 'user')
+    .select('_id name canvas user')
     .populate({
       path: 'user',
       select: '_id firstName lastName'
