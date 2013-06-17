@@ -41,6 +41,9 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
             }
         ];
 
+        //Make it valid. ddsslick or something wont allow the alt.
+        $('img').attr('alt', '');
+
         $('#paymentMethods').ddslick({
             data: paymentMethods,
             width: 250,
@@ -111,6 +114,9 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
                 imageSrc: "http://94.210.234.160/_design_your_own/img/paymenticons/Triodos Bank.png"
             }
         ];
+
+        //Make it valid. ddsslick or something wont allow the alt.
+        $('img').attr('alt', '');
 
         $('#paymentBanks').ddslick({
             data: paymentBanks,
