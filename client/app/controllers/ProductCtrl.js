@@ -56,7 +56,6 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
     };
 
     $scope.openDesignInEditor = function (caseDesignId) {
-        console.log(caseDesignId);
         $location.path("/ontwerpen/bewerken/" + caseDesignId);
     };
 
