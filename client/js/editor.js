@@ -101,21 +101,37 @@ else {
 
 $('.sel-bg').on('click', '.icon-caret-right', function (e) {
     move('.sel-bg .sliderow', '-=250');
+    $('.icon-caret-left').css("visibility", "visible");
     return stopEvent(e);
 });
 
+$('.icon-caret-left').css("visibility", "hidden");
 $('.sel-bg').on('click', '.icon-caret-left', function (e) {
-    move('.sel-bg .sliderow', '+=250');
+    var target = $('.sel-bg .sliderow'),
+        $this = $(e.target),
+        left = parseInt(target.position().left, 10);
+    if ((left + 250) < 0) { $this.css("visibility", "visible"); }
+    else { $this.css("visibility", "hidden"); }
+    if (left < 0) { move('.sel-bg .sliderow', '+=250'); }
+    else { $this.css("visibility", "hidden") }
     return stopEvent(e);
 });
 
 $('.sel-object').on('click', '.icon-caret-right', function (e) {
     move('.sel-object .sliderow', '-=150');
     return stopEvent(e);
+    
+    
 });
 
 $('.sel-object').on('click', '.icon-caret-left', function (e) {
-    move('.sel-object .sliderow', '+=150');
+  var target = $('.sel-bg .sliderow'),
+        $this = $(e.target),
+        left = parseInt(target.position().left, 10);
+    if ((left + 150) < 0) { $this.css("visibility", "visible"); }
+    else { $this.css("visibility", "hidden"); }
+    if (left < 0) { move('.sel-object .sliderow', '+=150'); }
+    else { $this.css("visibility", "hidden") }
     return stopEvent(e);
 });
 
@@ -261,7 +277,7 @@ function addImageToCanvas(data) {
 }
 
 function addFiles(files) {
-    var reader = null, i = 0;
+    var reader = null, i = 0, f = null;
     for (i = 0, f; f = files[i]; i++) {
         if (!f.type.match('image.*')) { continue; }
         reader = new FileReader();
