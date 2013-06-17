@@ -485,6 +485,7 @@
 
     function loadCanvasFromData(data) {
         if (data.hasOwnProperty('canvas')) {
+            console.log(data.canvas);
             canvas.loadFromJSON(data.canvas);
             /*TODO: wordt niet ingeladen hier! */
             refreshCanvas();
