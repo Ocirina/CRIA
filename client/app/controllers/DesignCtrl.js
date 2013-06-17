@@ -37,6 +37,13 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
 
             Design.get(function(data) {
                 $scope.design = data.result;
+
+                $.event.trigger('StartEditor',
+                    {
+                        phone:  $scope.phone.phone,
+                        canvas: JSON.parse($scope.design.canvas)
+                    }
+                );
             });
 
             //TODO: get json canvas with the case id & load it in the editor.
