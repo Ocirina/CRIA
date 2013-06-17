@@ -1,7 +1,6 @@
-<div data-ng-init="getProduct()"></div>
-<div class="row ontop">
+<div class="row ontop" data-ng-init="getProduct()">
     <h2 class="span12">{{ product.name }}</h2>
-    <img class="span3" data-ng-src="{{product.preview}}">
+    <img class="span3 productImg" data-ng-src="{{product.preview}}" />
     <div class="span9 casep">
         <h4>Auteur</h4>
         <a href="#/producten/{{product.user._id}}"><h5>{{product.user.firstName}} {{product.user.lastName}}</h5></a>

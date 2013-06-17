@@ -214,6 +214,8 @@ nav ul li a{
 
 
 /*----Main----*/
+.dataView { margin-top: 50px; }
+
 .big img{
     width:100%;
 }
@@ -352,10 +354,14 @@ nav ul li a{
     font-size:16px;
 }
 
-h4 .icon-shopping-cart {
-    float: right;
-    margin-top: -15px;
-}
+h4 .icon-shopping-cart { float: right }
+
+.gallery .price .icon-shopping-cart {  margin-top: -15px; }
+
+.productImg {
+    -webkit-border-radius:20px;
+    -moz-border-radius:20px;
+    border-radius:20px;}
 
 .comments{
     height:287px;
