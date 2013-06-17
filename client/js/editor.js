@@ -220,13 +220,13 @@
                 json = JSON.stringify(canvas),
                 data = {},
                 user = JSON.parse(window.sessionStorage["loggedInUser"]);
-
-            data.name = $('input#name').val();
-            data.preview = img;
-            data.canvas = json;
-            data.shared = true;
-            data.user = user._id;
-            return data;
+            return {
+              name: $('input#name').val(),
+              preview: img,
+              canvas: json,
+              shared: true,
+              user: user._id
+            };
         }
 
         function sendCanvasAsync(data) {
