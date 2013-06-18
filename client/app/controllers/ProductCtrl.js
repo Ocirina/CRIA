@@ -82,13 +82,13 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
         var id = $routeParams.id,
             Product = $resource('http://autobay.tezzt.nl\\:43083/casedesign/' + id, {},
                 {charge: {method: 'GET', params: {charge: true}}}
-            ),
+            );
 
-            product = Product.get(function (data) {
-                $scope.product = data.result;
-                $scope.getSociable($scope.product._id, 'ratings', $scope.createStarsFromNumber);
-                $scope.getSociable($scope.product._id, 'comments');
-            });
+        Product.get(function (data) {
+            $scope.product = data.result;
+            $scope.getSociable($scope.product._id, 'ratings', $scope.createStarsFromNumber);
+            $scope.getSociable($scope.product._id, 'comments');
+        });
     };
 
     /**
