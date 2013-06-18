@@ -838,7 +838,7 @@ body.case-editor footer {
 .navactive{
 	left:0;
 }
-.navactive:nth-child(3){
+.navactive:nth-child(2){
 	left:30px;
 }
 .navactive:nth-child(3){
