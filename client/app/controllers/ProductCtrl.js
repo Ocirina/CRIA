@@ -1,6 +1,6 @@
-/* global app, $ */
+/*global Application, app, $ */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
-app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $routeParams) {
+app.controller('ProductCtrl', function ($scope, $location, $resource, $routeParams) {
     "use strict";
 
     /**
