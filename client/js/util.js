@@ -10,7 +10,7 @@
 function isEmpty(obj) {
     "use strict";
 
-    if (obj === 'undefined' || obj === null || obj === '') {
+    if (typeof obj === 'undefined' || obj === null || obj === '') {
         return true;
     }
     if (typeof obj === 'number' && isNaN(obj)) {
