@@ -282,7 +282,7 @@ nav ul li a{
 .gallery{
     width:1200px;
 }
-.gallery .case{
+.gallery .case {
     height: 295px;
     display: block;
     overflow: hidden;
@@ -358,10 +358,6 @@ h4 .icon-shopping-cart { float: right }
 
 .gallery .price .icon-shopping-cart {  margin-top: -15px; }
 
-.productImg {
-    -webkit-border-radius:20px;
-    -moz-border-radius:20px;
-    border-radius:20px;}
 
 .comments{
     height:287px;
@@ -750,18 +746,32 @@ body.case-editor footer {
   position: absolute;
   top: 0;
   left: 0;
+}
+.overlay-iphone.small {
   width: 140px;
   height: 276px;
 }
+.overlay-iphone.big {
+  width: 220px;
+  height: 433px;
+}
 .overlay-iphone.iphone4 {
   background: url('http://94.210.234.160/_design_your_own/img/iphone4f.png') no-repeat;
-  background-size: 140px 276px;
 }
+.overlay-iphone.small.iphone4 { background-size: 140px 276px; }
+.overlay-iphone.big.iphone4 { background-size: 220px 433px; }
 .overlay-iphone.iphone5 {
   background: url('http://94.210.234.160/_design_your_own/img/iphone5f.png') no-repeat;
+}
+.overlay-iphone.small.iphone5 { 
   background-size: 140px 295px;
   height: 295px;
 }
+.overlay-iphone.big.iphone5 { 
+  background-size: 220px 433px;
+  height: 450px;
+}
+
 
 .relative {
   position: relative;
