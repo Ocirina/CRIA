@@ -39,7 +39,7 @@ module.exports = function (app) {
     // Comment
     app.get('/casedesign/:id/comments', Comment.index);
     app.post('/casedesign/:id/comments', authenticated, Comment.create);
-    app.delete('/comment/:id', Comment.destroy);
+    app.delete('/comment/:id', authenticated, Comment.destroy);
 
     // Rating
     app.get('/casedesign/:id/ratings', Rating.index);
