@@ -1,4 +1,4 @@
-/* global app, $, angular */
+/*global Application, app, angular, $ */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
 var app = angular.module('design_your_own', ['ngResource']);
 
