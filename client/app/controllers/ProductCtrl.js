@@ -281,14 +281,11 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
                         }
                     }
                 ),
-
                 sociable = {
                     id: id,
                     type: type
                 },
-
                 comment = new Sociable(sociable),
-
                 i;
 
             comment.$delete(function (data) {
