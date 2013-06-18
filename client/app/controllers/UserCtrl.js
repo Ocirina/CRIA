@@ -35,6 +35,7 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
                 window.sessionStorage.removeItem("loggedInUser");
                 $scope.hasUser = false;
                 $location.path('/');
+                $scope.user.password = '';
             } else {
                 Application.notify('error', 'U bent niet uitgelogd, er is iets misgegaan.');
             }
