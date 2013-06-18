@@ -1,3 +1,5 @@
+/*global Application, app, $ */
+/*jslint browser: true, node: true, nomen: true, plusplus: true */
 app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
     "use strict";
     /**
@@ -95,8 +97,10 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
             $scope.user.check = true;
         }
 
-        if ($scope.user.password !== $scope.user.passwordCheck || $scope.user.password === '' && $scope.user.passwordCheck === '' || $scope.user.password === undefined || $scope.user.passwordCheck === undefined) {
-            $scope.user.check = true;
+        if($scope.user.password !== $scope.user.passwordCheck || $scope.user.password === ''){
+            if ($scope.user.passwordCheck === '' || $scope.user.password === undefined || $scope.user.passwordCheck === undefined) {
+                $scope.user.check = true;
+            }
         }
 
         if ($scope.user.password !== '' && $scope.user.passwordCheck !== '' && $scope.user.password !== $scope.user.passwordCheck) {

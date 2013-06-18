@@ -1,3 +1,5 @@
+/*global Application, app, $ */
+/*jslint browser: true, node: true, nomen: true, plusplus: true */
 app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
     "use strict";
 
