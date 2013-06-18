@@ -33,8 +33,10 @@
     function leavingPage(e) {
         canvas = null;
         canvasLoaded = false;
+        console.log("Setting canvasLoaded to: false");
         $(document.body).removeClass('case-editor');
         //TODO: onhashchange save canvas to sessionStorage.
+        $doc.off('StartEditor');
         if (e.type === "beforeunload") {
             return 'Weet u zeker dat u de pagina wilt verlaten zonder op te slaan?';
         }
@@ -481,13 +483,14 @@
     }
 
     function loadCanvasFromData(data) {
+      console.log("Starting with: "+canvasLoaded);
         if (data.hasOwnProperty('canvas') && !canvasLoaded) {
-            console.log(data.canvas);
             canvas.loadFromJSON(data.canvas);
             /*TODO: wordt niet ingeladen hier! */
             refreshCanvas();
             canvasLoaded = true;
         }
+        console.log("Ending with: "+canvasLoaded);
     }
     function refreshCanvas() {
       canvas.calcOffset();
