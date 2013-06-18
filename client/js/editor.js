@@ -154,15 +154,6 @@
         $body.addClass('case-editor');
     });
 
-    $doc.on('StartEditor', function (e, data) {
-        console.log(data);
-        $body.addClass('case-editor');
-        initCanvas();
-        setCanvasDimensions(data.phone, data.case);
-        setObjectSelected();
-        loadCanvasFromData(data.design);
-    });
-
     function setObjectSelected() {
         function handleType(fn, obj) {
             try {
@@ -220,6 +211,15 @@
             }
         );
     }
+
+    $doc.on('StartEditor', function (e, data) {
+        console.log(data);
+        $body.addClass('case-editor');
+        initCanvas();
+        setCanvasDimensions(data.phone, data.case);
+        setObjectSelected();
+        loadCanvasFromData(data.design);
+    });
 
     $('.sel-bg').on('click', '.icon-caret-right', function (e) {
         move('.sel-bg .sliderow', '-=250');
@@ -320,7 +320,6 @@
         function setJSONData() {
             var img = canvas.toDataURL('png'),
                 json = JSON.stringify(canvas),
-                data = {},
                 user = JSON.parse(window.sessionStorage.loggedInUser);
 
             return {
@@ -547,4 +546,4 @@
         setBackground(color, true);
     });
 
-})(jQuery, this);
+}(jQuery, this));
