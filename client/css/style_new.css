@@ -283,7 +283,7 @@ nav ul li a{
     width:1200px;
 }
 .gallery .case{
-    height:285px;
+    height: 295px;
     display:block;
     overflow:hidden;
     background:no-repeat;
@@ -308,11 +308,17 @@ nav ul li a{
 }
 .gallery .case .txt{
     color:transparent;
-    width:140px;
+    width:137px;
     height:285px;
     display:inline-block;
     margin:5px 5px 5px 15px;
 	position:relative;
+  float: right;
+}
+.gallery .case a.relative {
+  display: inline-block;
+  height: 100%;
+  width: 140px;
 }
 .gallery .case:hover{
     width:300px;
@@ -723,17 +729,17 @@ body.case-editor footer {
 /* Ontwerp */
 .selected-1 div.sticker {
     background-size: 60px 114px;
-    background: url('http://94.210.234.160/_design_your_own/img/sticker.svg')no-repeat;
+    background: url('http://94.210.234.160/_design_your_own/img/sticker.svg') no-repeat;
 }
 
 .selected-2 div.hardcase {
     background-size: 60px 114px;
-    background: url('http://94.210.234.160/_design_your_own/img/hardcase.svg')no-repeat;
+    background: url('http://94.210.234.160/_design_your_own/img/hardcase.svg') no-repeat;
 }
 
 .selected-3 div.silicone {
     background-size: 60px 114px;
-    background: url('http://94.210.234.160/_design_your_own/img/silicon.svg')no-repeat;
+    background: url('http://94.210.234.160/_design_your_own/img/silicon.svg') no-repeat;
 }
 
 .selected-4 div.phone4 {
@@ -744,4 +750,25 @@ body.case-editor footer {
 .selected-5 div.phone5 {
     background-size: 60px 124px;
     background: url('http://94.210.234.160/_design_your_own/img/iphone5grijs.png') no-repeat;
+}
+
+.overlay-iphone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 276px;
+}
+.overlay-iphone.iphone4 {
+  background: url('http://94.210.234.160/_design_your_own/img/iphone4f.png') no-repeat;
+  background-size: 140px 276px;
+}
+.overlay-iphone.iphone5 {
+  background: url('http://94.210.234.160/_design_your_own/img/iphone5f.png') no-repeat;
+  background-size: 140px 295px;
+  height: 295px;
+}
+
+.relative {
+  position: relative;
 }
