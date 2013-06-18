@@ -1,3 +1,5 @@
+"use-strict";
+
 /* global app, $ */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
 app.controller('DesignCtrl', function($scope, $location, $http, $resource, $routeParams) {
@@ -8,11 +10,8 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
      */
     $scope.activatePhone = function(phoneId) {
         $scope.phone.phone = phoneId;
-        $.event.trigger('StartEditor',
-            {
-                phone: phoneId
-            }
-        );
+        $scope.setCaseType(1);
+        $scope.triggerEditor();
     };
 
     /**
@@ -22,6 +21,7 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
      */
     $scope.setCaseType = function(caseTypeId) {
         $scope.phone.case = caseTypeId;
+        $scope.triggerEditor();
     };
 
     /**
@@ -35,15 +35,15 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
                 {charge: {method:'GET', params:{charge:true}}}
             );
 
-            /* TODO: Type telefoone en hoesje moet worden opgeslagen!! */
-            $scope.phone.phone = 4;
-
             Design.get(function(data) {
                 $scope.design = data.result;
+                $scope.phone.phone = $scope.design.phone;
+                $scope.phone.case = $scope.design.case;
                 $.event.trigger('StartEditor',
                     {
                         phone:  $scope.phone.phone,
-                        canvas: JSON.parse($scope.design.canvas)
+                        case: $scope.phone.case,
+                        design: $scope.design
                     }
                 );
             });
@@ -52,6 +52,53 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
             Application.notify('error', 'U bent niet ingelogd.');
         }
     };
+
+    $scope.loadSessionCanvas = function() {
+        if(window.sessionStorage["design"]) {
+            var design = JSON.parse(window.sessionStorage["design"]);
+            $scope.phone.phone = design.phone;
+            $scope.phone.case = design.case;
+            $scope.triggerEditor();
+        } else {
+            $scope.activatePhone(4);
+        }
+    };
+
+
+    $scope.triggerEditor = function() {
+        if (window.sessionStorage["design"]) {
+            if($scope.phone.case) {
+                $.event.trigger('StartEditor',
+                    {
+                        phone:  $scope.phone.phone,
+                        case:$scope.phone.case,
+                        design: JSON.parse(window.sessionStorage["design"])
+                    }
+                );
+            } else {
+                $.event.trigger('StartEditor',
+                    {
+                        phone:  $scope.phone.phone,
+                        case:$scope.phone.case,
+                        design: JSON.parse(window.sessionStorage["design"])
+                    }
+                );
+            }
+        } else if($scope.phone.case) {
+            $.event.trigger('StartEditor',
+                {
+                    phone:  $scope.phone.phone,
+                    case: $scope.phone.case
+                }
+            );
+        } else {
+            $.event.trigger('StartEditor',
+                {
+                    phone:  $scope.phone.phone
+                }
+            );
+        }
+    }
 
     $scope.fillObjectArrays = function () {
         $scope.backgroundsRowOne = [];

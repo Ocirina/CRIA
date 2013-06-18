@@ -4,6 +4,7 @@
         "5": { width: 270, height: 569 }
     };
     var _phoneType = 4;
+    var _caseType = 0;
     var canvas = null;
     var $body = $(document.body);
     var $doc = $(document);
@@ -31,14 +32,26 @@
     $window.on('hashchange', leavingPage);
 
     function leavingPage(e) {
-        canvas = null;
         canvasLoaded = false;
-        console.log("Setting canvasLoaded to: false");
         $(document.body).removeClass('case-editor');
-        //TODO: onhashchange save canvas to sessionStorage.
+        saveCanvasToSession();
+
         $doc.off('StartEditor');
         if (e.type === "beforeunload") {
             return 'Weet u zeker dat u de pagina wilt verlaten zonder op te slaan?';
+        }
+        canvas = null;
+    }
+
+    function saveCanvasToSession() {
+        var jsonCanvas = null, design = {};
+        var typeOfPage = document.getElementById("putCanvas");
+        if (typeOfPage === null) {
+            jsonCanvas = JSON.stringify(canvas);
+            design.canvas = jsonCanvas;
+            design.phone = _phoneType;
+            design.case = _caseType;
+            window.sessionStorage["design"] = JSON.stringify(design);
         }
     }
 
@@ -46,11 +59,12 @@
         $body.addClass('case-editor');
     });
     $doc.on('StartEditor', function (e, data) {
+        console.log(data);
         $body.addClass('case-editor');
         initCanvas();
-        setCanvasDimensions(data.phone);
+        setCanvasDimensions(data.phone, data.case);
         setObjectSelected();
-        loadCanvasFromData(data);
+        loadCanvasFromData(data.design);
     });
 
     function setObjectSelected() {
@@ -84,13 +98,15 @@
     function initCanvas() {
         if (isEmpty(canvas)) {
             canvas = new fabric.Canvas('case-editor', CANVAS_SETTINGS);
+            canvas.setBackgroundColor('#000000');
         }
     }
 
-    function setCanvasDimensions(id) {
-        _phoneType = id;
-        canvas.setWidth(dimensions[id].width);
-        canvas.setHeight(dimensions[id].height);
+    function setCanvasDimensions(phoneId, caseId) {
+        _phoneType = phoneId;
+        _caseType = caseId ? caseId : 1;
+        canvas.setWidth(dimensions[phoneId].width);
+        canvas.setHeight(dimensions[phoneId].height);
         canvas.renderAll();
     }
 
@@ -162,7 +178,7 @@
 
     function move(el, value) {
         $(el).animate({
-            left: value,
+            left: value
         }, 500, function () {
         });
     }
@@ -209,7 +225,6 @@
             try {
                 canvas.deactivateAll().renderAll();
                 var data = setJSONData();
-                console.log(data);
                 if($(this).attr("id") === "postCanvas") {
                     sendCanvasAsync(data, 'POST', "casedesigns");
                 } else if($(this).attr("id") === "putCanvas") {
@@ -233,6 +248,8 @@
               name: $('input#name').val(),
               preview: img,
               canvas: json,
+              phone: _phoneType,
+              case: _caseType,
               shared: true,
               user: user._id
             };
@@ -483,14 +500,12 @@
     }
 
     function loadCanvasFromData(data) {
-      console.log("Starting with: "+canvasLoaded);
-        if (data.hasOwnProperty('canvas') && !canvasLoaded) {
+        if (data && data.hasOwnProperty('canvas') && !canvasLoaded) {
             canvas.loadFromJSON(data.canvas);
-            /*TODO: wordt niet ingeladen hier! */
+            console.log(data.canvas);
             refreshCanvas();
             canvasLoaded = true;
         }
-        console.log("Ending with: "+canvasLoaded);
     }
     function refreshCanvas() {
       canvas.calcOffset();
