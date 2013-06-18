@@ -3,7 +3,8 @@
     <ul class="span12" data-ng-init="loadShopCartDesigns()">
         <li data-ng-show="order" data-ng-repeat="orderline in order.orderlines">
             <h5>{{ orderline.caseDesign.name }}</h5>
-			<a href="#/product/{{orderline.caseDesign._id}}">
+			<a href="#/product/{{orderline.caseDesign._id}}" class="inline-block relative">
+                <div class="overlay-iphone tiny iphone4"></div>
 				<img alt="{{ orderline.caseDesign.name }}" data-ng-src="{{orderline.caseDesign.preview}}"/><br/>
 			</a>
             <input class="input-mini" type="number" min="1" max="99" data-ng-change="changeAmount({{ orderline.caseDesign }}, this)" data-ng-model="orderline.aantal" required>

@@ -755,13 +755,24 @@ body.case-editor footer {
   width: 220px;
   height: 433px;
 }
+.overlay-iphone.tiny {
+  width: 80px;
+  height: 158px;
+}
 .overlay-iphone.iphone4 {
   background: url('http://94.210.234.160/_design_your_own/img/iphone4f.png') no-repeat;
 }
-.overlay-iphone.small.iphone4 { background-size: 140px 276px; }
-.overlay-iphone.big.iphone4 { background-size: 220px 433px; }
 .overlay-iphone.iphone5 {
   background: url('http://94.210.234.160/_design_your_own/img/iphone5f.png') no-repeat;
+}
+
+.overlay-iphone.tiny.iphone4 { background-size: 80px 158px; }
+.overlay-iphone.small.iphone4 { background-size: 140px 276px; }
+.overlay-iphone.big.iphone4 { background-size: 220px 433px; }
+
+.overlay-iphone.tiny.iphone5 { 
+  background-size: 80px 168px;
+  height: 168px;
 }
 .overlay-iphone.small.iphone5 { 
   background-size: 140px 295px;
@@ -775,4 +786,7 @@ body.case-editor footer {
 
 .relative {
   position: relative;
+}
+.inline-block {
+  display: inline-block;
 }
