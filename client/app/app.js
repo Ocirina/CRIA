@@ -1,6 +1,9 @@
+/* global app, $, angular */
+/*jslint browser: true, node: true, nomen: true, plusplus: true */
 var app = angular.module('design_your_own', ['ngResource']);
 
 app.config(function ($routeProvider) {
+    "use strict";
     $routeProvider
 
         .when('/', {

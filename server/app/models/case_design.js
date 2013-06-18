@@ -9,10 +9,9 @@ var CaseDesign = Schema({
     user:           {type: Schema.Types.ObjectId, ref: 'User'},
     preview:        {type: String, required: true},
     basicDesign:    {type: Schema.Types.ObjectId, ref: 'CaseDesign'},
-    caseModel:      {type: String},
-    //caseModel:      {type: Schema.Types.ObjectId, ref: 'CaseModel'},
+    phone:          {type: String},
+    case:           {type: String},
     canvas:         {type: String, required: true},
-    //designObjects:  [{type: Schema.Types.ObjectId, ref: 'DesignObject'}],
     created_at:     {type: Date, required: true, default: Date.now}
 });
 

@@ -12,7 +12,10 @@
 
 <div class="row gallery">
         <div class="span2 case" data-ng-repeat="product in products.result | filter:searchContent">
-            <a href="#/product/{{product._id}}"><img data-ng-src="{{product.preview}}" alt=""/></a>
+            <a href="#/product/{{product._id}}" class="relative">
+                <div class="overlay-iphone iphone5"></div>
+                <img data-ng-src="{{product.preview}}" alt=""/>
+            </a>
             <div class="txt">
                 <h4>Titel:</h4>
                 <h5>{{ product.name }}</h5>
