@@ -1,3 +1,6 @@
+/*global Application, app, $ */
+/*jslint browser: true, node: true, nomen: true, plusplus: true */
+
 /**
  * Method for checking if an object is empty. The correct way!
  * @scope public

@@ -1,3 +1,6 @@
+/*global Application, app, $ */
+/*jslint browser: true, node: true, nomen: true, plusplus: true */
+
 function EventController() {
     "use strict";
 
