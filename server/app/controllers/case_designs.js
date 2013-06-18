@@ -4,6 +4,41 @@ var CaseDesign = mongoose.model('CaseDesign');
 var User = mongoose.model('User');
 var fs = require('fs');
 
+/**
+ * Converts the given name into a name safe for files.
+ * @param String name The name to convert.
+ * @return String Save png filename.
+ */
+function safeFileName(name) {
+  name = name.toString();
+  name = slugify(name);
+  return name+'.png'
+}
+
+/**
+ * Converts the string to slugified string. This removes all spaces for "-".
+ * Swaps accents for there normal characters and removes unsave characters.
+ * Then it removes double dashes.
+ * @param String str The string to slugify.
+ * @return String The slugified string.
+ */
+function slugify(str) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.toLowerCase();
+
+  // remove accents, swap ñ for n, etc
+  var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+  var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+  for (var i=0, l=from.length ; i<l ; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
+}
 
 /**
  * Type: POST
@@ -16,9 +51,8 @@ exports.create = function (req, res) {
    * Save base64 as png image
    * @see http://stackoverflow.com/questions/6926016/nodejs-saving-a-base64-encoded-image-to-disk
    */
-  var base64Data = req.body.preview.replace(/^data:image\/png;base64,/, "");
   var fileName = "public/upload/"+safeFileName(caseDesign._id);
-  fs.unlinkSync(fileName);
+  var base64Data = req.body.preview.replace(/^data:image\/png;base64,/, "");
   fs.writeFile(fileName, base64Data, 'base64', function(err) {
     caseDesign.preview = fileName.replace("public/", "");
     getUser(req, res, caseDesign);
@@ -54,42 +88,6 @@ exports.create = function (req, res) {
         "result": caseDesign
       });
     });
-  }
-  
-  /**
-   * Converts the given name into a name safe for files.
-   * @param String name The name to convert.
-   * @return String Save png filename.
-   */
-  function safeFileName(name) {
-    name = name.toString();
-    name = slugify(name);
-    return name+'.png'
-  }
-  
-  /**
-   * Converts the string to slugified string. This removes all spaces for "-".
-   * Swaps accents for there normal characters and removes unsave characters.
-   * Then it removes double dashes.
-   * @param String str The string to slugify.
-   * @return String The slugified string.
-   */
-  function slugify(str) {
-    str = str.replace(/^\s+|\s+$/g, ''); // trim
-    str = str.toLowerCase();
-
-    // remove accents, swap ñ for n, etc
-    var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
-    var to   = "aaaaaeeeeeiiiiooooouuuunc------";
-    for (var i=0, l=from.length ; i<l ; i++) {
-      str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-    }
-
-    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-      .replace(/\s+/g, '-') // collapse whitespace and replace by -
-      .replace(/-+/g, '-'); // collapse dashes
-
-    return str;
   }
 }
 
@@ -181,16 +179,23 @@ exports.canvas = function (req, res) {
  * Route: /casedesign/:id
  */
 exports.update = function (req, res) {
-  var conditions = {_id: req.params.id},
-      update = req.body,
-      options = { multi: false },
-      callback = function (err, casedesign) {
+  CaseDesign.findById(req.params.id, function(err, design){
+    var fileName = "public/upload/"+safeFileName(design._id);
+    var base64Data = req.body.preview.replace(/^data:image\/png;base64,/, "");
+    fs.writeFile(fileName, base64Data, 'base64', function(err) {
+      design.preview = fileName.replace("public/", "");
+      design.name = req.body.name;
+      design.canvas = req.body.canvas;
+      design.phone = req.body.phone;
+      design.case = req.body.case;
+      design.save(function (err) {
         return res.send({
           "error": err,
-          "result": casedesign
-        });
-      };
-  CaseDesign.findOneAndUpdate(conditions, update, options, callback);
+          "result": design
+        })
+      });
+    });
+  });
 }
 
 /**
