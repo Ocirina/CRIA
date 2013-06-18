@@ -25,12 +25,14 @@
         selectionColor: "rgba(255, 255, 255, 0.3)",
         selectionLineWidth: 2
     };
+    var canvasLoaded = false;
 
     $window.on('beforeunload', leavingPage);
     $window.on('hashchange', leavingPage);
 
     function leavingPage(e) {
         canvas = null;
+        canvasLoaded = false;
         $(document.body).removeClass('case-editor');
         //TODO: onhashchange save canvas to sessionStorage.
         if (e.type === "beforeunload") {
@@ -472,23 +474,19 @@
         }
         
         function toggleInput(element, style, input, $this) {
-          if (element[style] == input) {
-              element[style] = "normal";
-              $this.toggleClass('active');
-          }
-          else {
-              element[style] = input;
-              $this.toggleClass('active');
-          }
+          if (element[style] == input) { element[style] = "normal"; }
+          else { element[style] = input; }
+          $this.toggleClass('active');
         }
     }
 
     function loadCanvasFromData(data) {
-        if (data.hasOwnProperty('canvas')) {
+        if (data.hasOwnProperty('canvas') && !canvasLoaded) {
             console.log(data.canvas);
             canvas.loadFromJSON(data.canvas);
             /*TODO: wordt niet ingeladen hier! */
             refreshCanvas();
+            canvasLoaded = true;
         }
     }
     function refreshCanvas() {
