@@ -1,12 +1,21 @@
 /* global app, $ */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
 app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $routeParams) {
+    "use strict";
+
     /**
      * This function will get all the products by get request and put them in the $scope.products var.
      */
     $scope.getProducts = function () {
         var Products = $resource('http://autobay.tezzt.nl\\:43083/casedesigns', {},
-            {charge: {method: 'GET', params: {charge: true}}}
+            {
+                charge: {
+                    method: 'GET',
+                    params: {
+                        charge: true
+                    }
+                }
+            }
         );
 
         Products.get(function (data) {
@@ -25,8 +34,8 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
             var user = JSON.parse(window.sessionStorage.loggedInUser),
 
                 Products = $resource('http://autobay.tezzt.nl\\:43083/gallery/:id', { id: user._id},
-                {charge: {method: 'GET', params: {charge: true}}}
-            );
+                    {charge: {method: 'GET', params: {charge: true}}}
+                );
 
             Products.get(function (data) {
                 $scope.products = data.result.caseDesigns;
@@ -36,19 +45,20 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
     };
 
     $scope.getProductsByGivenUser = function () {
-        var userId = $routeParams.userid;
+        var userId = $routeParams.userid,
 
-        var Products = $resource('http://autobay.tezzt.nl\\:43083/gallery/:id', { id: userId },
-            {charge: {method: 'GET', params: {charge: true}}}
-        );
+            Products = $resource('http://autobay.tezzt.nl\\:43083/gallery/:id', { id: userId },
+                {charge: {method: 'GET', params: {charge: true}}}
+            ),
+            user;
 
         Products.get(function (data) {
             $scope.user = data.result;
 
-            if (window.sessionStorage["loggedInUser"]) {
-                var user = JSON.parse(window.sessionStorage["loggedInUser"]);
+            if (window.sessionStorage.loggedInUser) {
+                user = JSON.parse(window.sessionStorage.loggedInUser);
                 $scope.hasUser = true;
-                if ($scope.user._id == user._id) {
+                if ($scope.user._id === user._id) {
                     $location.path("/producten/user");
                 }
             }
@@ -65,21 +75,20 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      * So if we loop trough the array we can use the classes to generate stars filled in or not.
      */
     $scope.getProduct = function () {
-        if (window.sessionStorage['loggedInUser']) {
-            $scope.loggedinUser = JSON.parse(window.sessionStorage['loggedInUser']);
+        if (window.sessionStorage.loggedInUser) {
+            $scope.loggedinUser = JSON.parse(window.sessionStorage.loggedInUser);
         }
 
-        var id = $routeParams.id;
+        var id = $routeParams.id,
+            Product = $resource('http://autobay.tezzt.nl\\:43083/casedesign/' + id, {},
+                {charge: {method: 'GET', params: {charge: true}}}
+            ),
 
-        var Product = $resource('http://autobay.tezzt.nl\\:43083/casedesign/' + id, {},
-            {charge: {method: 'GET', params: {charge: true}}}
-        );
-
-        var product = Product.get(function (data) {
-            $scope.product = data.result;
-            $scope.getSociable($scope.product._id, 'ratings', $scope.createStarsFromNumber);
-            $scope.getSociable($scope.product._id, 'comments');
-        });
+            product = Product.get(function (data) {
+                $scope.product = data.result;
+                $scope.getSociable($scope.product._id, 'ratings', $scope.createStarsFromNumber);
+                $scope.getSociable($scope.product._id, 'comments');
+            });
     };
 
     /**
@@ -92,7 +101,7 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      */
     $scope.getSociable = function (id, type, callback) {
         if (typeof callback !== "function") {
-            var callback = function (data) {
+            callback = function (data) {
                 $scope[type] = data.result;
             };
         }
@@ -109,10 +118,11 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      */
     $scope.addProductToShopCart = function (productParam) {
         var order = {
-            orderlines: []
-        };
+                orderlines: []
+            },
 
-        var product;
+            product,
+            productAdded;
 
         if (productParam === undefined) {
             product = $scope.product;
@@ -120,15 +130,16 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
             product = productParam;
         }
 
-        if (!window.localStorage['Order']) {
-            window.localStorage['Order'] = JSON.stringify(order);
+        if (!window.localStorage.Order) {
+            window.localStorage.Order = JSON.stringify(order);
         }
 
-        order = JSON.parse(window.localStorage['Order']);
-        var productAdded = $scope.checkProductInShopCart(product._id);
+        order = JSON.parse(window.localStorage.Order);
+        productAdded = $scope.checkProductInShopCart(product._id);
+
         if (!productAdded) {
             order.orderlines.push({"caseDesign": product, "aantal": 1});
-            window.localStorage['Order'] = JSON.stringify(order);
+            window.localStorage.Order = JSON.stringify(order);
         }
 
         Application.notify('ok', 'Product is toegevoegd.');
@@ -148,12 +159,14 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
             i = 0;
 
         for (i = 0; i < order.orderlines.length; i++) {
-            if (order.orderlines[i]["caseDesign"]._id === productId) {
-                order.orderlines[i]["aantal"] += 1;
-                window.localStorage['Order'] = JSON.stringify(order);
+            if (order.orderlines[i].caseDesign._id === productId) {
+                order.orderlines[i].aantal += 1;
+                window.localStorage.Order = JSON.stringify(order);
+
                 return true;
             }
         }
+
         return false;
     };
 
@@ -163,10 +176,11 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      * @param {Array} data
      */
     $scope.createStarsFromNumber = function (data) {
-        var ratings = [];
+        var ratings = [],
+            i,
+            newArray = [];
 
-        for (var i = 0; i < 5; i++) {
-            var newArray = [];
+        for (i = 0; i < 5; i++) {
             if (i < data.result) {
                 newArray.name = 'icon-star';
             } else {
@@ -185,21 +199,22 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      * @param {Number} value
      */
     $scope.addRating = function (value) {
-        if (window.sessionStorage['loggedInUser'] !== undefined) {
+        if (window.sessionStorage.loggedInUser !== undefined) {
             var Ratings = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/ratings', {id: '@caseDesign'},
-                {charge: {method: 'POST', params: {charge: true}}}
-            );
+                    {charge: {method: 'POST', params: {charge: true}}}
+                ),
 
-            var user = JSON.parse(window.sessionStorage['loggedInUser']);
+                user = JSON.parse(window.sessionStorage.loggedInUser),
 
-            var ratings = {
-                user: user._id,
-                caseDesign: $scope.product._id,
-                amount: +value
-            };
+                ratings = {
+                    user: user._id,
+                    caseDesign: $scope.product._id,
+                    amount: +value
+                },
 
-            var rating = new Ratings(ratings);
-            rating.$save(function (data) {
+                ratingObj = new Ratings(ratings);
+
+            ratingObj.$save(function (data) {
                 if (data.error === null) {
                     $scope.getSociable($scope.product._id, 'ratings', $scope.createStarsFromNumber);
                     Application.notify('ok', 'Rating succesvol geplaatst.');
@@ -216,24 +231,27 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      * This function will post an comment to the server that wil save it. It's also directly showed on the website.
      */
     $scope.addComment = function () {
-        if (window.sessionStorage['loggedInUser'] !== undefined) {
+        if (window.sessionStorage.loggedInUser !== undefined) {
             var Comments = $resource('http://autobay.tezzt.nl\\:43083/casedesign/:id/comments', {id: '@caseDesign'},
-                {charge: {method: 'POST', params: {charge: true}}}
-            );
+                    {charge: {method: 'POST', params: {charge: true}}}
+                ),
 
-            var user = JSON.parse(window.sessionStorage['loggedInUser']);
+                user = JSON.parse(window.sessionStorage.loggedInUser),
 
-            var comment = {
-                user: user._id,
-                caseDesign: $scope.product._id,
-                comment: $scope.comment
-            };
+                comment = {
+                    user: user._id,
+                    caseDesign: $scope.product._id,
+                    comment: $scope.comment
+                },
 
-            var comment = new Comments(comment);
-            comment.$save(function (data) {
+                commentObj = new Comments(comment);
+
+            commentObj.$save(function (data) {
                 if (data.result !== null) {
                     data.result.user = user;
+
                     $scope.comments.push(data.result);
+
                     Application.notify('ok', 'Commentaar succesvol geplaatst.');
                     $scope.comment = '';
                 } else {
@@ -252,22 +270,31 @@ app.controller('ProductCtrl', function ($scope, $location, $http, $resource, $ro
      * @param {Number} id
      */
     $scope.removeSociable = function (type, id) {
-        if (window.sessionStorage['loggedInUser'] !== undefined) {
+        if (window.sessionStorage.loggedInUser !== undefined) {
             var Sociable = $resource('http://autobay.tezzt.nl\\:43083/:type/:id', {id: '@id', type: '@type'},
-                {charge: {method: 'DELETE', params: {charge: true}}}
-            );
+                    {
+                        charge: {
+                            method: 'DELETE',
+                            params: {
+                                charge: true
+                            }
+                        }
+                    }
+                ),
 
-            var sociable = {
-                id: id,
-                type: type
-            };
+                sociable = {
+                    id: id,
+                    type: type
+                },
 
-            var comment = new Sociable(sociable);
+                comment = new Sociable(sociable),
 
-            comment.$delete(function(data){
-                if(data.result === true){
-                    for(var i = 0; i < $scope.comments.length; i++){
-                        if($scope.comments[i]._id === id){
+                i;
+
+            comment.$delete(function (data) {
+                if (data.result === true) {
+                    for (i = 0; i < $scope.comments.length; i++) {
+                        if ($scope.comments[i]._id === id) {
                             $scope.comments.splice(i, 1);
                         }
                     }
