@@ -47,7 +47,7 @@ module.exports = function (app) {
     //app.delete('/rating/:id', Rating.destroy);
 
     // Order
-    app.post('/orders', authenticated, Order.create);
+    app.post('/orders', Order.create);
     app.get('/order/:id', authenticated, Order.show);
     app.delete('/order/:id', authenticated, Order.destroy);
 }
