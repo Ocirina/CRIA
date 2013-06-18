@@ -11,7 +11,7 @@ exports.create = function (req, res) {
   var order = new Order({
     user: req.body.user
   });
-  order.save(req, function (err) {
+  order.save(req.body, function (err) {
     return res.send({
       "error":  err,
       "result": order
