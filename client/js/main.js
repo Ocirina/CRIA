@@ -1,9 +1,11 @@
 function EventController() {
-    this.addEvents = function() {
+    "use strict";
+
+    this.addEvents = function () {
         this.addSlideEvents();
     };
 
-    this.addSlideEvents = function() {
+    this.addSlideEvents = function () {
         this.addNavigationEvents();
     };
 
@@ -11,22 +13,24 @@ function EventController() {
         this.showLoginForm();
     };
 
-    this.showLoginForm = function() {
-        var inlogNav = document.getElementById("inloggen");
-        inlogNav.onclick = function() {
+    this.showLoginForm = function () {
+        var inlogNav, show, hide;
+
+        inlogNav = document.getElementById("inloggen");
+        inlogNav.onclick = function () {
             show();
         };
 
-        var show = function() {
+        show = function () {
             $("#loginContainer").slideDown();
-            inlogNav.onclick = function() {
+            inlogNav.onclick = function () {
                 hide();
             };
         };
 
-        var hide = function() {
+        hide = function () {
             $("#loginContainer").slideUp();
-            inlogNav.onclick = function() {
+            inlogNav.onclick = function () {
                 show();
             };
         };
