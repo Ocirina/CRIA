@@ -85,8 +85,6 @@ app.controller('ShopCartCtrl', function ($scope, $location, $http, $resource) {
         if (window.sessionStorage["loggedInUser"]) {
             var user = JSON.parse(window.sessionStorage["loggedInUser"]);
             if (user.address != undefined) {
-                console.log($scope.totalPrice);
-                console.log(!(isNaN($scope.totalPrice)));
                 if ($scope.totalPrice !== null && $scope.totalPrice !== undefined && !(isNaN($scope.totalPrice))) {
                     $location.path('/betalen/kiezen');
                 } else {
