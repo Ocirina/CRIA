@@ -1,19 +1,29 @@
 app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
+    "use strict";
     /**
      * This function will login the user by an post request. The server will return true or not.
      * The whole user object is send away to verify if the user is real.
      */
     $scope.loginUser = function () {
-        var User = $resource('http://autobay.tezzt.nl\\:43083/signin', {},
-            {charge: {method: 'POST', params: {charge: true}}}
+        var User, user;
+
+        User = $resource('http://autobay.tezzt.nl\\:43083/signin', {},
+            {
+                charge: {
+                    method: 'POST',
+                    params: {
+                        charge: true
+                    }
+                }
+            }
         );
 
-        var user = new User($scope.user);
+        user = new User($scope.user);
         user.$save(function (data) {
             if (data.error !== null) {
                 Application.notify('error', data.error);
             } else if (data.result.name === $scope.user.username) {
-                window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
+                window.sessionStorage.loggedInUser = JSON.stringify(data.result);
                 $scope.hasUser = true;
                 $scope.user.name = data.result.name;
                 Application.notify('ok', 'Je bent succesvol ingelogd.');
@@ -47,11 +57,13 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
      * If all values are correct the user will be added.
      */
     $scope.registerUser = function () {
-        var User = $resource('http://autobay.tezzt.nl\\:43083/users', {},
+        var User, user;
+
+        User = $resource('http://autobay.tezzt.nl\\:43083/users', {},
             {charge: {method: 'POST', params: {charge: true}}}
         );
 
-        var user = new User($scope.user);
+        user = new User($scope.user);
         user.$save(function (data) {
             if (data.error === null) {
                 Application.notify('ok', 'Account is succesvol aangemaakt.');
@@ -83,35 +95,22 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
             $scope.user.check = true;
         }
 
-        if ($scope.user.password !== $scope.user.passwordCheck || $scope.user.password === '' && $scope.user.passwordCheck === '' || $scope.user.password == undefined || $scope.user.passwordCheck == undefined) {
+        if ($scope.user.password !== $scope.user.passwordCheck || $scope.user.password === '' && $scope.user.passwordCheck === '' || $scope.user.password === undefined || $scope.user.passwordCheck === undefined) {
             $scope.user.check = true;
         }
 
-        if ($scope.user.password != '' && $scope.user.passwordCheck != '' && $scope.user.password !== $scope.user.passwordCheck) {
+        if ($scope.user.password !== '' && $scope.user.passwordCheck !== '' && $scope.user.password !== $scope.user.passwordCheck) {
             $scope.user.passCheck = false;
         }
     };
-
-//
-//     This function does redirect the user after getting logged in or not.
-//
-//    $scope.forgotPassword = function() {
-//        $http.post('/someUrl', $scope.user).success(function(data) {
-//            if(data.error == null || data.data['login'] == true){
-//                $location.path('/');
-//            } else {
-//                $location.path('/gebruiker/login');
-//            }
-//        });
-//    };
 
     /**
      * Check if the user is logged in, this is done by the sessionStorage.
      */
     $scope.checkLoggedInUser = function () {
-        if (window.sessionStorage['loggedInUser'] != undefined) {
+        if (window.sessionStorage.loggedInUser !== undefined) {
             $scope.hasUser = true;
-            $scope.user = JSON.parse(window.sessionStorage["loggedInUser"]);
+            $scope.user = JSON.parse(window.sessionStorage.loggedInUser);
         } else {
             $scope.hasUser = false;
         }
@@ -121,11 +120,20 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
      * This will get the user out of the storage and will get the right user info.
      */
     $scope.loadUserShopCart = function () {
-        if (window.sessionStorage['loggedInUser'] != undefined) {
-            var loggedInUser = JSON.parse(window.sessionStorage["loggedInUser"]);
+        var loggedInUser, User;
 
-            var User = $resource('http://autobay.tezzt.nl\\:43083/user/' + loggedInUser["_id"], {},
-                {charge: {method: 'GET', params: {charge: true}}}
+        if (window.sessionStorage.loggedInUser !== undefined) {
+            loggedInUser = JSON.parse(window.sessionStorage.loggedInUser);
+
+            User = $resource('http://autobay.tezzt.nl\\:43083/user/' + loggedInUser._id, {},
+                {
+                    charge: {
+                        method: 'GET',
+                        params: {
+                            charge: true
+                        }
+                    }
+                }
             );
 
             User.get(function (data) {
@@ -138,16 +146,25 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
      * This function will be save the user NAW information. This is done by a PUT request.
      */
     $scope.saveNawInformation = function () {
-        var property,user, User = $resource('http://autobay.tezzt.nl\\:43083/user/:id', { id: "@_id"},
-            {update: {method: 'PUT'}}
+        var property, user, User;
+
+        User = $resource('http://autobay.tezzt.nl\\:43083/user/:id',
+            {
+                id: "@_id"
+            },
+            {
+                update: {
+                    method: 'PUT'
+                }
+            }
         );
 
-        if(window.sessionStorage["loggedInUser"]) {
+        if (window.sessionStorage.loggedInUser) {
             user = new User($scope.user);
             user.$update(function (data) {
                 if (data.error === null) {
                     Application.notify('ok', 'NAW gegevens zijn succesvol aangepast.');
-                    window.sessionStorage["loggedInUser"] = JSON.stringify(data.result);
+                    window.sessionStorage.loggedInUser = JSON.stringify(data.result);
                 } else {
                     Application.notify('error', 'NAW Gegevens zijn niet aangepast, er is iets misgegaan.');
                 }
@@ -155,5 +172,5 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
         } else {
             Application.notify('error', 'U moet ingelogd zijn om uw gegevens aan te passen.');
         }
-    }
+    };
 });
