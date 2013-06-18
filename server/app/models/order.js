@@ -25,15 +25,12 @@ var Order = Schema({
  * This wasn't documented and solution was found here: http://stackoverflow.com/a/14774743/1988125
  */
 Order.pre('save', function(next, req, callback){
+  console.log('PRE SAVE');
   var order = this; // See second note above.
-  var cb = function(err, line){
-    if (!err) {
-      order.orderlines.push(line._id);
-      next(callback);
-    }
-    else {next(err);}
-  };
-  createOrderlines(req.body.orderlines, order, cb);
+  if (typeof req != "undefined" || req != null) {
+    createOrderlines(req.orderlines, order, next, callback);
+  }
+  else { next(callback); }
   
   /**
    * Loops throught the orderlines and calls the createOrder method.
@@ -41,9 +38,9 @@ Order.pre('save', function(next, req, callback){
    * @param {Object} order Reference to the order instance
    * @param {Function} cb Callback to execute on save of an orderline. 
    */
-  function createOrderlines(orderlines, order, cb) {
+  function createOrderlines(orderlines, order, next, callback) {
     for (var index in orderlines) {
-      createOrderline(orderlines[index], order, cb);
+      createOrderline(orderlines[index], order, next, callback);
     }
   }
   
@@ -54,13 +51,37 @@ Order.pre('save', function(next, req, callback){
    * @param {Object} order Reference to the order instance
    * @param {Function} cb Callback to execute on save of an orderline. 
    */
-  function createOrderline(orderline, order, cb) {
+  function createOrderline(orderline, order, next, callback) {
     var OrderLine = mongoose.models["OrderLine"];
     var line = new OrderLine(orderline);
     line.order = order._id;
-    line.save(cb);
+    line.save(function(err, line) {
+      if (!err) { 
+        order.orderlines.push(line._id);
+        next(callback);
+      }
+      else { next(err); }
+    });
   }
 });
+
+/*
+Order.post('save', function(order){
+  console.log('POST SAVE');
+  var OrderLine = mongoose.models["OrderLine"];
+  OrderLine
+    .find({order: order._id})
+    .exec(function(err, orderlines){
+      order.orderlines = [];
+      console.log("1", order);
+      for (var index in orderlines) {
+        order.orderlines.push(orderlines[index]._id);
+      }
+      console.log("2", order);
+      order.save();
+    });
+});
+*/
 
 // Define the Mongoose model.
 mongoose.model("Order", Order, "Orders");
