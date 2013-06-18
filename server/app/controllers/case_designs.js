@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var CaseDesign = mongoose.model('CaseDesign');
 var User = mongoose.model('User');
+var fs = require('fs');
 
 
 /**
@@ -17,7 +18,8 @@ exports.create = function (req, res) {
    */
   var base64Data = req.body.preview.replace(/^data:image\/png;base64,/, "");
   var fileName = "public/upload/"+safeFileName(caseDesign._id);
-  require("fs").writeFile(fileName, base64Data, 'base64', function(err) {
+  fs.unlinkSync(fileName);
+  fs.writeFile(fileName, base64Data, 'base64', function(err) {
     caseDesign.preview = fileName.replace("public/", "");
     getUser(req, res, caseDesign);
   });
