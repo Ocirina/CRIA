@@ -790,3 +790,66 @@ body.case-editor footer {
 .inline-block {
   display: inline-block;
 }
+
+/*----sidenav----*/
+.sidenav{
+}
+.navactive{
+	display:block;
+	position:fixed;
+	height:30px;
+	width:100%;
+	top:50%;
+	left:0;
+	background:#ff5000;
+	line-height:30px;
+	margin-left:-49%;
+	text-align:center;
+	
+	transform:rotate(270deg);
+	-ms-transform:rotate(270deg); /* IE 9 */
+	-webkit-transform:rotate(270deg); /* Safari and Chrome */
+}
+.navinactive{
+	display:block;
+	position:fixed;
+	height:30px;
+	width:100%;
+	top:50%;
+	right:0;
+	background:#ff5000;
+	line-height:30px;
+	margin-right:-49%;
+	text-align:center;
+	transform:rotate(90deg);
+	-ms-transform:rotate(90deg); /* IE 9 */
+	-webkit-transform:rotate(90deg); /* Safari and Chrome */
+}
+.sidenav h2{
+	width:100%;
+	font-size:22px;
+	color:#FFF;
+	line-height:30px;
+}
+
+.sidenav:hover{
+	background:#f0a7b6;
+}
+.navactive{
+	left:0;
+}
+.navactive:nth-child(3){
+	left:30px;
+}
+.navactive:nth-child(4){
+	left:60px;
+}
+.navinactive{
+	right:60px;
+}
+.navinactive:nth-child(3){
+	right:30px;
+}
+.navinactive:nth-child(4){
+	right:0;
+}
