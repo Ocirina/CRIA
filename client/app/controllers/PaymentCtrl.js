@@ -1,4 +1,6 @@
 app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
+    "use strict";
+
     $scope.addImageDropDowns = function () {
         this.addPaymentMethodDropdown();
         this.addPaymentBankDropdown();
@@ -50,10 +52,10 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
             selectText: "Selecteer een betaal methode",
             imagePosition: "left",
             onSelected: function (data) {
-                if (data.selectedData.value == 1) {
+                if (data.selectedData.value === 1) {
                     $("#paymentBanks").show();
                     $scope.disableOrEnablePaymentButton(true);
-                } else if (data.selectedData.value == 0) {
+                } else if (data.selectedData.value === 0) {
                     $("#paymentBanks").hide();
                     $scope.disableOrEnablePaymentButton(true);
                 } else {
@@ -124,7 +126,7 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
             selectText: "Selecteer een betaal methode",
             imagePosition: "left",
             onSelected: function (data) {
-                if (data.selectedData.value == 0) {
+                if (data.selectedData.value === 0) {
                     $scope.disableOrEnablePaymentButton(true);
                 } else {
                     $scope.disableOrEnablePaymentButton(false);
@@ -146,23 +148,26 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
     };
 
     $scope.pay = function () {
-        var user = JSON.parse(window.sessionStorage["loggedInUser"]);
-        var order = JSON.parse(window.localStorage["Order"]);
+        var user = JSON.parse(window.sessionStorage.loggedInUser),
+            order = JSON.parse(window.localStorage.Order),
+            Order,
+            i;
 
-        if (user != undefined) {
-            if (order != undefined) {
+
+        if (user !== undefined) {
+            if (order !== undefined) {
                 order.user = user._id;
-                for (var i = 0; i < order.orderlines.length; i++) {
-                    if (order.orderlines[i].aantal != undefined) {
+                for (i = 0; i < order.orderlines.length; i++) {
+                    if (order.orderlines[i].aantal !== undefined) {
                         order.orderlines[i].amount = order.orderlines[i].aantal;
                         delete order.orderlines[i].aantal;
                     }
-                    if (order.orderlines[i].caseDesign != undefined) {
+                    if (order.orderlines[i].caseDesign !== undefined) {
                         order.orderlines[i].caseDesign = order.orderlines[i].caseDesign._id;
                     }
                 }
 
-                var Order = $resource('http://autobay.tezzt.nl\\:43083/orders', {},
+                Order = $resource('http://autobay.tezzt.nl\\:43083/orders', {},
                     {charge: {method: 'POST', params: {charge: true}}}
                 );
 
@@ -170,7 +175,7 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
                 order.$save(function (data) {
                     if (data.error === null) {
                         Application.notify('ok', 'Bestelling is geplaatst.');
-                        $location.path("#/betalen/geslaagd")
+                        $location.path("#/betalen/geslaagd");
                     } else {
                         Application.notify('error', 'Bestelling is niet geplaatst.');
                     }
@@ -181,5 +186,5 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
         } else {
             Application.notify('error', 'U moet ingelogd zijn om iets te bestellen.');
         }
-    }
+    };
 });
