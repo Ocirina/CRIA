@@ -439,10 +439,7 @@
             canvas.discardActiveGroup();
         } else if (activeObject) {
             canvas.remove(canvas.getActiveObject());
-        } else {
-            Application.notify('error', 'U heeft geen element geselecteerd.');
         }
-
         refreshCanvas();
     }
 
@@ -462,8 +459,6 @@
         if (!isEmpty(element) && element.type === "text") {
             toggleInput(element, style, input, $this);
             refreshCanvas();
-        } else {
-            Application.notify('error', 'U heeft geen tekst geselecteerd.');
         }
     }
 
@@ -487,9 +482,6 @@
             (activeObject || activeGroup).setOpacity(parseInt($(this).val(), 10) / 100);
             refreshCanvas();
         }
-        else {
-            Application.notify('error', 'U heeft geen element geselecteerd.');
-        }
     }
 
     function handleClear(e) {
@@ -508,9 +500,6 @@
             (activeObject || activeGroup)[fn]();
             refreshCanvas();
         }
-        else {
-            Application.notify('error', 'U heeft geen element geselecteerd.');
-        }
     }
 
     function handleColour(e) {
@@ -520,8 +509,6 @@
         if (activeObject || activeGroup) {
             (activeObject || activeGroup).setFill($(this).val());
             refreshCanvas();
-        } else {
-            Application.notify('error', 'U heeft geen element geselecteerd.');
         }
     }
 
