@@ -860,3 +860,7 @@ body.case-editor footer {
 .navinactive:nth-child(3){
 	right:0;
 }
+
+div.react .icon-shopping-cart {
+  font-size: 40px;
+}
