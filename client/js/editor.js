@@ -314,9 +314,12 @@
 
     $('.form-horizontal').on('click', 'button', function (e) {
         var $this = $(this),
-            data;
+            data = null,
+            img = '<img alt="" src="http://94.210.234.160/_design_your_own/img/loading.gif">';
         $this.attr('disabled', true);
-
+        $this.html(img+' Bezig met opslaan.');
+        $('.ontwerpen').addClass('transparent');
+        
         function setJSONData() {
             var img = canvas.toDataURL('png'),
                 json = JSON.stringify(canvas),
