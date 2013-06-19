@@ -88,6 +88,13 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
             $scope.product = data.result;
             $scope.getSociable($scope.product._id, 'ratings', $scope.createStarsFromNumber);
             $scope.getSociable($scope.product._id, 'comments');
+
+            if ($scope.loggedinUser) {
+                $scope.false = true;
+                if ($scope.product.user._id == $scope.loggedinUser._id) {
+                    $scope.sameUser = true;
+                }
+            }
         });
     };
 
