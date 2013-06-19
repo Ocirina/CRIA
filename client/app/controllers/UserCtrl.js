@@ -69,6 +69,7 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
         user.$save(function (data) {
             if (data.error === null) {
                 Application.notify('ok', 'Account is succesvol aangemaakt.');
+                $location.path("/");
             }
         });
     };
