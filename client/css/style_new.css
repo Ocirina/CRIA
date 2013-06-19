@@ -580,9 +580,16 @@ footer ul li a{
 	left:0;
 	top:210px;
 }
+.sel-case span {
+    width:60px;
+    font-size:11px;
+    line-height: 250px;
+    color:#222;
+}
 .sel-object{
 	left:0;
 	top:410px;
+    overflow: hidden;
 }
 .sel-text{
 	right:0;
@@ -681,7 +688,7 @@ footer ul li a{
 }
 .sign-ok {
     position: absolute;
-    bottom: 15%;
+    top:5px;
     left: 5%;
     line-height: 0px;
     color: #FFF;

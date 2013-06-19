@@ -300,7 +300,7 @@
         addSvg($(this).data('url'));
     });
 
-    $('.form-horizontal').find('button').attr('disabled', true);
+    $('.form-horizontal').find('button#postCanvas').attr('disabled', true);
     $('input#name').on('keyup', function (e) {
         var target = $('.form-horizontal').find('button'),
             val = $(this).val();

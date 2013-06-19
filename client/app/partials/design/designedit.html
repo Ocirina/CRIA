@@ -44,14 +44,15 @@
     <div data-ng-show="phone.phone" class="span3 well selected-{{phone.case}} sel-case">
         <h6>Wat voor case wil je?</h6>
         <div data-ng-click="setCaseType(1);" class="span1 sticker">
+            <span>Bestickering</span>
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 1"></div>
         </div>
-
         <div data-ng-click="setCaseType(2);" class="span1 hardcase">
+            <span>Hardcase</span>
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 2"></div>
         </div>
-
         <div data-ng-click="setCaseType(3);" class="span1 silicone">
+            <span>Silicon</span>
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 3"></div>
         </div>
     </div>

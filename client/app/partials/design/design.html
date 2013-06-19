@@ -4,8 +4,7 @@
 
 <div class="row ontop designtop" data-ng-init="phone = []">
     <form class="span5 form-horizontal" data-ng-init="loadSessionCanvas()">
-        <input id="name" name="name" type="text" class="input-medium" placeholder="Ontwerpen" value="{{ design.name }}">
-        <input type="checkbox" class="input-medium" data-ng-model="design.shared"> Delen?
+        <input id="name" name="name" type="text" class="input-medium" placeholder="Naam (Min 4 karakters)" value="{{ design.name }}">
         <button id="postCanvas" class="btn btn-success">Opslaan!</button>
     </form>
 </div>
@@ -43,18 +42,20 @@
 	
 	<div data-ng-show="phone.phone" class="span3 well selected-{{phone.case}} sel-case">
 		<h6>Wat voor case wil je?</h6>
+
         <div data-ng-click="setCaseType(1);" class="span1 sticker">
+            <span>Bestickering</span>
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 1"></div>
         </div>
-
         <div data-ng-click="setCaseType(2);" class="span1 hardcase">
+            <span>Hardcase</span>
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 2"></div>
         </div>
-
         <div data-ng-click="setCaseType(3);" class="span1 silicone">
+            <span>Silicon</span>
             <div class="icon-ok-sign sign-ok" data-ng-show="phone.case == 3"></div>
         </div>
-	</div>
+    </div>
 	
 	<div data-ng-show="phone.phone && phone.case" class="span3 well pull-right sel-text" id="text">
 			<h6>Tekststijl</h6>
