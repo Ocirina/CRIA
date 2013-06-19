@@ -860,7 +860,19 @@ body.case-editor footer {
 .navinactive:nth-child(3){
 	right:0;
 }
-
+div.react h4 {
+  font-size: 20px;
+}
 div.react .icon-shopping-cart {
-  font-size: 40px;
+  font-size: 30px;
+}
+div.comments button.btn {
+  float: none;
+  margin-left: 0;
+}
+div.comments textarea {
+  display: block;
+}
+.transparent {
+opacity: 0.7;
 }
