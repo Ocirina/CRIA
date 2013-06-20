@@ -127,4 +127,8 @@ app.controller('ShopCartCtrl', function ($scope, $location, $http, $resource) {
             Application.notify('error', 'U bent niet ingelogd.');
         }
     };
+
+    $scope.continueShopping = function () {
+        $location.path('/producten');
+    };
 });
