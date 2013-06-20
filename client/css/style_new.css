@@ -251,14 +251,14 @@ nav ul li a:hover{
     -o-transform: rotate(-30deg);
     -ms-transform: rotate(-30deg);
 }
-.homebtn:nth-child(1){
-    background: url("http://94.210.234.160/_design_your_own/img/wedstrijd.jpg");
+.homebtn:nth-child(3) {
+    background: url("http://94.210.234.160/_design_your_own/img/wedstrijd.png");
     margin-left: 20px;
 }
-.homebtn:nth-child(2){
-    background:#6ebdc4 url("http://94.210.234.160/_design_your_own/img/ontwerp.jpg");
+.homebtn:nth-child(1) {
+    background:#6ebdc4 url("http://94.210.234.160/_design_your_own/img/ontwerp.png");
 }
-.homebtn:nth-child(3){
+.homebtn:nth-child(2) {
     background:url("http://94.210.234.160/_design_your_own/img/gallery.png");
 }
 .homebtn:hover{
