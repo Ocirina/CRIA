@@ -45,3 +45,15 @@ function hasFileUploadSupport() {
 
     return (window.File && window.FileReader && window.FileList && window.Blob);
 }
+
+function isAllowedChar(key) {
+    "use strict";
+    var KeyChar = String.fromCharCode(key);
+    return (
+            (key > 64 && key < 91) || // A-Z
+            (key > 47 && key < 58) || // 0-9
+            (key === 32) || // Space
+            // Accepted special characters
+            (KeyChar.match(/[!&\(\)"'\?\-]*/))
+          );
+}
