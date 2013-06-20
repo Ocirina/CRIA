@@ -1,5 +1,5 @@
 <a class="sidenav navactive" href="#/ontwerpen"><h2>Ontwerpen</h2></a>
-	<a class="sidenav navactive" href="#/producten"><h2>Gallery</h2></a>
+	<a class="sidenav navactive" href="#/producten"><h2>Gallerij</h2></a>
 	<a class="sidenav navinactive" href="#"><h2>Wedstrijd</h2></a>
 
 <div class="row ontop" data-ng-init="getProduct()">
@@ -15,7 +15,7 @@
         <h5>{{ product.created_at | date:'dd-MM-yyyy' }}</h5>
         <div class="rating">
             <span style="float: none; margin-right: 0;" data-ng-repeat="n in ratings">
-                <i data-ng-init="value = n.i" data-ng-click="addRating(value);" class="{{n.name}}"></i>
+                <i data-ng-click="addRating($index + 1);" class="{{n.name}}"></i>
             </span>
         </div>
         <a data-ng-hide="sameUser" class="span2 btn btn-primary btn-blue">Gebruik als basis</a>

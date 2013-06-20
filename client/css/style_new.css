@@ -148,6 +148,10 @@ nav ul li a{
     height:40px
 }
 
+nav ul li a:hover{
+    text-decoration: none;
+}
+
 /*----Register----*/
 .registerPage .span2,.profilePage .span2 {
     width: 143px;
@@ -478,6 +482,7 @@ footer ul li a{
 #notifier div {
     max-width: 170px;
     height: auto;
+    z-index: 999;
 }
 
 .notification-ok {

@@ -185,17 +185,17 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
     $scope.createStarsFromNumber = function (data) {
         var ratings = [],
             i,
-            newArray = [];
+            newArray = [],
+            amount = parseInt(data.result, 10);
 
-        for (i = 0; i < 5; i++) {
-            if (i < data.result) {
+        for (i = 1; i <= 5; i++) {
+            newArray = [];
+            if (i <= amount) {
                 newArray.name = 'icon-star';
             } else {
                 newArray.name = 'icon-star-empty';
             }
-            newArray.i = i + 1;
-
-            ratings.push(newArray);
+            ratings[(i-1)] = newArray;
         }
 
         $scope.ratings = ratings;
