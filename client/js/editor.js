@@ -74,6 +74,11 @@
         return { left: finalWidth, top: finalHeight };
     }
 
+    function addObjectToCanvas(obj) {
+        canvas.add(obj);
+        canvas.setActiveObject(obj);
+    }
+
     function addSvg(svg) {
         var loadedObject = null,
             offset = 50,
@@ -88,7 +93,7 @@
         fabric.loadSVGFromURL(svg, function (objects, options) {
             loadedObject = fabric.util.groupSVGElements(objects, options);
             loadedObject.set(svgSettings);
-            canvas.add(loadedObject);
+            addObjectToCanvas(loadedObject);
             refreshCanvas();
         });
     }
@@ -103,7 +108,7 @@
                 dimensions[_phoneType].height
             );
             settings = calculateCenter();
-            canvas.add(obj.scale(ratio).set(settings));
+            addObjectToCanvas(obj.scale(ratio).set(settings));
             refreshCanvas();
         });
     }
@@ -135,7 +140,7 @@
         settings.left = dimensions.left;
         settings.top = dimensions.top;
         text = new fabric.Text(text, settings);
-        canvas.add(text);
+        addObjectToCanvas(text);
         refreshCanvas();
     }
 
@@ -262,7 +267,7 @@
             fontFamily: 'Helvetica',
             fontWeight: weight
         });
-        canvas.add(textArray);
+        addObjectToCanvas(textArray);
         refreshCanvas();
     }
 
@@ -365,7 +370,7 @@
 
     $('.sel-bg').on('click', '.icon-caret-right', function (e) {
         move('.sel-bg .sliderow', '-=250');
-        $('.icon-caret-left').css("visibility", "visible");
+        $('.sel-bg').find('.icon-caret-left').css("visibility", "visible");
 
         return stopEvent(e);
     });
@@ -394,12 +399,13 @@
 
     $('.sel-object').on('click', '.icon-caret-right', function (e) {
         move('.sel-object .sliderow', '-=150');
+        $('.sel-object').find('.icon-caret-left').css("visibility", "visible");
 
         return stopEvent(e);
     });
 
     $('.sel-object').on('click', '.icon-caret-left', function (e) {
-        var target = $('.sel-bg .sliderow'),
+        var target = $('.sel-object .sliderow'),
             $this = $(e.target),
             left = parseInt(target.position().left, 10);
 
@@ -443,16 +449,22 @@
     });
 
     $('.form-horizontal').find('button#postCanvas').attr('disabled', true);
-    $('input#name').on('keyup', function (e) {
-        var target = $('.form-horizontal').find('button'),
-            val = $(e.target).val();
+    $('input#name').on({
+        'keyup': function (e) {
+            var target = $('.form-horizontal').find('button'),
+                val = $(e.target).val();
 
-        if (!isEmpty(val) && val.length > 3) {
-            target.attr('disabled', false);
-        } else {
-            target.attr('disabled', true);
+            if (!isEmpty(val) && val.length > 3) {
+                target.attr('disabled', false);
+            } else {
+                target.attr('disabled', true);
+            }
+        },
+        'focus': function() {
+            canvas.deactivateAll().renderAll();
         }
     });
+
 
     $('.form-horizontal').on('click', 'button', function (e) {
         var $this = $(e.target),
@@ -541,9 +553,10 @@
           keyPressed = String.fromCharCode(key),
           target = (canvas.getActiveObject() || canvas.getActiveGroup()),
           newText = '',
-          stillTyping = true;
-        
-       if (target) {
+          stillTyping = true,
+          eTarget = e.target.tagName.toLowerCase();
+       console.log(eTarget);
+       if (target && eTarget != "input" && eTarget != "textarea") {
            if (key === 46) { // DELETE
                canvas.remove(target);
                return stopEvent(e);
