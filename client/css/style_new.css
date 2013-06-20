@@ -849,12 +849,15 @@ body.case-editor footer {
 }
 .navactive{
 	left:0;
+    background-color: #F25A29;
 }
 .navactive:nth-child(2){
 	left:30px;
+    background-color: #F26A3D;
 }
 .navactive:nth-child(3){
 	left:60px;
+    background-color: #F27C55;
 }
 .navinactive{
 	right:60px;
