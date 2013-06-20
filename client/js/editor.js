@@ -1,5 +1,6 @@
 /*global Application, app, $, EventController, fabric, stopEvent, capitaliseFirstLetter, isEmpty, jQuery */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
+/*global document: false */
 
 (function ($, window) {
     "use strict";
@@ -25,8 +26,7 @@
                 $('#text').find('button').attr('disabled', false);
                 $('#text textarea').val(obj.getText());
             },
-            handleDefaultObject: function (obj) {
-            }
+            handleDefaultObject: function (obj) { }
         },
         CANVAS_SETTINGS = {
             centerTransform: true,
@@ -47,6 +47,24 @@
             canvas = new fabric.Canvas('case-editor', CANVAS_SETTINGS);
             canvas.setBackgroundColor('#000000');
         }
+    }
+
+    function calculateRatio(data, canvasHeight, canvasWidth) {
+        var img = document.createElement('img'),
+            photoImgWidth = img.width,
+            photoImgHeight = img.height,
+            hRatio,
+            vRatio;
+
+        img.src = data;
+
+        if (photoImgWidth < canvasWidth && photoImgHeight < canvasHeight) {
+            return 1;
+        }
+
+        hRatio = canvasWidth / photoImgWidth;
+        vRatio = canvasHeight / photoImgHeight;
+        return Math.min(hRatio, vRatio);
     }
 
     function calculateCenter() {
@@ -99,20 +117,20 @@
                 return function (e) {
                     addImageToCanvas(e.target.result, canvas);
                 };
-            })(f);
+            }(f));
             reader.readAsDataURL(f);
         }
 
-        for (i = 0, f; f = files[i]; i++) {
-            if (!f.type.match('image.*')) {
-                continue;
+        for (i = 0; i < files.length; i++) {
+            f = files[i];
+            if (f.type.match('image.*')) {
+                readFile(f);
             }
-            readFile(f);
         }
     }
 
     function addText(text, settings) {
-        var dimensions, text;
+        var dimensions;
         dimensions = calculateCenter();
         settings.left = dimensions.left;
         settings.top = dimensions.top;
@@ -137,7 +155,7 @@
 
     function leavingPage(e) {
         canvasLoaded = false;
-        $(document.body).removeClass('case-editor');
+        $body.removeClass('case-editor');
         saveCanvasToSession();
 
         $doc.off('StartEditor');
@@ -184,7 +202,7 @@
 
     function setCanvasDimensions(phoneId, caseId) {
         _phoneType = phoneId;
-        _caseType = caseId ? caseId : 1;
+        _caseType = (caseId || 1);
         canvas.setWidth(dimensions[phoneId].width);
         canvas.setHeight(dimensions[phoneId].height);
         canvas.renderAll();
@@ -203,17 +221,141 @@
     }
 
     function move(el, value) {
-        $(el).animate({
-                left: value
-            },
-            500,
-            function () {
+        $(el).animate({ left: value },
+            500, function () { });
+    }
+
+    function loadCanvasFromData(data) {
+        if (data && data.hasOwnProperty('canvas') && !canvasLoaded) {
+            canvas.loadFromJSON(data.canvas);
+            refreshCanvas();
+            canvasLoaded = true;
+        }
+    }
+
+    function setBackground(background, hex) {
+        var setting = background;
+        if (isEmpty(hex)) {
+            hex = false;
+        }
+        if (!hex) {
+            setting = {
+                source: background,
+                repeat: 'repeat'
+            };
+        }
+        canvas.setBackgroundColor(setting, function () {
+            refreshCanvas();
+        });
+    }
+
+    function handleDroppedFiles(e) {
+        //addFiles(e.dataTransfer.files, canvas);
+        return stopEvent(e);
+    }
+
+    function addTextToCanvas(text, weight) {
+        var textArray = new fabric.Text(text, {
+            fontSize: 20,
+            lineHeight: 1,
+            originX: 'left',
+            fontFamily: 'Helvetica',
+            fontWeight: weight
+        });
+        canvas.add(textArray);
+        refreshCanvas();
+    }
+
+    /* TEKST FUNCS */
+    function handleDelete(e) {
+        var activeObject = canvas.getActiveObject(),
+            activeGroup = canvas.getActiveGroup();
+        if (activeGroup) {
+            activeGroup.forEachObject(function (o) {
+                canvas.remove(o);
+            });
+            canvas.discardActiveGroup();
+        } else if (activeObject) {
+            canvas.remove(canvas.getActiveObject());
+        }
+        refreshCanvas();
+    }
+
+    function setChange(style, input, $this) {
+        var element = canvas.getActiveObject();
+
+        function toggleInput(element, style, input, $this) {
+            if (element[style] === input) {
+                element[style] = "normal";
+            } else {
+                element[style] = input;
             }
-        );
+
+            $this.toggleClass('active');
+        }
+
+        if (!isEmpty(element) && element.type === "text") {
+            toggleInput(element, style, input, $this);
+            refreshCanvas();
+        }
+    }
+
+    function handleChange(e) {
+        var $this = $(e.target),
+            type = $this.data('type'),
+            setting = $this.data('setting') || $this.val(),
+            input = $this.attr('type');
+
+        if (input === 'number' || input === 'range') {
+            setting = parseInt(setting, 10);
+        }
+
+        setChange(type, setting, $this);
+    }
+
+    function handleOpacity(e) {
+        var activeObject = canvas.getActiveObject(),
+            activeGroup = canvas.getActiveGroup(),
+            target = (activeObject || activeGroup),
+            val = $(e.target).val(),
+            input = parseInt(val, 10);
+        if (target) {
+            target.setOpacity(input / 100);
+            refreshCanvas();
+        }
+    }
+
+    function handleClear(e) {
+        if (confirm("Weet u het zeker?")) {
+            canvas.setBackgroundColor('#000000');
+            canvas.clear();
+            refreshCanvas();
+        }
+    }
+
+    function handleZIndex(e) {
+        var activeObject = canvas.getActiveObject(),
+            activeGroup = canvas.getActiveGroup(),
+            func = $(e.target).data('fn'),
+            target = (activeObject || activeGroup);
+        if (target) {
+            target[func]();
+            refreshCanvas();
+        }
+    }
+
+    function handleColour(e) {
+        var activeObject = canvas.getActiveObject(),
+            activeGroup = canvas.getActiveGroup(),
+            target = (activeObject || activeGroup),
+            val = $(e.target).val();
+        if (target) {
+            target.setFill(val);
+            refreshCanvas();
+        }
     }
 
     $doc.on('StartEditor', function (e, data) {
-        console.log(data);
         $body.addClass('case-editor');
         initCanvas();
         setCanvasDimensions(data.phone, data.case);
@@ -293,17 +435,17 @@
     });
 
     $('.sel-bg').find('.background-slider').on('click', 'img', function (e) {
-        setBackground($(this).data('url'));
+        setBackground($(e.target).data('url'));
     });
 
     $('.sel-object').find('.background-slider').on('click', 'img', function (e) {
-        addSvg($(this).data('url'));
+        addSvg($(e.target).data('url'));
     });
 
     $('.form-horizontal').find('button#postCanvas').attr('disabled', true);
     $('input#name').on('keyup', function (e) {
         var target = $('.form-horizontal').find('button'),
-            val = $(this).val();
+            val = $(e.target).val();
 
         if (!isEmpty(val) && val.length > 3) {
             target.attr('disabled', false);
@@ -313,13 +455,13 @@
     });
 
     $('.form-horizontal').on('click', 'button', function (e) {
-        var $this = $(this),
+        var $this = $(e.target),
             data = null,
             img = '<img alt="" src="http://94.210.234.160/_design_your_own/img/loading.gif">';
         $this.attr('disabled', true);
-        $this.html(img+' Bezig met opslaan.');
+        $this.html(img + ' Bezig met opslaan.');
         $('.ontwerpen').addClass('transparent');
-        
+
         function setJSONData() {
             var img = canvas.toDataURL('png'),
                 json = JSON.stringify(canvas),
@@ -358,168 +500,19 @@
             try {
                 canvas.deactivateAll().renderAll();
                 data = setJSONData();
-                if ($(this).attr("id") === "postCanvas") {
+                if ($(e.target).attr("id") === "postCanvas") {
                     sendCanvasAsync(data, 'POST', "casedesigns");
-                } else if ($(this).attr("id") === "putCanvas") {
+                } else if ($(e.target).attr("id") === "putCanvas") {
                     sendCanvasAsync(data, 'PUT', "casedesign/" + $this.data("id"));
                 }
-            }
-            catch (error) {
+            } catch (error) {
                 Application.notify('error', 'Je browser ondersteund geen export van de canvas, helaas!' + error);
             }
         } else {
             Application.notify('error', 'Je moet ingelogd zijn om een ontwerp te kunnen opslaan.');
         }
-
         return stopEvent(e);
     });
-
-    function setBackground(background, hex) {
-        var setting = background;
-
-        if (isEmpty(hex)) {
-            hex = false;
-        }
-
-        if (!hex) {
-            setting = {
-                source: background,
-                repeat: 'repeat'
-            };
-        }
-
-        canvas.setBackgroundColor(setting, function () {
-            refreshCanvas();
-        });
-    }
-
-    function handleDroppedFiles(e) {
-        //addFiles(e.dataTransfer.files, canvas);
-        return stopEvent(e);
-    }
-
-    function addTextToCanvas(text, weight) {
-        var textArray = new fabric.Text(text, {
-            fontSize: 20,
-            lineHeight: 1,
-            originX: 'left',
-            fontFamily: 'Helvetica',
-            fontWeight: weight
-        });
-        canvas.add(textArray);
-        refreshCanvas();
-    }
-
-    function calculateRatio(data, canvasHeight, canvasWidth) {
-        var img = document.createElement('img'),
-            photoImgWidth = img.width,
-            photoImgHeight = img.height,
-            hRatio,
-            vRatio;
-
-        img.src = data;
-
-        if (photoImgWidth < canvasWidth && photoImgHeight < canvasHeight) {
-            return 1;
-        }
-
-        hRatio = canvasWidth / photoImgWidth;
-        vRatio = canvasHeight / photoImgHeight;
-        return Math.min(hRatio, vRatio);
-    }
-
-    /* TEKST FUNCS */
-    function handleDelete(e) {
-        var activeObject = canvas.getActiveObject(),
-            activeGroup = canvas.getActiveGroup();
-        if (activeGroup) {
-            activeGroup.forEachObject(function (o) {
-                canvas.remove(o);
-            });
-            canvas.discardActiveGroup();
-        } else if (activeObject) {
-            canvas.remove(canvas.getActiveObject());
-        }
-        refreshCanvas();
-    }
-
-    function setChange(style, input, $this) {
-        var element = canvas.getActiveObject();
-
-        function toggleInput(element, style, input, $this) {
-            if (element[style] === input) {
-                element[style] = "normal";
-            } else {
-                element[style] = input;
-            }
-
-            $this.toggleClass('active');
-        }
-
-        if (!isEmpty(element) && element.type === "text") {
-            toggleInput(element, style, input, $this);
-            refreshCanvas();
-        }
-    }
-
-    function handleChange(e) {
-        var $this = $(this),
-            type = $this.data('type'),
-            setting = $this.data('setting') || $this.val(),
-            input = $this.attr('type');
-
-        if (input === 'number' || input === 'range') {
-            setting = parseInt(setting, 10);
-        }
-
-        setChange(type, setting, $this);
-    }
-
-    function handleOpacity(e) {
-        var activeObject = canvas.getActiveObject(),
-            activeGroup = canvas.getActiveGroup();
-        if (activeObject || activeGroup) {
-            (activeObject || activeGroup).setOpacity(parseInt($(this).val(), 10) / 100);
-            refreshCanvas();
-        }
-    }
-
-    function handleClear(e) {
-        if (confirm("Weet u het zeker?")) {
-            canvas.setBackgroundColor('#000000');
-            canvas.clear();
-            refreshCanvas();
-        }
-    }
-
-    function handleZIndex(e) {
-        var activeObject = canvas.getActiveObject(),
-            activeGroup = canvas.getActiveGroup(),
-            fn = $(this).data('fn');
-        if (activeObject || activeGroup) {
-            (activeObject || activeGroup)[fn]();
-            refreshCanvas();
-        }
-    }
-
-    function handleColour(e) {
-        var activeObject = canvas.getActiveObject(),
-            activeGroup = canvas.getActiveGroup();
-
-        if (activeObject || activeGroup) {
-            (activeObject || activeGroup).setFill($(this).val());
-            refreshCanvas();
-        }
-    }
-
-    function loadCanvasFromData(data) {
-        if (data && data.hasOwnProperty('canvas') && !canvasLoaded) {
-            canvas.loadFromJSON(data.canvas);
-            console.log(data.canvas);
-            refreshCanvas();
-            canvasLoaded = true;
-        }
-    }
 
     $('.sel-text').on('click', 'a', handleChange);
     $('.sel-text').on('change', 'select, input', handleChange);
@@ -532,8 +525,93 @@
     $('.index-group').on('click', 'a', handleZIndex);
 
     $('#background-color').on('change', function (e) {
-        var color = $(this).val();
+        var color = $(e.target).val();
         setBackground(color, true);
     });
+    function moveTarget(target, shift, position, direction) {
+      var current = parseInt(target[position], 10);
+      if (direction === '-') { current -= (shift ? 10 : 1); }
+      if (direction === '+') { current += (shift ? 10 : 1); }
+      target[position] = current;
+    }
+    /* KEY NAVIGATION */
+    /* @see http://stackoverflow.com/a/10062031 */
+    $doc.on('keydown', function(e) {
+      var key = e.which,
+          keyPressed = String.fromCharCode(key),
+          target = (canvas.getActiveObject() || canvas.getActiveGroup()),
+          newText = '',
+          stillTyping = true;
+        
+       if (target) {
+           if (key === 46) { // DELETE
+               canvas.remove(target);
+               return stopEvent(e);
+           }
+           else if (key === 27) // ESC
+           {
+               canvas.deactivateAll();
+               refreshCanvas();
+               if (!target.originalText) {
+                 return stopEvent(e); 
+               }
+               newText = target.originalText;
+               stillTyping = false;
+           }
+           else if (key == 38) {
+             moveTarget(target, e.shiftKey, 'top', '-');
+           }
+           else if (key == 40) {
+             moveTarget(target, e.shiftKey, 'top', '+');
+           }
+           else if (key == 37) {
+             moveTarget(target, e.shiftKey, 'left', '-');
+           }
+           else if (key == 39) {
+             moveTarget(target, e.shiftKey, 'left', '+');
+           }
+           // If the user wants to make a correction
+           else if (target.type === "text")
+           {
+             // Store the original target before beginning to type
+             if (!target.originalText) {
+                 target.originalText = target.text;
+             }
+             if (key === 16) { //shift
+                 newText = target.text;
+             }
+             else if (key === 8) //backspace
+             {
+                 e.preventDefault();
+                 newText = target.text.substr(0, target.text.length - 1);
+             }
+             else if (key === 13) //enter
+             {
+               newText = target.text + "\n";
+               stillTyping = true;
+             }
+             //if the user is typing alphanumeric characters
+             else if (isAllowedChar(key))
+             {
+               console.log("Allowed char");
+                 if (target.text === target.originalText) {
+                   target.text = '';
+                 }
+                 if (keyPressed.match(/[A-Z]/) && !e.shiftKey) {
+                   keyPressed = keyPressed.toLowerCase();
+                 }
+                 newText = target.text + keyPressed;
+             }
+             $('#set-text').val(newText);
+             target.set({ text: newText }); // Change the target
+
+             if (!stillTyping) {
+                 this.target.originalText = null;
+             }
+           }
+           refreshCanvas();
+           return stopEvent(e);
+       }
+   });
 
 }(jQuery, this));
