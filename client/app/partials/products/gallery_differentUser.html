@@ -15,7 +15,8 @@
     <div class="row gallery">
         <div class="span2 case" data-ng-repeat="design in user.caseDesigns | filter:searchContent">
             <a href="#/product/{{design._id}}" class="relative">
-                <div class="overlay-iphone small iphone4"></div>
+                <div data-ng-hide="design.phone == 5" class="overlay-iphone small iphone4"></div>
+                <div data-ng-show="design.phone == 5" class="overlay-iphone small iphone5"></div>
                 <img data-ng-src="{{design.preview}}" alt=""/>
             </a>
             <div class="txt">
