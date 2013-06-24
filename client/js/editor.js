@@ -385,7 +385,6 @@ gedefineerd in een bestand.
     $('.sel-bg').on('click', '.icon-caret-right', function (e) {
         move('.sel-bg .sliderow', '-=250');
         $('.sel-bg').find('.icon-caret-left').css("visibility", "visible");
-
         return stopEvent(e);
     });
 
@@ -494,13 +493,13 @@ gedefineerd in een bestand.
                 user = JSON.parse(window.sessionStorage.loggedInUser);
 
             return {
-                name: $('input#name').val(),
-                preview: img,
-                canvas: json,
-                phone: _phoneType,
-                case: _caseType,
-                shared: true,
-                user: user._id
+                "name":     $('input#name').val(),
+                "preview":  img,
+                "canvas":   json,
+                "phone":    _phoneType,
+                "case":     _caseType,
+                "shared":   true,
+                "user":     user._id
             };
         }
 
