@@ -1,6 +1,6 @@
 describe('design_your_own', function() {
 
-    describe('Gallery View', function() {
+    describe('User functions', function() {
 
         beforeEach(function() {
             browser().navigateTo('/');
@@ -12,7 +12,8 @@ describe('design_your_own', function() {
             input("user.password").enter("test");
 
             element('#loginButton').click();
-            expect(element("form:last label:first").text()).toBe("Gebruikersnaam: Serfenia")
+
+            expect(element("form:last label:first").text()).toBe("Gebruikersnaam: Serfenia");
         });
     });
 });
