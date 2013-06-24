@@ -2,7 +2,6 @@
 
 /* global app, $ */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
-
 /**
  * The Design Controller.
  * Sets the types of phone and cases and is able to trigger the Editor.

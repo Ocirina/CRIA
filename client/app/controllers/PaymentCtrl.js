@@ -1,13 +1,26 @@
 /*global Application, app, $ */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
+/**
+ * The Payment Controller.<br>
+ * Is able to fill the select boxes for the payment methods and banks.<br>
+ * Also is able to handle the payment of the order.
+ */
 app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
     "use strict";
 
+    /**
+     * Adds the methods and banks to the dropdown boxes.
+     */
     $scope.addImageDropDowns = function () {
         this.addPaymentMethodDropdown();
         this.addPaymentBankDropdown();
     };
 
+    /**
+     * Uses the defined payment methods to fill the dropdown list of paymentmethods and sets it's style.
+     *
+     * @see http://designwithpc.com/Plugins/ddSlick
+     */
     $scope.addPaymentMethodDropdown = function () {
         var paymentMethods = [
             {
@@ -45,7 +58,7 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
             }
         ];
 
-        //Make it valid. ddsslick or something wont allow the alt.
+        //Makes the html valid. ddsslick or something wont allow the alt attribute to be set on the images.
         $('img').attr('alt', '');
 
         $('#paymentMethods').ddslick({
@@ -68,6 +81,11 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
         });
     };
 
+    /**
+     * Uses the defined banks to fill the dropdown list of the banks and sets the style
+     *
+     * @see http://designwithpc.com/Plugins/ddSlick
+     */
     $scope.addPaymentBankDropdown = function () {
         var paymentBanks = [
             {
@@ -138,6 +156,11 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
         $('#paymentBanks').hide();
     };
 
+    /**
+     * Enables or disables the payment button according to the selection in the payment methods dropdown list
+     * and banks dropdown list
+     * @param disable
+     */
     $scope.disableOrEnablePaymentButton = function (disable) {
         var toPaymentButton = document.getElementById("toPayment");
         if (!disable) {
