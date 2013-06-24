@@ -2,14 +2,21 @@
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
 /**
  * The Product Controller
+ * Handles the functions of the galleries and the product page.
+ * Is able to retrieve casedesigns and adding a case design to the shopping cart.
+ * Also is able to create and delete comments and can create ratings for the case design
  *
- *
+ * @see http://docs.angularjs.org/
  */
 app.controller('ProductCtrl', function ($scope, $location, $resource, $routeParams) {
     "use strict";
 
     /**
-     * This function will get all the products by get request and put them in the $scope.products var.
+     * This function will get all the products.
+     * First it creates the request with the $resource service
+     * Then it executes the GET request and in the callback put them in the $scope.products variable.
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
      */
     $scope.getProducts = function () {
         var Products = $resource('http://autobay.tezzt.nl\\:43083/casedesigns', {},
@@ -29,7 +36,11 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
     };
 
     /**
-     * Get product by loggedin user. This will come from the session storage.
+     * Gets the products of the user if he's logged in.
+     * First it creates a GET request with the given $resource service.
+     * Then it executes the request and in the callback the casedesigns will be saved to the products model in $scope.
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
      */
     $scope.getProductsByLoggedInUser = function () {
         $scope.hasUser = false;
@@ -49,6 +60,17 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
         }
     };
 
+    /**
+     * Gets the products of the user by the given user id.<br>
+     * First it retrieves the user id from the $routeParams.<br>
+     * Then it creates a GET request with the given $resource service.<br>
+     * Then it executes the request and in the callback the user and it's designs will be saved to the $scope.user
+     * variable.<br>
+     * After that it redirects the user to the gallery of the retrieved user if the logged in user is the same as the
+     * retrieved user.
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
+     */
     $scope.getProductsByGivenUser = function () {
         var userId = $routeParams.userid,
 
@@ -70,6 +92,10 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
         });
     };
 
+    /**
+     * Redirects the user to the edit page with the given case id.
+     * @param caseDesignId
+     */
     $scope.openDesignInEditor = function (caseDesignId) {
         $location.path("/ontwerpen/bewerken/" + caseDesignId);
     };
@@ -78,6 +104,8 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
      * This function will put the product in the $scope.product variable. The id will be get out of the URL.
      * Also it will get the comments and ratings. The ratings will be converted to an array with CSS classes.
      * So if we loop trough the array we can use the classes to generate stars filled in or not.
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
      */
     $scope.getProduct = function () {
         if (window.sessionStorage.loggedInUser) {
@@ -110,6 +138,8 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
      * @param {Number} id
      * @param {String} type
      * @param {Function} callback
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
      */
     $scope.getSociable = function (id, type, callback) {
         if (typeof callback !== "function") {
@@ -207,8 +237,14 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
     };
 
     /**
-     * This function will add the rating to the server.
+     * Creates a rating with the given value if the user is logged in.
+     * First it creates the a POST request with the given $resource service.<br>
+     * Then it sets the attributes of the rating.<br>
+     * After that the rating will be saved and in the callback the rating of the product will be updated and the user
+     * will be notified.
      * @param {Number} value
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
      */
     $scope.addRating = function (value) {
         if (window.sessionStorage.loggedInUser !== undefined) {
@@ -240,7 +276,13 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
     };
 
     /**
-     * This function will post an comment to the server that wil save it. It's also directly showed on the website.
+     * Creates a comment with the value of the model comment in the $scope if the user is logged in.
+     * First it creates the a POST request with the given $resource service.<br>
+     * Then it sets the attributes of the comment.<br>
+     * After that the comment will be saved and in the callback the comments of the product will be updated and the user
+     * will be notified.
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
      */
     $scope.addComment = function () {
         if (window.sessionStorage.loggedInUser !== undefined) {
@@ -276,10 +318,16 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
     };
 
     /**
-     * Removes the sociabel
+     * Removes the given type of sociable by the given id if the user is logged in.<br>
+     * First it creates a delete request with the given $resource service.<br>
+     * Then it sets the attributes of the sociable.<br>
+     * After that the comment will be deleted and in the callback the comments in the $scope will be updated and the
+     * user will be notified<br>
      *
      * @param {String} type
      * @param {Number} id
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
      */
     $scope.removeSociable = function (type, id) {
         if (window.sessionStorage.loggedInUser !== undefined) {
@@ -298,13 +346,13 @@ app.controller('ProductCtrl', function ($scope, $location, $resource, $routePara
                     type: type
                 },
                 comment = new Sociable(sociable),
-                i;
+                index;
 
             comment.$delete(function (data) {
                 if (data.result === true) {
-                    for (i = 0; i < $scope.comments.length; i++) {
-                        if ($scope.comments[i]._id === id) {
-                            $scope.comments.splice(i, 1);
+                    for (index = 0; index < $scope.comments.length; index++) {
+                        if ($scope.comments[index]._id === id) {
+                            $scope.comments.splice(index, 1);
                         }
                     }
 
