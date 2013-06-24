@@ -3,14 +3,16 @@ describe('design_your_own', function() {
     describe('Gallery View', function() {
 
         beforeEach(function() {
-            browser().location().path("/");
+            browser().navigateTo('/');
         });
 
 
-        it('should filter the phone list as user types into the search box', function() {
-            browser().location().path("/producten");
+        it('should login the user', function() {
+            input("user.username").enter("Serfenia");
+            input("user.password").enter("test");
 
-            expect(repeater('.case').count()).toBeGreaterThan(1);
+            element('#loginButton').click();
+            expect(element("form:last label:first").text()).toBe("Gebruikersnaam: Serfenia")
         });
     });
 });
