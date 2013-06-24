@@ -4,8 +4,9 @@
         <li data-ng-show="order" data-ng-repeat="orderline in order.orderlines">
             <h5>{{ orderline.caseDesign.name }}</h5>
 			<a href="#/product/{{orderline.caseDesign._id}}" class="inline-block relative">
-                <div class="overlay-iphone tiny iphone4"></div>
-				<img alt="{{ orderline.caseDesign.name }}" data-ng-src="{{orderline.caseDesign.preview}}"/><br/>
+                <div data-ng-hide="orderline.caseDesign.phone == 5" class="overlay-iphone tiny iphone4"></div>
+                <div data-ng-show="orderline.caseDesign.phone == 5" class="overlay-iphone tiny iphone5"></div>
+                <img alt="{{ orderline.caseDesign.name }}" data-ng-src="{{orderline.caseDesign.preview}}"/><br/>
 			</a>
             <input class="input-mini" type="number" min="1" max="99" data-ng-change="changeAmount({{ orderline.caseDesign }}, this)" data-ng-model="orderline.aantal" required>
             <div data-ng-init="caseId = orderline.caseDesign._id" data-ng-click="removeProduct(caseId)" class="icon-remove-sign"></div>
@@ -28,7 +29,7 @@
             <input class="input-xlarge" type="text" data-ng-model="user.address.street" placeholder="Straat" required><br />
             <label class="control-label">*Plaats: </label><br />
             <input class="input-xlarge" type="text" data-ng-model="user.address.city" placeholder="Dorp of Stad" required><br />
-            <button class="btn btn-primary" data-ng-click="saveNawInformation()">Gegevens wijzigen</button>
+            <button class="btn btn-primary" data-ng-click="saveNawInformation()">Opslaan</button>
             <a class="btn btn-primary" data-ng-controller="ShopCartCtrl" data-ng-click="continueShopping()">Verder winkelen</a>
         </form>
     </div>

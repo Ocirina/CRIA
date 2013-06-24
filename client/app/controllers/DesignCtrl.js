@@ -17,6 +17,7 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
     $scope.activatePhone = function(phoneId) {
         $scope.phone.phone = phoneId;
         $scope.setCaseType(1);
+        $scope.triggerEditor();
     };
 
     /**
