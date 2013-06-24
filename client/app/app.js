@@ -7,7 +7,6 @@ app.config(function ($routeProvider) {
     $routeProvider
 
         .when('/', {
-            controller: 'IndexCtrl',
             templateUrl: 'app/partials/index.html'
         })
 

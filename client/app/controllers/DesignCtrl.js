@@ -2,20 +2,24 @@
 
 /* global app, $ */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
+
+/**
+ * The Design Controller.
+ * Sets the types of phone and cases and is able to trigger the Editor.
+ */
 app.controller('DesignCtrl', function($scope, $location, $http, $resource, $routeParams) {
     /**
-     * Set the certain type of phone.
+     * Set the certain type and case of a phone.
      *
      * @param {Number} phoneId
      */
     $scope.activatePhone = function(phoneId) {
         $scope.phone.phone = phoneId;
         $scope.setCaseType(1);
-        $scope.triggerEditor();
     };
 
     /**
-     * Set the Case type id.
+     * Sets the type of case of a phone and triggers the editor.
      *
      * @param {Number} caseTypeId
      */
@@ -25,7 +29,12 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
     };
 
     /**
-     * This will get the canvas design for an given in case.
+     * This will get the canvas design when you're logged in.<br>
+     * It gets the canvas with the given caseId.<br>
+     * Once the request is done the result will be saved to the scope and the editor event will be triggered<br>
+     * With information of the scope.
+     *
+     * If you're not logged in it will show a message that you have to log in to edit the phone case.
      */
     $scope.getCanvasDesign = function() {
         if(window.sessionStorage.loggedInUser) {
@@ -49,10 +58,14 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
             });
 
         } else {
-            Application.notify('error', 'U bent niet ingelogd.');
+            Application.notify('error', 'U bent niet ingelogd, u moet ingelogd zijn om dit hoesje te bewerken.');
         }
     };
 
+    /**
+     * Loads the canvas that is saved in the session if it exists.
+     * Else it will set the phone and case type by default.
+     */
     $scope.loadSessionCanvas = function() {
         if(window.sessionStorage["design"]) {
             var design = JSON.parse(window.sessionStorage["design"]);
@@ -64,7 +77,20 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
         }
     };
 
-
+    /**
+     * Triggers the editor according to existing values.<br>
+     * <br>
+     * -If the design exists in the session it will check if the case exists in the model phone in the scope.<br>
+     * <br>
+     *   -- If thats true, the editor will be triggered and the case and phone type will be given along with the design
+     *   in the session.<br>
+     *   -- Else it will trigger the editor without the case type, but with the phone type of the phone and the design
+     *   in the session<br>
+     * <br>
+     * -Else it will check if the case attribute exists on the phone model, if thats true it will trigger the editor
+     * with the case and phone type.
+     * - Else it will just trigger the editor with the phone type, as that value always exists.
+     */
     $scope.triggerEditor = function() {
         if (window.sessionStorage["design"]) {
             if($scope.phone.case) {
@@ -79,7 +105,6 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
                 $.event.trigger('StartEditor',
                     {
                         phone:  $scope.phone.phone,
-                        case:$scope.phone.case,
                         design: JSON.parse(window.sessionStorage["design"])
                     }
                 );
@@ -98,8 +123,11 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
                 }
             );
         }
-    }
+    };
 
+    /**
+     * Fills the arrays for the backgrounds and objects selection with the defined JSON Objects.
+     */
     $scope.fillObjectArrays = function () {
         $scope.backgroundsRowOne = [];
         $scope.backgroundsRowTwo = [];
