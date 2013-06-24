@@ -17,7 +17,7 @@ var Rating = (function() {
         this._amount = amount;
     };
 
-    Rating.prototype.getAmount = function() {
+    Rating.prototype.validateAmount = function() {
         return this._amount;
     };
 
