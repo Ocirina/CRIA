@@ -1,10 +1,19 @@
 /*global Application, app, $ */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
+/**
+ * The User Controller<br>
+ * Is able to log in, logout and register a user.<br>
+ * Also is able to retrieve user information for various pages.
+ *
+ * @see http://docs.angularjs.org/
+ */
 app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
     "use strict";
     /**
-     * This function will login the user by an post request. The server will return true or not.
-     * The whole user object is send away to verify if the user is real.
+     * This function will login the user by a post request created with the given $resource service.<br>
+     * In the callback the user will be notified is he logged in or not and his information is saved to the session.
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
      */
     $scope.loginUser = function () {
         var User, user;
@@ -34,7 +43,10 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
     };
 
     /**
-     * Logs out user, hasUser will be set on false and the the user is removed from the sessionStorage.
+     * Logs out user by performing a GET request created with the given $resource service.<br>
+     * In the callback the user will be notified is he's logged out or not.<br>
+     * The user will be redirected to the home page to prevent the user doing any actions that may not be done
+     * if you're not logged in.
      */
     $scope.logoutUser = function () {
         var User = $resource('http://autobay.tezzt.nl\\:43083/signout', {},
@@ -55,8 +67,8 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
     };
 
     /**
-     * This function will post the user to the server. The server will check if the user can be added.
-     * If all values are correct the user will be added.
+     * Creates a new user by posting to the server with the created request with the $resource service.<br>
+     * If all values are valid the user will be saved and notified. Else the user is notified his account is not saved.
      */
     $scope.registerUser = function () {
         var User, user;
@@ -70,6 +82,8 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
             if (data.error === null) {
                 Application.notify('ok', 'Account is succesvol aangemaakt.');
                 $location.path("/");
+            } else {
+                Application.notify('error', 'Account is niet aangemaakt, er is iets misgegaan');
             }
         });
     };
@@ -110,7 +124,7 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
     };
 
     /**
-     * Check if the user is logged in, this is done by the sessionStorage.
+     * Check if the user is logged in, this is checking if exists in the sessionstorage.
      */
     $scope.checkLoggedInUser = function () {
         if (window.sessionStorage.loggedInUser !== undefined) {
@@ -148,10 +162,13 @@ app.controller('UserCtrl', function ($scope, $location, $http, $resource) {
     };
 
     /**
-     * This function will be save the user NAW information. This is done by a PUT request.
+     * This function will be save the user NAW information.<br>
+     * First it creates a PUT request with the given $resource service.<br>
+     * Then if the user is logged in it updates the NAW information of the user.<br>
+     * In the callback the updated information will be saved to the sessionStorage and the user will be notified.
      */
     $scope.saveNawInformation = function () {
-        var property, user, User;
+        var user, User;
 
         User = $resource('http://autobay.tezzt.nl\\:43083/user/:id',
             {
