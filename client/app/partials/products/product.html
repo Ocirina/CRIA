@@ -5,7 +5,8 @@
 <div class="row ontop" data-ng-init="getProduct()">
     <h2 class="span12">{{ product.name }}</h2>
     <div class="span3 relative">
-        <div class="overlay-iphone big iphone4"></div>
+        <div data-ng-hide="product.phone == 5" class="overlay-iphone big iphone4"></div>
+        <div data-ng-show="product.phone == 5" class="overlay-iphone big iphone5"></div>
         <img data-ng-src="{{product.preview}}" />
     </div>
     <div class="span9 casep">
