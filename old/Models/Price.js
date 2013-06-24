@@ -15,7 +15,7 @@ var Price = (function() {
         this._amount = amount;
     };
 
-    Price.prototype.getAmount = function() {
+    Price.prototype.validateAmount = function() {
         return this._amount;
     };
 
