@@ -1,3 +1,17 @@
+/*
+Deze meldingen kunnen niet worden gefixt. Deze functies zijn JavaScript eigen of
+gedefineerd in een bestand.
+
+#1 'FileReader' was used before it was defined.
+   reader = new FileReader(); // Line 120, Pos 26
+#2 'hasFileUploadSupport' was used before it was defined.
+   if (hasFileUploadSupport()) { // Line 216, Pos 9
+#3 'confirm' was used before it was defined.
+   if (confirm("Weet u het zeker?")) { // Line 334, Pos 13
+#4 'isAllowedChar' was used before it was defined.
+   } else if (isAllowedChar(key)) { // if the user is typing alphanumeric characters // Line 589, Pos 28
+       
+*/
 /*global Application, app, $, EventController, fabric, stopEvent, capitaliseFirstLetter, isEmpty, jQuery */
 /*jslint browser: true, node: true, nomen: true, plusplus: true */
 /*global document: false */
@@ -460,7 +474,7 @@
                 target.attr('disabled', true);
             }
         },
-        'focus': function() {
+        'focus': function () {
             canvas.deactivateAll().renderAll();
         }
     });
@@ -541,90 +555,69 @@
         setBackground(color, true);
     });
     function moveTarget(target, shift, position, direction) {
-      var current = parseInt(target[position], 10);
-      if (direction === '-') { current -= (shift ? 10 : 1); }
-      if (direction === '+') { current += (shift ? 10 : 1); }
-      target[position] = current;
+        var current = parseInt(target[position], 10);
+        if (direction === '-') { current -= (shift ? 10 : 1); }
+        if (direction === '+') { current += (shift ? 10 : 1); }
+        target[position] = current;
     }
     /* KEY NAVIGATION */
     /* @see http://stackoverflow.com/a/10062031 */
-    $doc.on('keydown', function(e) {
-      var key = e.which,
-          keyPressed = String.fromCharCode(key),
-          target = (canvas.getActiveObject() || canvas.getActiveGroup()),
-          newText = '',
-          stillTyping = true,
-          eTarget = e.target.tagName.toLowerCase();
-       console.log(eTarget);
-       if (target && eTarget != "input" && eTarget != "textarea") {
-           if (key === 46) { // DELETE
-               canvas.remove(target);
-               return stopEvent(e);
-           }
-           else if (key === 27) // ESC
-           {
-               canvas.deactivateAll();
-               refreshCanvas();
-               if (!target.originalText) {
-                 return stopEvent(e); 
-               }
-               newText = target.originalText;
-               stillTyping = false;
-           }
-           else if (key == 38) {
-             moveTarget(target, e.shiftKey, 'top', '-');
-           }
-           else if (key == 40) {
-             moveTarget(target, e.shiftKey, 'top', '+');
-           }
-           else if (key == 37) {
-             moveTarget(target, e.shiftKey, 'left', '-');
-           }
-           else if (key == 39) {
-             moveTarget(target, e.shiftKey, 'left', '+');
-           }
-           // If the user wants to make a correction
-           else if (target.type === "text")
-           {
-             // Store the original target before beginning to type
-             if (!target.originalText) {
-                 target.originalText = target.text;
-             }
-             if (key === 16) { //shift
-                 newText = target.text;
-             }
-             else if (key === 8) //backspace
-             {
-                 e.preventDefault();
-                 newText = target.text.substr(0, target.text.length - 1);
-             }
-             else if (key === 13) //enter
-             {
-               newText = target.text + "\n";
-               stillTyping = true;
-             }
-             //if the user is typing alphanumeric characters
-             else if (isAllowedChar(key))
-             {
-               console.log("Allowed char");
-                 if (target.text === target.originalText) {
-                   target.text = '';
-                 }
-                 if (keyPressed.match(/[A-Z]/) && !e.shiftKey) {
-                   keyPressed = keyPressed.toLowerCase();
-                 }
-                 newText = target.text + keyPressed;
-             }
-             $('#set-text').val(newText);
-             target.set({ text: newText }); // Change the target
-
-             if (!stillTyping) {
-                 this.target.originalText = null;
-             }
-           }
-           refreshCanvas();
-           return stopEvent(e);
-       }
-   });
+    $doc.on('keydown', function (e) {
+        var key = e.which,
+            keyPressed = String.fromCharCode(key),
+            target = (canvas.getActiveObject() || canvas.getActiveGroup()),
+            newText = '',
+            stillTyping = true,
+            eTarget = e.target.tagName.toLowerCase();
+        if (target && eTarget !== "input" && eTarget !== "textarea") {
+            if (key === 46) { // DELETE
+                canvas.remove(target);
+            } else if (key === 27) { // ESC
+                canvas.deactivateAll();
+                refreshCanvas();
+                if (target.originalText) {
+                    newText = target.originalText;
+                    stillTyping = false;
+                }
+            } else if (key === 38) {
+                moveTarget(target, e.shiftKey, 'top', '-');
+            } else if (key === 40) {
+                moveTarget(target, e.shiftKey, 'top', '+');
+            } else if (key === 37) {
+                moveTarget(target, e.shiftKey, 'left', '-');
+            } else if (key === 39) {
+                moveTarget(target, e.shiftKey, 'left', '+');
+            } else if (target.type === "text") { // If the user wants to make a correction
+                // Store the original target before beginning to type
+                if (!target.originalText) {
+                    target.originalText = target.text;
+                }
+                if (key === 16) { //shift
+                    newText = target.text;
+                } else if (key === 8) { //backspace
+                    e.preventDefault();
+                    newText = target.text.substr(0, target.text.length - 1);
+                } else if (key === 13) { //enter
+                    newText = target.text + "\n";
+                    stillTyping = true;
+                } else if (isAllowedChar(key)) { // if the user is typing alphanumeric characters
+                    if (target.text === target.originalText) {
+                        target.text = '';
+                    }
+                    if (keyPressed.match(/[A-Z]/) && !e.shiftKey) {
+                        keyPressed = keyPressed.toLowerCase();
+                    }
+                    newText = target.text + keyPressed;
+                }
+                $('#set-text').val(newText);
+                target.set({ text: newText }); // Change the target
+                if (!stillTyping) {
+                    this.target.originalText = null;
+                }
+            }
+            refreshCanvas();
+            return stopEvent(e);
+        }
+    });
 
 }(jQuery, this));
