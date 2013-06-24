@@ -4,11 +4,11 @@
 
 @font-face {
     font-family: 'grandesigni';
-    src: url('grandesign_neue_serif_italic-webfont.eot');
-    src: url('grandesign_neue_serif_italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('grandesign_neue_serif_italic-webfont.woff') format('woff'),
-         url('grandesign_neue_serif_italic-webfont.ttf') format('truetype'),
-         url('grandesign_neue_serif_italic-webfont.svg#grandesign_neue_serifitalic') format('svg');
+    src: url('../font/grandesign_neue_serif_italic-webfont.eot');
+    src: url('../font/grandesign_neue_serif_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/grandesign_neue_serif_italic-webfont.woff') format('woff'),
+         url('../font/grandesign_neue_serif_italic-webfont.ttf') format('truetype'),
+         url('../font/grandesign_neue_serif_italic-webfont.svg#grandesign_neue_serifitalic') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -19,11 +19,11 @@
 
 @font-face {
     font-family: 'grandesignr';
-    src: url('grandesign_neue_serif-webfont.eot');
-    src: url('grandesign_neue_serif-webfont.eot?#iefix') format('embedded-opentype'),
-         url('grandesign_neue_serif-webfont.woff') format('woff'),
-         url('grandesign_neue_serif-webfont.ttf') format('truetype'),
-         url('grandesign_neue_serif-webfont.svg#grandesign_neue_serifregular') format('svg');
+    src: url('../font/grandesign_neue_serif-webfont.eot');
+    src: url('../font/grandesign_neue_serif-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/grandesign_neue_serif-webfont.woff') format('woff'),
+         url('../font/grandesign_neue_serif-webfont.ttf') format('truetype'),
+         url('../font/grandesign_neue_serif-webfont.svg#grandesign_neue_serifregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -57,8 +57,11 @@
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('fontawesome-webfont.eot?v=3.1.0');
-  src: url('fontawesome-webfont.eot?#iefix&v=3.1.0') format('embedded-opentype'), url('fontawesome-webfont.woff?v=3.1.0') format('woff'), url('fontawesome-webfont.ttf?v=3.1.0') format('truetype'), url('fontawesome-webfont.svg#fontawesomeregular?v=3.1.0') format('svg');
+  src: url('../font/fontawesome-webfont.eot?v=3.1.0');
+  src: url('../font/fontawesome-webfont.eot?#iefix&v=3.1.0') format('embedded-opentype'), 
+       url('../font/fontawesome-webfont.woff?v=3.1.0') format('woff'), 
+       url('../font/fontawesome-webfont.ttf?v=3.1.0') format('truetype'), 
+       url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.1.0') format('svg');
   font-weight: normal;
   font-style: normal;
 }
