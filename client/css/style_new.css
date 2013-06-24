@@ -791,8 +791,8 @@ body.case-editor footer {
   height: 295px;
 }
 .overlay-iphone.big.iphone5 { 
-  background-size: 220px 433px;
-  height: 450px;
+  background-size: 220px 464px;
+  height: 464px;
 }
 
 
@@ -849,18 +849,22 @@ body.case-editor footer {
 }
 .navactive{
 	left:0;
+    background-color: #6EBDC4;
 }
 .navactive:nth-child(2){
 	left:30px;
+    background-color: #9BD6DC;
 }
 .navactive:nth-child(3){
 	left:60px;
+    background-color: #C0ECEF;
 }
 .navinactive{
 	right:60px;
 }
 .navinactive:nth-child(2){
 	right:30px;
+    background-color: #F26A3D;
 }
 .navinactive:nth-child(3){
 	right:0;
