@@ -4,6 +4,8 @@
  * The Payment Controller.<br>
  * Is able to fill the select boxes for the payment methods and banks.<br>
  * Also is able to handle the payment of the order.
+ *
+ * @see http://docs.angularjs.org/
  */
 app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
     "use strict";
@@ -172,23 +174,34 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
         }
     };
 
+    /**
+     * Handles the payment of the given order.
+     * First it checks if the user exists, if it's not it shows a message that the user is not logged in.
+     * Then it checks if an order exists, if it's not it shows a message that the user has to order something.
+     * After that it sets the required attributes of the order.
+     *
+     * Then it creates a required with the given $resource service and saves the order with the given order.
+     * If the request is succesfull the user will be told and redirected.
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
+     */
     $scope.pay = function () {
         var user = JSON.parse(window.sessionStorage.loggedInUser),
             order = JSON.parse(window.localStorage.Order),
             Order,
-            i;
+            index;
 
 
         if (user !== undefined) {
             if (order !== undefined) {
                 order.user = user._id;
-                for (i = 0; i < order.orderlines.length; i++) {
-                    if (order.orderlines[i].aantal !== undefined) {
-                        order.orderlines[i].amount = order.orderlines[i].aantal;
-                        delete order.orderlines[i].aantal;
+                for (index = 0; index < order.orderlines.length; index++) {
+                    if (order.orderlines[index].aantal !== undefined) {
+                        order.orderlines[index].amount = order.orderlines[index].aantal;
+                        delete order.orderlines[index].aantal;
                     }
-                    if (order.orderlines[i].caseDesign !== undefined) {
-                        order.orderlines[i].caseDesign = order.orderlines[i].caseDesign._id;
+                    if (order.orderlines[index].caseDesign !== undefined) {
+                        order.orderlines[index].caseDesign = order.orderlines[index].caseDesign._id;
                     }
                 }
 
@@ -200,6 +213,7 @@ app.controller('PaymentCtrl', function ($scope, $location, $http, $resource) {
                 order.$save(function (data) {
                     if (data.error === null) {
                         Application.notify('ok', 'Bestelling is geplaatst.');
+                        delete window.localStorage.Order;
                         $location.path("#/betalen/geslaagd");
                     } else {
                         Application.notify('error', 'Bestelling is niet geplaatst.');

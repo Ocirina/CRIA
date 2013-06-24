@@ -5,6 +5,8 @@
 /**
  * The Design Controller.
  * Sets the types of phone and cases and is able to trigger the Editor.
+ *
+ * @see http://docs.angularjs.org/
  */
 app.controller('DesignCtrl', function($scope, $location, $http, $resource, $routeParams) {
     /**
@@ -28,12 +30,15 @@ app.controller('DesignCtrl', function($scope, $location, $http, $resource, $rout
     };
 
     /**
-     * This will get the canvas design when you're logged in.<br>
-     * It gets the canvas with the given caseId.<br>
+     * Gets the canvas design when you're logged in.<br>
+     * It creates the request with the given $resource service.<br>
+     * Then it gets the canvas with the given caseId.<br>
      * Once the request is done the result will be saved to the scope and the editor event will be triggered<br>
-     * With information of the scope.
-     *
+     * With information of the scope.<br>
+     * <br>
      * If you're not logged in it will show a message that you have to log in to edit the phone case.
+     *
+     * @see http://docs.angularjs.org/api/ngResource.$resource
      */
     $scope.getCanvasDesign = function() {
         if(window.sessionStorage.loggedInUser) {

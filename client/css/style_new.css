@@ -293,7 +293,7 @@ nav ul li a:hover{
     background: no-repeat;
     cursor: pointer;
     margin-bottom: 15px;
-    
+
     transition: 0.3s all ease-out;
     -webkit-transition: 0.3s all ease-out;
     -moz-transition: 0.3s all ease-out;
@@ -782,15 +782,15 @@ body.case-editor footer {
 .overlay-iphone.small.iphone4 { background-size: 140px 276px; }
 .overlay-iphone.big.iphone4 { background-size: 220px 433px; }
 
-.overlay-iphone.tiny.iphone5 { 
+.overlay-iphone.tiny.iphone5 {
   background-size: 80px 168px;
   height: 168px;
 }
-.overlay-iphone.small.iphone5 { 
+.overlay-iphone.small.iphone5 {
   background-size: 140px 295px;
   height: 295px;
 }
-.overlay-iphone.big.iphone5 { 
+.overlay-iphone.big.iphone5 {
   background-size: 220px 464px;
   height: 464px;
 }
@@ -817,7 +817,7 @@ body.case-editor footer {
 	line-height:30px;
 	margin-left:-49%;
 	text-align:center;
-	
+
 	transform:rotate(270deg);
 	-ms-transform:rotate(270deg); /* IE 9 */
 	-webkit-transform:rotate(270deg); /* Safari and Chrome */

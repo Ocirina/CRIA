@@ -4,7 +4,7 @@
 /**
  * Method for checking if an object is empty. The correct way!
  * @scope public
- * @param {Object} The object to check if its empty.
+ * @param {Object} object to check if its empty.
  * @return {Object} True if empty else false.
  */
 function isEmpty(obj) {
