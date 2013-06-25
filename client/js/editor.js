@@ -506,13 +506,14 @@ gedefineerd in een bestand.
         function sendCanvasAsync(data, type, route) {
             function handleResponse(response) {
                 if (isEmpty(response.error)) {
+                    delete window.sessionStorage.design;
                     window.location.hash = '/product/' + response.result._id;
                     Application.notify('ok', 'Uw case is succesvol opgelsagen.');
                 } else {
                     Application.notify('error', response.error);
                 }
             }
-
+            
             $.ajax({
                 url: 'http://autobay.tezzt.nl:43083/' + route,
                 type: type,
